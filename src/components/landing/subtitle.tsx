@@ -1,32 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
+import { VerticalFlexDiv } from 'styles/sharedStyles';
 
-const HorizontalFlexDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`;
-
-const P = styled.p`
+const H2 = styled.h2`
   text-transform: uppercase;
-  /* TODO: fix the solid number */
-  margin: 0.3em 0; 
+ 
 `;
 
-const ItalicP = styled(P)`
-  font-style: italic;
+const SubtitleWrapper = styled(VerticalFlexDiv)`
+  width: 30vw;
+  z-index: -1;
 `;
 
 const Subtitle = () => {
     return (
-        <HorizontalFlexDiv>
-            <div>
-                <P>Based in Moscow</P>
-                <ItalicP> *Available Worldwide</ItalicP>
-            </div>
-            <P>Brands & People Photographer</P>
-            <P>(2021), All Rights Reserved</P>
-        </HorizontalFlexDiv>
+      <SubtitleWrapper >
+        <H2>
+          African Innovation Shaping the Global Future
+        </H2>
+        <p>May XX, 2022</p>
+        <a>Join Us Online + In-Person</a>
+
+      </SubtitleWrapper >
         
     );
 };

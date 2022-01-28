@@ -21,6 +21,7 @@ h1, h2, p {
   /* Font minimum, preferred and maximum value */
   font-size: clamp(var(--min), var(--val), var(--max));
   margin: 0;
+  font-weight: normal;
 }
 
 /* Font size variables */
@@ -31,13 +32,13 @@ h1 {
 }
 h2 {
   --min: 1.5em;   /* minimum value */
-  --val: 4vw;     /* preferred value = 4% viewport width */
+  --val: 2vw;     /* preferred value = 4% viewport width */
   --max: 2.25em;  /* maximum value */
 }
 p {
-  --min: 0.8em;   /* minimum value */
-  --val: 1vw; /* preferred value = 2.5% viewport width */
-  --max: 1.5em; /* maximum value */
+  --min: 0.8rem;   /* minimum value */
+  --val: 2vw; /* preferred value = 2.5% viewport width */
+  --max: 1.5rem; /* maximum value */
 }
 
 `

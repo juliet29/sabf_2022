@@ -15,8 +15,8 @@ const Wrapper = styled.section`
 const AboutIndex = () => {
     return (
         <Wrapper>
-            <SmallText></SmallText>
-            <LargeText></LargeText>
+            {/* <SmallText></SmallText>
+            <LargeText></LargeText> */}
             <SectionSeperator></SectionSeperator>
         </Wrapper>
     );

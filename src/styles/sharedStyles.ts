@@ -3,10 +3,10 @@ import styled from "styled-components";
 export const VerticalFlexDiv = styled.div`
   display: flex;
   flex-direction: column;
-  text-align: center;
+  /* text-align: right; */
 `;
 
 export const SectionSeperator = styled.div`
-    height: 10em;
+    height: 7em;
   
 `;

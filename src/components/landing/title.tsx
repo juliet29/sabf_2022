@@ -5,77 +5,58 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     margin-bottom: 1em;
+    align-content: center;
 `;
 
-const Line = styled.div`
-    background-color: ${props => props.theme.palette.white};
-    height: 0.05em;
-    /* margin: 1em 0; */
-`;
 
 const CenterDiv = styled.div`
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+    width: min-content;
+    /* justify-content: center; */
 `;
 
-const textAppearTopRightAnim = keyframes`
-0% {
-    transform: scale(0);
-    transform-origin: 0% 100%;
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    transform-origin: 0% 100%;
-    opacity: 1;
-  }
-    /* 0% {
-         transform: translateY(1em) ;
-        transform-origin: 50% 50%;
-    }
-    100% {
-        color: darkblue;
-        transform: translateY(0) translateX(0);
-        transform-origin: 50% 50%;
-    } */
-`
-interface H1Props{
-    animationDelay: number;
-}
-const H1 = styled.h1<H1Props>`
-  /* display: contents; */
+
+
+const H1 = styled.h1`
+  /* display: inline-block; */
+  width: min-content;
   /*text-align: center; */
-  margin: 0;
-  letter-spacing: -0.5vw;
-  line-height: 0.9em;
-  font-size: 17vw;
-  @media (max-width: 768px) {
+  /* margin: 0; */
+  /* font-size: 17vw; */
+  /* @media (max-width: 768px) {
     font-size: 15vw;
-  }
-  animation-name: ${textAppearTopRightAnim};
-  animation-duration: 0.4s;
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: forwards;
-  animation-delay: ${props => props.animationDelay}s; 
-  /* animation-iteration-count: infinite;*/
+  } */
 `;
 
+const FancyH1 = styled(H1)`
+    font-style: italic;
+    position: relative;
+    right: 15vw;
+`
 
+const P = styled.p`
+  /* margin: 0; */
+`;
 
-
-const text = 'Daria' + "   " + 'Izbash';
-var textElements = text.split("").map(c => c);
-
+const Space = styled.div`
+  height: 7vh;
+`;
 
 const Title = () => {
     return (
         <Wrapper>
-            <Line></Line>
             <CenterDiv>
-            {textElements.map((e, ix) => <H1 animationDelay={ix/30}>{e}</H1>)}
+            <P>14th Anniversary</P>
+            <H1>Stanford</H1>
+            <Space></Space>
+            <FancyH1>Africa </FancyH1>
+            <FancyH1>Business </FancyH1>
+            <Space></Space>
+            <H1>Forum</H1>
+        
             </CenterDiv>
-            <Line></Line>
         </Wrapper> 
     );       
 };
