@@ -12,6 +12,24 @@ const PhotoPlaceholder = styled.div`
     width: 30vw;
 `;
 
+const TextBlock = styled.div`
+    display: flex;
+    flex-direction: row;
+    div:nth-child(1) {
+        margin-right: 20px;
+    }
+    div:nth-child(2) {
+        h2 {
+            margin-bottom: 20px;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+    }
+
+  
+`;
+
 
 const Grid = styled.div`
     display: grid;
@@ -31,7 +49,7 @@ const Grid = styled.div`
         grid-row: row1-start / span 2;
     }
 
-    div:nth-child(2){
+    ${TextBlock}:nth-child(2){
         grid-column: col3-line / span 2;
         grid-row: row1-start / span 2;
     }
@@ -39,7 +57,7 @@ const Grid = styled.div`
     ${PhotoPlaceholder}:nth-child(3){
         grid-column: col3-line / span 2;
         grid-row: row2-start / span 2;
-        justify-self: end; 
+        /* justify-self: end;  */
         /* align-self: center; */
     }
     
@@ -58,7 +76,7 @@ const AboutSection = () => {
                 <PhotoPlaceholder>
                     photo 1
                 </PhotoPlaceholder>
-                <div>
+                <TextBlock>
                     <div><h2>01</h2></div>
                     <div>
                         <h2>
@@ -72,7 +90,9 @@ const AboutSection = () => {
                         innovation play in shaping the global future? 
                         How do current ventures on the continent position
                         Africa to become a leader in the global economy? 
-                        <br/>
+                        </p>
+                        
+                        <p>
                          At this conference we would like to challenge the narrative 
                          that “Africa is the future” and explore whether 
                          “Africa is now”.  We will welcome diverse perspectives
@@ -80,7 +100,7 @@ const AboutSection = () => {
                           discuss what they see as Africa’s role in today’s economy. 
                         </p>
                     </div>
-                </div>
+                </TextBlock>
                 <PhotoPlaceholder>
                     photo 2
                 </PhotoPlaceholder>
