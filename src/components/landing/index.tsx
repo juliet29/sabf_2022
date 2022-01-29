@@ -1,21 +1,15 @@
 import React from 'react';
-import Title from './title';
-import Subtitle from './subtitle';
-import Photos from './photos';
 import styled from 'styled-components';
 import { SectionSeperator } from 'styles/sharedStyles';
 
 // styled components 
 const Section = styled.section`
-    /* display: flex; */
-    /* justify-content: center; */
-  /* color: ${({ theme }) => theme.palette.white}; */
+  margin: 0 14%;
 `;
 
 const GridHolder = styled.div`
     display: flex;
     justify-content: center;
-    padding: 10em;
 
   
 `;
@@ -83,13 +77,15 @@ const LandingIndex:React.FC<LandingIndexProps> = ({scrollWidth}) => {
                     <p>14th Anniversary</p>
                     <h1>Stanford</h1>
                 </div>
+
                 <div>
-                <h1>
-                    Africa <br/>Business
-                </h1>
+                    <h1>
+                        Africa <br/>Business
+                    </h1>
                 </div>
+
                 <div>
-                <h1> Forum</h1>
+                    <h1> Forum</h1>
                 </div>
                 
                 <div>
