@@ -1,11 +1,11 @@
 import React from 'react';
-import LargeText from './largeText';
-import SmallText from './smallText';
+import AboutSection from './aboutSection';
 import styled from 'styled-components';
 import { SectionSeperator } from 'styles/sharedStyles';
 
-const Wrapper = styled.section`
-    color: black;
+const Section = styled.section`
+    /* color: black; */
+    margin: 0 10%;
   
 `;
 
@@ -14,11 +14,10 @@ const Wrapper = styled.section`
 
 const AboutIndex = () => {
     return (
-        <Wrapper>
-            {/* <SmallText></SmallText>
-            <LargeText></LargeText> */}
+        <Section>
+            <AboutSection></AboutSection>
             <SectionSeperator></SectionSeperator>
-        </Wrapper>
+        </Section>
     );
 };
 

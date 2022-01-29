@@ -1,17 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { SectionSeperator } from 'styles/sharedStyles';
+import { GridHolder } from 'styles/sharedStyles';
 
-// styled components 
+// start styled components 
 const Section = styled.section`
   margin: 0 14%;
-`;
-
-const GridHolder = styled.div`
-    display: flex;
-    justify-content: center;
-
-  
 `;
 
 const Grid = styled.div`
@@ -93,13 +87,8 @@ const LandingIndex:React.FC<LandingIndexProps> = ({scrollWidth}) => {
                     <p>May XX, 2022</p>
                     <a>Join Us Online + In-Person</a>
                 </div>
-                
-
             </Grid>
             </GridHolder>
-            
-            {/* <Title></Title>
-            <Subtitle></Subtitle> */}
             <SectionSeperator></SectionSeperator>
         </Section>
         
