@@ -41,7 +41,7 @@ h2 {
 }
 p, a {
   --min: 0.8em;   /* minimum value */
-  --val: 1.5vw; /* preferred value = 2.5% viewport width */
+  --val: 1.2vw; /* preferred value = 2.5% viewport width */
   --max: 1.5em; /* maximum value */
 }
 

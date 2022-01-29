@@ -7,23 +7,24 @@ import {GridHolder } from 'styles/sharedStyles';
 
 // ******* start styled components 
 const PhotoPlaceholder = styled.div`
-    background-color: blue;
-    height: 40vh;
-    width: 30vw;
+    background-color: darkblue;
+    /* height: 40vh; */
+    /* width: 30vw; */
 `;
 
 const TextBlock = styled.div`
     display: flex;
     flex-direction: row;
+    /* margin-bottom: 10px; */
     div:nth-child(1) {
-        margin-right: 20px;
+        margin-right: 3em;
     }
     div:nth-child(2) {
         h2 {
-            margin-bottom: 20px;
+            margin-bottom: 1em;
         }
         p {
-            margin-bottom: 10px;
+            margin-bottom: 1em;
         }
     }
 
@@ -33,8 +34,8 @@ const TextBlock = styled.div`
 
 const Grid = styled.div`
     display: grid;
-    height: 100vh;
-    gap: 30px;
+    height: 140vh;
+    gap: 3em 6em;
     grid-template-columns: [col1-line] 1fr
                                 [col2-line] 1fr
                                 [col3-line] 1fr
@@ -43,20 +44,25 @@ const Grid = styled.div`
     grid-template-rows: [row1-start] 1fr 
                             [row2-start] 1fr 
                             [row3-start] 1fr
-                            [row4-start];
+                            [row4-start] 1fr
+                            [row5-start] 1fr
+                            [row6-start] 1fr
+                            [row7-start] 1fr;
     ${PhotoPlaceholder}:nth-child(1){
         grid-column: col1-line / span 2;
-        grid-row: row1-start / span 2;
+        grid-row: row1-start / span 4;
     }
 
     ${TextBlock}:nth-child(2){
         grid-column: col3-line / span 2;
-        grid-row: row1-start / span 2;
+        grid-row: row1-start / span 3;
     }
 
     ${PhotoPlaceholder}:nth-child(3){
         grid-column: col3-line / span 2;
-        grid-row: row2-start / span 2;
+        grid-row: row4-start / span 4;
+        position: relative;
+        top: 3em;
         /* justify-self: end;  */
         /* align-self: center; */
     }
@@ -80,8 +86,9 @@ const AboutSection = () => {
                     <div><h2>01</h2></div>
                     <div>
                         <h2>
-                            Innovation in Africa is shaping the 
-                            world's future.
+                            Innovation in Africa is <br/> 
+                            shaping the world's  <br/> 
+                            future.
                         </h2>
                         <p>
                         This year’s conference will explore how innovations across various 
@@ -99,6 +106,8 @@ const AboutSection = () => {
                           on Africa’s unique opportunities and challenges as our speakers 
                           discuss what they see as Africa’s role in today’s economy. 
                         </p>
+
+                        <a>Join Us Online + In-Person</a>
                     </div>
                 </TextBlock>
                 <PhotoPlaceholder>
