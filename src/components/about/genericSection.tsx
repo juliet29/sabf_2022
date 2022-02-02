@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import {GridHolder } from 'styles/sharedStyles';
-
+import {useContent} from 'hooks/use-content'
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 
 
@@ -72,42 +73,31 @@ const Grid = styled.div`
 
 
 
-// ******** end styled components 
+// ******** end styled components {number, title, body}
 
  
-const AboutSection = () => {
+const GenericSection = ({sectionNumber}) => {
+    const nodes = useContent()
+    const currentNode = nodes.find(node => node.frontmatter?.number === sectionNumber);
+    console.log(currentNode)
     return (
         <GridHolder>
+            
             <Grid>
                 <PhotoPlaceholder>
                     photo 1
                 </PhotoPlaceholder>
                 <TextBlock>
-                    <div><h2>01</h2></div>
+                    <div><h2>{currentNode?.frontmatter?.number}</h2></div>
                     <div>
                         <h2>
-                            Innovation in Africa is <br/> 
-                            shaping the world's  <br/> 
-                            future.
+                        {currentNode?.frontmatter?.title}
                         </h2>
-                        <p>
-                        This year’s conference will explore how innovations across various 
-                        sectors in Africa can influence the global economy. 
-                        What role does African 
-                        innovation play in shaping the global future? 
-                        How do current ventures on the continent position
-                        Africa to become a leader in the global economy? 
-                        </p>
+                        <MDXRenderer>
+                        {currentNode?.body}
+                        </MDXRenderer>
+                        <p></p>
                         
-                        <p>
-                         At this conference we would like to challenge the narrative 
-                         that “Africa is the future” and explore whether 
-                         “Africa is now”.  We will welcome diverse perspectives
-                          on Africa’s unique opportunities and challenges as our speakers 
-                          discuss what they see as Africa’s role in today’s economy. 
-                        </p>
-
-                        <a>Join Us Online + In-Person</a>
                     </div>
                 </TextBlock>
                 <PhotoPlaceholder>
@@ -120,4 +110,4 @@ const AboutSection = () => {
     );
 };
 
-export default AboutSection;
+export default GenericSection;

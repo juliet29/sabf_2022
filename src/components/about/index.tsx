@@ -1,7 +1,7 @@
 import React from 'react';
-import AboutSection from './aboutSection';
 import styled from 'styled-components';
 import { SectionSeperator } from 'styles/sharedStyles';
+import GenericSection from './genericSection';
 
 
 const Section = styled.section`
@@ -17,10 +17,11 @@ const AboutIndex = () => {
 
     return (
         <Section>
-            {/* <title>{data.site.siteMetadata.title}</title> */}
-            
-            {/* <header>{data.site.siteMetadata.title}</header> */}
-            <AboutSection></AboutSection>
+          <GenericSection sectionNumber={"01"}></GenericSection>
+          <SectionSeperator></SectionSeperator>
+          <GenericSection sectionNumber={"02"}></GenericSection>
+          <SectionSeperator></SectionSeperator>
+          <GenericSection sectionNumber={"03"}></GenericSection>
             <SectionSeperator></SectionSeperator>
         </Section>
     );

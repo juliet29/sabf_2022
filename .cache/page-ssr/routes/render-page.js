@@ -2447,7 +2447,8 @@ module.exports = Object.assign;
 exports.components = {
   "component---cache-dev-404-page-js": () => __webpack_require__.e(/*! import() | component---cache-dev-404-page-js */ "component---cache-dev-404-page-js").then(__webpack_require__.bind(__webpack_require__, /*! ./../../dev-404-page.js */ "./.cache/dev-404-page.js")),
   "component---src-pages-404-tsx": () => __webpack_require__.e(/*! import() | component---src-pages-404-tsx */ "component---src-pages-404-tsx").then(__webpack_require__.bind(__webpack_require__, /*! ./../../../src/pages/404.tsx */ "./src/pages/404.tsx")),
-  "component---src-pages-index-tsx": () => __webpack_require__.e(/*! import() | component---src-pages-index-tsx */ "component---src-pages-index-tsx").then(__webpack_require__.bind(__webpack_require__, /*! ./../../../src/pages/index.tsx */ "./src/pages/index.tsx"))
+  "component---src-pages-index-tsx": () => __webpack_require__.e(/*! import() | component---src-pages-index-tsx */ "component---src-pages-index-tsx").then(__webpack_require__.bind(__webpack_require__, /*! ./../../../src/pages/index.tsx */ "./src/pages/index.tsx")),
+  "component---src-pages-pitch-tsx": () => __webpack_require__.e(/*! import() | component---src-pages-pitch-tsx */ "component---src-pages-pitch-tsx").then(__webpack_require__.bind(__webpack_require__, /*! ./../../../src/pages/pitch.tsx */ "./src/pages/pitch.tsx"))
 };
 
 /***/ }),

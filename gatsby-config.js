@@ -17,6 +17,7 @@ module.exports = {
     "gatsby-plugin-mdx",
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sass`,
-    `gatsby-plugin-styled-components`
+    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-graphql-codegen`,
   ],
 };
