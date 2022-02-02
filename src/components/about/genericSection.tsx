@@ -79,7 +79,7 @@ const Grid = styled.div`
 const GenericSection = ({sectionNumber}) => {
     const nodes = useContent()
     const currentNode = nodes.find(node => node.frontmatter?.number === sectionNumber);
-    console.log(currentNode)
+    // console.log(currentNode)
     return (
         <GridHolder>
             
