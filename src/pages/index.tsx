@@ -5,6 +5,7 @@ import mainTheme, { darkColor, lightColor } from 'styles/theme'
 import styled, { ThemeProvider, keyframes } from 'styled-components'
 import { GlobalStyle } from 'styles/globalStyles'
 import AboutIndex from 'components/about';
+import NavBar from 'components/navigation/navBar';
 
 const ColorChange = keyframes`
   0% {
@@ -73,6 +74,7 @@ const IndexPage = () => {
       <ThemeProvider theme={mainTheme}>
         <BackgroundColor lightBg={lightBg}>
           <GlobalStyle/>
+          <NavBar></NavBar>
           <LandingIndex scrollWidth={scrollWidth}></LandingIndex>
           <AboutIndex></AboutIndex>
         </BackgroundColor>

@@ -1,3 +1,4 @@
+import Layout from 'components/navigation/layout';
 import React from 'react';
 
 
@@ -7,9 +8,11 @@ const PitchPage = () => {
   
     return (
     
-       <body>
-         <h1>Pitch! </h1>
-       </body>
+       <Layout
+        pageTitle='Pitch Competition'
+       >
+         <h1>Pitch!</h1>
+       </Layout>
         
        
     )
