@@ -1,29 +1,15 @@
 import React from 'react';
-import {  graphql } from 'gatsby'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 
 
-const PitchPage = ({data}) => {
+const PitchPage = () => {
 
   
     return (
-        <section>
-            {
-            data.allMdx.nodes.map( (node) => (
-                <div>
-                    <h1>{node.frontmatter.title}</h1>
-                    <p>{node.frontmatter.number}</p>
-                    <MDXRenderer>{node.body}</MDXRenderer>
-
-                </div>
-              
-              
-            )
-            )
-          }
-        </section>
-       
+    
+       <body>
+         <h1>Pitch! </h1>
+       </body>
         
        
     )
@@ -31,18 +17,4 @@ const PitchPage = ({data}) => {
   export default PitchPage
 
 
-export const query = graphql`
-query MyQuery {
-  allMdx {
-    nodes {
-      id
-      frontmatter {
-        title
-        number
-      }
-      body
-    }
-  }
-}
 
-`
