@@ -1,3 +1,4 @@
+import Layout from 'components/navigation/layout';
 import React from 'react';
 
 interface AttendPageProps {
@@ -6,9 +7,11 @@ interface AttendPageProps {
 
 const AttendPage: React.FC<AttendPageProps> = ({  }) => {
     return (
-        <body>
-        <h1>Attend! </h1>
-      </body>
+        <Layout
+        pageTitle='Attend'
+       >
+         <h1>Attend!</h1>
+       </Layout>
     );
 };
 

@@ -1,3 +1,4 @@
+import Layout from 'components/navigation/layout';
 import React from 'react';
 
 interface SpeakersPageProps {
@@ -6,9 +7,11 @@ interface SpeakersPageProps {
 
 const SpeakersPage: React.FC<SpeakersPageProps> = ({  }) => {
     return (
-        <body>
-        <h1>Speakers! </h1>
-      </body>
+        <Layout
+        pageTitle='Speakers + Panels'
+       >
+         <h1>Speakers!</h1>
+       </Layout>
     );
 };
 

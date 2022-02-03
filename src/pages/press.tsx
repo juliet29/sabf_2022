@@ -1,3 +1,4 @@
+import Layout from 'components/navigation/layout';
 import React from 'react';
 
 interface PressPageProps {
@@ -6,9 +7,11 @@ interface PressPageProps {
 
 const PressPage: React.FC<PressPageProps> = ({  }) => {
     return (
-        <body>
-        <h1>Press! </h1>
-      </body>
+        <Layout
+        pageTitle='Press + Videos'
+       >
+         <h1>Press + Videos!</h1>
+       </Layout>
         
     );
 };
