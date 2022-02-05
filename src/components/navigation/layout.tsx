@@ -39,7 +39,10 @@ const Layout: React.FC<LayoutProps> = ({ pageTitle, children }) => {
             <GlobalStyle/>
             <html>
                 <title>{pageTitle}</title>
-                <body>
+                <body style={{
+                        height: "100%",
+                        minHeight: "100%"
+                    }}>
                     <NavBar></NavBar>
                     <Header>
                         <h1>{pageTitle}</h1>
@@ -47,8 +50,8 @@ const Layout: React.FC<LayoutProps> = ({ pageTitle, children }) => {
                     </Header>
                     
                     {children}
-                    <Footer></Footer>
                 </body>
+                <Footer></Footer>
             </html>
         </ThemeProvider>
     );

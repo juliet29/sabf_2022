@@ -7,7 +7,7 @@ import {faInstagramSquare, faTwitterSquare, faLinkedin, faYoutubeSquare} from '@
 
 
 const StyledFooter = styled.footer`
-  margin-top: 5vh;
+  margin-top: 20vh;
   padding: ${edgeSpace + "em"};
   padding-top: 7em;
   padding-left: 7em;
@@ -16,7 +16,7 @@ const StyledFooter = styled.footer`
   background-color: ${secondaryAccentColor};
   display: flex;
   flex-direction: row;
-  position: fixed;
+  position: relative;
   bottom: 0;
   width: 100%;
   background: rgb(36,71,127);

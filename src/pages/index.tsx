@@ -6,6 +6,7 @@ import styled, { ThemeProvider, keyframes } from 'styled-components'
 import { GlobalStyle } from 'styles/globalStyles'
 import AboutIndex from 'components/about';
 import NavBar from 'components/navigation/navBar';
+import Footer from 'components/navigation/footer';
 
 const ColorChange = keyframes`
   0% {
@@ -75,8 +76,14 @@ const IndexPage = () => {
         <BackgroundColor lightBg={lightBg}>
           <GlobalStyle/>
           <NavBar></NavBar>
+          <body style={{
+            height: "100%",
+            minHeight: "100%"
+          }}>
           <LandingIndex scrollWidth={scrollWidth}></LandingIndex>
           <AboutIndex></AboutIndex>
+          </body>
+          <Footer></Footer>
         </BackgroundColor>
       </ThemeProvider>
   
