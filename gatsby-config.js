@@ -14,10 +14,11 @@ module.exports = {
         path: `${__dirname}/markdown`,
       }
     },
-    "gatsby-plugin-mdx",
+    `gatsby-plugin-mdx`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-styled-components`,
+    `gatsby-plugin-fontawesome-css`,
     
   ],
 };
