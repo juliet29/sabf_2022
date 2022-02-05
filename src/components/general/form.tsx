@@ -68,6 +68,31 @@ const Field = styled.div`
   }
 `;
 
+////// end of styles
+
+
+const sendToDatabase = (email) => {
+    var data = JSON.stringify({
+        "email": email,
+      });
+      
+      var xhr = new XMLHttpRequest();
+      xhr.withCredentials = false;
+      
+      xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === 4) {
+          console.log(this.responseText);
+        }
+      });
+      
+    xhr.open("POST", "https://sabf2022emails-1ad9.restdb.io/rest/emails");
+    xhr.setRequestHeader("content-type", "application/json");
+    xhr.setRequestHeader("x-apikey", "61fe7b1c6a791555010217f5");
+    xhr.setRequestHeader("cache-control", "no-cache");
+    xhr.send(data);
+}
+
+
 
 
 interface FormProps {
@@ -79,6 +104,7 @@ const Form: React.FC<FormProps> = ({  }) => {
     const handleSubmit = (evt) => {
         evt.preventDefault();
         alert(`Submitting Name ${email}`)
+        sendToDatabase(email)
     }
     return (
         <StyledForm onSubmit={handleSubmit}>
