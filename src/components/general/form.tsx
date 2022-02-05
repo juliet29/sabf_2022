@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import { skyBlue } from 'styles/theme';
+import { primaryAccentColor, secondaryAccentColor } from 'styles/theme';
 
 const StyledForm = styled.form`
 display: flex;
@@ -10,7 +10,7 @@ flex-direction: row;
 
 const Button = styled.button`
     margin-left: 2em;
-    background-color: ${skyBlue};
+    background-color: ${primaryAccentColor};
     flex-grow: 1;
     border-radius: 0.12em;
     border-color: white;
@@ -20,9 +20,8 @@ const Button = styled.button`
     transition:  0.3s background-color ease-in-out;
 
     :hover {
-        background-color: navy;
+        background-color: ${secondaryAccentColor};
     }
-}
   
 `;
 
@@ -71,7 +70,7 @@ const Field = styled.div`
 ////// end of styles
 
 
-const sendToDatabase = (email) => {
+const sendToDatabase = (email:string) => {
     var data = JSON.stringify({
         "email": email,
       });
@@ -101,7 +100,7 @@ interface FormProps {
 
 const Form: React.FC<FormProps> = ({  }) => {
     const [email, setEmail] = useState("");
-    const handleSubmit = (evt) => {
+    const handleSubmit = (evt:any) => {
         evt.preventDefault();
         alert(`Submitting Name ${email}`)
         sendToDatabase(email)

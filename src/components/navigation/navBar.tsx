@@ -1,8 +1,7 @@
 import { Link } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
-import { SectionSeperator } from 'styles/sharedStyles';
-import {lightColor} from 'styles/theme'
+import { primaryAccentColor} from 'styles/theme';
 
 interface NavBarProps {
     // : string;
@@ -37,10 +36,17 @@ const NavMenuDiv = styled.div`
 `;
 
 export const NavLink = styled(Link)`
-  color: lightblue;
+  color: ${primaryAccentColor};
   margin-left: 1em;
   margin-right: 1em;
   text-decoration: none;
+  text-transform: uppercase;
+  transition:  0.3s all ease-in-out;
+
+  :hover {
+        color: white;
+        text-decoration: underline;
+    }
 
 `;
 

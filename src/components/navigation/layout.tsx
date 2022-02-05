@@ -4,6 +4,7 @@ import mainTheme from 'styles/theme'
 import styled, { ThemeProvider} from 'styled-components'
 import { GlobalStyle } from 'styles/globalStyles'
 import {edgeSpace } from 'styles/theme';
+import Footer from './footer';
 
 
 // const Body = styled.body`
@@ -46,6 +47,7 @@ const Layout: React.FC<LayoutProps> = ({ pageTitle, children }) => {
                     </Header>
                     
                     {children}
+                    <Footer></Footer>
                 </body>
             </html>
         </ThemeProvider>
