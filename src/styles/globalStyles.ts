@@ -4,7 +4,7 @@ import { darkColor, fontFamily } from './theme'
 export const GlobalStyle = createGlobalStyle`
 
 html {
-  /* background-color: ${darkColor}; */
+  background-color: ${darkColor};
   font-family: ${fontFamily};
   color: white;
   /* margin: 20px; */
