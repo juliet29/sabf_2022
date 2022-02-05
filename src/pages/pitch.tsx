@@ -26,7 +26,9 @@ const PitchPage = () => {
         pageTitle='Pitch Competition'
        >
          <Section>
-           <h2>
+           <h2 style={{
+             marginBottom: "1em"
+           }}>
              Launching soon! 
              Enter your email below to be 
              notified about new updates.

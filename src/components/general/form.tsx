@@ -14,7 +14,7 @@ const Button = styled.button`
     flex-grow: 1;
     border-radius: 0.12em;
     border-color: white;
-    border-width: 4px;
+    border-width: 1px;
     color: white;
     border-style: solid;
     transition:  0.3s background-color ease-in-out;

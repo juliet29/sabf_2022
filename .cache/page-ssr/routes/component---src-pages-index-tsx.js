@@ -207,7 +207,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const NavBarNav = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].nav.withConfig({
   displayName: "navBar__NavBarNav"
-})(["background-color:blueviolet;z-index:100;padding-top:2em;padding-bottom:2em;padding-left:1em;padding-right:1em;position:sticky;"]);
+})(["z-index:100;padding-top:2em;padding-bottom:2em;padding-left:1em;padding-right:1em;position:sticky;top:0;"]);
 const NavBarDiv = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div.withConfig({
   displayName: "navBar__NavBarDiv"
 })(["display:flex;flex-direction:row;justify-content:space-between;"]);
@@ -363,14 +363,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "darkColor": () => (/* binding */ darkColor),
 /* harmony export */   "lightColor": () => (/* binding */ lightColor),
+/* harmony export */   "skyBlue": () => (/* binding */ skyBlue),
 /* harmony export */   "fontFamily": () => (/* binding */ fontFamily),
+/* harmony export */   "edgeSpace": () => (/* binding */ edgeSpace),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 // hack untill figure out problem with global styles and typescript...
-const darkColor = '#1e1e1e'; //"#000000"
+const darkColor = "#000000"; // '#1e1e1e' //"#000000"
 
 const lightColor = '#00021f';
+const skyBlue = "#7DC9EC";
 const fontFamily = 'Arial, Helvetica, sans-serif';
+const edgeSpace = 2;
 const mainTheme = {
   palette: {
     dark: darkColor,
