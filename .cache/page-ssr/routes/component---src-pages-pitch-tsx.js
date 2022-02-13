@@ -3891,13 +3891,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // import sabfLogo from "../../assets/sabfLogo.png"
 
 const NavBarNav = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].nav.withConfig({
   displayName: "navBar__NavBarNav"
-})(["z-index:100;padding-top:2em;padding-bottom:2em;padding-left:1em;padding-right:1em;position:sticky;top:0;"]);
+})(["z-index:100;padding-top:1em;padding-bottom:2em;padding-left:1em;padding-right:1em;position:sticky;top:0;"]);
 const NavBarDiv = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].div.withConfig({
   displayName: "navBar__NavBarDiv"
-})(["display:flex;flex-direction:row;justify-content:space-between;"]);
+})(["display:flex;flex-direction:row;justify-content:space-between;align-items:center;"]);
 const NavMenuDiv = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].div.withConfig({
   displayName: "navBar__NavMenuDiv"
 })(["display:flex;flex-direction:row;justify-content:space-between;"]);
@@ -3906,13 +3907,14 @@ const NavLink = (0,styled_components__WEBPACK_IMPORTED_MODULE_3__["default"])(ga
 })(["color:", ";margin-left:1em;margin-right:1em;text-decoration:none;text-transform:uppercase;transition:0.3s all ease-in-out;:hover{color:white;text-decoration:underline;}"], styles_theme__WEBPACK_IMPORTED_MODULE_2__.primaryAccentColor);
 
 const NavBar = ({}) => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavBarNav, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavBarDiv, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavLink, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavBarNav, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavBarDiv, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavLink, {
     to: "/"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_4__.StaticImage, {
     src: "../../assets/sabfLogo.png",
     alt: "SABF",
-    __imageData: __webpack_require__(/*! ./.cache/caches/gatsby-plugin-image/1882574403.json */ "./.cache/caches/gatsby-plugin-image/1882574403.json")
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavMenuDiv, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavLink, {
+    width: "110",
+    __imageData: __webpack_require__(/*! ./.cache/caches/gatsby-plugin-image/3024376187.json */ "./.cache/caches/gatsby-plugin-image/3024376187.json")
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavMenuDiv, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavLink, {
     to: "/press"
   }, "Press + Videos"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavLink, {
     to: "/pitch"
@@ -4868,13 +4870,13 @@ module.exports["default"] = camelCase;
 
 /***/ }),
 
-/***/ "./.cache/caches/gatsby-plugin-image/1882574403.json":
+/***/ "./.cache/caches/gatsby-plugin-image/3024376187.json":
 /*!***********************************************************!*\
-  !*** ./.cache/caches/gatsby-plugin-image/1882574403.json ***!
+  !*** ./.cache/caches/gatsby-plugin-image/3024376187.json ***!
   \***********************************************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"layout":"constrained","backgroundColor":"#080808","images":{"fallback":{"src":"/static/388d464dd89249d1a135b8e69d97a7ec/82c11/sabfLogo.png","srcSet":"/static/388d464dd89249d1a135b8e69d97a7ec/2fd20/sabfLogo.png 125w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/de391/sabfLogo.png 250w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/82c11/sabfLogo.png 500w","sizes":"(min-width: 500px) 500px, 100vw"},"sources":[{"srcSet":"/static/388d464dd89249d1a135b8e69d97a7ec/d66e1/sabfLogo.webp 125w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/e7160/sabfLogo.webp 250w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/5f169/sabfLogo.webp 500w","type":"image/webp","sizes":"(min-width: 500px) 500px, 100vw"}]},"width":500,"height":500}');
+module.exports = JSON.parse('{"layout":"constrained","backgroundColor":"#080808","images":{"fallback":{"src":"/static/388d464dd89249d1a135b8e69d97a7ec/1e010/sabfLogo.png","srcSet":"/static/388d464dd89249d1a135b8e69d97a7ec/7a5b8/sabfLogo.png 28w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/4c483/sabfLogo.png 55w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/1e010/sabfLogo.png 110w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/43be6/sabfLogo.png 220w","sizes":"(min-width: 110px) 110px, 100vw"},"sources":[{"srcSet":"/static/388d464dd89249d1a135b8e69d97a7ec/629a0/sabfLogo.webp 28w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/938d3/sabfLogo.webp 55w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/8c6ff/sabfLogo.webp 110w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/4c27b/sabfLogo.webp 220w","type":"image/webp","sizes":"(min-width: 110px) 110px, 100vw"}]},"width":"110","height":110}');
 
 /***/ })
 
