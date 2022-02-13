@@ -10,6 +10,10 @@ var plugins = [{
       name: 'gatsby-plugin-styled-components',
       plugin: require('/Users/julietnwagwuume-ezeoke/Desktop/sabf_2022/node_modules/gatsby-plugin-styled-components/gatsby-ssr'),
       options: {"plugins":[],"displayName":true,"fileName":true,"minify":true,"namespace":"","transpileTemplateLiterals":true,"topLevelImportPaths":[],"pure":false,"disableVendorPrefixes":false},
+    },{
+      name: 'gatsby-plugin-fontawesome-css',
+      plugin: require('/Users/julietnwagwuume-ezeoke/Desktop/sabf_2022/node_modules/gatsby-plugin-fontawesome-css/gatsby-ssr'),
+      options: {"plugins":[]},
     }]
 /* global plugins */
 // During bootstrap, we write requires at top of this file which looks like:

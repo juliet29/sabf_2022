@@ -3,12 +3,13 @@ import styled from 'styled-components';
 import {GridHolder } from 'styles/sharedStyles';
 import {useContent} from 'hooks/use-content'
 import { MDXRenderer } from 'gatsby-plugin-mdx';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 
 
 // ******* start styled components 
 const PhotoPlaceholder = styled.div`
-    background-color: darkblue;
+    /* background-color: darkblue; */
     /* height: 40vh; */
     /* width: 30vw; */
 `;
@@ -78,14 +79,19 @@ const Grid = styled.div`
  
 const GenericSection = ({sectionNumber}) => {
     const nodes = useContent()
+    // get the current node for the relevant section 
     const currentNode = nodes.find(node => node.frontmatter?.number === sectionNumber);
+
+    // get the image from that node
+    const image_01 = getImage(currentNode.frontmatter.image_01)
+    const image_02 = getImage(currentNode.frontmatter.image_02)
     // console.log(currentNode)
     return (
         <GridHolder>
             
             <Grid>
                 <PhotoPlaceholder>
-                    photo 1
+                    <GatsbyImage image={image_01}/>
                 </PhotoPlaceholder>
                 <TextBlock>
                     <div><h2>{currentNode?.frontmatter?.number}</h2></div>
@@ -101,7 +107,7 @@ const GenericSection = ({sectionNumber}) => {
                     </div>
                 </TextBlock>
                 <PhotoPlaceholder>
-                    photo 2
+                    <GatsbyImage image={image_02}/>
                 </PhotoPlaceholder>
             </Grid>
             </GridHolder>
