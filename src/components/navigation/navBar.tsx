@@ -2,6 +2,8 @@ import { Link } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
 import { primaryAccentColor} from 'styles/theme';
+import { StaticImage } from "gatsby-plugin-image"
+// import sabfLogo from "../../assets/sabfLogo.png"
 
 interface NavBarProps {
     // : string;
@@ -10,7 +12,7 @@ interface NavBarProps {
 const NavBarNav = styled.nav`
   /* background-color: orange; */
   z-index: 100;
-  padding-top: 2em;
+  padding-top: 1em;
   padding-bottom: 2em;
   padding-left: 1em;
   padding-right: 1em;
@@ -25,7 +27,7 @@ const NavBarDiv = styled.div`
  display: flex;
  flex-direction: row;
  justify-content: space-between;
-  
+ align-items: center;
 `;
 
 const NavMenuDiv = styled.div`
@@ -55,9 +57,13 @@ const NavBar: React.FC<NavBarProps> = ({  }) => {
     return (
         <NavBarNav>
             <NavBarDiv>
-            <div>
-            <NavLink to="/">Logo</NavLink>
-            </div>
+            {/* <div> */}
+            <NavLink to="/">
+                <StaticImage src="../../assets/sabfLogo.png" 
+                            alt="SABF" 
+                            width="110"/>
+            </NavLink>
+            {/* </div> */}
             <NavMenuDiv>
                 <NavLink to="/press">Press + Videos</NavLink>
                 <NavLink to="/pitch">Pitch Competition</NavLink>
