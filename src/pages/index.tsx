@@ -9,6 +9,7 @@ import NavBar from 'components/navigation/navBar';
 import Footer from 'components/navigation/footer';
 import { graphql } from 'gatsby';
 import {IndexPageImageQueryQuery } from '../../graphql-types'
+
 // import { fluidImage } from 'hooks/fluid-image';
 
 
@@ -71,6 +72,14 @@ export const query = graphql`
       ...fluidImage
     }
     imageThree: file(relativePath: { eq: "ship.jpg" }) {
+      ...fluidImage
+    }
+
+    imageFour: file(relativePath: { eq: "GSB.png" }) {
+      ...fluidImage
+    }
+
+    imageFive: file(relativePath: { eq: "street.jpg" }) {
       ...fluidImage
     }
   }

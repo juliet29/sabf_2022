@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { StaticImage } from "gatsby-plugin-image"
 
-interface ScrollingSectionProps {
-    // : string;
-}
 
 // styles --------------------
 const SectionWrap = styled.div`
@@ -41,7 +39,7 @@ const H1 = styled.h1`
 `;
 
 const PhotoPlaceholder = styled.div`
-  background-color: lime;
+  background-color: black;
   height: 45vh;
   width: 30vh;
   `
@@ -77,13 +75,12 @@ const ImageGrid = styled.div`
         grid-column: col2-line / span 1;
         grid-row: row2-start / span 1;
         justify-self: end;
-        transform: translateZ(5px) scale(0.375);
     }
     ${PhotoPlaceholder}:nth-child(3){
         grid-column: col1-line / span 1;
         grid-row: row3-start / span 1;
         justify-self: start;
-        transform: translateZ(5px) scale(0.375);
+
     }
 
   
@@ -91,9 +88,20 @@ const ImageGrid = styled.div`
 
 
 
-// styles --------------------
+// end of styles --------------------
 
-const ScrollingSection: React.FC<ScrollingSectionProps> = ({  }) => {
+interface ScrollingSectionProps {
+    // imageA: any;
+    // imageB: any;
+    // imageC: any;
+    // : string;
+}
+
+const ship = "/Users/julietnwagwuume-ezeoke/Desktop/sabf_2022/src/assets/ship.jpg"
+const GSB = "/Users/julietnwagwuume-ezeoke/Desktop/sabf_2022/src/assets/GSB.png"
+const city ="/Users/julietnwagwuume-ezeoke/Desktop/sabf_2022/src/assets/city.jpg"
+
+const ScrollingSection: React.FC<ScrollingSectionProps> = ({ }) => {
     return (
 
         <SectionWrap>
@@ -102,9 +110,15 @@ const ScrollingSection: React.FC<ScrollingSectionProps> = ({  }) => {
                 Here will be some prolific text that will explore a major theme of the conference and make people very interested.
             </H1>
             <ImageGrid>
-                <PhotoPlaceholder></PhotoPlaceholder>
-                <PhotoPlaceholder></PhotoPlaceholder>
-                <PhotoPlaceholder></PhotoPlaceholder>
+                <PhotoPlaceholder>
+                    <StaticImage src={ship} alt="" />
+                </PhotoPlaceholder>
+                <PhotoPlaceholder>
+                    <StaticImage src={GSB} alt="" />
+                </PhotoPlaceholder>
+                <PhotoPlaceholder>
+                    <StaticImage src={city} alt="" />
+                </PhotoPlaceholder>
                 {/* <PhotoPlaceholder></PhotoPlaceholder> */}
 
             </ImageGrid>
