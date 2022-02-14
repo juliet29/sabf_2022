@@ -30,12 +30,12 @@ interface IndexPageProps {
 }
 
 const IndexPage: React.FC<IndexPageProps> = ({data}) => {
-  console.log("Index Page", data.imageOne)
+  // console.log("Index Page", data.imageOne)
   return (
       <ThemeProvider theme={mainTheme}>
           <GlobalStyle/>
           <html style={{
-            overflow: "hidden"
+            overflowX: "hidden"
           }}>
           <NavBar></NavBar>
           <Body>

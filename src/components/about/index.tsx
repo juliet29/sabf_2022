@@ -4,6 +4,7 @@ import { SectionSeperator } from 'styles/sharedStyles';
 import GenericSection from './genericSection';
 import ParallaxImage from './parallaxImage';
 import { IndexPageImageQueryQuery } from '../../../graphql-types';
+import ScrollingSection from './scrolling/scrolling';
 
 
 const Section = styled.section`
@@ -18,7 +19,6 @@ interface AboutIndexProps {
 
 
 const AboutIndex: React.FC<AboutIndexProps> = ({data}) => {
-    console.log("all about", data)
 
     return (
         <Section>
@@ -29,6 +29,8 @@ const AboutIndex: React.FC<AboutIndexProps> = ({data}) => {
           <ParallaxImage imageFluid={data.imageOne?.childImageSharp?.fluid}></ParallaxImage>
           <SectionSeperator></SectionSeperator>
           <GenericSection sectionNumber={"02"}></GenericSection>
+          <SectionSeperator></SectionSeperator>
+          <ScrollingSection></ScrollingSection>
           <SectionSeperator></SectionSeperator>
           <GenericSection sectionNumber={"03"}></GenericSection>
           <SectionSeperator></SectionSeperator>
