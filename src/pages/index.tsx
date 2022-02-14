@@ -9,6 +9,7 @@ import NavBar from 'components/navigation/navBar';
 import Footer from 'components/navigation/footer';
 import { graphql } from 'gatsby';
 import {IndexPageImageQueryQuery } from '../../graphql-types'
+// import { fluidImage } from 'hooks/fluid-image';
 
 
 
@@ -49,6 +50,16 @@ const IndexPage: React.FC<IndexPageProps> = ({data}) => {
   )
 }
 
+
+export const fluidImage = graphql`
+  fragment fluidImage on File {
+    childImageSharp {
+      fluid(quality: 90, maxWidth: 4160) {
+        ...GatsbyImageSharpFluid_withWebp_tracedSVG
+      }
+    }
+  }
+`;
 
 
 export const query = graphql`

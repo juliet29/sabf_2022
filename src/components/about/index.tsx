@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { SectionSeperator } from 'styles/sharedStyles';
 import GenericSection from './genericSection';
 import ParallaxImage from './parallaxImage';
-import ParallaxImage2 from './parallaxImage2';
 import { IndexPageImageQueryQuery } from '../../../graphql-types';
 
 
@@ -33,7 +32,7 @@ const AboutIndex: React.FC<AboutIndexProps> = ({data}) => {
           <SectionSeperator></SectionSeperator>
           <GenericSection sectionNumber={"03"}></GenericSection>
           <SectionSeperator></SectionSeperator>
-          <ParallaxImage2></ParallaxImage2>
+          <ParallaxImage imageFluid={data.imageTwo?.childImageSharp?.fluid}></ParallaxImage>
         </Section>
     );
 };
