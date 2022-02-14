@@ -14010,6 +14010,17 @@ module.exports = require("/Users/julietnwagwuume-ezeoke/Desktop/sabf_2022/node_m
 
 /***/ }),
 
+/***/ "crypto":
+/*!*************************!*\
+  !*** external "crypto" ***!
+  \*************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("crypto");
+
+/***/ }),
+
 /***/ "stream":
 /*!*************************!*\
   !*** external "stream" ***!

@@ -59,9 +59,9 @@ const Grid = styled.div`
 
 
 interface LandingIndexProps {
-   scrollWidth: number;
+//    scrollWidth: number;
 }
-const LandingIndex:React.FC<LandingIndexProps> = ({scrollWidth}) => {
+const LandingIndex:React.FC<LandingIndexProps> = ({}) => {
     return (
         <Section>
             <SectionSeperator></SectionSeperator>

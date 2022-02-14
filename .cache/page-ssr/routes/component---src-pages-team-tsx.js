@@ -3925,7 +3925,7 @@ const darkColor = "#000000"; // '#1e1e1e' //"#000000"
 const lightColor = '#00021f';
 const primaryAccentColor = skyBlue;
 const secondaryAccentColor = electricBlue;
-const fontFamily = 'Arial, Helvetica, sans-serif';
+const fontFamily = 'Tahoma, sans-serif';
 const edgeSpace = 2;
 const mainTheme = {
   palette: {

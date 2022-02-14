@@ -5,7 +5,7 @@ export const GlobalStyle = createGlobalStyle`
 
 html {
   background-color: ${darkColor};
-  font-family: ${fontFamily};
+  font-family: ${fontFamily};  
   color: white;
   /* margin: 20px; */
 

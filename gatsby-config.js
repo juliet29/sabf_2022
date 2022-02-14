@@ -27,6 +27,12 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-fontawesome-css`,
     `gatsby-transformer-sharp`,
+    {
+      resolve: "gatsby-plugin-graphql-codegen",
+      options: {
+        codegen: `true`,
+      }
+    },
     
   ],
 };

@@ -3711,6 +3711,219 @@ var convertCurry = convert.bind(null, (react__WEBPACK_IMPORTED_MODULE_1___defaul
 
 /***/ }),
 
+/***/ "./node_modules/any-base/index.js":
+/*!****************************************!*\
+  !*** ./node_modules/any-base/index.js ***!
+  \****************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var Converter = __webpack_require__(/*! ./src/converter */ "./node_modules/any-base/src/converter.js");
+
+/**
+ * Function get source and destination alphabet and return convert function
+ *
+ * @param {string|Array} srcAlphabet
+ * @param {string|Array} dstAlphabet
+ *
+ * @returns {function(number|Array)}
+ */
+function anyBase(srcAlphabet, dstAlphabet) {
+    var converter = new Converter(srcAlphabet, dstAlphabet);
+    /**
+     * Convert function
+     *
+     * @param {string|Array} number
+     *
+     * @return {string|Array} number
+     */
+    return function (number) {
+        return converter.convert(number);
+    }
+};
+
+anyBase.BIN = '01';
+anyBase.OCT = '01234567';
+anyBase.DEC = '0123456789';
+anyBase.HEX = '0123456789abcdef';
+
+module.exports = anyBase;
+
+/***/ }),
+
+/***/ "./node_modules/any-base/src/converter.js":
+/*!************************************************!*\
+  !*** ./node_modules/any-base/src/converter.js ***!
+  \************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+/**
+ * Converter
+ *
+ * @param {string|Array} srcAlphabet
+ * @param {string|Array} dstAlphabet
+ * @constructor
+ */
+function Converter(srcAlphabet, dstAlphabet) {
+    if (!srcAlphabet || !dstAlphabet || !srcAlphabet.length || !dstAlphabet.length) {
+        throw new Error('Bad alphabet');
+    }
+    this.srcAlphabet = srcAlphabet;
+    this.dstAlphabet = dstAlphabet;
+}
+
+/**
+ * Convert number from source alphabet to destination alphabet
+ *
+ * @param {string|Array} number - number represented as a string or array of points
+ *
+ * @returns {string|Array}
+ */
+Converter.prototype.convert = function(number) {
+    var i, divide, newlen,
+    numberMap = {},
+    fromBase = this.srcAlphabet.length,
+    toBase = this.dstAlphabet.length,
+    length = number.length,
+    result = typeof number === 'string' ? '' : [];
+
+    if (!this.isValid(number)) {
+        throw new Error('Number "' + number + '" contains of non-alphabetic digits (' + this.srcAlphabet + ')');
+    }
+
+    if (this.srcAlphabet === this.dstAlphabet) {
+        return number;
+    }
+
+    for (i = 0; i < length; i++) {
+        numberMap[i] = this.srcAlphabet.indexOf(number[i]);
+    }
+    do {
+        divide = 0;
+        newlen = 0;
+        for (i = 0; i < length; i++) {
+            divide = divide * fromBase + numberMap[i];
+            if (divide >= toBase) {
+                numberMap[newlen++] = parseInt(divide / toBase, 10);
+                divide = divide % toBase;
+            } else if (newlen > 0) {
+                numberMap[newlen++] = 0;
+            }
+        }
+        length = newlen;
+        result = this.dstAlphabet.slice(divide, divide + 1).concat(result);
+    } while (newlen !== 0);
+
+    return result;
+};
+
+/**
+ * Valid number with source alphabet
+ *
+ * @param {number} number
+ *
+ * @returns {boolean}
+ */
+Converter.prototype.isValid = function(number) {
+    var i = 0;
+    for (; i < number.length; ++i) {
+        if (this.srcAlphabet.indexOf(number[i]) === -1) {
+            return false;
+        }
+    }
+    return true;
+};
+
+module.exports = Converter;
+
+/***/ }),
+
+/***/ "./node_modules/filter-invalid-dom-props/dist/index.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/filter-invalid-dom-props/dist/index.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+	value: true
+}));
+exports["default"] = filterInvalidDOMProps;
+
+var _htmlAttributes = __webpack_require__(/*! html-attributes */ "./node_modules/html-attributes/lib/html-attributes.js");
+
+var _htmlAttributes2 = _interopRequireDefault(_htmlAttributes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var eventProps = {
+	onCopy: true,
+	onCut: true,
+	onPaste: true,
+	onLoad: true,
+	onError: true,
+	onWheel: true,
+	onScroll: true,
+	onCompositionEnd: true,
+	onCompositionStart: true,
+	onCompositionUpdate: true,
+	onKeyDown: true,
+	onKeyPress: true,
+	onKeyUp: true,
+	onFocus: true,
+	onBlur: true,
+	onChange: true,
+	onInput: true,
+	onSubmit: true,
+	onClick: true,
+	onContextMenu: true,
+	onDoubleClick: true,
+	onDrag: true,
+	onDragEnd: true,
+	onDragEnter: true,
+	onDragExit: true,
+	onDragLeave: true,
+	onDragOver: true,
+	onDragStart: true,
+	onDrop: true,
+	onMouseDown: true,
+	onMouseEnter: true,
+	onMouseLeave: true,
+	onMouseMove: true,
+	onMouseOut: true,
+	onMouseOver: true,
+	onMouseUp: true,
+	onSelect: true,
+	onTouchCancel: true,
+	onTouchEnd: true,
+	onTouchMove: true,
+	onTouchStart: true,
+	onAnimationStart: true,
+	onAnimationEnd: true,
+	onAnimationIteration: true,
+	onTransitionEnd: true
+};
+
+function isValidDOMProp(prop) {
+	return eventProps[prop] || _htmlAttributes2.default[prop] || /^(data|aria)-/.test(prop);
+}
+
+function filterInvalidDOMProps(props) {
+	var domProps = {};
+	for (var prop in props) {
+		if (props.hasOwnProperty(prop) && isValidDOMProp(prop)) {
+			domProps[prop] = props[prop];
+		}
+	}
+	return domProps;
+}
+
+/***/ }),
+
 /***/ "./src/components/about/genericSection.tsx":
 /*!*************************************************!*\
   !*** ./src/components/about/genericSection.tsx ***!
@@ -3737,6 +3950,9 @@ __webpack_require__.r(__webpack_exports__);
 
  // ******* start styled components 
 
+const SectionWrap = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].div.withConfig({
+  displayName: "genericSection__SectionWrap"
+})(["margin:0 10%;z-index:10;"]);
 const PhotoPlaceholder = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].div.withConfig({
   displayName: "genericSection__PhotoPlaceholder"
 })([""]);
@@ -3763,11 +3979,11 @@ const GenericSection = ({
   const image_01 = (0,gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_5__.getImage)(currentNode.frontmatter.image_01);
   const image_02 = (0,gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_5__.getImage)(currentNode.frontmatter.image_02); // console.log(currentNode)
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(styles_sharedStyles__WEBPACK_IMPORTED_MODULE_1__.GridHolder, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Grid, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(PhotoPlaceholder, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_5__.GatsbyImage, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(SectionWrap, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(styles_sharedStyles__WEBPACK_IMPORTED_MODULE_1__.GridHolder, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Grid, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(PhotoPlaceholder, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_5__.GatsbyImage, {
     image: image_01
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(TextBlock, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, currentNode === null || currentNode === void 0 ? void 0 : (_currentNode$frontmat = currentNode.frontmatter) === null || _currentNode$frontmat === void 0 ? void 0 : _currentNode$frontmat.number)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, currentNode === null || currentNode === void 0 ? void 0 : (_currentNode$frontmat2 = currentNode.frontmatter) === null || _currentNode$frontmat2 === void 0 ? void 0 : _currentNode$frontmat2.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(gatsby_plugin_mdx__WEBPACK_IMPORTED_MODULE_3__.MDXRenderer, null, currentNode === null || currentNode === void 0 ? void 0 : currentNode.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(PhotoPlaceholder, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_5__.GatsbyImage, {
     image: image_02
-  }))));
+  })))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (GenericSection);
@@ -3787,28 +4003,140 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
 /* harmony import */ var styles_sharedStyles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styles/sharedStyles */ "./src/styles/sharedStyles.ts");
 /* harmony import */ var _genericSection__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./genericSection */ "./src/components/about/genericSection.tsx");
+/* harmony import */ var _parallaxImage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./parallaxImage */ "./src/components/about/parallaxImage.tsx");
+/* harmony import */ var _parallaxImage2__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./parallaxImage2 */ "./src/components/about/parallaxImage2.tsx");
 
 
 
 
-const Section = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].section.withConfig({
+
+
+const Section = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].section.withConfig({
   displayName: "about__Section"
-})(["margin:0 10%;"]);
+})([""]);
 
-const AboutIndex = () => {
+const AboutIndex = ({
+  data
+}) => {
+  var _data$imageOne, _data$imageOne$childI;
+
+  console.log("all about", data);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Section, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_genericSection__WEBPACK_IMPORTED_MODULE_2__["default"], {
     sectionNumber: "01"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(styles_sharedStyles__WEBPACK_IMPORTED_MODULE_1__.SectionSeperator, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_parallaxImage__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    imageFluid: (_data$imageOne = data.imageOne) === null || _data$imageOne === void 0 ? void 0 : (_data$imageOne$childI = _data$imageOne.childImageSharp) === null || _data$imageOne$childI === void 0 ? void 0 : _data$imageOne$childI.fluid
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(styles_sharedStyles__WEBPACK_IMPORTED_MODULE_1__.SectionSeperator, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_genericSection__WEBPACK_IMPORTED_MODULE_2__["default"], {
     sectionNumber: "02"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(styles_sharedStyles__WEBPACK_IMPORTED_MODULE_1__.SectionSeperator, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_genericSection__WEBPACK_IMPORTED_MODULE_2__["default"], {
     sectionNumber: "03"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(styles_sharedStyles__WEBPACK_IMPORTED_MODULE_1__.SectionSeperator, null));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(styles_sharedStyles__WEBPACK_IMPORTED_MODULE_1__.SectionSeperator, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_parallaxImage2__WEBPACK_IMPORTED_MODULE_4__["default"], null));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AboutIndex);
+
+/***/ }),
+
+/***/ "./src/components/about/parallaxImage.tsx":
+/*!************************************************!*\
+  !*** ./src/components/about/parallaxImage.tsx ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var gatsby_background_image__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gatsby-background-image */ "./node_modules/gatsby-background-image/index.js");
+
+
+
+const ParallaxImage = ({
+  imageFluid
+}) => {
+  // console.log("P Image", data)
+  // const { desktop } = useStaticQuery(
+  //     graphql`
+  //       query {
+  //         desktop: file(relativePath: { eq: "city.jpg"}) {
+  //           childImageSharp {
+  //             fluid(quality: 90, maxWidth: 4160) {
+  //               ...GatsbyImageSharpFluid_withWebp_tracedSVG
+  //             }
+  //           }
+  //         }
+  //       }
+  //     `
+  //   )
+  // Single Image Data
+  // const imageData = desktop.childImageSharp.fluid
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(gatsby_background_image__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    Tag: "div",
+    fluid: imageFluid,
+    alt: "city",
+    role: "img",
+    style: {
+      height: "80vh"
+    } // backgroundColor={`#040e18`}
+    // title="Fullscreen Background"
+    // id="fullscreenbg"
+    // aria-label="Fullscreen Background"
+    // preserveStackingContext={true}
+
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ParallaxImage);
+
+/***/ }),
+
+/***/ "./src/components/about/parallaxImage2.tsx":
+/*!*************************************************!*\
+  !*** ./src/components/about/parallaxImage2.tsx ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _public_page_data_sq_d_2337442288_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../public/page-data/sq/d/2337442288.json */ "./public/page-data/sq/d/2337442288.json");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var gatsby_background_image__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! gatsby-background-image */ "./node_modules/gatsby-background-image/index.js");
+
+
+
+
+const ParallaxImage2 = ({}) => {
+  const {
+    desktop
+  } = _public_page_data_sq_d_2337442288_json__WEBPACK_IMPORTED_MODULE_0__.data; // Single Image Data
+
+  const imageData = desktop.childImageSharp.fluid;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(gatsby_background_image__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    Tag: "div",
+    fluid: imageData,
+    alt: "city",
+    role: "img",
+    style: {
+      height: "80vh"
+    } // backgroundColor={`#040e18`}
+    // title="Fullscreen Background"
+    // id="fullscreenbg"
+    // aria-label="Fullscreen Background"
+    // preserveStackingContext={true}
+
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ParallaxImage2);
 
 /***/ }),
 
@@ -3839,9 +4167,7 @@ const Grid = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div.withC
   displayName: "landing__Grid"
 })(["display:grid;grid-template-columns:[col1-line] 1fr [col2-line] 1fr [col3-line] 1fr [col4-line] 1fr [col5-line] 1fr [col6-line];grid-template-rows:[row1-start] 14vh  [row2-start] 14vh  [row3-start] 14vh  [row4-start] 14vh  [row5-start];div:nth-child(1){grid-column:col3-line / span 2;grid-row:row1-start / span 1;align-self:center;}div:nth-child(2){grid-column:col1-line / span 2;grid-row:row2-start / span 2;font-style:italic;align-self:center;justify-self:center;}div:nth-child(3){grid-column:col2-line / span 2;grid-row:row4-start / span 1;justify-self:center;}div:nth-child(4){grid-column:col4-line  / span 2;grid-row:row2-start / span 2;justify-self:end;align-self:center;h2{text-transform:uppercase;margin:3px;}}"]); // end of styled components 
 
-const LandingIndex = ({
-  scrollWidth
-}) => {
+const LandingIndex = ({}) => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Section, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(styles_sharedStyles__WEBPACK_IMPORTED_MODULE_1__.SectionSeperator, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(styles_sharedStyles__WEBPACK_IMPORTED_MODULE_1__.GridHolder, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Grid, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "14th Anniversary"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Stanford")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Africa ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), "Business")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, " Forum")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "African Innovation Shaping the Global Future"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "May XX, 2022"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", null, "Join Us Online + In-Person")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(styles_sharedStyles__WEBPACK_IMPORTED_MODULE_1__.SectionSeperator, null));
 };
 
@@ -4056,55 +4382,27 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const ColorChange = (0,styled_components__WEBPACK_IMPORTED_MODULE_7__.keyframes)(["0%{background-color:", ";}100%{background-color:", ";}"], styles_theme__WEBPACK_IMPORTED_MODULE_2__.darkColor, styles_theme__WEBPACK_IMPORTED_MODULE_2__.lightColor);
-const NoColorChange = (0,styled_components__WEBPACK_IMPORTED_MODULE_7__.keyframes)(["0%{background-color:", ";}100%{background-color:", ";}"], styles_theme__WEBPACK_IMPORTED_MODULE_2__.lightColor, styles_theme__WEBPACK_IMPORTED_MODULE_2__.darkColor);
-const BackgroundColor = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].html.attrs(props => ({
-  lightBg: props.lightBg
-})).withConfig({
-  displayName: "pages__BackgroundColor"
-})(["animation-name:", ";animation-duration:0.8s;animation-timing-function:cubic-bezier(0.455,0.030,0.515,0.955);animation-fill-mode:both;padding:20px;"], props => props.lightBg ? ColorChange : NoColorChange);
+// styles ------------------
+const Body = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].body.withConfig({
+  displayName: "pages__Body"
+})(["height:100%;min-height:100%;perspective:10px;transform-style:preserve-3d;overflow-x:hidden;overflow-y:auto;"]); // end of styles ------------------
 
-const IndexPage = () => {
-  // keep track of scroll pos 
-  // for changing background color + image zoom
-  const {
-    0: scrollPosition,
-    1: setScrollPosition
-  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
-  const {
-    0: lightBg,
-    1: setLightBg
-  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
-
-  const handleScroll = () => {
-    const position = window.pageYOffset;
-    setScrollPosition(position); // console.log(position)
-
-    setLightBg(position > 150 ? true : false);
-  };
-
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-  const defaultWidth = 700;
-  let scrollWidth = 1 + (defaultWidth + scrollPosition) / 1000;
+const IndexPage = ({
+  data
+}) => {
+  console.log("Index Page", data.imageOne);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(styled_components__WEBPACK_IMPORTED_MODULE_7__.ThemeProvider, {
     theme: styles_theme__WEBPACK_IMPORTED_MODULE_2__["default"]
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(BackgroundColor, {
-    lightBg: lightBg
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(styles_globalStyles__WEBPACK_IMPORTED_MODULE_3__.GlobalStyle, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(components_navigation_navBar__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("body", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(styles_globalStyles__WEBPACK_IMPORTED_MODULE_3__.GlobalStyle, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("html", {
     style: {
-      height: "100%",
-      minHeight: "100%"
+      overflow: "hidden"
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(components_landing__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    scrollWidth: scrollWidth
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(components_about__WEBPACK_IMPORTED_MODULE_4__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(components_navigation_footer__WEBPACK_IMPORTED_MODULE_6__["default"], null)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(components_navigation_navBar__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(components_landing__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(components_about__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    data: data
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(components_navigation_footer__WEBPACK_IMPORTED_MODULE_6__["default"], null)));
 };
 
+const query = "3327316462";
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (IndexPage);
 
 /***/ }),
@@ -4154,7 +4452,7 @@ const darkColor = "#000000"; // '#1e1e1e' //"#000000"
 const lightColor = '#00021f';
 const primaryAccentColor = skyBlue;
 const secondaryAccentColor = electricBlue;
-const fontFamily = 'Arial, Helvetica, sans-serif';
+const fontFamily = 'Tahoma, sans-serif';
 const edgeSpace = 2;
 const mainTheme = {
   palette: {
@@ -4167,6 +4465,1840 @@ const mainTheme = {
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (mainTheme);
+
+/***/ }),
+
+/***/ "./node_modules/gatsby-background-image/index.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/gatsby-background-image/index.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+exports.__esModule = true;
+exports["default"] = void 0;
+
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js"));
+
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js"));
+
+var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js"));
+
+var _inheritsLoose2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inheritsLoose */ "./node_modules/@babel/runtime/helpers/inheritsLoose.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+
+var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js"));
+
+var _BackgroundUtils = _interopRequireDefault(__webpack_require__(/*! ./lib/BackgroundUtils */ "./node_modules/gatsby-background-image/lib/BackgroundUtils.js"));
+
+var _HelperUtils = __webpack_require__(/*! ./lib/HelperUtils */ "./node_modules/gatsby-background-image/lib/HelperUtils.js");
+
+var _ImageUtils = __webpack_require__(/*! ./lib/ImageUtils */ "./node_modules/gatsby-background-image/lib/ImageUtils.js");
+
+var _ImageCache = __webpack_require__(/*! ./lib/ImageCache */ "./node_modules/gatsby-background-image/lib/ImageCache.js");
+
+var _ImageRef = __webpack_require__(/*! ./lib/ImageRef */ "./node_modules/gatsby-background-image/lib/ImageRef.js");
+
+var _ImageHandling = __webpack_require__(/*! ./lib/ImageHandling */ "./node_modules/gatsby-background-image/lib/ImageHandling.js");
+
+var _StyleUtils = __webpack_require__(/*! ./lib/StyleUtils */ "./node_modules/gatsby-background-image/lib/StyleUtils.js");
+
+var _StyleCreation = __webpack_require__(/*! ./lib/StyleCreation */ "./node_modules/gatsby-background-image/lib/StyleCreation.js");
+
+var _IntersectionObserverUtils = __webpack_require__(/*! ./lib/IntersectionObserverUtils */ "./node_modules/gatsby-background-image/lib/IntersectionObserverUtils.js");
+
+var _SimpleUtils = __webpack_require__(/*! ./lib/SimpleUtils */ "./node_modules/gatsby-background-image/lib/SimpleUtils.js");
+
+var _excluded = ["className", "style", "fluid", "fixed", "backgroundColor", "durationFadeIn", "Tag", "children", "keepStatic"];
+
+var BackgroundImage = function (_React$Component) {
+  (0, _inheritsLoose2.default)(BackgroundImage, _React$Component);
+
+  function BackgroundImage(props) {
+    var _this;
+
+    _this = _React$Component.call(this, props) || this;
+
+    _this.intersectionListener = function () {
+      var imageInCache = (0, _ImageCache.inImageCache)(_this.props);
+
+      if (!_this.state.isVisible && typeof _this.props.onStartLoad === "function") {
+        _this.props.onStartLoad({
+          wasCached: imageInCache
+        });
+      }
+
+      _this.imageRef = (0, _ImageRef.activatePictureRef)(_this.imageRef, _this.props, _this.selfRef);
+
+      _this.setState(function (state) {
+        return {
+          isVisible: true,
+          imageState: state.imageState + 1
+        };
+      }, function () {
+        _this.setState(function (state) {
+          return {
+            imgLoaded: imageInCache,
+            imgCached: (0, _ImageRef.hasActivatedPictureRefs)(_this.imageRef),
+            imageState: state.imageState + 1
+          };
+        });
+      });
+    };
+
+    var convertedProps = (0, _HelperUtils.convertProps)(props);
+    var isVisible = true;
+    var imgLoaded = false;
+    var IOSupported = false;
+    var fadeIn = convertedProps.fadeIn;
+    var seenBefore = (0, _ImageCache.inImageCache)(convertedProps);
+
+    if (!seenBefore && (0, _SimpleUtils.isBrowser)() && window.IntersectionObserver) {
+      isVisible = false;
+      IOSupported = true;
+    }
+
+    if (!(0, _SimpleUtils.isBrowser)()) {
+      isVisible = false;
+    }
+
+    if (convertedProps.critical) {
+      isVisible = true;
+      IOSupported = false;
+    }
+
+    var hasNoScript = !(convertedProps.critical && !fadeIn) && !(0, _SimpleUtils.isBrowser)();
+    var imageState = 0;
+
+    var _fixClassName = (0, _StyleUtils.fixClassName)(convertedProps),
+        currentClassNames = _fixClassName[0];
+
+    _this.backgroundStyles = (0, _StyleUtils.presetBackgroundStyles)((0, _BackgroundUtils.default)(convertedProps.className));
+    _this.handleImageLoaded = _this.handleImageLoaded.bind((0, _assertThisInitialized2.default)(_this));
+    _this.handleRef = _this.handleRef.bind((0, _assertThisInitialized2.default)(_this));
+    _this.imageRef = (0, _ImageRef.createPictureRef)((0, _extends2.default)({}, convertedProps, {
+      isVisible: isVisible
+    }), _this.handleImageLoaded);
+    _this.selfRef = null;
+    _this.state = {
+      isVisible: isVisible,
+      imgLoaded: imgLoaded,
+      IOSupported: IOSupported,
+      fadeIn: fadeIn,
+      hasNoScript: hasNoScript,
+      seenBefore: seenBefore,
+      imageState: imageState,
+      currentClassNames: currentClassNames
+    };
+    return _this;
+  }
+
+  var _proto = BackgroundImage.prototype;
+
+  _proto.componentDidMount = function componentDidMount() {
+    this.backgroundStyles = (0, _StyleUtils.presetBackgroundStyles)((0, _BackgroundUtils.default)(this.props.className));
+
+    if (this.state.isVisible && typeof this.props.onStartLoad === "function") {
+      this.props.onStartLoad({
+        wasCached: (0, _ImageCache.inImageCache)(this.props)
+      });
+    }
+
+    if (this.props.critical || this.state.seenBefore) {
+      if ((0, _ImageRef.imageReferenceCompleted)(this.imageRef, this.props)) {
+        this.handleImageLoaded();
+      }
+    }
+
+    var _fixClassName2 = (0, _StyleUtils.fixClassName)(this.props),
+        currentClassNames = _fixClassName2[0];
+
+    this.setState({
+      currentClassNames: currentClassNames
+    });
+  };
+
+  _proto.componentDidUpdate = function componentDidUpdate(prevProps) {
+    var _this2 = this;
+
+    if ((0, _ImageUtils.imagePropsChanged)(this.props, prevProps)) {
+      var convertedProps = (0, _HelperUtils.convertProps)(this.props);
+      var imageInCache = (0, _ImageCache.inImageCache)(convertedProps);
+
+      var _fixClassName3 = (0, _StyleUtils.fixClassName)(convertedProps),
+          currentClassNames = _fixClassName3[0];
+
+      this.setState({
+        isVisible: imageInCache || convertedProps.critical,
+        imgLoaded: imageInCache,
+        seenBefore: imageInCache,
+        currentClassNames: currentClassNames
+      }, function () {
+        _this2.bgImage = (0, _ImageUtils.getCurrentFromData)({
+          data: _this2.imageRef,
+          propName: "currentSrc",
+          returnArray: true
+        }) || (0, _ImageUtils.getCurrentFromData)({
+          data: _this2.imageRef,
+          propName: "src",
+          returnArray: true
+        });
+        _this2.imageRef = (0, _ImageRef.createPictureRef)((0, _extends2.default)({}, convertedProps, {
+          isVisible: _this2.state.isVisible
+        }), _this2.handleImageLoaded);
+      });
+    }
+  };
+
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    if (this.imageRef) {
+      if (Array.isArray(this.imageRef)) {
+        this.imageRef.forEach(function (currentImageRef) {
+          if (!!currentImageRef && !(0, _SimpleUtils.isString)(currentImageRef)) {
+            currentImageRef.onload = null;
+          }
+        });
+      } else {
+        this.imageRef.onload = null;
+      }
+    }
+
+    if (this.cleanUpListeners) {
+      this.cleanUpListeners();
+    }
+  };
+
+  _proto.handleRef = function handleRef(ref) {
+    this.selfRef = ref;
+
+    if (this.state.IOSupported && ref) {
+      this.cleanUpListeners = (0, _IntersectionObserverUtils.listenToIntersections)(ref, this.intersectionListener, this.props.rootMargin);
+    }
+  };
+
+  _proto.handleImageLoaded = function handleImageLoaded() {
+    (0, _ImageCache.activateCacheForImage)(this.props);
+    this.setState(function (state) {
+      return {
+        imgLoaded: true,
+        imageState: state.imageState + 1
+      };
+    });
+
+    if (this.state.seenBefore) {
+      this.setState({
+        fadeIn: false
+      });
+    }
+
+    if (this.props.onLoad) {
+      this.props.onLoad();
+    }
+  };
+
+  _proto.render = function render() {
+    var _fixOpacity = (0, _StyleUtils.fixOpacity)((0, _HelperUtils.convertProps)(this.props), this.props.preserveStackingContext),
+        className = _fixOpacity.className,
+        _fixOpacity$style = _fixOpacity.style,
+        style = _fixOpacity$style === void 0 ? {} : _fixOpacity$style,
+        fluid = _fixOpacity.fluid,
+        fixed = _fixOpacity.fixed,
+        backgroundColor = _fixOpacity.backgroundColor,
+        durationFadeIn = _fixOpacity.durationFadeIn,
+        Tag = _fixOpacity.Tag,
+        children = _fixOpacity.children,
+        keepStatic = _fixOpacity.keepStatic,
+        props = (0, _objectWithoutPropertiesLoose2.default)(_fixOpacity, _excluded);
+
+    var remainingProps = (0, _HelperUtils.stripRemainingProps)(props);
+    var bgColor = typeof backgroundColor === "boolean" ? "lightgray" : typeof backgroundColor !== "undefined" ? backgroundColor : "";
+    var shouldFadeIn = this.state.fadeIn === true && !this.state.imgCached || this.props.fadeIn === "soft";
+    var transitionDelay = shouldFadeIn ? durationFadeIn / 2 + "ms" : "none";
+    var divStyle = (0, _extends2.default)({
+      position: "relative"
+    }, style);
+    if (!this.props.preserveStackingContext) divStyle.opacity = 0.99;
+    var image = (0, _ImageUtils.getCurrentSrcData)({
+      fluid: fluid,
+      fixed: fixed,
+      returnArray: true
+    });
+    var noScriptImageData = (0, _ImageUtils.getCurrentSrcData)({
+      fluid: fluid,
+      fixed: fixed
+    }) || {};
+
+    if (fluid || fixed) {
+      if (fixed) {
+        divStyle.width = style.width || image.width;
+        divStyle.height = style.height || image.height;
+        divStyle.display = "inline-block";
+
+        if (style.display === "inherit") {
+          delete divStyle.display;
+        }
+      }
+    } else if (keepStatic) {
+      noScriptImageData.srcSet = '';
+    } else {
+      return null;
+    }
+
+    var newImageSettings = (0, _ImageHandling.switchImageSettings)({
+      image: image,
+      bgImage: this.bgImage,
+      imageRef: this.imageRef,
+      state: this.state
+    });
+    this.bgImage = newImageSettings.nextImageArray || newImageSettings.nextImage || this.bgImage;
+    var pseudoStyles = (0, _StyleCreation.createPseudoStyles)((0, _extends2.default)({
+      className: this.state.currentClassNames,
+      transitionDelay: transitionDelay,
+      bgColor: bgColor,
+      backgroundStyles: this.backgroundStyles,
+      style: style,
+      fadeIn: shouldFadeIn
+    }, newImageSettings, {
+      originalData: fluid || fixed
+    }));
+    var noScriptPseudoStyles = (0, _StyleCreation.createNoScriptStyles)({
+      image: image,
+      bgColor: bgColor,
+      className: this.state.currentClassNames,
+      backgroundStyles: this.backgroundStyles,
+      style: style
+    });
+    var componentKey = "" + (fluid ? "fluid" : "") + (fixed ? "fixed" : "") + "-" + JSON.stringify(noScriptImageData.srcSet);
+    var currentStyles = (0, _extends2.default)({}, this.backgroundStyles, divStyle);
+    return _react.default.createElement(Tag, (0, _extends2.default)({
+      className: this.state.currentClassNames,
+      style: currentStyles,
+      ref: this.handleRef,
+      key: componentKey
+    }, remainingProps), _react.default.createElement("style", {
+      dangerouslySetInnerHTML: {
+        __html: pseudoStyles
+      }
+    }), this.state.hasNoScript && _react.default.createElement("noscript", null, _react.default.createElement("style", {
+      dangerouslySetInnerHTML: {
+        __html: noScriptPseudoStyles
+      }
+    })), children);
+  };
+
+  return BackgroundImage;
+}(_react.default.Component);
+
+BackgroundImage.defaultProps = {
+  critical: false,
+  fadeIn: true,
+  durationFadeIn: 500,
+  Tag: "div",
+  preserveStackingContext: false,
+  rootMargin: "200px",
+  keepStatic: false
+};
+
+var fixedObject = _propTypes.default.shape({
+  width: _propTypes.default.number.isRequired,
+  height: _propTypes.default.number.isRequired,
+  src: _propTypes.default.string.isRequired,
+  srcSet: _propTypes.default.string.isRequired,
+  base64: _propTypes.default.string,
+  tracedSVG: _propTypes.default.string,
+  srcWebp: _propTypes.default.string,
+  srcSetWebp: _propTypes.default.string,
+  srcAvif: _propTypes.default.string,
+  srcSetAvif: _propTypes.default.string,
+  media: _propTypes.default.string
+});
+
+var fluidObject = _propTypes.default.shape({
+  aspectRatio: _propTypes.default.number.isRequired,
+  src: _propTypes.default.string.isRequired,
+  srcSet: _propTypes.default.string.isRequired,
+  sizes: _propTypes.default.string,
+  base64: _propTypes.default.string,
+  tracedSVG: _propTypes.default.string,
+  srcWebp: _propTypes.default.string,
+  srcSetWebp: _propTypes.default.string,
+  srcAvif: _propTypes.default.string,
+  srcSetAvif: _propTypes.default.string,
+  media: _propTypes.default.string
+});
+
+BackgroundImage.propTypes = {
+  fixed: _propTypes.default.oneOfType([fixedObject, _propTypes.default.arrayOf(fixedObject), _propTypes.default.arrayOf(_propTypes.default.oneOfType([fixedObject, _propTypes.default.string]))]),
+  fluid: _propTypes.default.oneOfType([fluidObject, _propTypes.default.arrayOf(fluidObject), _propTypes.default.arrayOf(_propTypes.default.oneOfType([fluidObject, _propTypes.default.string]))]),
+  fadeIn: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.bool]),
+  durationFadeIn: _propTypes.default.number,
+  className: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.object]),
+  critical: _propTypes.default.bool,
+  crossOrigin: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.bool]),
+  style: _propTypes.default.oneOfType([_propTypes.default.object, _propTypes.default.array]),
+  backgroundColor: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.bool]),
+  onLoad: _propTypes.default.func,
+  onError: _propTypes.default.func,
+  onStartLoad: _propTypes.default.func,
+  Tag: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.func]),
+  preserveStackingContext: _propTypes.default.bool,
+  rootMargin: _propTypes.default.string,
+  keepStatic: _propTypes.default.bool
+};
+var _default = BackgroundImage;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "./node_modules/gatsby-background-image/lib/BackgroundUtils.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/gatsby-background-image/lib/BackgroundUtils.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.getStyleRulesForClassName = exports.getStyleRules = exports.getBackgroundStylesForSingleClass = exports["default"] = void 0;
+
+var _SimpleUtils = __webpack_require__(/*! ./SimpleUtils */ "./node_modules/gatsby-background-image/lib/SimpleUtils.js");
+
+var getStyleRulesForClassName = function getStyleRulesForClassName(className) {
+  var styleSheets = (0, _SimpleUtils.isBrowser)() ? window.document.styleSheets : [];
+
+  for (var i = 0; i < styleSheets.length; i++) {
+    var classes = void 0;
+
+    try {
+      classes = typeof styleSheets[i].rules !== 'undefined' ? styleSheets[i].rules : typeof styleSheets[i].cssRules !== 'undefined' ? styleSheets[i].cssRules : '';
+    } catch (e) {}
+
+    if (classes) {
+      var foundClass = Array.prototype.slice.call(classes).reduce(function (foundAcc, styleRule) {
+        if (styleRule.selectorText === className) {
+          foundAcc.push(styleRule);
+        }
+
+        return foundAcc;
+      }, []);
+
+      if (foundClass.length) {
+        return foundClass;
+      }
+    }
+  }
+
+  return [];
+};
+
+exports.getStyleRulesForClassName = getStyleRulesForClassName;
+
+var getStyleRules = function getStyleRules(cssStyleRules) {
+  var styles = {};
+
+  if (cssStyleRules.length > 0 && typeof cssStyleRules[0].style !== 'undefined') {
+    var constructorName = cssStyleRules[0].style.constructor.name || cssStyleRules[0].style.constructor.toString();
+
+    switch (constructorName) {
+      case 'CSS2Properties':
+      case '[object MSStyleCSSProperties]':
+        Object.values(cssStyleRules[0].style).forEach(function (prop) {
+          styles[(0, _SimpleUtils.toCamelCase)(prop)] = cssStyleRules[0].style[prop];
+        });
+        break;
+
+      case 'CSSStyleDeclaration':
+        styles = cssStyleRules[0].style;
+        break;
+
+      default:
+        console.error('Unknown style object prototype');
+        break;
+    }
+  }
+
+  return styles;
+};
+
+exports.getStyleRules = getStyleRules;
+
+var getBackgroundStylesForSingleClass = function getBackgroundStylesForSingleClass(className) {
+  if (className && (0, _SimpleUtils.isString)(className)) {
+    var cssStyleRules = getStyleRulesForClassName("." + className);
+
+    if ((cssStyleRules === null || cssStyleRules === void 0 ? void 0 : cssStyleRules.length) > 0 && typeof cssStyleRules[0].style !== 'undefined') {
+      return Object.keys(getStyleRules(cssStyleRules)).filter(function (key) {
+        return key.indexOf('background') === 0 && cssStyleRules[0].style[key] !== '';
+      }).reduce(function (newData, key) {
+        newData[(0, _SimpleUtils.toCamelCase)(key)] = cssStyleRules[0].style[key];
+        return newData;
+      }, {});
+    }
+  }
+
+  return {};
+};
+
+exports.getBackgroundStylesForSingleClass = getBackgroundStylesForSingleClass;
+
+var getBackgroundStyles = function getBackgroundStyles(className) {
+  if ((0, _SimpleUtils.isBrowser)()) {
+    var classes = (0, _SimpleUtils.stringToArray)(className);
+
+    if (classes instanceof Array) {
+      var classObjects = [];
+      classes.forEach(function (item) {
+        return classObjects.push(getBackgroundStylesForSingleClass(item));
+      });
+      return Object.assign.apply(Object, classObjects);
+    }
+
+    return getBackgroundStylesForSingleClass(className);
+  }
+
+  return {};
+};
+
+var _default = getBackgroundStyles;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "./node_modules/gatsby-background-image/lib/ClassCache.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/gatsby-background-image/lib/ClassCache.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.resetComponentClassCache = exports.inComponentClassCache = exports.activateCacheForComponentClass = void 0;
+var componentClassCache = Object.create({});
+
+var inComponentClassCache = function inComponentClassCache(className) {
+  return componentClassCache[className] || false;
+};
+
+exports.inComponentClassCache = inComponentClassCache;
+
+var activateCacheForComponentClass = function activateCacheForComponentClass(className) {
+  if (className) {
+    componentClassCache[className] = true;
+  }
+};
+
+exports.activateCacheForComponentClass = activateCacheForComponentClass;
+
+var resetComponentClassCache = function resetComponentClassCache() {
+  for (var className in componentClassCache) {
+    delete componentClassCache[className];
+  }
+};
+
+exports.resetComponentClassCache = resetComponentClassCache;
+
+/***/ }),
+
+/***/ "./node_modules/gatsby-background-image/lib/HelperUtils.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/gatsby-background-image/lib/HelperUtils.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+exports.__esModule = true;
+exports.stripRemainingProps = exports.convertProps = void 0;
+
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js"));
+
+var _filterInvalidDomProps = _interopRequireDefault(__webpack_require__(/*! filter-invalid-dom-props */ "./node_modules/filter-invalid-dom-props/dist/index.js"));
+
+var _MediaUtils = __webpack_require__(/*! ./MediaUtils */ "./node_modules/gatsby-background-image/lib/MediaUtils.js");
+
+var stripRemainingProps = function stripRemainingProps(props) {
+  return (0, _filterInvalidDomProps.default)(props);
+};
+
+exports.stripRemainingProps = stripRemainingProps;
+
+var convertProps = function convertProps(props) {
+  var convertedProps = (0, _extends2.default)({}, props);
+  var fixed = convertedProps.fixed,
+      fluid = convertedProps.fluid;
+
+  if (fluid && (0, _MediaUtils.hasArtDirectionSupport)(props, 'fluid')) {
+    convertedProps.fluid = (0, _MediaUtils.groupByMedia)(convertedProps.fluid);
+  }
+
+  if (fixed && (0, _MediaUtils.hasArtDirectionSupport)(props, 'fixed')) {
+    convertedProps.fixed = (0, _MediaUtils.groupByMedia)(convertedProps.fixed);
+  }
+
+  return convertedProps;
+};
+
+exports.convertProps = convertProps;
+
+/***/ }),
+
+/***/ "./node_modules/gatsby-background-image/lib/ImageCache.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/gatsby-background-image/lib/ImageCache.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.resetImageCache = exports.inImageCache = exports.allInImageCache = exports.activateCacheForMultipleImages = exports.activateCacheForImage = void 0;
+
+var _HelperUtils = __webpack_require__(/*! ./HelperUtils */ "./node_modules/gatsby-background-image/lib/HelperUtils.js");
+
+var _MediaUtils = __webpack_require__(/*! ./MediaUtils */ "./node_modules/gatsby-background-image/lib/MediaUtils.js");
+
+var _ImageUtils = __webpack_require__(/*! ./ImageUtils */ "./node_modules/gatsby-background-image/lib/ImageUtils.js");
+
+var _SimpleUtils = __webpack_require__(/*! ./SimpleUtils */ "./node_modules/gatsby-background-image/lib/SimpleUtils.js");
+
+var imageCache = Object.create({});
+
+var inImageCache = function inImageCache(props, index, isLoop) {
+  if (index === void 0) {
+    index = 0;
+  }
+
+  if (isLoop === void 0) {
+    isLoop = false;
+  }
+
+  var convertedProps = (0, _HelperUtils.convertProps)(props);
+  var isImageStack = (0, _ImageUtils.hasImageArray)(convertedProps) && !(0, _MediaUtils.hasArtDirectionArray)(convertedProps);
+
+  if (isImageStack && !isLoop) {
+    return allInImageCache(props);
+  }
+
+  var src = isImageStack ? (0, _ImageUtils.getSelectedImage)(convertedProps, index) : (0, _ImageUtils.getImageSrcKey)(convertedProps);
+
+  if ((0, _SimpleUtils.isObject)(src)) {
+    var objectSrc = (0, _ImageUtils.getImageSrcKey)({
+      fluid: src,
+      fixed: src
+    });
+    return imageCache[objectSrc] || false;
+  }
+
+  return imageCache[src] || false;
+};
+
+exports.inImageCache = inImageCache;
+
+var allInImageCache = function allInImageCache(props) {
+  var convertedProps = (0, _HelperUtils.convertProps)(props);
+  var imageStack = convertedProps.fluid || convertedProps.fixed;
+  return imageStack.every(function (imageData, index) {
+    return inImageCache(convertedProps, index, true);
+  });
+};
+
+exports.allInImageCache = allInImageCache;
+
+var activateCacheForImage = function activateCacheForImage(props, index, isLoop) {
+  if (index === void 0) {
+    index = 0;
+  }
+
+  if (isLoop === void 0) {
+    isLoop = false;
+  }
+
+  var convertedProps = (0, _HelperUtils.convertProps)(props);
+  var isImageStack = (0, _ImageUtils.hasImageArray)(convertedProps) && !(0, _MediaUtils.hasArtDirectionArray)(convertedProps);
+
+  if (isImageStack && !isLoop) {
+    return activateCacheForMultipleImages(props);
+  }
+
+  var src = isImageStack ? (0, _ImageUtils.getSelectedImage)(convertedProps, index) : (0, _ImageUtils.getImageSrcKey)(convertedProps);
+
+  if (src) {
+    if ((0, _SimpleUtils.isObject)(src)) {
+      var objectSrc = (0, _ImageUtils.getImageSrcKey)({
+        fluid: src,
+        fixed: src
+      });
+      imageCache[objectSrc] = true;
+    } else {
+      imageCache[src] = true;
+    }
+  }
+};
+
+exports.activateCacheForImage = activateCacheForImage;
+
+var activateCacheForMultipleImages = function activateCacheForMultipleImages(props) {
+  var convertedProps = (0, _HelperUtils.convertProps)(props);
+  var imageStack = convertedProps.fluid || convertedProps.fixed;
+  imageStack.forEach(function (imageData, index) {
+    return activateCacheForImage(convertedProps, index, true);
+  });
+};
+
+exports.activateCacheForMultipleImages = activateCacheForMultipleImages;
+
+var resetImageCache = function resetImageCache() {
+  for (var prop in imageCache) {
+    delete imageCache[prop];
+  }
+};
+
+exports.resetImageCache = resetImageCache;
+
+/***/ }),
+
+/***/ "./node_modules/gatsby-background-image/lib/ImageHandling.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/gatsby-background-image/lib/ImageHandling.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.switchImageSettings = void 0;
+
+var _ImageUtils = __webpack_require__(/*! ./ImageUtils */ "./node_modules/gatsby-background-image/lib/ImageUtils.js");
+
+var _MediaUtils = __webpack_require__(/*! ./MediaUtils */ "./node_modules/gatsby-background-image/lib/MediaUtils.js");
+
+var _SimpleUtils = __webpack_require__(/*! ./SimpleUtils */ "./node_modules/gatsby-background-image/lib/SimpleUtils.js");
+
+var switchImageSettings = function switchImageSettings(_ref) {
+  var image = _ref.image,
+      bgImage = _ref.bgImage,
+      imageRef = _ref.imageRef,
+      state = _ref.state;
+  var currentSources = (0, _ImageUtils.getCurrentFromData)({
+    data: imageRef,
+    propName: "currentSrc"
+  });
+  var returnArray = Array.isArray(image) && !(0, _MediaUtils.hasArtDirectionArray)({
+    fluid: image
+  });
+  var lastImage = Array.isArray(bgImage) ? (0, _SimpleUtils.filteredJoin)(bgImage) : bgImage;
+  var nextImage;
+  var nextImageArray;
+  var finalImage = returnArray && state.seenBefore && !!currentSources;
+
+  if (returnArray) {
+    if (!currentSources) {
+      nextImage = (0, _ImageUtils.getCurrentFromData)({
+        data: image,
+        propName: "tracedSVG",
+        returnArray: returnArray
+      });
+      nextImage = (0, _SimpleUtils.combineArray)((0, _ImageUtils.getCurrentFromData)({
+        data: image,
+        propName: "base64",
+        returnArray: returnArray
+      }), nextImage);
+    }
+
+    nextImage = (0, _SimpleUtils.combineArray)((0, _ImageUtils.getCurrentFromData)({
+      data: image,
+      propName: "CSS_STRING",
+      addUrl: false,
+      returnArray: returnArray
+    }), nextImage);
+
+    if ((state.imgLoaded || !!currentSources) && state.isVisible) {
+      if (currentSources) {
+        nextImage = (0, _SimpleUtils.combineArray)((0, _ImageUtils.getCurrentFromData)({
+          data: imageRef,
+          propName: "currentSrc",
+          returnArray: returnArray
+        }), nextImage);
+        finalImage = true;
+      } else {
+        nextImage = (0, _SimpleUtils.combineArray)((0, _ImageUtils.getCurrentFromData)({
+          data: imageRef,
+          propName: "src",
+          returnArray: returnArray
+        }), nextImage);
+        finalImage = true;
+      }
+    }
+
+    nextImage = (0, _SimpleUtils.combineArray)(nextImage, bgImage);
+    var dummyArray = (0, _ImageUtils.createDummyImageArray)(image.length);
+    nextImage = (0, _SimpleUtils.combineArray)(nextImage, dummyArray);
+    nextImageArray = nextImage;
+    nextImage = (0, _SimpleUtils.filteredJoin)(nextImage);
+  } else {
+    nextImage = "";
+    nextImage = (0, _ImageUtils.getCurrentFromData)({
+      data: image,
+      propName: "tracedSVG"
+    }) || (0, _ImageUtils.getCurrentFromData)({
+      data: image,
+      propName: "base64"
+    });
+
+    if (state.imgLoaded && state.isVisible) {
+      nextImage = currentSources;
+      finalImage = true;
+    }
+  }
+
+  var afterOpacity = state.imageState % 2;
+
+  if (!returnArray && nextImage === "" && state.imgLoaded && state.isVisible && imageRef && !imageRef.currentSrc) {
+    nextImage = (0, _ImageUtils.getCurrentFromData)({
+      data: imageRef,
+      propName: "src",
+      checkLoaded: false
+    });
+    finalImage = true;
+  }
+
+  if (!nextImage) nextImage = lastImage;
+  var newImageSettings = {
+    lastImage: lastImage,
+    nextImage: nextImage,
+    afterOpacity: afterOpacity,
+    finalImage: finalImage
+  };
+  if (nextImageArray) newImageSettings.nextImageArray = nextImageArray;
+  return newImageSettings;
+};
+
+exports.switchImageSettings = switchImageSettings;
+
+/***/ }),
+
+/***/ "./node_modules/gatsby-background-image/lib/ImageRef.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/gatsby-background-image/lib/ImageRef.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.imageReferenceCompleted = exports.hasPictureRef = exports.hasActivatedPictureRefs = exports.createPictureRef = exports.createMultiplePictureRefs = exports.activatePictureRef = exports.activateMultiplePictureRefs = void 0;
+
+var _HelperUtils = __webpack_require__(/*! ./HelperUtils */ "./node_modules/gatsby-background-image/lib/HelperUtils.js");
+
+var _ImageUtils = __webpack_require__(/*! ./ImageUtils */ "./node_modules/gatsby-background-image/lib/ImageUtils.js");
+
+var _MediaUtils = __webpack_require__(/*! ./MediaUtils */ "./node_modules/gatsby-background-image/lib/MediaUtils.js");
+
+var _SimpleUtils = __webpack_require__(/*! ./SimpleUtils */ "./node_modules/gatsby-background-image/lib/SimpleUtils.js");
+
+var _ImageCache = __webpack_require__(/*! ./ImageCache */ "./node_modules/gatsby-background-image/lib/ImageCache.js");
+
+var createPictureRef = function createPictureRef(props, onLoad, index, isLoop) {
+  if (isLoop === void 0) {
+    isLoop = false;
+  }
+
+  var convertedProps = (0, _HelperUtils.convertProps)(props);
+
+  if ((0, _SimpleUtils.isBrowser)() && (typeof convertedProps.fluid !== "undefined" || typeof convertedProps.fixed !== "undefined")) {
+    var isImageStack = (0, _ImageUtils.hasImageArray)(convertedProps) && !(0, _MediaUtils.hasArtDirectionArray)(convertedProps);
+
+    if (isImageStack && !isLoop) {
+      return createMultiplePictureRefs(props, onLoad);
+    }
+
+    var img = new Image();
+
+    img.onload = function () {
+      return onLoad();
+    };
+
+    if (!img.complete && typeof convertedProps.onLoad === "function") {
+      img.addEventListener('load', convertedProps.onLoad);
+    }
+
+    if (typeof convertedProps.onError === "function") {
+      img.addEventListener('error', convertedProps.onError);
+    }
+
+    if (convertedProps.crossOrigin) {
+      img.crossOrigin = convertedProps.crossOrigin;
+    }
+
+    if ((convertedProps.critical || convertedProps.isVisible) && !isLoop) {
+      return activatePictureRef(img, convertedProps, index, isLoop);
+    }
+
+    return img;
+  }
+
+  return null;
+};
+
+exports.createPictureRef = createPictureRef;
+
+var createMultiplePictureRefs = function createMultiplePictureRefs(props, onLoad) {
+  var convertedProps = (0, _HelperUtils.convertProps)(props);
+  var imageStack = convertedProps.fluid || convertedProps.fixed;
+  var imageRefs = imageStack.map(function (imageData, index) {
+    return createPictureRef(convertedProps, onLoad, index, true);
+  });
+
+  if (convertedProps.critical || convertedProps.isVisible) {
+    return activatePictureRef(imageRefs, convertedProps);
+  }
+
+  return imageRefs;
+};
+
+exports.createMultiplePictureRefs = createMultiplePictureRefs;
+
+var activatePictureRef = function activatePictureRef(imageRef, props, selfRef, index, isLoop) {
+  if (selfRef === void 0) {
+    selfRef = null;
+  }
+
+  if (index === void 0) {
+    index = 0;
+  }
+
+  if (isLoop === void 0) {
+    isLoop = false;
+  }
+
+  var convertedProps = (0, _HelperUtils.convertProps)(props);
+
+  if ((0, _SimpleUtils.isBrowser)() && (typeof convertedProps.fluid !== "undefined" || typeof convertedProps.fixed !== "undefined")) {
+    var isImageStack = (0, _ImageUtils.hasImageArray)(convertedProps) && !(0, _MediaUtils.hasArtDirectionArray)(convertedProps);
+
+    if (isImageStack && !isLoop) {
+      return activateMultiplePictureRefs(imageRef, props, selfRef);
+    }
+
+    var bodyClone = document.createElement('body');
+    var imageData = isImageStack ? (0, _ImageUtils.getSelectedImage)(convertedProps, index) : (0, _ImageUtils.getCurrentSrcData)(convertedProps);
+
+    if (!imageData) {
+      return null;
+    }
+
+    if ((0, _SimpleUtils.isString)(imageData)) {
+      return imageData;
+    }
+
+    if (selfRef) {
+      imageRef.width = selfRef.offsetWidth;
+      imageRef.height = selfRef.offsetHeight;
+    }
+
+    if ((0, _ImageUtils.hasPictureElement)()) {
+      var pic = document.createElement('picture');
+
+      if (selfRef) {
+        pic.width = imageRef.width;
+        pic.height = imageRef.height;
+      }
+
+      if ((0, _MediaUtils.hasArtDirectionArray)(convertedProps)) {
+        var sources = (0, _MediaUtils.createArtDirectionSources)(convertedProps).reverse();
+        sources.forEach(function (currentSource) {
+          return pic.appendChild(currentSource);
+        });
+      }
+
+      var sourcesAvif = (0, _MediaUtils.createSourceElementForSrcSet)(imageData, 'avif');
+      sourcesAvif && pic.appendChild(sourcesAvif);
+      var sourcesWebp = (0, _MediaUtils.createSourceElementForSrcSet)(imageData, 'webp');
+      sourcesWebp && pic.appendChild(sourcesWebp);
+      pic.appendChild(imageRef);
+      bodyClone.appendChild(pic);
+    }
+
+    imageRef.sizes = imageData.sizes || "";
+    imageRef.srcset = imageData.srcSet || "";
+    imageRef.src = imageData.src || "";
+    return imageRef;
+  }
+
+  return null;
+};
+
+exports.activatePictureRef = activatePictureRef;
+
+var activateMultiplePictureRefs = function activateMultiplePictureRefs(imageRefs, props, selfRef) {
+  return imageRefs.map(function (imageRef, index) {
+    return activatePictureRef(imageRef, props, selfRef, index, true);
+  });
+};
+
+exports.activateMultiplePictureRefs = activateMultiplePictureRefs;
+
+var hasActivatedPictureRefs = function hasActivatedPictureRefs(imageRefs) {
+  return Array.isArray(imageRefs) ? imageRefs.every(function (imageRef) {
+    return hasPictureRef(imageRef);
+  }) : hasPictureRef(imageRefs);
+};
+
+exports.hasActivatedPictureRefs = hasActivatedPictureRefs;
+
+var hasPictureRef = function hasPictureRef(imageRef) {
+  return (0, _SimpleUtils.isString)(imageRef) || !!imageRef && !!imageRef.currentSrc;
+};
+
+exports.hasPictureRef = hasPictureRef;
+
+var imageReferenceCompleted = function imageReferenceCompleted(imageRef, props) {
+  return imageRef ? Array.isArray(imageRef) ? imageRef.every(function (singleImageRef) {
+    return (0, _ImageUtils.imageLoaded)(singleImageRef);
+  }) || (0, _ImageCache.inImageCache)(props) : (0, _ImageUtils.imageLoaded)(imageRef) || (0, _ImageCache.inImageCache)(props) : (0, _SimpleUtils.isString)(imageRef);
+};
+
+exports.imageReferenceCompleted = imageReferenceCompleted;
+
+/***/ }),
+
+/***/ "./node_modules/gatsby-background-image/lib/ImageUtils.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/gatsby-background-image/lib/ImageUtils.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.isBase64 = exports.imagePropsChanged = exports.imageLoaded = exports.imageArrayPropsChanged = exports.hasPictureElement = exports.hasImageUrl = exports.hasImageArray = exports.getUrlString = exports.getSelectedImage = exports.getImageSrcKey = exports.getCurrentSrcData = exports.getCurrentFromData = exports.createDummyImageArray = void 0;
+
+var _MediaUtils = __webpack_require__(/*! ./MediaUtils */ "./node_modules/gatsby-background-image/lib/MediaUtils.js");
+
+var _SimpleUtils = __webpack_require__(/*! ./SimpleUtils */ "./node_modules/gatsby-background-image/lib/SimpleUtils.js");
+
+var hasPictureElement = function hasPictureElement() {
+  return typeof HTMLPictureElement !== "undefined" || (0, _SimpleUtils.isBrowser)();
+};
+
+exports.hasPictureElement = hasPictureElement;
+
+var hasImageArray = function hasImageArray(props) {
+  return Boolean(props.fluid && Array.isArray(props.fluid) || props.fixed && Array.isArray(props.fixed));
+};
+
+exports.hasImageArray = hasImageArray;
+
+var getCurrentFromData = function getCurrentFromData(_ref) {
+  var data = _ref.data,
+      propName = _ref.propName,
+      _ref$addUrl = _ref.addUrl,
+      addUrl = _ref$addUrl === void 0 ? true : _ref$addUrl,
+      _ref$returnArray = _ref.returnArray,
+      returnArray = _ref$returnArray === void 0 ? false : _ref$returnArray,
+      _ref$checkLoaded = _ref.checkLoaded,
+      checkLoaded = _ref$checkLoaded === void 0 ? true : _ref$checkLoaded;
+  if (!data || !propName) return "";
+  var tracedSVG = propName === "tracedSVG";
+
+  if (Array.isArray(data) && !(0, _MediaUtils.hasArtDirectionArray)({
+    fluid: data
+  })) {
+    var imageString = data.map(function (dataElement) {
+      if (propName === "currentSrc" || propName === 'src') {
+        return checkLoaded ? imageLoaded(dataElement) && dataElement[propName] || "" : dataElement[propName];
+      }
+
+      if (propName === "CSS_STRING" && (0, _SimpleUtils.isString)(dataElement)) {
+        return dataElement;
+      }
+
+      return (0, _SimpleUtils.isString)(dataElement) ? dataElement : dataElement && propName in dataElement ? dataElement[propName] : "";
+    });
+    return getUrlString({
+      imageString: imageString,
+      tracedSVG: tracedSVG,
+      addUrl: addUrl,
+      returnArray: returnArray
+    });
+  }
+
+  if ((0, _MediaUtils.hasArtDirectionArray)({
+    fluid: data
+  }) && (propName === "currentSrc" || propName === "src" || propName === "base64" || tracedSVG)) {
+    var currentData = getCurrentSrcData({
+      fluid: data
+    });
+    return propName in currentData ? getUrlString({
+      imageString: currentData[propName],
+      tracedSVG: tracedSVG,
+      addUrl: addUrl
+    }) : "";
+  }
+
+  if (typeof data !== 'object') {
+    return '';
+  }
+
+  if ((propName === "currentSrc" || propName === 'src') && propName in data) {
+    return getUrlString({
+      imageString: checkLoaded ? imageLoaded(data) && data[propName] || "" : data[propName],
+      addUrl: addUrl
+    });
+  }
+
+  return propName in data ? getUrlString({
+    imageString: data[propName],
+    tracedSVG: tracedSVG,
+    addUrl: addUrl
+  }) : "";
+};
+
+exports.getCurrentFromData = getCurrentFromData;
+
+var getImageSrcKey = function getImageSrcKey(_ref2) {
+  var fluid = _ref2.fluid,
+      fixed = _ref2.fixed;
+  var data = getCurrentSrcData({
+    fluid: fluid,
+    fixed: fixed
+  });
+  return data ? data.src || null : null;
+};
+
+exports.getImageSrcKey = getImageSrcKey;
+
+var getCurrentSrcData = function getCurrentSrcData(_ref3, index) {
+  var fluid = _ref3.fluid,
+      fixed = _ref3.fixed,
+      returnArray = _ref3.returnArray;
+
+  if (index === void 0) {
+    index = 0;
+  }
+
+  var currentData = fluid || fixed;
+
+  if (hasImageArray({
+    fluid: fluid,
+    fixed: fixed
+  })) {
+    if (returnArray) {
+      return currentData;
+    }
+
+    if ((0, _SimpleUtils.isBrowser)() && (0, _MediaUtils.hasArtDirectionArray)({
+      fluid: fluid,
+      fixed: fixed
+    })) {
+      var mediaData = currentData.slice().reverse();
+      var foundMedia = mediaData.findIndex(_MediaUtils.matchesMedia);
+
+      if (foundMedia !== -1) {
+        return mediaData[foundMedia];
+      }
+    }
+
+    return currentData[index];
+  }
+
+  return currentData;
+};
+
+exports.getCurrentSrcData = getCurrentSrcData;
+
+var getSelectedImage = function getSelectedImage(_ref4, index) {
+  var fluid = _ref4.fluid,
+      fixed = _ref4.fixed;
+
+  if (index === void 0) {
+    index = 0;
+  }
+
+  var currentData = fluid || fixed;
+
+  if (hasImageArray({
+    fluid: fluid,
+    fixed: fixed
+  })) {
+    return currentData[index] || currentData[0];
+  }
+
+  return currentData;
+};
+
+exports.getSelectedImage = getSelectedImage;
+
+var getUrlString = function getUrlString(_ref5) {
+  var imageString = _ref5.imageString,
+      _ref5$tracedSVG = _ref5.tracedSVG,
+      tracedSVG = _ref5$tracedSVG === void 0 ? false : _ref5$tracedSVG,
+      _ref5$addUrl = _ref5.addUrl,
+      addUrl = _ref5$addUrl === void 0 ? true : _ref5$addUrl,
+      _ref5$returnArray = _ref5.returnArray,
+      returnArray = _ref5$returnArray === void 0 ? false : _ref5$returnArray,
+      _ref5$hasImageUrls = _ref5.hasImageUrls,
+      hasImageUrls = _ref5$hasImageUrls === void 0 ? false : _ref5$hasImageUrls;
+
+  if (Array.isArray(imageString)) {
+    var stringArray = imageString.map(function (currentString) {
+      if (currentString) {
+        var _base = isBase64(currentString);
+
+        var _imageUrl = hasImageUrls || hasImageUrl(currentString);
+
+        var currentReturnString = currentString && tracedSVG ? "\"" + currentString + "\"" : currentString && !_base && !tracedSVG && _imageUrl ? "'" + currentString + "'" : currentString;
+        return addUrl && currentString ? "url(" + currentReturnString + ")" : currentReturnString;
+      }
+
+      return currentString;
+    });
+    return returnArray ? stringArray : (0, _SimpleUtils.filteredJoin)(stringArray);
+  }
+
+  var base64 = isBase64(imageString);
+  var imageUrl = hasImageUrls || hasImageUrl(imageString);
+  var returnString = imageString && tracedSVG ? "\"" + imageString + "\"" : imageString && !base64 && !tracedSVG && imageUrl ? "'" + imageString + "'" : imageString;
+  return imageString ? addUrl ? "url(" + returnString + ")" : returnString : "";
+};
+
+exports.getUrlString = getUrlString;
+
+var isBase64 = function isBase64(base64String) {
+  return (0, _SimpleUtils.isString)(base64String) && base64String.indexOf("base64") !== -1;
+};
+
+exports.isBase64 = isBase64;
+
+var hasImageUrl = function hasImageUrl(imageString) {
+  return (0, _SimpleUtils.isString)(imageString) && imageString.substr(0, 4) === "http";
+};
+
+exports.hasImageUrl = hasImageUrl;
+
+var imagePropsChanged = function imagePropsChanged(props, prevProps) {
+  return props.fluid && !prevProps.fluid || props.fixed && !prevProps.fixed || imageArrayPropsChanged(props, prevProps) || props.fluid && prevProps.fluid && props.fluid.src !== prevProps.fluid.src || props.fixed && prevProps.fixed && props.fixed.src !== prevProps.fixed.src;
+};
+
+exports.imagePropsChanged = imagePropsChanged;
+
+var imageArrayPropsChanged = function imageArrayPropsChanged(props, prevProps) {
+  var isPropsFluidArray = Array.isArray(props.fluid);
+  var isPrevPropsFluidArray = Array.isArray(prevProps.fluid);
+  var isPropsFixedArray = Array.isArray(props.fixed);
+  var isPrevPropsFixedArray = Array.isArray(prevProps.fixed);
+
+  if (isPropsFluidArray && !isPrevPropsFluidArray || isPropsFixedArray && !isPrevPropsFixedArray || !isPropsFluidArray && isPrevPropsFluidArray || !isPropsFixedArray && isPrevPropsFixedArray) {
+    return true;
+  }
+
+  if (isPropsFluidArray && isPrevPropsFluidArray) {
+    if (props.fluid.length === prevProps.fluid.length) {
+      return props.fluid.some(function (image, index) {
+        return image.src !== prevProps.fluid[index].src;
+      });
+    }
+
+    return true;
+  }
+
+  if (isPropsFixedArray && isPrevPropsFixedArray) {
+    if (props.fixed.length === prevProps.fixed.length) {
+      return props.fixed.some(function (image, index) {
+        return image.src !== prevProps.fixed[index].src;
+      });
+    }
+
+    return true;
+  }
+};
+
+exports.imageArrayPropsChanged = imageArrayPropsChanged;
+
+var createDummyImageArray = function createDummyImageArray(length) {
+  var DUMMY_IMG = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
+  var dummyImageURI = getUrlString({
+    imageString: DUMMY_IMG
+  });
+  return Array(length).fill(dummyImageURI);
+};
+
+exports.createDummyImageArray = createDummyImageArray;
+
+var imageLoaded = function imageLoaded(imageRef) {
+  return imageRef ? (0, _SimpleUtils.isString)(imageRef) || imageRef.complete && imageRef.naturalWidth !== 0 && imageRef.naturalHeight !== 0 : false;
+};
+
+exports.imageLoaded = imageLoaded;
+
+/***/ }),
+
+/***/ "./node_modules/gatsby-background-image/lib/IntersectionObserverUtils.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/gatsby-background-image/lib/IntersectionObserverUtils.js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.listenToIntersections = exports.getIO = exports.callbackIO = void 0;
+
+var _SimpleUtils = __webpack_require__(/*! ./SimpleUtils */ "./node_modules/gatsby-background-image/lib/SimpleUtils.js");
+
+var io;
+var listeners = new WeakMap();
+
+var callbackIO = function callbackIO(entries) {
+  entries.forEach(function (entry) {
+    if (listeners.has(entry.target)) {
+      var callback = listeners.get(entry.target);
+
+      if (entry.isIntersecting || entry.intersectionRatio > 0) {
+        io.unobserve(entry.target);
+        listeners.delete(entry.target);
+        callback();
+      }
+    }
+  });
+};
+
+exports.callbackIO = callbackIO;
+
+var getIO = function getIO(rootMargin) {
+  if (typeof io === "undefined" && (0, _SimpleUtils.isBrowser)() && window.IntersectionObserver) {
+    io = new window.IntersectionObserver(callbackIO, {
+      rootMargin: rootMargin
+    });
+  }
+
+  return io;
+};
+
+exports.getIO = getIO;
+
+var listenToIntersections = function listenToIntersections(element, callback, rootMargin) {
+  if (rootMargin === void 0) {
+    rootMargin = "200px";
+  }
+
+  var observer = getIO(rootMargin);
+
+  if (observer) {
+    observer.observe(element);
+    listeners.set(element, callback);
+    return function () {
+      observer.unobserve(element);
+      listeners.delete(element);
+    };
+  }
+
+  return function () {};
+};
+
+exports.listenToIntersections = listenToIntersections;
+
+/***/ }),
+
+/***/ "./node_modules/gatsby-background-image/lib/MediaUtils.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/gatsby-background-image/lib/MediaUtils.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+exports.__esModule = true;
+exports.matchesMedia = exports.hasArtDirectionSupport = exports.hasArtDirectionArray = exports.groupByMedia = exports.createSourceElementForSrcSet = exports.createArtDirectionSources = void 0;
+
+var _sortMediaQueries = _interopRequireDefault(__webpack_require__(/*! sort-media-queries */ "./node_modules/sort-media-queries/lib/index.js"));
+
+var _SimpleUtils = __webpack_require__(/*! ./SimpleUtils */ "./node_modules/gatsby-background-image/lib/SimpleUtils.js");
+
+var groupByMedia = function groupByMedia(imageVariants) {
+  var without = [];
+  var sortedVariants = (0, _sortMediaQueries.default)(imageVariants, 'media');
+  sortedVariants.forEach(function (variant) {
+    return !variant.media && without.push(variant);
+  });
+
+  if (without.length > 1 && "development" !== "production") {
+    console.warn("We've found " + without.length + " sources without a media property. They might be ignored by the browser, see: https://www.gatsbyjs.org/packages/gatsby-image/#art-directing-multiple-images");
+  }
+
+  return sortedVariants;
+};
+
+exports.groupByMedia = groupByMedia;
+
+var createSourceElementForSrcSet = function createSourceElementForSrcSet(image, type) {
+  var source = document.createElement('source');
+  var srcSetName = "srcSet" + (0, _SimpleUtils.capitalize)(type);
+
+  if (srcSetName in image) {
+    source.type = "image/" + type;
+    source.srcset = image[srcSetName];
+  }
+
+  if (image.sizes) {
+    source.sizes = image.sizes;
+  }
+
+  if (image.media) {
+    source.media = image.media;
+  }
+
+  return source.srcset ? source : null;
+};
+
+exports.createSourceElementForSrcSet = createSourceElementForSrcSet;
+
+var createArtDirectionSources = function createArtDirectionSources(_ref) {
+  var fluid = _ref.fluid,
+      fixed = _ref.fixed;
+  var currentSource = fluid || fixed;
+  return currentSource.reduce(function (sources, image) {
+    if (!image.media) {
+      return sources;
+    }
+
+    var sourceWebp = createSourceElementForSrcSet(image, 'webp');
+    var sourceAvif = createSourceElementForSrcSet(image, 'avif');
+    sourceWebp && sources.push(sourceWebp);
+    sourceAvif && sources.push(sourceAvif);
+    return sources;
+  }, []);
+};
+
+exports.createArtDirectionSources = createArtDirectionSources;
+
+var hasArtDirectionSupport = function hasArtDirectionSupport(props, prop) {
+  return props[prop] && Array.isArray(props[prop]) && props[prop].some(function (image) {
+    return !!image && typeof image.media !== 'undefined';
+  });
+};
+
+exports.hasArtDirectionSupport = hasArtDirectionSupport;
+
+var hasArtDirectionArray = function hasArtDirectionArray(props) {
+  return hasArtDirectionSupport(props, 'fluid') || hasArtDirectionSupport(props, 'fixed');
+};
+
+exports.hasArtDirectionArray = hasArtDirectionArray;
+
+var matchesMedia = function matchesMedia(_ref2) {
+  var media = _ref2.media;
+  return media ? (0, _SimpleUtils.isBrowser)() && typeof window.matchMedia !== "undefined" && !!window.matchMedia(media).matches : false;
+};
+
+exports.matchesMedia = matchesMedia;
+
+/***/ }),
+
+/***/ "./node_modules/gatsby-background-image/lib/SimpleUtils.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/gatsby-background-image/lib/SimpleUtils.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.toKebabCase = exports.toCamelCase = exports.stringToArray = exports.isString = exports.isObject = exports.isBrowser = exports.hashString = exports.filteredJoin = exports.combineArray = exports.capitalize = void 0;
+
+var isBrowser = function isBrowser() {
+  return typeof window !== "undefined" && typeof window.document !== "undefined";
+};
+
+exports.isBrowser = isBrowser;
+
+var isString = function isString(value) {
+  return Object.prototype.toString.call(value) === '[object String]';
+};
+
+exports.isString = isString;
+
+var isObject = function isObject(value) {
+  return Object.prototype.toString.call(value) === '[object Object]';
+};
+
+exports.isObject = isObject;
+
+var toCamelCase = function toCamelCase(str) {
+  return isString(str) && str.indexOf('-') !== -1 && str.toLowerCase().replace(/(?:^\w|-|[A-Z]|\b\w)/g, function (letter, index) {
+    return index === 0 ? letter.toLowerCase() : letter.toUpperCase();
+  }).replace(/\s|\W+/g, '') || str;
+};
+
+exports.toCamelCase = toCamelCase;
+
+var toKebabCase = function toKebabCase(str) {
+  return isString(str) && str.replace(/\s|\W+/g, '').replace(/[A-Z]/g, function (match) {
+    return "-" + match.toLowerCase();
+  });
+};
+
+exports.toKebabCase = toKebabCase;
+
+var capitalize = function capitalize(str) {
+  return (str === null || str === void 0 ? void 0 : str.charAt(0).toUpperCase()) + str.slice(1);
+};
+
+exports.capitalize = capitalize;
+
+var stringToArray = function stringToArray(str, delimiter) {
+  if (delimiter === void 0) {
+    delimiter = " ";
+  }
+
+  if (str instanceof Array) {
+    return str;
+  }
+
+  if (isString(str)) {
+    if (str.includes(delimiter)) {
+      return str.split(delimiter);
+    }
+
+    return [str];
+  }
+
+  return false;
+};
+
+exports.stringToArray = stringToArray;
+
+var hashString = function hashString(str) {
+  return isString(str) && [].reduce.call(str, function (hash, item) {
+    hash = (hash << 5) - hash + item.charCodeAt(0);
+    return hash | 0;
+  }, 0);
+};
+
+exports.hashString = hashString;
+
+var filteredJoin = function filteredJoin(arrayToJoin) {
+  return arrayToJoin.filter(function (item) {
+    return item !== "";
+  }).join();
+};
+
+exports.filteredJoin = filteredJoin;
+
+var combineArray = function combineArray(fromArray, toArray) {
+  if (!Array.isArray(fromArray)) {
+    return [fromArray];
+  }
+
+  return fromArray.map(function (item, index) {
+    return item || toArray && toArray[index];
+  });
+};
+
+exports.combineArray = combineArray;
+
+/***/ }),
+
+/***/ "./node_modules/gatsby-background-image/lib/StyleCreation.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/gatsby-background-image/lib/StyleCreation.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+exports.__esModule = true;
+exports.createStyleImage = exports.createPseudoStyles = exports.createPseudoElementWithContent = exports.createPseudoElementMediaQuery = exports.createPseudoElement = exports.createNoScriptStyles = void 0;
+
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js"));
+
+var _StyleUtils = __webpack_require__(/*! ./StyleUtils */ "./node_modules/gatsby-background-image/lib/StyleUtils.js");
+
+var _ImageUtils = __webpack_require__(/*! ./ImageUtils */ "./node_modules/gatsby-background-image/lib/ImageUtils.js");
+
+var _MediaUtils = __webpack_require__(/*! ./MediaUtils */ "./node_modules/gatsby-background-image/lib/MediaUtils.js");
+
+var _SimpleUtils = __webpack_require__(/*! ./SimpleUtils */ "./node_modules/gatsby-background-image/lib/SimpleUtils.js");
+
+var createPseudoElement = function createPseudoElement(className, appendix) {
+  if (appendix === void 0) {
+    appendix = ":before";
+  }
+
+  var escapedClassName = (0, _StyleUtils.escapeClassNames)(className);
+  var classes = (0, _SimpleUtils.stringToArray)(escapedClassName);
+  var pseudoClasses = "";
+
+  if (Array.isArray(classes)) {
+    classes = classes.filter(function (c) {
+      return c !== '';
+    });
+
+    if (classes.length > 0) {
+      pseudoClasses = "." + classes.join('.') + appendix;
+    }
+  }
+
+  return pseudoClasses;
+};
+
+exports.createPseudoElement = createPseudoElement;
+
+var createPseudoElementWithContent = function createPseudoElementWithContent(pseudoElementString, imageSource) {
+  return "\n    " + pseudoElementString + " {\n      opacity: 1;\n      background-image: " + imageSource + ";\n    }";
+};
+
+exports.createPseudoElementWithContent = createPseudoElementWithContent;
+
+var createPseudoElementMediaQuery = function createPseudoElementMediaQuery(pseudoElementString, media, imageSource, imageSourceWebP) {
+  return "\n      @media " + media + " {\n        " + createPseudoElementWithContent(pseudoElementString, imageSource) + "\n      }\n      " + (imageSourceWebP && "@media " + media + " {\n          " + createPseudoElementWithContent(pseudoElementString, imageSourceWebP) + "\n        }") + "\n    ";
+};
+
+exports.createPseudoElementMediaQuery = createPseudoElementMediaQuery;
+
+var createPseudoStyles = function createPseudoStyles(_ref) {
+  var className = _ref.className,
+      transitionDelay = _ref.transitionDelay,
+      lastImage = _ref.lastImage,
+      nextImage = _ref.nextImage,
+      afterOpacity = _ref.afterOpacity,
+      bgColor = _ref.bgColor,
+      fadeIn = _ref.fadeIn,
+      backgroundStyles = _ref.backgroundStyles,
+      style = _ref.style,
+      finalImage = _ref.finalImage,
+      originalData = _ref.originalData;
+  var pseudoBefore = createPseudoElement(className);
+  var pseudoAfter = createPseudoElement(className, ":after");
+  var currentBackgroundStyles = (0, _extends2.default)({}, backgroundStyles, style);
+  return "\n          " + pseudoBefore + ",\n          " + pseudoAfter + " {\n            content: '';\n            display: block;\n            position: absolute;\n            width: 100%;\n            height: 100%;\n            top: 0;\n            left: 0;\n            " + (bgColor && "background-color: " + bgColor + ";") + "\n            " + (0, _StyleUtils.setTransitionStyles)(transitionDelay, fadeIn) + "\n            " + (0, _StyleUtils.kebabifyBackgroundStyles)(currentBackgroundStyles) + "\n          }\n          " + pseudoBefore + " {\n            z-index: -100;\n            " + ((!afterOpacity || finalImage) && createStyleImage(nextImage, originalData) || "") + "\n            " + (afterOpacity && lastImage && createStyleImage(lastImage, originalData) || "") + "\n            opacity: " + Number(!afterOpacity) + "; \n          }\n          " + pseudoAfter + " {\n            z-index: -101;\n            " + ((afterOpacity || finalImage) && createStyleImage(nextImage, originalData) || "") + "\n            " + (!afterOpacity && lastImage && createStyleImage(lastImage, originalData) || "") + "\n            " + (finalImage ? "opacity: " + Number(afterOpacity) + ";" : "") + "\n          }\n        ";
+};
+
+exports.createPseudoStyles = createPseudoStyles;
+
+var createStyleImage = function createStyleImage(image, originalData) {
+  var hasStackedImages = (0, _ImageUtils.hasImageArray)({
+    fluid: originalData
+  }) && !(0, _MediaUtils.hasArtDirectionArray)({
+    fluid: originalData
+  });
+
+  if ((0, _SimpleUtils.isBrowser)() || hasStackedImages) {
+    return image ? "background-image: " + image + ";" : "";
+  }
+
+  return "";
+};
+
+exports.createStyleImage = createStyleImage;
+
+var createNoScriptStyles = function createNoScriptStyles(_ref2) {
+  var className = _ref2.className,
+      image = _ref2.image;
+
+  if (image) {
+    var returnArray = Array.isArray(image) && !(0, _MediaUtils.hasArtDirectionArray)({
+      fluid: image
+    });
+    var addUrl = false;
+    var allSources = (0, _ImageUtils.getCurrentFromData)({
+      data: image,
+      propName: "src",
+      checkLoaded: false,
+      addUrl: addUrl,
+      returnArray: returnArray
+    });
+    var sourcesAsUrl = (0, _ImageUtils.getUrlString)({
+      imageString: allSources,
+      hasImageUrls: true,
+      returnArray: returnArray
+    });
+    var sourcesAsUrlWithCSS = "";
+
+    if (returnArray) {
+      var cssStrings = (0, _ImageUtils.getCurrentFromData)({
+        data: image,
+        propName: "CSS_STRING",
+        addUrl: false,
+        returnArray: returnArray
+      });
+      sourcesAsUrlWithCSS = (0, _SimpleUtils.filteredJoin)((0, _SimpleUtils.combineArray)(sourcesAsUrl, cssStrings));
+    }
+
+    var pseudoBefore = createPseudoElement(className);
+
+    if ((0, _MediaUtils.hasArtDirectionArray)({
+      fluid: image
+    })) {
+      return image.map(function (currentMedia) {
+        var sourceString = (0, _ImageUtils.getUrlString)({
+          imageString: currentMedia.src
+        });
+        var webPString = (0, _ImageUtils.getUrlString)({
+          imageString: currentMedia.srcWebp || ""
+        });
+
+        if (currentMedia.media) {
+          return createPseudoElementMediaQuery(pseudoBefore, currentMedia.media, sourceString, webPString);
+        }
+
+        return createPseudoElementMediaQuery(pseudoBefore, 'screen', sourceString, webPString);
+      }).join('');
+    }
+
+    return createPseudoElementWithContent(pseudoBefore, sourcesAsUrlWithCSS || sourcesAsUrl);
+  }
+
+  return "";
+};
+
+exports.createNoScriptStyles = createNoScriptStyles;
+
+/***/ }),
+
+/***/ "./node_modules/gatsby-background-image/lib/StyleUtils.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/gatsby-background-image/lib/StyleUtils.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+exports.__esModule = true;
+exports.setTransitionStyles = exports.presetBackgroundStyles = exports.kebabifyBackgroundStyles = exports.fixOpacity = exports.fixClassName = exports.escapeClassNames = void 0;
+
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js"));
+
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js"));
+
+var _shortUuid = _interopRequireDefault(__webpack_require__(/*! short-uuid */ "./node_modules/short-uuid/index.js"));
+
+var _HelperUtils = __webpack_require__(/*! ./HelperUtils */ "./node_modules/gatsby-background-image/lib/HelperUtils.js");
+
+var _ClassCache = __webpack_require__(/*! ./ClassCache */ "./node_modules/gatsby-background-image/lib/ClassCache.js");
+
+var _ImageUtils = __webpack_require__(/*! ./ImageUtils */ "./node_modules/gatsby-background-image/lib/ImageUtils.js");
+
+var _SimpleUtils = __webpack_require__(/*! ./SimpleUtils */ "./node_modules/gatsby-background-image/lib/SimpleUtils.js");
+
+var _excluded = ["className"];
+
+var fixClassName = function fixClassName(_ref) {
+  var className = _ref.className,
+      props = (0, _objectWithoutPropertiesLoose2.default)(_ref, _excluded);
+  var convertedProps = (0, _HelperUtils.convertProps)(props);
+  var elementExists = (0, _ClassCache.inComponentClassCache)(className);
+  var imageData = (0, _ImageUtils.getCurrentSrcData)(convertedProps);
+
+  var additionalClassname = _shortUuid.default.generate();
+
+  var randomClass = " gbi-" + (0, _SimpleUtils.hashString)(imageData && imageData.srcSet || className || "noclass") + "-" + additionalClassname;
+  var additionalClass = elementExists || !className ? randomClass : "";
+  var componentClassNames = ("" + (className || "") + (additionalClass || "")).trim();
+  if (!elementExists) (0, _ClassCache.activateCacheForComponentClass)(className);
+  return [componentClassNames];
+};
+
+exports.fixClassName = fixClassName;
+
+var escapeClassNames = function escapeClassNames(classNames) {
+  if (classNames) {
+    var specialChars = (0, _SimpleUtils.isBrowser)() && window._gbiSpecialChars ? window._gbiSpecialChars : typeof __GBI_SPECIAL_CHARS__ !== "undefined" ? __GBI_SPECIAL_CHARS__ : ':/';
+    var specialCharRegEx = new RegExp("[" + specialChars + "]", 'g');
+    return classNames.replace(specialCharRegEx, '\\$&');
+  }
+
+  return classNames;
+};
+
+exports.escapeClassNames = escapeClassNames;
+
+var kebabifyBackgroundStyles = function kebabifyBackgroundStyles(styles) {
+  if ((0, _SimpleUtils.isString)(styles)) {
+    return styles;
+  }
+
+  if (styles instanceof Object) {
+    return Object.keys(styles).filter(function (key) {
+      return key.indexOf('background') === 0 && styles[key] !== '';
+    }).reduce(function (resultingStyles, key) {
+      return "" + resultingStyles + (0, _SimpleUtils.toKebabCase)(key) + ": " + styles[key] + ";\n";
+    }, "");
+  }
+
+  return "";
+};
+
+exports.kebabifyBackgroundStyles = kebabifyBackgroundStyles;
+
+var setTransitionStyles = function setTransitionStyles(transitionDelay, fadeIn) {
+  if (transitionDelay === void 0) {
+    transitionDelay = "0.25s";
+  }
+
+  if (fadeIn === void 0) {
+    fadeIn = true;
+  }
+
+  return fadeIn ? "transition: opacity 0.5s ease " + transitionDelay + ";" : "transition: none;";
+};
+
+exports.setTransitionStyles = setTransitionStyles;
+
+var fixOpacity = function fixOpacity(props) {
+  var styledProps = (0, _extends2.default)({}, props);
+
+  if (!styledProps.preserveStackingContext) {
+    try {
+      if (styledProps.style && styledProps.style.opacity) {
+        if (isNaN(styledProps.style.opacity) || styledProps.style.opacity > 0.99) {
+          styledProps.style.opacity = 0.99;
+        }
+      }
+    } catch (e) {}
+  }
+
+  return styledProps;
+};
+
+exports.fixOpacity = fixOpacity;
+
+var presetBackgroundStyles = function presetBackgroundStyles(backgroundStyles) {
+  var defaultBackgroundStyles = {
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover"
+  };
+  return (0, _extends2.default)({}, defaultBackgroundStyles, backgroundStyles);
+};
+
+exports.presetBackgroundStyles = presetBackgroundStyles;
 
 /***/ }),
 
@@ -5113,6 +7245,1154 @@ module.exports = function MDXRenderer(_ref) {
 
 /***/ }),
 
+/***/ "./node_modules/html-attributes/lib/html-attributes.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/html-attributes/lib/html-attributes.js ***!
+  \*************************************************************/
+/***/ ((module) => {
+
+"use strict";
+/*!
+ * html-attributes
+ * https://github.com/alexmingoia/html-attributes
+ */
+
+
+
+/**
+ * @module html-attributes
+ */
+
+module.exports = {
+  "abbr": "abbr",
+  "accept": "accept",
+  "acceptCharset": "accept-charset",
+  "accessKey": "accesskey",
+  "action": "action",
+  "allowFullScreen": "allowfullscreen",
+  "allowTransparency": "allowtransparency",
+  "alt": "alt",
+  "async": "async",
+  "autoComplete": "autocomplete",
+  "autoFocus": "autofocus",
+  "autoPlay": "autoplay",
+  "cellPadding": "cellpadding",
+  "cellSpacing": "cellspacing",
+  "challenge": "challenge",
+  "charset": "charset",
+  "checked": "checked",
+  "cite": "cite",
+  "class": "class",
+  "className": "class",
+  "cols": "cols",
+  "colSpan": "colspan",
+  "command": "command",
+  "content": "content",
+  "contentEditable": "contenteditable",
+  "contextMenu": "contextmenu",
+  "controls": "controls",
+  "coords": "coords",
+  "crossOrigin": "crossorigin",
+  "data": "data",
+  "dateTime": "datetime",
+  "default": "default",
+  "defer": "defer",
+  "dir": "dir",
+  "disabled": "disabled",
+  "download": "download",
+  "draggable": "draggable",
+  "dropzone": "dropzone",
+  "encType": "enctype",
+  "for": "for",
+  "form": "form",
+  "formAction": "formaction",
+  "formEncType": "formenctype",
+  "formMethod": "formmethod",
+  "formNoValidate": "formnovalidate",
+  "formTarget": "formtarget",
+  "frameBorder": "frameBorder",
+  "headers": "headers",
+  "height": "height",
+  "hidden": "hidden",
+  "high": "high",
+  "href": "href",
+  "hrefLang": "hreflang",
+  "htmlFor": "for",
+  "httpEquiv": "http-equiv",
+  "icon": "icon",
+  "id": "id",
+  "inputMode": "inputmode",
+  "isMap": "ismap",
+  "itemId": "itemid",
+  "itemProp": "itemprop",
+  "itemRef": "itemref",
+  "itemScope": "itemscope",
+  "itemType": "itemtype",
+  "kind": "kind",
+  "label": "label",
+  "lang": "lang",
+  "list": "list",
+  "loop": "loop",
+  "manifest": "manifest",
+  "max": "max",
+  "maxLength": "maxlength",
+  "media": "media",
+  "mediaGroup": "mediagroup",
+  "method": "method",
+  "min": "min",
+  "minLength": "minlength",
+  "multiple": "multiple",
+  "muted": "muted",
+  "name": "name",
+  "noValidate": "novalidate",
+  "open": "open",
+  "optimum": "optimum",
+  "pattern": "pattern",
+  "ping": "ping",
+  "placeholder": "placeholder",
+  "poster": "poster",
+  "preload": "preload",
+  "radioGroup": "radiogroup",
+  "readOnly": "readonly",
+  "rel": "rel",
+  "required": "required",
+  "role": "role",
+  "rows": "rows",
+  "rowSpan": "rowspan",
+  "sandbox": "sandbox",
+  "scope": "scope",
+  "scoped": "scoped",
+  "scrolling": "scrolling",
+  "seamless": "seamless",
+  "selected": "selected",
+  "shape": "shape",
+  "size": "size",
+  "sizes": "sizes",
+  "sortable": "sortable",
+  "span": "span",
+  "spellCheck": "spellcheck",
+  "src": "src",
+  "srcDoc": "srcdoc",
+  "srcSet": "srcset",
+  "start": "start",
+  "step": "step",
+  "style": "style",
+  "tabIndex": "tabindex",
+  "target": "target",
+  "title": "title",
+  "translate": "translate",
+  "type": "type",
+  "typeMustMatch": "typemustmatch",
+  "useMap": "usemap",
+  "value": "value",
+  "width": "width",
+  "wmode": "wmode",
+  "wrap": "wrap"
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/short-uuid/index.js":
+/*!******************************************!*\
+  !*** ./node_modules/short-uuid/index.js ***!
+  \******************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+/**
+ * Created by Samuel on 6/4/2016.
+ * Simple wrapper functions to produce shorter UUIDs for cookies, maybe everything?
+ */
+
+const { v4: uuidv4 } = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-node/index.js");
+const anyBase = __webpack_require__(/*! any-base */ "./node_modules/any-base/index.js");
+
+const flickrBase58 = '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ';
+const cookieBase90 = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&'()*+-./:<=>?@[]^_`{|}~";
+
+const baseOptions = {
+  consistentLength: true,
+};
+
+// A default generator, instantiated only if used.
+let toFlickr;
+
+/**
+ * Takes a UUID, strips the dashes, and translates.
+ * @param {string} longId
+ * @param {function(string)} translator
+ * @param {Object} [paddingParams]
+ * @returns {string}
+ */
+const shortenUUID = (longId, translator, paddingParams) => {
+  const translated = translator(longId.toLowerCase().replace(/-/g, ''));
+
+  if (!paddingParams || !paddingParams.consistentLength) return translated;
+
+  return translated.padStart(
+    paddingParams.shortIdLength,
+    paddingParams.paddingChar,
+  );
+};
+
+/**
+ * Translate back to hex and turn back into UUID format, with dashes
+ * @param {string} shortId
+ * @param {function(string)} translator
+ * @returns {string}
+ */
+const enlargeUUID = (shortId, translator) => {
+  const uu1 = translator(shortId).padStart(32, '0');
+
+  // Join the zero padding and the UUID and then slice it up with match
+  const m = uu1.match(/(\w{8})(\w{4})(\w{4})(\w{4})(\w{12})/);
+
+  // Accumulate the matches and join them.
+  return [m[1], m[2], m[3], m[4], m[5]].join('-');
+};
+
+// Calculate length for the shortened ID
+const getShortIdLength = (alphabetLength) => (
+  Math.ceil(Math.log(2 ** 128) / Math.log(alphabetLength)));
+
+module.exports = (() => {
+  /**
+   * @param {string} toAlphabet - Defaults to flickrBase58 if not provided
+   * @param {Object} [options]
+   *
+   * @returns {{new: (function()),
+   *  uuid: (function()),
+   *  fromUUID: (function(string)),
+   *  toUUID: (function(string)),
+   *  alphabet: (string)}}
+   */
+  const makeConvertor = (toAlphabet, options) => {
+    // Default to Flickr 58
+    const useAlphabet = toAlphabet || flickrBase58;
+
+    // Default to baseOptions
+    const selectedOptions = { ...baseOptions, ...options };
+
+    // Check alphabet for duplicate entries
+    if ([...new Set(Array.from(useAlphabet))].length !== useAlphabet.length) {
+      throw new Error('The provided Alphabet has duplicate characters resulting in unreliable results');
+    }
+
+    const shortIdLength = getShortIdLength(useAlphabet.length);
+
+    // Padding Params
+    const paddingParams = {
+      shortIdLength,
+      consistentLength: selectedOptions.consistentLength,
+      paddingChar: useAlphabet[0],
+    };
+
+    // UUIDs are in hex, so we translate to and from.
+    const fromHex = anyBase(anyBase.HEX, useAlphabet);
+    const toHex = anyBase(useAlphabet, anyBase.HEX);
+    const generate = () => shortenUUID(uuidv4(), fromHex, paddingParams);
+
+    const translator = {
+      new: generate,
+      generate,
+      uuid: uuidv4,
+      fromUUID: (uuid) => shortenUUID(uuid, fromHex, paddingParams),
+      toUUID: (shortUuid) => enlargeUUID(shortUuid, toHex),
+      alphabet: useAlphabet,
+      maxLength: shortIdLength,
+    };
+
+    Object.freeze(translator);
+
+    return translator;
+  };
+
+  // Expose the constants for other purposes.
+  makeConvertor.constants = {
+    flickrBase58,
+    cookieBase90,
+  };
+
+  // Expose the generic v4 UUID generator for convenience
+  makeConvertor.uuid = uuidv4;
+
+  // Provide a generic generator
+  makeConvertor.generate = () => {
+    if (!toFlickr) {
+      // Generate on first use;
+      toFlickr = makeConvertor(flickrBase58).generate;
+    }
+    return toFlickr();
+  };
+
+  return makeConvertor;
+})();
+
+
+/***/ }),
+
+/***/ "./node_modules/sort-media-queries/lib/index.js":
+/*!******************************************************!*\
+  !*** ./node_modules/sort-media-queries/lib/index.js ***!
+  \******************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var extend = __webpack_require__(/*! xtend */ "./node_modules/xtend/immutable.js");
+var mqTypes = ['blank','all','minWidth','minHeight','maxWidth','maxHeight','print'];
+
+/**
+ * @param  {Array} rules
+ * @param  {String} type
+ * @param  {String} prop
+ *
+ * @return {Boolean}
+ */
+function itemsValid ( rules, type, prop ) {
+	var flag = true;
+	for ( var i = 0, rulesLength = rules.length; i < rulesLength; i++ ) {
+		if ( typeof(rules[i]) !== type || ( prop && !rules[i].hasOwnProperty(prop) ) ) {
+			flag = false;
+			break;
+		}
+	}
+	return flag;
+}
+
+/**
+ * @param  {Array} rules
+ * @param  {String} type
+ * @param  {String} prop
+ *
+ * @return {Boolean}
+ */
+function allValid ( rules, type, prop ) {
+	if (
+		!rules || !rules.length || typeof(rules) === 'string'
+	) {
+		return 'none';
+	}
+	if (
+		(type === 'object' && (!prop || typeof(prop) !== 'string')) ||
+		!itemsValid(rules, type, prop)
+	) {
+		return 'some';
+	}
+	return 'all';
+}
+
+/**
+ * Normalize between array with strings and array with objects
+ *
+ * @param  {Array} rules
+ * @param  {String} type
+ * @param  {String} prop
+ *
+ * @return {Object}
+ */
+function prepareRules ( rules, type, prop ) {
+	var collection = [];
+	var o = {};
+	for ( var i = 0, rulesLength = rules.length; i < rulesLength; i++ ) {
+		if ( type === 'string' ) {
+			o = extend({}, {
+				__media: rules[i]
+			});
+		} else {
+			o = extend({}, rules[i]);
+			o.__media = rules[i][prop];
+		}
+		collection.push(o);
+	}
+	return collection;
+}
+
+/**
+ * @param  {Boolean} isMax
+ *
+ * @return {Function}
+ */
+function determineSortOrder ( isMax ) {
+
+	/**
+	 * Determine sort order based on provided arguments
+	 *
+	 * @param  {Object} a
+	 * @param  {Object} b
+	 *
+	 * @return {Integer}
+	 */
+	return function ( a, b ) {
+
+		var sortValA = a.sortVal;
+		var sortValB = b.sortVal;
+		var ruleA = a.item.__media;
+		var ruleB = b.item.__media;
+		isMax = typeof(isMax) !== 'undefined' ? isMax : false;
+
+		// Consider print for sorting if sortVals are equal
+		if ( sortValA === sortValB ) {
+			if ( ruleA.match(/print/) ) {
+				// a contains print and should be sorted after b
+				return 1;
+			}
+			if ( ruleB.match(/print/) ) {
+				// b contains print and should be sorted after a
+				return -1;
+			}
+		}
+
+		// Return descending sort order for max-(width|height) media queries
+		if ( isMax ) {
+			return sortValB - sortValA;
+		}
+
+		// Return ascending sort order
+		return sortValA - sortValB;
+	};
+}
+
+/**
+ * @return {Object}
+ */
+function createCollection () {
+	var mqCollection = {};
+	for ( var i = 0, mqTypesLength = mqTypes.length; i < mqTypesLength; i++ ) {
+		mqCollection[mqTypes[i]] = [];
+	}
+	return mqCollection;
+}
+
+/**
+ * @param {Object} collection
+ * @param {Array} rules
+ *
+ * @return {Object}
+ */
+function addRulesToCollection ( collection, rules ) {
+
+	// Sort media queries by kind, this is needed to output them in the right order
+	for ( var i = 0, rulesLength = rules.length; i < rulesLength; i++ ) {
+
+		var item = rules[i];
+		var rule = item.__media;
+		var collectionType = 'blank';
+		var valMatch = rule.match(/\d+/g);
+
+		if ( rule.match(/min-width/) ) {
+			collectionType = 'minWidth';
+		} else if ( rule.match(/min-height/) ) {
+			collectionType = 'minHeight';
+		} else if ( rule.match(/max-width/) ) {
+			collectionType = 'maxWidth';
+		} else if ( rule.match(/max-height/) ) {
+			collectionType = 'maxHeight';
+		} else if ( rule.match(/print/) ) {
+			collectionType = 'print';
+		} else if ( rule.match(/all/) ) {
+			collectionType = 'all';
+		}
+
+		collection[collectionType].push({
+			item: item,
+			sortVal: valMatch ? valMatch[0] : 0
+		});
+
+	}
+	return collection;
+}
+
+/**
+ * @param  {Object} collection
+ *
+ * @return {Object}
+ */
+function sortCollection ( collection ) {
+	var sorter;
+	for ( var collectionType in collection ) {
+		if ( collection.hasOwnProperty(collectionType) ) {
+			sorter = determineSortOrder(false);
+			if ( collectionType === 'maxWidth' || collectionType === 'maxHeight' ) {
+				sorter = determineSortOrder(true);
+			}
+			collection[collectionType].sort(sorter);
+		}
+	}
+	return collection;
+}
+
+/**
+ * @param  {Object} collection
+ * @param  {String} type
+ * @param  {String} prop
+ *
+ * @return {Array}
+ */
+function transformCollection ( collection, type, prop ) {
+	var transformed = [];
+	var collectionItem;
+
+	function iterateCollectionItem ( collectionItem ) {
+		var resultVal;
+		for ( var i = 0, typeLength = collectionItem.length; i < typeLength; i++ ) {
+			if ( type === 'string' ) {
+				resultVal = collectionItem[i].item.__media;
+			} else {
+				resultVal = collectionItem[i].item;
+				delete resultVal.__media;
+			}
+			transformed.push(resultVal);
+		}
+	}
+
+	for ( var i = 0, mqTypesLength = mqTypes.length; i < mqTypesLength; i++ ) {
+		iterateCollectionItem(collection[mqTypes[i]]);
+	}
+
+	return transformed;
+}
+
+/**
+ * @param  {Array} rules
+ * @param  {String} type
+ * @param  {String} prop
+ *
+ * @return {Array}
+ */
+function sortInit ( rules, type, prop ) {
+
+	switch ( allValid(rules, type, prop) ) {
+		case 'none':
+			return [];
+		case 'some':
+			return rules;
+	}
+
+	var collection = createCollection();
+	rules = prepareRules(rules, type, prop);
+	addRulesToCollection(collection, rules);
+	sortCollection(collection);
+	return transformCollection(collection, type, prop);
+}
+
+/**
+ * @param  {Array} rules
+ * @param  {String} prop
+ *
+ * @return {Array}
+ */
+module.exports = function ( rules, prop ) {
+	if ( rules ) {
+		if ( prop ) {
+			return sortInit(rules, 'object', prop);
+		}
+		return sortInit(rules, 'string');
+	}
+	return [];
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-node/index.js":
+/*!**************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-node/index.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "v1": () => (/* reexport safe */ _v1_js__WEBPACK_IMPORTED_MODULE_0__["default"]),
+/* harmony export */   "v3": () => (/* reexport safe */ _v3_js__WEBPACK_IMPORTED_MODULE_1__["default"]),
+/* harmony export */   "v4": () => (/* reexport safe */ _v4_js__WEBPACK_IMPORTED_MODULE_2__["default"]),
+/* harmony export */   "v5": () => (/* reexport safe */ _v5_js__WEBPACK_IMPORTED_MODULE_3__["default"]),
+/* harmony export */   "NIL": () => (/* reexport safe */ _nil_js__WEBPACK_IMPORTED_MODULE_4__["default"]),
+/* harmony export */   "version": () => (/* reexport safe */ _version_js__WEBPACK_IMPORTED_MODULE_5__["default"]),
+/* harmony export */   "validate": () => (/* reexport safe */ _validate_js__WEBPACK_IMPORTED_MODULE_6__["default"]),
+/* harmony export */   "stringify": () => (/* reexport safe */ _stringify_js__WEBPACK_IMPORTED_MODULE_7__["default"]),
+/* harmony export */   "parse": () => (/* reexport safe */ _parse_js__WEBPACK_IMPORTED_MODULE_8__["default"])
+/* harmony export */ });
+/* harmony import */ var _v1_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v1.js */ "./node_modules/uuid/dist/esm-node/v1.js");
+/* harmony import */ var _v3_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./v3.js */ "./node_modules/uuid/dist/esm-node/v3.js");
+/* harmony import */ var _v4_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./v4.js */ "./node_modules/uuid/dist/esm-node/v4.js");
+/* harmony import */ var _v5_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./v5.js */ "./node_modules/uuid/dist/esm-node/v5.js");
+/* harmony import */ var _nil_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./nil.js */ "./node_modules/uuid/dist/esm-node/nil.js");
+/* harmony import */ var _version_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./version.js */ "./node_modules/uuid/dist/esm-node/version.js");
+/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./validate.js */ "./node_modules/uuid/dist/esm-node/validate.js");
+/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./stringify.js */ "./node_modules/uuid/dist/esm-node/stringify.js");
+/* harmony import */ var _parse_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./parse.js */ "./node_modules/uuid/dist/esm-node/parse.js");
+
+
+
+
+
+
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-node/md5.js":
+/*!************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-node/md5.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! crypto */ "crypto");
+/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(crypto__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function md5(bytes) {
+  if (Array.isArray(bytes)) {
+    bytes = Buffer.from(bytes);
+  } else if (typeof bytes === 'string') {
+    bytes = Buffer.from(bytes, 'utf8');
+  }
+
+  return crypto__WEBPACK_IMPORTED_MODULE_0___default().createHash('md5').update(bytes).digest();
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (md5);
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-node/nil.js":
+/*!************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-node/nil.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ('00000000-0000-0000-0000-000000000000');
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-node/parse.js":
+/*!**************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-node/parse.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validate.js */ "./node_modules/uuid/dist/esm-node/validate.js");
+
+
+function parse(uuid) {
+  if (!(0,_validate_js__WEBPACK_IMPORTED_MODULE_0__["default"])(uuid)) {
+    throw TypeError('Invalid UUID');
+  }
+
+  let v;
+  const arr = new Uint8Array(16); // Parse ########-....-....-....-............
+
+  arr[0] = (v = parseInt(uuid.slice(0, 8), 16)) >>> 24;
+  arr[1] = v >>> 16 & 0xff;
+  arr[2] = v >>> 8 & 0xff;
+  arr[3] = v & 0xff; // Parse ........-####-....-....-............
+
+  arr[4] = (v = parseInt(uuid.slice(9, 13), 16)) >>> 8;
+  arr[5] = v & 0xff; // Parse ........-....-####-....-............
+
+  arr[6] = (v = parseInt(uuid.slice(14, 18), 16)) >>> 8;
+  arr[7] = v & 0xff; // Parse ........-....-....-####-............
+
+  arr[8] = (v = parseInt(uuid.slice(19, 23), 16)) >>> 8;
+  arr[9] = v & 0xff; // Parse ........-....-....-....-############
+  // (Use "/" to avoid 32-bit truncation when bit-shifting high-order bytes)
+
+  arr[10] = (v = parseInt(uuid.slice(24, 36), 16)) / 0x10000000000 & 0xff;
+  arr[11] = v / 0x100000000 & 0xff;
+  arr[12] = v >>> 24 & 0xff;
+  arr[13] = v >>> 16 & 0xff;
+  arr[14] = v >>> 8 & 0xff;
+  arr[15] = v & 0xff;
+  return arr;
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (parse);
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-node/regex.js":
+/*!**************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-node/regex.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i);
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-node/rng.js":
+/*!************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-node/rng.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ rng)
+/* harmony export */ });
+/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! crypto */ "crypto");
+/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(crypto__WEBPACK_IMPORTED_MODULE_0__);
+
+const rnds8Pool = new Uint8Array(256); // # of random values to pre-allocate
+
+let poolPtr = rnds8Pool.length;
+function rng() {
+  if (poolPtr > rnds8Pool.length - 16) {
+    crypto__WEBPACK_IMPORTED_MODULE_0___default().randomFillSync(rnds8Pool);
+    poolPtr = 0;
+  }
+
+  return rnds8Pool.slice(poolPtr, poolPtr += 16);
+}
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-node/sha1.js":
+/*!*************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-node/sha1.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! crypto */ "crypto");
+/* harmony import */ var crypto__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(crypto__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function sha1(bytes) {
+  if (Array.isArray(bytes)) {
+    bytes = Buffer.from(bytes);
+  } else if (typeof bytes === 'string') {
+    bytes = Buffer.from(bytes, 'utf8');
+  }
+
+  return crypto__WEBPACK_IMPORTED_MODULE_0___default().createHash('sha1').update(bytes).digest();
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (sha1);
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-node/stringify.js":
+/*!******************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-node/stringify.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validate.js */ "./node_modules/uuid/dist/esm-node/validate.js");
+
+/**
+ * Convert array of 16 byte values to UUID string format of the form:
+ * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+ */
+
+const byteToHex = [];
+
+for (let i = 0; i < 256; ++i) {
+  byteToHex.push((i + 0x100).toString(16).substr(1));
+}
+
+function stringify(arr, offset = 0) {
+  // Note: Be careful editing this code!  It's been tuned for performance
+  // and works in ways you may not expect. See https://github.com/uuidjs/uuid/pull/434
+  const uuid = (byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + '-' + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + '-' + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + '-' + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + '-' + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]]).toLowerCase(); // Consistency check for valid UUID.  If this throws, it's likely due to one
+  // of the following:
+  // - One or more input array values don't map to a hex octet (leading to
+  // "undefined" in the uuid)
+  // - Invalid input values for the RFC `version` or `variant` fields
+
+  if (!(0,_validate_js__WEBPACK_IMPORTED_MODULE_0__["default"])(uuid)) {
+    throw TypeError('Stringified UUID is invalid');
+  }
+
+  return uuid;
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (stringify);
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-node/v1.js":
+/*!***********************************************!*\
+  !*** ./node_modules/uuid/dist/esm-node/v1.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _rng_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./rng.js */ "./node_modules/uuid/dist/esm-node/rng.js");
+/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stringify.js */ "./node_modules/uuid/dist/esm-node/stringify.js");
+
+ // **`v1()` - Generate time-based UUID**
+//
+// Inspired by https://github.com/LiosK/UUID.js
+// and http://docs.python.org/library/uuid.html
+
+let _nodeId;
+
+let _clockseq; // Previous uuid creation time
+
+
+let _lastMSecs = 0;
+let _lastNSecs = 0; // See https://github.com/uuidjs/uuid for API details
+
+function v1(options, buf, offset) {
+  let i = buf && offset || 0;
+  const b = buf || new Array(16);
+  options = options || {};
+  let node = options.node || _nodeId;
+  let clockseq = options.clockseq !== undefined ? options.clockseq : _clockseq; // node and clockseq need to be initialized to random values if they're not
+  // specified.  We do this lazily to minimize issues related to insufficient
+  // system entropy.  See #189
+
+  if (node == null || clockseq == null) {
+    const seedBytes = options.random || (options.rng || _rng_js__WEBPACK_IMPORTED_MODULE_0__["default"])();
+
+    if (node == null) {
+      // Per 4.5, create and 48-bit node id, (47 random bits + multicast bit = 1)
+      node = _nodeId = [seedBytes[0] | 0x01, seedBytes[1], seedBytes[2], seedBytes[3], seedBytes[4], seedBytes[5]];
+    }
+
+    if (clockseq == null) {
+      // Per 4.2.2, randomize (14 bit) clockseq
+      clockseq = _clockseq = (seedBytes[6] << 8 | seedBytes[7]) & 0x3fff;
+    }
+  } // UUID timestamps are 100 nano-second units since the Gregorian epoch,
+  // (1582-10-15 00:00).  JSNumbers aren't precise enough for this, so
+  // time is handled internally as 'msecs' (integer milliseconds) and 'nsecs'
+  // (100-nanoseconds offset from msecs) since unix epoch, 1970-01-01 00:00.
+
+
+  let msecs = options.msecs !== undefined ? options.msecs : Date.now(); // Per 4.2.1.2, use count of uuid's generated during the current clock
+  // cycle to simulate higher resolution clock
+
+  let nsecs = options.nsecs !== undefined ? options.nsecs : _lastNSecs + 1; // Time since last uuid creation (in msecs)
+
+  const dt = msecs - _lastMSecs + (nsecs - _lastNSecs) / 10000; // Per 4.2.1.2, Bump clockseq on clock regression
+
+  if (dt < 0 && options.clockseq === undefined) {
+    clockseq = clockseq + 1 & 0x3fff;
+  } // Reset nsecs if clock regresses (new clockseq) or we've moved onto a new
+  // time interval
+
+
+  if ((dt < 0 || msecs > _lastMSecs) && options.nsecs === undefined) {
+    nsecs = 0;
+  } // Per 4.2.1.2 Throw error if too many uuids are requested
+
+
+  if (nsecs >= 10000) {
+    throw new Error("uuid.v1(): Can't create more than 10M uuids/sec");
+  }
+
+  _lastMSecs = msecs;
+  _lastNSecs = nsecs;
+  _clockseq = clockseq; // Per 4.1.4 - Convert from unix epoch to Gregorian epoch
+
+  msecs += 12219292800000; // `time_low`
+
+  const tl = ((msecs & 0xfffffff) * 10000 + nsecs) % 0x100000000;
+  b[i++] = tl >>> 24 & 0xff;
+  b[i++] = tl >>> 16 & 0xff;
+  b[i++] = tl >>> 8 & 0xff;
+  b[i++] = tl & 0xff; // `time_mid`
+
+  const tmh = msecs / 0x100000000 * 10000 & 0xfffffff;
+  b[i++] = tmh >>> 8 & 0xff;
+  b[i++] = tmh & 0xff; // `time_high_and_version`
+
+  b[i++] = tmh >>> 24 & 0xf | 0x10; // include version
+
+  b[i++] = tmh >>> 16 & 0xff; // `clock_seq_hi_and_reserved` (Per 4.2.2 - include variant)
+
+  b[i++] = clockseq >>> 8 | 0x80; // `clock_seq_low`
+
+  b[i++] = clockseq & 0xff; // `node`
+
+  for (let n = 0; n < 6; ++n) {
+    b[i + n] = node[n];
+  }
+
+  return buf || (0,_stringify_js__WEBPACK_IMPORTED_MODULE_1__["default"])(b);
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (v1);
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-node/v3.js":
+/*!***********************************************!*\
+  !*** ./node_modules/uuid/dist/esm-node/v3.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _v35_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v35.js */ "./node_modules/uuid/dist/esm-node/v35.js");
+/* harmony import */ var _md5_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./md5.js */ "./node_modules/uuid/dist/esm-node/md5.js");
+
+
+const v3 = (0,_v35_js__WEBPACK_IMPORTED_MODULE_0__["default"])('v3', 0x30, _md5_js__WEBPACK_IMPORTED_MODULE_1__["default"]);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (v3);
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-node/v35.js":
+/*!************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-node/v35.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DNS": () => (/* binding */ DNS),
+/* harmony export */   "URL": () => (/* binding */ URL),
+/* harmony export */   "default": () => (/* export default binding */ __WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stringify.js */ "./node_modules/uuid/dist/esm-node/stringify.js");
+/* harmony import */ var _parse_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./parse.js */ "./node_modules/uuid/dist/esm-node/parse.js");
+
+
+
+function stringToBytes(str) {
+  str = unescape(encodeURIComponent(str)); // UTF8 escape
+
+  const bytes = [];
+
+  for (let i = 0; i < str.length; ++i) {
+    bytes.push(str.charCodeAt(i));
+  }
+
+  return bytes;
+}
+
+const DNS = '6ba7b810-9dad-11d1-80b4-00c04fd430c8';
+const URL = '6ba7b811-9dad-11d1-80b4-00c04fd430c8';
+/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(name, version, hashfunc) {
+  function generateUUID(value, namespace, buf, offset) {
+    if (typeof value === 'string') {
+      value = stringToBytes(value);
+    }
+
+    if (typeof namespace === 'string') {
+      namespace = (0,_parse_js__WEBPACK_IMPORTED_MODULE_0__["default"])(namespace);
+    }
+
+    if (namespace.length !== 16) {
+      throw TypeError('Namespace must be array-like (16 iterable integer values, 0-255)');
+    } // Compute hash of namespace and value, Per 4.3
+    // Future: Use spread syntax when supported on all platforms, e.g. `bytes =
+    // hashfunc([...namespace, ... value])`
+
+
+    let bytes = new Uint8Array(16 + value.length);
+    bytes.set(namespace);
+    bytes.set(value, namespace.length);
+    bytes = hashfunc(bytes);
+    bytes[6] = bytes[6] & 0x0f | version;
+    bytes[8] = bytes[8] & 0x3f | 0x80;
+
+    if (buf) {
+      offset = offset || 0;
+
+      for (let i = 0; i < 16; ++i) {
+        buf[offset + i] = bytes[i];
+      }
+
+      return buf;
+    }
+
+    return (0,_stringify_js__WEBPACK_IMPORTED_MODULE_1__["default"])(bytes);
+  } // Function#name is not settable on some platforms (#270)
+
+
+  try {
+    generateUUID.name = name; // eslint-disable-next-line no-empty
+  } catch (err) {} // For CommonJS default export support
+
+
+  generateUUID.DNS = DNS;
+  generateUUID.URL = URL;
+  return generateUUID;
+}
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-node/v4.js":
+/*!***********************************************!*\
+  !*** ./node_modules/uuid/dist/esm-node/v4.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _rng_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./rng.js */ "./node_modules/uuid/dist/esm-node/rng.js");
+/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stringify.js */ "./node_modules/uuid/dist/esm-node/stringify.js");
+
+
+
+function v4(options, buf, offset) {
+  options = options || {};
+  const rnds = options.random || (options.rng || _rng_js__WEBPACK_IMPORTED_MODULE_0__["default"])(); // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
+
+  rnds[6] = rnds[6] & 0x0f | 0x40;
+  rnds[8] = rnds[8] & 0x3f | 0x80; // Copy bytes to buffer, if provided
+
+  if (buf) {
+    offset = offset || 0;
+
+    for (let i = 0; i < 16; ++i) {
+      buf[offset + i] = rnds[i];
+    }
+
+    return buf;
+  }
+
+  return (0,_stringify_js__WEBPACK_IMPORTED_MODULE_1__["default"])(rnds);
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (v4);
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-node/v5.js":
+/*!***********************************************!*\
+  !*** ./node_modules/uuid/dist/esm-node/v5.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _v35_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v35.js */ "./node_modules/uuid/dist/esm-node/v35.js");
+/* harmony import */ var _sha1_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sha1.js */ "./node_modules/uuid/dist/esm-node/sha1.js");
+
+
+const v5 = (0,_v35_js__WEBPACK_IMPORTED_MODULE_0__["default"])('v5', 0x50, _sha1_js__WEBPACK_IMPORTED_MODULE_1__["default"]);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (v5);
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-node/validate.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-node/validate.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _regex_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./regex.js */ "./node_modules/uuid/dist/esm-node/regex.js");
+
+
+function validate(uuid) {
+  return typeof uuid === 'string' && _regex_js__WEBPACK_IMPORTED_MODULE_0__["default"].test(uuid);
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (validate);
+
+/***/ }),
+
+/***/ "./node_modules/uuid/dist/esm-node/version.js":
+/*!****************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-node/version.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validate.js */ "./node_modules/uuid/dist/esm-node/validate.js");
+
+
+function version(uuid) {
+  if (!(0,_validate_js__WEBPACK_IMPORTED_MODULE_0__["default"])(uuid)) {
+    throw TypeError('Invalid UUID');
+  }
+
+  return parseInt(uuid.substr(14, 1), 16);
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (version);
+
+/***/ }),
+
+/***/ "./node_modules/xtend/immutable.js":
+/*!*****************************************!*\
+  !*** ./node_modules/xtend/immutable.js ***!
+  \*****************************************/
+/***/ ((module) => {
+
+module.exports = extend
+
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+
+function extend() {
+    var target = {}
+
+    for (var i = 0; i < arguments.length; i++) {
+        var source = arguments[i]
+
+        for (var key in source) {
+            if (hasOwnProperty.call(source, key)) {
+                target[key] = source[key]
+            }
+        }
+    }
+
+    return target
+}
+
+
+/***/ }),
+
 /***/ "./.cache/caches/gatsby-plugin-image/3024376187.json":
 /*!***********************************************************!*\
   !*** ./.cache/caches/gatsby-plugin-image/3024376187.json ***!
@@ -5124,6 +8404,17 @@ module.exports = JSON.parse('{"layout":"constrained","backgroundColor":"#080808"
 
 /***/ }),
 
+/***/ "./public/page-data/sq/d/2337442288.json":
+/*!***********************************************!*\
+  !*** ./public/page-data/sq/d/2337442288.json ***!
+  \***********************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = JSON.parse('{"data":{"desktop":{"childImageSharp":{"fluid":{"tracedSVG":"data:image/svg+xml,%3csvg%20xmlns=\'http://www.w3.org/2000/svg\'%20width=\'400\'%20height=\'267\'%20viewBox=\'0%200%20400%20267\'%20preserveAspectRatio=\'none\'%3e%3cpath%20d=\'M0%2025v25h19c20%200%2029%201%2031%202l3%203c1%201%200%201-7%201l-9%201h7c9%200%209%200%209%2018l-1%2015v1c2%201%201%201-6%203l-7%204-3%202V77c0-22%200-23-2-23l-2%201c0%201-14%201-25-1H0v142l3%201%204%201c7-1%207-1%208%203%202%203%204%2013%205%2024v6l-2-5c-2-4-4-4-7-1H7l-2-1-3-6-2-4v53h19l21-1c3-2%2023-7%2027-7%208%200%2017-5%2014-9l1-1c1%201%201%200%201-2l2-3c2%200%202%200%201-1s-1-1%201-2l1-1%201-2%202-3h-1l-2%201-1-1c1-1-1-2-5-3l-2%202c-1%201-1%201-1-1l-2-3c-3-3-3-5%200-4l6%203%204%202%206-6%206-5h50c0-1-7-2-15-2-15%200-18-3-4-4l9-1h2v2l1-1%202-1c2-1%203%200%201%202l-1%201h2l2-4c0-2%200-3%202-3l3-1h-5l-5%201-1-3%201-1%201-1c1-1%200-1-1-2l-2-1h3c3%201%203-2-2-4l-5-1c-2%201-1-1%201-2v-1l-4%202-4%202v-2l-1-1c1-1%200-2-4-4-4-1-5-1-4%203%200%202%200%202-2%201-4-3-4-6%200-7l2-2h3c2%202%203%202%205%201%205-2%207-1%2014%202%205%202%206%202%209%201l4-2-1-7-2-9c-1-3-2-5-1-6l-2-3c-3-2-4-5-2-3%202%201%201-2-1-4-5-5-11-15-11-19l-2-6c-3-4-3-7-2-10%201-1%201-1%201%201a214%20214%200%200029%2052c1%202%202%203%203%202h17c-1-1%200-1%202-1a36%2036%200%20007-1l-1-1h-10c-9%200-10%200-4-3l4-2%201%202%201%202c1-2-7-19-15-28-4-5-8-13-8-16l3%203c4%208%2018%2026%2021%2029%201%202%204%203%205%203%202%201%208-1%208-2h7l7-1-2-1c-2%200%200-2%203-2%202%200%202%200%200-1l-2-2c0-2%209-1%2012%201l5%201c5%200%2010%203%2011%205l-1%202-3%201c-2%200-2%200-2-2h-1v4c0%202%200%203%204%203%207%201%207%201%205-6l-2-6c-2-1-1-6%201-8%203-3%2010-1%2010%203%200%201%200%202%201%201%202-1%208%200%2010%201%203%202%204%202%204%200%201-1%201-1%201%201%200%206%202%207%202%201l-1-5-3-1-2-3c-2-1-2-1%200-1l3%201v1c1%200%202-1%201-2h2c3%202%204%203%201%204-1%201-1%201%202%201h4c2-4%2010%201%209%206-1%202%200%203%201%203v2c0%201%201%202%203%202l3%201h2l5-1%204-2c0-1%203-2%204-1l3-1h3v3c2%202%204%201%203-1%200-2%200-2%202-2l3-1h3c2%200%202%200%201-2-1-3-3-3-5%200l-3%202%201-2%201-3%204-12%203-8h6c9%200%2011%201%2012%204%200%204-4%209-11%2013l-6%203%203%203c2%203%203%203%2014%204h12l1%205%201%204%201%203c2%202%202%207%200%2011l-2%205-2%201-1%202v1l-1%202-1%202h-1v3l-1%204c-3%204-5%2011-6%2014l2%201c2%200%201%206-2%208-2%201-2%203-3%207l1%2012c1%205%201%205-3%2014l-4%208h69V0H0v25m278-12c-4%202-8%208-8%2014l-1%203%206%201%203%201c-4%200-6%2015-2%2019l2%203c0%202%208%205%2010%205l2%201%206-2c6-3%209-7%206-11v-3l-2-3-1-1-1%203-1%203c-2%200-2-1-2-3%200-3%200-3-1-1h-3c0-2-2-2-2%201l-1%202c-2%200-2-1-2-6s0-6%202-6l3%202%202%201v-1l1-1c3%200%200-2-3-2-6%200-5-1%201-1%209%200%209%200%207-7-1-7-3-9-7-11-5-2-10-2-14%200m76-1l-2%206v6l-1-6v-5l-5%204c-6%205-7%206-7%2010v4l2%202c1%202%208%201%2010-1%201-1%201-1%201%202%200%202%200%203%201%202%201-2%209-3%209-1%202%202%200%2012-2%2012l-1-2c0-3-1-3-3%200l-3%202c-1%200-2%201-2%208%200%204%200%207%201%206l4-3%208-4c3-4%204-8%201-7s-3%200%201-6c2-6%202-6%200-6v-2c-1-1%200-1%201-1%205%200%206-1%205-7l-1-7c-2-4-14-8-17-6M68%2040c0%205-1%208-2%208-3%200-3%200-2%201%202%201%200%203-2%202l-5%201c-1%201-1%202%203%203s7%203%204%203l-1%202-1%2013%201%2013%202%204%201%202v1l1%202c2%202%203%203%203%201v-1l1%202c-1%201-1%201%200%200h1c-1%201%201%204%202%204v-1c-2-2-1-3%201-2l-1-2v-4c1-2%201-2%202-1h2c2-3%206-5%2013-6a1067%201067%200%200023-9c2-1%202-19%201-19s-2-1-1-2c0-2%200-2-1%200-1%201-1%201-1-1l-2-3s-2-1-2-3l-5-4-5-3-8-1c-6%200-8%200-9-2l-7-1c-4%201-5%200-5-1-1-1-1%201-1%204m269%205l1%207c0%205%200%205%203%205l3%201h1c0-2%200-2%201%200%201%203%203%202%203-5l1-6h-4l-7-3-2-2v3M28%2061v1l1%201-2%201-20%204H6l-1%201v6l1%209%202%2012c-1%206%202%209%204%207l3-1%202-1h2l5-1c4%200%204-1%204-3l1%203c1%204%201%204%201-3%200-8%202-11%202-4l1-13c0-12-1-15-1-9-1%209-2%207-2-4%200-6-1-7-2-6m100%202l-2%203%202-1c3%200%203%200%203%202%200%207%204%2016%206%2015%204-1%205%205%202%208-2%202-3%203-2%204v1c-2%200-5%2023-3%2024h19c2%200%203-1%203-2l4-13c4-13%205-12-3-27-4-10-6-12-5-7%200%204%200%205-4%203-2-1-3-2-3-4l-1-2c-1-1-2%202-1%203l-1%201-2-3c-1-4-1-6-3-6h-4c-1-1-3%200-5%201m42%2025c-2%201-2%201-1%203v1c-2%200-1%203%201%205v2c-1%200-1%201%201%202%201%202%207%203%207%201l1-1c1%201%205-7%205-10v-2l-1%202h-1l-1-1-2-1c-2-1-2-1-3%201-2%201-2%202%200%202%204%202%202%204-1%202-2%200-3-4-1-5l-1-2-3%201m34%2047l-9%203c-4%201-4%201-4%205l1%205c1%201%206-1%207-2l5-1c3%200%205%200%204-1l2-1%202%201c1%202%203-2%204-7%200-3%200-3-3-4s-4-1-9%202m125%2038l1%202%201%202%203%204%203%204c0%201%202%202%208%202%203%200%204%200%207-3%202-4%202-6-2-6l-2-1c1-2-6-4-8-3l-5-1c-5-2-6-2-6%200m-54%201c-2%200-1%207%201%207s1%202-2%206l-3%205c0%202%204%201%205%200%202-2%203-2%206%200s6%203%207%201l5-1c11-3%2013-5%204-9-5-2-6-2-5%200h-1l-2-1c0-2-5-5-8-5l-1-1-1-1h-2c-1-1-2-2-3-1m-48%2018l-9%201h-6v4c0%204-2%203%2028%205%2022%202%2026%202%2027%201v-2l-1-2c1-1%200-2-4-2l-10-3c-7-2-21-3-25-2m-55%2015c-2%202-4%204-4%206l-2%202-1%202c-1%201-1%200-1-1l-1-3v3c0%202-1%203-3%204l-2%202h6l-3%201-4%203c0%203%204%202%206-1%200-2%201-2%203-1%209%202%2010%201%2012-3l5-6c4-3%204-5-1-7l-5-3c0-2-3-1-5%202m115-1c-1%202%200%203%202%204%205%202%206%204%203%204-4%200-4%204%200%205%2011%202%2015%204%2022%207l9%204%203%202c1%202%203%201%204-2%201-2%202-3%204-3l2-1v-2c2-2-2-5-9-5-8%200-9%201-5%204l3%203-16-4-6-3c-3%200-7-6-6-7s0-3-5-6c-3-3-5-2-5%200m-37%2026l10%202a637%20637%200%200067%207h4l-3-1-16-2c-7%200-20-1-28-3-26-3-42-5-34-3M5%20236l-1%205c0%205%203%208%2010%208h5l-3-4-5-7c-2-3-3-3-6-2m91%203c-3%204-3%204%205%203%208-2%208-2%208%203%200%201%200%202%2017%202h17l1-5%201-5-24-1H98l-2%203m-68%208c-5%203%202%204%2012%202l8-1-11%203c-16%202-13%204%204%202%2013-1%2014-2%2011-5-3-2-21-3-24-1m80%202c0%201%203%202%2012%203l8%201h11c6%200%2010-1%2010-4l-21-1-20%201m133%207l-7%206-5%204c-2%201-2%201%200%201s5-2%2010-6l8-4%202%201c1%201%201%201-1%201-3%201-4%203-2%203l1%202c0%202%201%203%2017%203%2014%200%2015%200%2011-1-5-2-14-6-19-10-3-3-10-2-15%200m-122%202v1l-1%201v1h-1c-1-2-3%200-2%201l-1%201-4%203%2010%201c9%200%2010%200%2011-3l1-2h-3l-3-1c1-1-1-1-4%201-4%201-4%201-3-1l2-3h-2\'%20fill=\'%23d3d3d3\'%20fill-rule=\'evenodd\'/%3e%3c/svg%3e","aspectRatio":1.5007215007215007,"src":"/static/618837d0a9de5c889ee74222897d971e/ba537/meeting.jpg","srcSet":"/static/618837d0a9de5c889ee74222897d971e/d5c54/meeting.jpg 1040w,\\n/static/618837d0a9de5c889ee74222897d971e/f734f/meeting.jpg 2080w,\\n/static/618837d0a9de5c889ee74222897d971e/ba537/meeting.jpg 4160w,\\n/static/618837d0a9de5c889ee74222897d971e/47388/meeting.jpg 4793w","srcWebp":"/static/618837d0a9de5c889ee74222897d971e/12eb1/meeting.webp","srcSetWebp":"/static/618837d0a9de5c889ee74222897d971e/e4875/meeting.webp 1040w,\\n/static/618837d0a9de5c889ee74222897d971e/ecdd3/meeting.webp 2080w,\\n/static/618837d0a9de5c889ee74222897d971e/12eb1/meeting.webp 4160w,\\n/static/618837d0a9de5c889ee74222897d971e/90173/meeting.webp 4793w","sizes":"(max-width: 4160px) 100vw, 4160px"}}}}}');
+
+/***/ }),
+
 /***/ "./public/page-data/sq/d/3634792543.json":
 /*!***********************************************!*\
   !*** ./public/page-data/sq/d/3634792543.json ***!
@@ -5131,7 +8422,7 @@ module.exports = JSON.parse('{"layout":"constrained","backgroundColor":"#080808"
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"data":{"allMdx":{"nodes":[{"id":"ecf4e8d0-466a-51fb-af07-d9b58c31ff46","frontmatter":{"title":"Events to Look Forward To","number":"02","image_01":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#c8c8c8","images":{"fallback":{"src":"/static/123015216586e5cf1aa1932df40ca6bb/9562f/abuja.jpg","srcSet":"/static/123015216586e5cf1aa1932df40ca6bb/f7ff7/abuja.jpg 876w,\\n/static/123015216586e5cf1aa1932df40ca6bb/8bb2c/abuja.jpg 1752w,\\n/static/123015216586e5cf1aa1932df40ca6bb/9562f/abuja.jpg 3504w","sizes":"(min-width: 3504px) 3504px, 100vw"},"sources":[{"srcSet":"/static/123015216586e5cf1aa1932df40ca6bb/18e9d/abuja.webp 876w,\\n/static/123015216586e5cf1aa1932df40ca6bb/df859/abuja.webp 1752w,\\n/static/123015216586e5cf1aa1932df40ca6bb/0042d/abuja.webp 3504w","type":"image/webp","sizes":"(min-width: 3504px) 3504px, 100vw"}]},"width":3504,"height":2336}}},"image_02":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#b8b8b8","images":{"fallback":{"src":"/static/2e53930fd573a1ae06aed94e485b64cf/2b782/GSB.png","srcSet":"/static/2e53930fd573a1ae06aed94e485b64cf/d9079/GSB.png 252w,\\n/static/2e53930fd573a1ae06aed94e485b64cf/a8d97/GSB.png 503w,\\n/static/2e53930fd573a1ae06aed94e485b64cf/2b782/GSB.png 1006w","sizes":"(min-width: 1006px) 1006px, 100vw"},"sources":[{"srcSet":"/static/2e53930fd573a1ae06aed94e485b64cf/77edf/GSB.webp 252w,\\n/static/2e53930fd573a1ae06aed94e485b64cf/bfbc5/GSB.webp 503w,\\n/static/2e53930fd573a1ae06aed94e485b64cf/b9734/GSB.webp 1006w","type":"image/webp","sizes":"(min-width: 1006px) 1006px, 100vw"}]},"width":1006,"height":1125}}}},"body":"var _excluded = [\\"components\\"];\\n\\nfunction _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }\\n\\nfunction _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }\\n\\nfunction _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }\\n\\n/* @jsxRuntime classic */\\n\\n/* @jsx mdx */\\nvar _frontmatter = {\\n  \\"title\\": \\"Events to Look Forward To\\",\\n  \\"number\\": \\"02\\",\\n  \\"image_01\\": \\"./abuja.jpg\\",\\n  \\"image_02\\": \\"./GSB.png\\"\\n};\\nvar layoutProps = {\\n  _frontmatter: _frontmatter\\n};\\nvar MDXLayout = \\"wrapper\\";\\nreturn function MDXContent(_ref) {\\n  var components = _ref.components,\\n      props = _objectWithoutProperties(_ref, _excluded);\\n\\n  return mdx(MDXLayout, _extends({}, layoutProps, props, {\\n    components: components,\\n    mdxType: \\"MDXLayout\\"\\n  }), mdx(\\"p\\", null, \\"Some Slightly Larger Text All About Events\\"), mdx(\\"p\\", null, \\"\\\\u201CThis year we will have speakers who are creating innovative ways of tackling challenges in\\\\nhealthcare, fintech, clean energy, cryptocurrencies, investing (private equity and venture capital),\\\\ninfrastructure & cities and entrepreneurship.\\\\u201D\\"), mdx(StyledLink, {\\n    to: \\"/attend\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Schedule\\"), mdx(\\"p\\", null, \\"\\\\xA0\\"), mdx(StyledLink, {\\n    to: \\"/speakers\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Speakers + Panels\\"), mdx(\\"p\\", null, \\"\\\\xA0\\"), mdx(StyledLink, {\\n    to: \\"/pitch\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Pitch Competition \\"));\\n}\\n;\\nMDXContent.isMDXComponent = true;"},{"id":"3004e745-6325-52c6-968e-02bb84cd8268","frontmatter":{"title":"A long history of cultivating forward-looking conversation","number":"03","image_01":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#080808","images":{"fallback":{"src":"/static/618837d0a9de5c889ee74222897d971e/34a96/meeting.jpg","srcSet":"/static/618837d0a9de5c889ee74222897d971e/9073b/meeting.jpg 1198w,\\n/static/618837d0a9de5c889ee74222897d971e/f2540/meeting.jpg 2397w,\\n/static/618837d0a9de5c889ee74222897d971e/34a96/meeting.jpg 4793w","sizes":"(min-width: 4793px) 4793px, 100vw"},"sources":[{"srcSet":"/static/618837d0a9de5c889ee74222897d971e/0522a/meeting.webp 1198w,\\n/static/618837d0a9de5c889ee74222897d971e/14040/meeting.webp 2397w,\\n/static/618837d0a9de5c889ee74222897d971e/7c694/meeting.webp 4793w","type":"image/webp","sizes":"(min-width: 4793px) 4793px, 100vw"}]},"width":4793,"height":3195}}},"image_02":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#081838","images":{"fallback":{"src":"/static/8a42ab5eca5fbf3e0fbd21dcf9b12d66/8a549/ship.jpg","srcSet":"/static/8a42ab5eca5fbf3e0fbd21dcf9b12d66/7284f/ship.jpg 750w,\\n/static/8a42ab5eca5fbf3e0fbd21dcf9b12d66/3564b/ship.jpg 1500w,\\n/static/8a42ab5eca5fbf3e0fbd21dcf9b12d66/8a549/ship.jpg 3000w","sizes":"(min-width: 3000px) 3000px, 100vw"},"sources":[{"srcSet":"/static/8a42ab5eca5fbf3e0fbd21dcf9b12d66/57584/ship.webp 750w,\\n/static/8a42ab5eca5fbf3e0fbd21dcf9b12d66/2b8d7/ship.webp 1500w,\\n/static/8a42ab5eca5fbf3e0fbd21dcf9b12d66/48dc9/ship.webp 3000w","type":"image/webp","sizes":"(min-width: 3000px) 3000px, 100vw"}]},"width":3000,"height":2000}}}},"body":"var _excluded = [\\"components\\"];\\n\\nfunction _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }\\n\\nfunction _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }\\n\\nfunction _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }\\n\\n/* @jsxRuntime classic */\\n\\n/* @jsx mdx */\\nvar _frontmatter = {\\n  \\"title\\": \\"A long history of cultivating forward-looking conversation\\",\\n  \\"number\\": \\"03\\",\\n  \\"image_01\\": \\"./meeting.jpg\\",\\n  \\"image_02\\": \\"./ship.jpg\\"\\n};\\nvar layoutProps = {\\n  _frontmatter: _frontmatter\\n};\\nvar MDXLayout = \\"wrapper\\";\\nreturn function MDXContent(_ref) {\\n  var components = _ref.components,\\n      props = _objectWithoutProperties(_ref, _excluded);\\n\\n  return mdx(MDXLayout, _extends({}, layoutProps, props, {\\n    components: components,\\n    mdxType: \\"MDXLayout\\"\\n  }), mdx(\\"p\\", null, \\"This year marks the 13th anniversary of the Africa Business Forum.\\\\nIn 2007, the forum theme was \\\\u201CFostering Entrepreneurial Activities in Africa\\\\u201D.\\\\nIts objective was to portray Africa in a more positive light than that more\\\\ncommonly seen in the media and create awareness of the diverse and burgeoning opportunities.\\\\nThe first forum was organized by a group of enthusiastic students headed by\\\\nWilson Irungu Nyakera and Kwame Ansong-Dwamena.\\"), mdx(\\"p\\", null, \\"Though the theme has changed from year to year,\\\\nthe underlying motivation behind the forum hasn\\\\u2019t changed.\\\\nThe forum has always been aimed at creating awareness of the opportunities on the\\\\nAfrican continent and bring together Africans and friends of Africa from the continent\\\\nand the diaspora to engage on the most important issues affecting the continent\\\\u2019s growth.\\\\nClick to learn more about conferences in 2020, 2019, 2018, and 2017.\\"), mdx(StyledLink, {\\n    to: \\"/team\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Meet this Year\'s Team\\"));\\n}\\n;\\nMDXContent.isMDXComponent = true;"},{"id":"9d24ed2b-edcb-5d5e-a268-6adb07bda6b4","frontmatter":{"title":"Innovation in Africa is shaping the world\'s future","number":"01","image_01":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#e8d8b8","images":{"fallback":{"src":"/static/a2dfb7da2b0a32f9800f7caddee4731b/782a5/city.jpg","srcSet":"/static/a2dfb7da2b0a32f9800f7caddee4731b/d796c/city.jpg 1404w,\\n/static/a2dfb7da2b0a32f9800f7caddee4731b/8119d/city.jpg 2808w,\\n/static/a2dfb7da2b0a32f9800f7caddee4731b/782a5/city.jpg 5616w","sizes":"(min-width: 5616px) 5616px, 100vw"},"sources":[{"srcSet":"/static/a2dfb7da2b0a32f9800f7caddee4731b/33c69/city.webp 1404w,\\n/static/a2dfb7da2b0a32f9800f7caddee4731b/e004f/city.webp 2808w,\\n/static/a2dfb7da2b0a32f9800f7caddee4731b/40535/city.webp 5616w","type":"image/webp","sizes":"(min-width: 5616px) 5616px, 100vw"}]},"width":5616,"height":3744}}},"image_02":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#080808","images":{"fallback":{"src":"/static/8f418d17201d8a2e7b0c460c315550c9/e70fc/street.jpg","srcSet":"/static/8f418d17201d8a2e7b0c460c315550c9/da65b/street.jpg 160w,\\n/static/8f418d17201d8a2e7b0c460c315550c9/f6fcd/street.jpg 320w,\\n/static/8f418d17201d8a2e7b0c460c315550c9/e70fc/street.jpg 640w","sizes":"(min-width: 640px) 640px, 100vw"},"sources":[{"srcSet":"/static/8f418d17201d8a2e7b0c460c315550c9/405d4/street.webp 160w,\\n/static/8f418d17201d8a2e7b0c460c315550c9/dde70/street.webp 320w,\\n/static/8f418d17201d8a2e7b0c460c315550c9/62859/street.webp 640w","type":"image/webp","sizes":"(min-width: 640px) 640px, 100vw"}]},"width":640,"height":426.99999999999994}}}},"body":"var _excluded = [\\"components\\"];\\n\\nfunction _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }\\n\\nfunction _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }\\n\\nfunction _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }\\n\\n/* @jsxRuntime classic */\\n\\n/* @jsx mdx */\\nvar _frontmatter = {\\n  \\"title\\": \\"Innovation in Africa is shaping the world\'s future\\",\\n  \\"number\\": \\"01\\",\\n  \\"image_01\\": \\"./city.jpg\\",\\n  \\"image_02\\": \\"./street.jpeg\\"\\n};\\nvar layoutProps = {\\n  _frontmatter: _frontmatter\\n};\\nvar MDXLayout = \\"wrapper\\";\\nreturn function MDXContent(_ref) {\\n  var components = _ref.components,\\n      props = _objectWithoutProperties(_ref, _excluded);\\n\\n  return mdx(MDXLayout, _extends({}, layoutProps, props, {\\n    components: components,\\n    mdxType: \\"MDXLayout\\"\\n  }), mdx(\\"p\\", null, \\"This year\\\\u2019s conference will explore how innovations across various sectors in Africa can influence the global economy.\\\\nWhat role does African innovation play in shaping the global future?\\\\nHow do current ventures on the continent position Africa to become a leader in the global economy?\\"), mdx(\\"p\\", null, \\"At this conference we would like to challenge the narrative that \\\\u201CAfrica is the future\\\\u201D and explore whether \\\\u201CAfrica is now\\\\u201D.\\", mdx(\\"br\\", {\\n    parentName: \\"p\\"\\n  }), \\"\\\\n\\", \\"We will welcome diverse perspectives on Africa\\\\u2019s unique opportunities\\\\nand challenges as our speakers discuss what they see as Africa\\\\u2019s role in today\\\\u2019s economy.\\"), mdx(StyledLink, {\\n    to: \\"/attend\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Join Us Online + In-Person\\"));\\n}\\n;\\nMDXContent.isMDXComponent = true;"}]}}}');
+module.exports = JSON.parse('{"data":{"allMdx":{"nodes":[{"id":"9d24ed2b-edcb-5d5e-a268-6adb07bda6b4","frontmatter":{"title":"Innovation in Africa is shaping the world\'s future","number":"01","image_01":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#e8d8b8","images":{"fallback":{"src":"/static/a2dfb7da2b0a32f9800f7caddee4731b/782a5/city.jpg","srcSet":"/static/a2dfb7da2b0a32f9800f7caddee4731b/d796c/city.jpg 1404w,\\n/static/a2dfb7da2b0a32f9800f7caddee4731b/8119d/city.jpg 2808w,\\n/static/a2dfb7da2b0a32f9800f7caddee4731b/782a5/city.jpg 5616w","sizes":"(min-width: 5616px) 5616px, 100vw"},"sources":[{"srcSet":"/static/a2dfb7da2b0a32f9800f7caddee4731b/33c69/city.webp 1404w,\\n/static/a2dfb7da2b0a32f9800f7caddee4731b/e004f/city.webp 2808w,\\n/static/a2dfb7da2b0a32f9800f7caddee4731b/40535/city.webp 5616w","type":"image/webp","sizes":"(min-width: 5616px) 5616px, 100vw"}]},"width":5616,"height":3744}}},"image_02":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#080808","images":{"fallback":{"src":"/static/8f418d17201d8a2e7b0c460c315550c9/e70fc/street.jpg","srcSet":"/static/8f418d17201d8a2e7b0c460c315550c9/da65b/street.jpg 160w,\\n/static/8f418d17201d8a2e7b0c460c315550c9/f6fcd/street.jpg 320w,\\n/static/8f418d17201d8a2e7b0c460c315550c9/e70fc/street.jpg 640w","sizes":"(min-width: 640px) 640px, 100vw"},"sources":[{"srcSet":"/static/8f418d17201d8a2e7b0c460c315550c9/405d4/street.webp 160w,\\n/static/8f418d17201d8a2e7b0c460c315550c9/dde70/street.webp 320w,\\n/static/8f418d17201d8a2e7b0c460c315550c9/62859/street.webp 640w","type":"image/webp","sizes":"(min-width: 640px) 640px, 100vw"}]},"width":640,"height":426.99999999999994}}}},"body":"var _excluded = [\\"components\\"];\\n\\nfunction _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }\\n\\nfunction _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }\\n\\nfunction _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }\\n\\n/* @jsxRuntime classic */\\n\\n/* @jsx mdx */\\nvar _frontmatter = {\\n  \\"title\\": \\"Innovation in Africa is shaping the world\'s future\\",\\n  \\"number\\": \\"01\\",\\n  \\"image_01\\": \\"./city.jpg\\",\\n  \\"image_02\\": \\"./street.jpeg\\"\\n};\\nvar layoutProps = {\\n  _frontmatter: _frontmatter\\n};\\nvar MDXLayout = \\"wrapper\\";\\nreturn function MDXContent(_ref) {\\n  var components = _ref.components,\\n      props = _objectWithoutProperties(_ref, _excluded);\\n\\n  return mdx(MDXLayout, _extends({}, layoutProps, props, {\\n    components: components,\\n    mdxType: \\"MDXLayout\\"\\n  }), mdx(\\"p\\", null, \\"This year\\\\u2019s conference will explore how innovations across various sectors in Africa can influence the global economy.\\\\nWhat role does African innovation play in shaping the global future?\\\\nHow do current ventures on the continent position Africa to become a leader in the global economy?\\"), mdx(\\"p\\", null, \\"At this conference we would like to challenge the narrative that \\\\u201CAfrica is the future\\\\u201D and explore whether \\\\u201CAfrica is now\\\\u201D.\\", mdx(\\"br\\", {\\n    parentName: \\"p\\"\\n  }), \\"\\\\n\\", \\"We will welcome diverse perspectives on Africa\\\\u2019s unique opportunities\\\\nand challenges as our speakers discuss what they see as Africa\\\\u2019s role in today\\\\u2019s economy.\\"), mdx(StyledLink, {\\n    to: \\"/attend\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Join Us Online + In-Person\\"));\\n}\\n;\\nMDXContent.isMDXComponent = true;"},{"id":"3004e745-6325-52c6-968e-02bb84cd8268","frontmatter":{"title":"A long history of cultivating forward-looking conversation","number":"03","image_01":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#080808","images":{"fallback":{"src":"/static/618837d0a9de5c889ee74222897d971e/34a96/meeting.jpg","srcSet":"/static/618837d0a9de5c889ee74222897d971e/9073b/meeting.jpg 1198w,\\n/static/618837d0a9de5c889ee74222897d971e/f2540/meeting.jpg 2397w,\\n/static/618837d0a9de5c889ee74222897d971e/34a96/meeting.jpg 4793w","sizes":"(min-width: 4793px) 4793px, 100vw"},"sources":[{"srcSet":"/static/618837d0a9de5c889ee74222897d971e/0522a/meeting.webp 1198w,\\n/static/618837d0a9de5c889ee74222897d971e/14040/meeting.webp 2397w,\\n/static/618837d0a9de5c889ee74222897d971e/7c694/meeting.webp 4793w","type":"image/webp","sizes":"(min-width: 4793px) 4793px, 100vw"}]},"width":4793,"height":3195}}},"image_02":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#081838","images":{"fallback":{"src":"/static/8a42ab5eca5fbf3e0fbd21dcf9b12d66/8a549/ship.jpg","srcSet":"/static/8a42ab5eca5fbf3e0fbd21dcf9b12d66/7284f/ship.jpg 750w,\\n/static/8a42ab5eca5fbf3e0fbd21dcf9b12d66/3564b/ship.jpg 1500w,\\n/static/8a42ab5eca5fbf3e0fbd21dcf9b12d66/8a549/ship.jpg 3000w","sizes":"(min-width: 3000px) 3000px, 100vw"},"sources":[{"srcSet":"/static/8a42ab5eca5fbf3e0fbd21dcf9b12d66/57584/ship.webp 750w,\\n/static/8a42ab5eca5fbf3e0fbd21dcf9b12d66/2b8d7/ship.webp 1500w,\\n/static/8a42ab5eca5fbf3e0fbd21dcf9b12d66/48dc9/ship.webp 3000w","type":"image/webp","sizes":"(min-width: 3000px) 3000px, 100vw"}]},"width":3000,"height":2000}}}},"body":"var _excluded = [\\"components\\"];\\n\\nfunction _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }\\n\\nfunction _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }\\n\\nfunction _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }\\n\\n/* @jsxRuntime classic */\\n\\n/* @jsx mdx */\\nvar _frontmatter = {\\n  \\"title\\": \\"A long history of cultivating forward-looking conversation\\",\\n  \\"number\\": \\"03\\",\\n  \\"image_01\\": \\"./meeting.jpg\\",\\n  \\"image_02\\": \\"./ship.jpg\\"\\n};\\nvar layoutProps = {\\n  _frontmatter: _frontmatter\\n};\\nvar MDXLayout = \\"wrapper\\";\\nreturn function MDXContent(_ref) {\\n  var components = _ref.components,\\n      props = _objectWithoutProperties(_ref, _excluded);\\n\\n  return mdx(MDXLayout, _extends({}, layoutProps, props, {\\n    components: components,\\n    mdxType: \\"MDXLayout\\"\\n  }), mdx(\\"p\\", null, \\"This year marks the 13th anniversary of the Africa Business Forum.\\\\nIn 2007, the forum theme was \\\\u201CFostering Entrepreneurial Activities in Africa\\\\u201D.\\\\nIts objective was to portray Africa in a more positive light than that more\\\\ncommonly seen in the media and create awareness of the diverse and burgeoning opportunities.\\\\nThe first forum was organized by a group of enthusiastic students headed by\\\\nWilson Irungu Nyakera and Kwame Ansong-Dwamena.\\"), mdx(\\"p\\", null, \\"Though the theme has changed from year to year,\\\\nthe underlying motivation behind the forum hasn\\\\u2019t changed.\\\\nThe forum has always been aimed at creating awareness of the opportunities on the\\\\nAfrican continent and bring together Africans and friends of Africa from the continent\\\\nand the diaspora to engage on the most important issues affecting the continent\\\\u2019s growth.\\\\nClick to learn more about conferences in 2020, 2019, 2018, and 2017.\\"), mdx(StyledLink, {\\n    to: \\"/team\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Meet this Year\'s Team\\"));\\n}\\n;\\nMDXContent.isMDXComponent = true;"},{"id":"ecf4e8d0-466a-51fb-af07-d9b58c31ff46","frontmatter":{"title":"Events to Look Forward To","number":"02","image_01":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#c8c8c8","images":{"fallback":{"src":"/static/123015216586e5cf1aa1932df40ca6bb/9562f/abuja.jpg","srcSet":"/static/123015216586e5cf1aa1932df40ca6bb/f7ff7/abuja.jpg 876w,\\n/static/123015216586e5cf1aa1932df40ca6bb/8bb2c/abuja.jpg 1752w,\\n/static/123015216586e5cf1aa1932df40ca6bb/9562f/abuja.jpg 3504w","sizes":"(min-width: 3504px) 3504px, 100vw"},"sources":[{"srcSet":"/static/123015216586e5cf1aa1932df40ca6bb/18e9d/abuja.webp 876w,\\n/static/123015216586e5cf1aa1932df40ca6bb/df859/abuja.webp 1752w,\\n/static/123015216586e5cf1aa1932df40ca6bb/0042d/abuja.webp 3504w","type":"image/webp","sizes":"(min-width: 3504px) 3504px, 100vw"}]},"width":3504,"height":2336}}},"image_02":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#b8b8b8","images":{"fallback":{"src":"/static/2e53930fd573a1ae06aed94e485b64cf/2b782/GSB.png","srcSet":"/static/2e53930fd573a1ae06aed94e485b64cf/d9079/GSB.png 252w,\\n/static/2e53930fd573a1ae06aed94e485b64cf/a8d97/GSB.png 503w,\\n/static/2e53930fd573a1ae06aed94e485b64cf/2b782/GSB.png 1006w","sizes":"(min-width: 1006px) 1006px, 100vw"},"sources":[{"srcSet":"/static/2e53930fd573a1ae06aed94e485b64cf/77edf/GSB.webp 252w,\\n/static/2e53930fd573a1ae06aed94e485b64cf/bfbc5/GSB.webp 503w,\\n/static/2e53930fd573a1ae06aed94e485b64cf/b9734/GSB.webp 1006w","type":"image/webp","sizes":"(min-width: 1006px) 1006px, 100vw"}]},"width":1006,"height":1125}}}},"body":"var _excluded = [\\"components\\"];\\n\\nfunction _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }\\n\\nfunction _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }\\n\\nfunction _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }\\n\\n/* @jsxRuntime classic */\\n\\n/* @jsx mdx */\\nvar _frontmatter = {\\n  \\"title\\": \\"Events to Look Forward To\\",\\n  \\"number\\": \\"02\\",\\n  \\"image_01\\": \\"./abuja.jpg\\",\\n  \\"image_02\\": \\"./GSB.png\\"\\n};\\nvar layoutProps = {\\n  _frontmatter: _frontmatter\\n};\\nvar MDXLayout = \\"wrapper\\";\\nreturn function MDXContent(_ref) {\\n  var components = _ref.components,\\n      props = _objectWithoutProperties(_ref, _excluded);\\n\\n  return mdx(MDXLayout, _extends({}, layoutProps, props, {\\n    components: components,\\n    mdxType: \\"MDXLayout\\"\\n  }), mdx(\\"p\\", null, \\"Some Slightly Larger Text All About Events\\"), mdx(\\"p\\", null, \\"\\\\u201CThis year we will have speakers who are creating innovative ways of tackling challenges in\\\\nhealthcare, fintech, clean energy, cryptocurrencies, investing (private equity and venture capital),\\\\ninfrastructure & cities and entrepreneurship.\\\\u201D\\"), mdx(StyledLink, {\\n    to: \\"/attend\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Schedule\\"), mdx(\\"p\\", null, \\"\\\\xA0\\"), mdx(StyledLink, {\\n    to: \\"/speakers\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Speakers + Panels\\"), mdx(\\"p\\", null, \\"\\\\xA0\\"), mdx(StyledLink, {\\n    to: \\"/pitch\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Pitch Competition \\"));\\n}\\n;\\nMDXContent.isMDXComponent = true;"}]}}}');
 
 /***/ })
 

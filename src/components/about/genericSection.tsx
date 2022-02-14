@@ -8,6 +8,13 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 
 // ******* start styled components 
+const SectionWrap = styled.div`
+    margin: 0 10%;
+    z-index: 10;
+`;
+
+
+
 const PhotoPlaceholder = styled.div`
     /* background-color: darkblue; */
     /* height: 40vh; */
@@ -87,6 +94,7 @@ const GenericSection = ({sectionNumber}) => {
     const image_02 = getImage(currentNode.frontmatter.image_02)
     // console.log(currentNode)
     return (
+        <SectionWrap>
         <GridHolder>
             
             <Grid>
@@ -111,6 +119,7 @@ const GenericSection = ({sectionNumber}) => {
                 </PhotoPlaceholder>
             </Grid>
             </GridHolder>
+            </SectionWrap>
             
    
     );

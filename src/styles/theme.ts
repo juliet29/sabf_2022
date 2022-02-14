@@ -11,7 +11,7 @@ export const darkColor = "#000000" // '#1e1e1e' //"#000000"
 export const lightColor = '#00021f'
 export const primaryAccentColor = skyBlue
 export const secondaryAccentColor = electricBlue
-export const fontFamily = 'Arial, Helvetica, sans-serif'
+export const fontFamily = 'Tahoma, sans-serif'
 export const edgeSpace= 2
 
 const mainTheme: DefaultTheme = {
