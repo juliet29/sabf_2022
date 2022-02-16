@@ -4,6 +4,7 @@ import {GridHolder } from 'styles/sharedStyles';
 import {useContent} from 'hooks/use-content'
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { devices } from 'styles/responsiveSizes';
 
 
 
@@ -28,6 +29,9 @@ const TextBlock = styled.div`
     /* margin-bottom: 10px; */
     div:nth-child(1) {
         margin-right: 3em;
+        @media ${devices.mobileL} {
+            margin-right: 1em;
+        }
     }
     div:nth-child(2) {
         h2 {
@@ -46,6 +50,10 @@ const Grid = styled.div`
     display: grid;
     height: 140vh;
     gap: 3em 6em;
+    @media ${devices.mobileL} {
+        grid-auto-flow: column;
+        gap: 0;
+    }
     grid-template-columns: [col1-line] 1fr
                                 [col2-line] 1fr
                                 [col3-line] 1fr
@@ -61,11 +69,22 @@ const Grid = styled.div`
     ${PhotoPlaceholder}:nth-child(1){
         grid-column: col1-line / span 2;
         grid-row: row1-start / span 4;
+        @media ${devices.mobileL} {
+            grid-column: col1-line / -1;
+            grid-row: row1-start / span 2;
+            /* align-self: start; */
+            padding-top: 2.5em;
+        }
+        
     }
 
     ${TextBlock}:nth-child(2){
         grid-column: col3-line / span 2;
         grid-row: row1-start / span 3;
+        @media ${devices.mobileL} {
+            grid-column: col1-line / -1;
+            grid-row: row4-start / span 3;
+        }
     }
 
     ${PhotoPlaceholder}:nth-child(3){
@@ -73,6 +92,9 @@ const Grid = styled.div`
         grid-row: row4-start / span 4;
         position: relative;
         top: 3em;
+        @media ${devices.mobileL} {
+            display: none;
+        }
         /* justify-self: end;  */
         /* align-self: center; */
     }

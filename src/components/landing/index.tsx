@@ -2,9 +2,10 @@ import { Link } from 'gatsby';
 import useMousePosition from 'hooks/mouse-position';
 import React from 'react';
 import styled from 'styled-components';
+import { devices } from 'styles/responsiveSizes';
 import { SectionSeperator } from 'styles/sharedStyles';
 import { GridHolder } from 'styles/sharedStyles';
-import { primaryAccentColor, secondaryAccentColor } from 'styles/theme';
+import {secondaryAccentColor } from 'styles/theme';
 import './cursor.css'
 
 
@@ -44,6 +45,11 @@ const HidingLayer = styled.div<RoundMouseProps>`
     transition: clip-path .10s;
     /* transition-timing-function: ease; */
 
+    @media ${devices.mobileL} {
+        display: none;
+        
+    }
+
 
     :hover{
         clip-path:circle(50px at ${props => props.x}px ${props => props.y}px);
@@ -62,7 +68,17 @@ const Grid = styled.div<RoundMouseProps>`
     
     h1 {
         color: ${secondaryAccentColor};
-        font-size: clamp(1em, 7em, 7em);
+        font-size: clamp(0.5em, 6.5em, 7em);
+    }
+
+    @media ${devices.mobileL}{
+        grid-auto-flow: column;
+        h1 {
+            font-size: 3em;
+        }
+        h2 {
+            font-size: 1.25em;
+        } 
     }
     /* margin: ; */
     grid-template-columns: [col1-line] 1fr
@@ -76,36 +92,52 @@ const Grid = styled.div<RoundMouseProps>`
                             [row3-start] 14vh 
                             [row4-start] 14vh 
                             [row5-start];
+
+    @media ${devices.mobileL}{
+        display: flex;
+        flex-direction: column;
+        div {
+            width: 100%;
+        }
+        }
     div:nth-child(1) {
         /* Stanford */
         color: ${secondaryAccentColor};
         grid-column: col3-line / span 2;
         grid-row: row1-start / span 1;
-        align-self: center;
-        justify-self: center; 
+        align-self: center;  /* column justification */
+        justify-self: center; /* row justification */
         h1 {
             margin-top: -0.25em;
+        }
+        @media ${devices.mobileL}{
+            grid-area: auto;
+            align-self: flex-end;
         }
     }
     div:nth-child(2) {
         /*Africa Business */
-        /* padding-left: 2em; */
         grid-column: span 3 / col4-line;
-        justify-self: end;
         grid-row: row2-start / span 2;
         font-style: italic;
-        align-self: center; /* column justification */
-       /* row justification */
+        align-self: center;
+        justify-self: end;
+       @media ${devices.mobileL}{
+            grid-area: auto;
+        }
     }
     div:nth-child(3) {
         /*Forum */
         grid-column: col3-line / span 2;
         grid-row: row4-start / span 1;
         justify-self: center; 
+        @media ${devices.mobileL}{
+            grid-area: auto;
+        }
     }
     div:nth-child(4) {
         /* Af Inn. Shaping Global Future */
-         padding-left: 3em;
+        padding-left: 3em;
         grid-column: col4-line  / span 2 ;
         grid-row: row2-start / span 2;
         justify-self: start; 
@@ -117,7 +149,10 @@ const Grid = styled.div<RoundMouseProps>`
         span {
             font-style: italic;
         }
-        
+        @media ${devices.mobileL}{
+            grid-area: auto;
+            padding-left: 0;
+        }
     }
   
 `;
