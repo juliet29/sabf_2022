@@ -11,6 +11,7 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 const SectionWrap = styled.div`
     margin: 0 10%;
     z-index: 10;
+    margin-bottom: 10%;
 `;
 
 
@@ -99,7 +100,9 @@ const GenericSection = ({sectionNumber}) => {
             
             <Grid>
                 <PhotoPlaceholder>
-                    <GatsbyImage image={image_01}/>
+                    <GatsbyImage 
+                        image={image_01}
+                    />
                 </PhotoPlaceholder>
                 <TextBlock>
                     <div><h2>{currentNode?.frontmatter?.number}</h2></div>
@@ -115,7 +118,9 @@ const GenericSection = ({sectionNumber}) => {
                     </div>
                 </TextBlock>
                 <PhotoPlaceholder>
-                    <GatsbyImage image={image_02}/>
+                    <GatsbyImage 
+                        image={image_02}
+                    />
                 </PhotoPlaceholder>
             </Grid>
             </GridHolder>

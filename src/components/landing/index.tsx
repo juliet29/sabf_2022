@@ -7,20 +7,54 @@ import './cursor.css'
 
 
 // start styled components 
+
 const Section = styled.section`
   margin: 0 14%;
+  position: absolute;
+  top: 0;
+
+  
 `;
+
+interface RoundMouseProps{
+    x: number | null;
+    y: number | null;
+}
 
 const BackgroundImage = styled.div`
-background-color: pink;
+    background-color: black;
+    width: 100%;
+    height: 100vh;
 `;
 
-const HidingLayer = styled.div`
-background-color: blue;
+
+const HidingLayer = styled.div<RoundMouseProps>`
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    top:0;
+    left:0;
+    clip-path: circle(100px at ${props => props.x}px ${props => props.y}px);
+    /* transform: translate(-50%, -50%); */
+    background: url("https://www.themillsbuilding.com/userfiles/cms/building/images/1/building.jpg");
+    background-size: cover;
+    height: 100vh;
+    transition: clip-path .10s;
+    /* transition-timing-function: ease; */
+
+
+    :hover{
+        clip-path:circle(50px at ${props => props.x}px ${props => props.y}px);
+
+    }
+
+   
 `;
 
 
-const Grid = styled.div`
+const Grid = styled.div<RoundMouseProps>`
+    
+    z-index: 10;
     display: grid;
     /* margin: ; */
     grid-template-columns: [col1-line] 1fr
@@ -64,22 +98,11 @@ const Grid = styled.div`
     }
   
 `;
-interface RoundMouseProps{
-    x: number;
-    y: number;
-}
 
-const RoundMouse = styled.div<RoundMouseProps>`
-    width: 30px;
-    height: 30px;
-    border: 2px solid #fff;
-    border-radius: 50%;
-    position: absolute;
-    top: ${props => props.y}px;
-    left: ${props => props.x}px;
-    opacity:0;
-  
-`;
+
+
+
+
 
 
 // end of styled components 
@@ -95,14 +118,15 @@ const LandingIndex:React.FC<LandingIndexProps> = ({}) => {
     // const hasMovedCursor = typeof x === "number" && typeof y === "number";
 
     return (
+        <>
+          {/* <RoundMouse x={x} y={y}></RoundMouse> */}
         <BackgroundImage>
-            <HidingLayer>
-                {x && y ? <RoundMouse x={x} y={y}></RoundMouse> : <></> }
-              
-                <Section>
+            <HidingLayer x={x} y={y}></HidingLayer>
+        </BackgroundImage> 
+                <Section  >
                     <SectionSeperator></SectionSeperator>
                     <GridHolder>
-                    <Grid>
+                    <Grid x={x} y={y}>
                         <div> 
                             <p>14th Anniversary</p>
                             <h1>Stanford</h1>
@@ -127,8 +151,7 @@ const LandingIndex:React.FC<LandingIndexProps> = ({}) => {
                     </GridHolder>
                     <SectionSeperator></SectionSeperator>
                 </Section>
-        </HidingLayer>
-        </BackgroundImage>
+                </>
         
     );
 };

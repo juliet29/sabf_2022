@@ -14,12 +14,20 @@ export const useContent = () => {
                 number
                 image_01 {
                   childImageSharp {
-                    gatsbyImageData
+                    gatsbyImageData(
+                      layout: CONSTRAINED
+                      height: 700
+                      aspectRatio: 0.75
+                      )
                   }
                 }
                 image_02 {
                   childImageSharp {
-                    gatsbyImageData
+                    gatsbyImageData(
+                      layout: CONSTRAINED
+                      height: 700
+                      aspectRatio: 0.75
+                      )
                   }
                 }
             }

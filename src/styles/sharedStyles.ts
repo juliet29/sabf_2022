@@ -19,5 +19,7 @@ export const GridHolder = styled.div`
 
 export const StyledLink = styled(Link)`
   color: lightblue;
+  padding-bottom: 1em ;
+  display: block;
 
 `;
