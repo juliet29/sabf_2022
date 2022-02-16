@@ -25,7 +25,7 @@ h1, h2, p, a {
 }
 
 a {
-  text-decoration: underline;
+  /* text-decoration: underline; */
 }
 
 /* Font size variables */

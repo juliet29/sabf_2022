@@ -1,8 +1,10 @@
+import { Link } from 'gatsby';
 import useMousePosition from 'hooks/mouse-position';
 import React from 'react';
 import styled from 'styled-components';
 import { SectionSeperator } from 'styles/sharedStyles';
 import { GridHolder } from 'styles/sharedStyles';
+import { primaryAccentColor, secondaryAccentColor } from 'styles/theme';
 import './cursor.css'
 
 
@@ -53,15 +55,21 @@ const HidingLayer = styled.div<RoundMouseProps>`
 
 
 const Grid = styled.div<RoundMouseProps>`
-    
+    width: 100%;
     z-index: 10;
     display: grid;
+    grid-gap: 0.5em 0.5em;
+    
+    h1 {
+        color: ${secondaryAccentColor};
+        font-size: clamp(1em, 7em, 7em);
+    }
     /* margin: ; */
     grid-template-columns: [col1-line] 1fr
-                                [col2-line] 1fr
-                                [col3-line] 1fr
+                                [col2-line] 0.5fr
+                                [col3-line] 0.5fr
                                 [col4-line] 1fr
-                                [col5-line] 1fr
+                                [col5-line]  1fr
                                 [col6-line];
     grid-template-rows: [row1-start] 14vh 
                             [row2-start] 14vh 
@@ -69,34 +77,59 @@ const Grid = styled.div<RoundMouseProps>`
                             [row4-start] 14vh 
                             [row5-start];
     div:nth-child(1) {
+        /* Stanford */
+        color: ${secondaryAccentColor};
         grid-column: col3-line / span 2;
         grid-row: row1-start / span 1;
         align-self: center;
+        justify-self: center; 
+        h1 {
+            margin-top: -0.25em;
+        }
     }
     div:nth-child(2) {
-        grid-column: col1-line / span 2;
+        /*Africa Business */
+        /* padding-left: 2em; */
+        grid-column: span 3 / col4-line;
+        justify-self: end;
         grid-row: row2-start / span 2;
         font-style: italic;
         align-self: center; /* column justification */
-        justify-self: center; /* row justification */
+       /* row justification */
     }
     div:nth-child(3) {
-        grid-column: col2-line / span 2;
+        /*Forum */
+        grid-column: col3-line / span 2;
         grid-row: row4-start / span 1;
         justify-self: center; 
     }
     div:nth-child(4) {
+        /* Af Inn. Shaping Global Future */
+         padding-left: 3em;
         grid-column: col4-line  / span 2 ;
         grid-row: row2-start / span 2;
-        justify-self: end; 
+        justify-self: start; 
         align-self: center;
         h2 {
             text-transform: uppercase;
             margin: 3px;
         }
+        span {
+            font-style: italic;
+        }
         
     }
   
+`;
+
+const StyledLink = styled(Link)`
+ color: white;
+ text-decoration: none;
+ transition: all 0.5s;
+  :hover {
+        color: ${secondaryAccentColor};
+    }
+
 `;
 
 
@@ -143,9 +176,9 @@ const LandingIndex:React.FC<LandingIndexProps> = ({}) => {
                         </div>
                         
                         <div>
-                            <h2>African Innovation Shaping the Global Future</h2>
-                            <p>May XX, 2022</p>
-                            <a>Join Us Online + In-Person</a>
+                            <h2>African Innovation <br/> <span>Shaping the Global Future</span></h2>
+                            <p>April 16, 2022</p>
+                            <StyledLink  to="/attend">Join Us Online + In-Person</StyledLink>
                         </div>
                     </Grid>
                     </GridHolder>
