@@ -8,6 +8,15 @@ const Section = styled.section`
   margin: 0 14%;
 `;
 
+const BackgroundImage = styled.div`
+background-color: pink;
+`;
+
+const HidingLayer = styled.div`
+background-color: blue;
+`;
+
+
 const Grid = styled.div`
     display: grid;
     /* margin: ; */
@@ -63,6 +72,8 @@ interface LandingIndexProps {
 }
 const LandingIndex:React.FC<LandingIndexProps> = ({}) => {
     return (
+        <BackgroundImage>
+            <HidingLayer>
         <Section>
             <SectionSeperator></SectionSeperator>
             <GridHolder>
@@ -91,6 +102,8 @@ const LandingIndex:React.FC<LandingIndexProps> = ({}) => {
             </GridHolder>
             <SectionSeperator></SectionSeperator>
         </Section>
+        </HidingLayer>
+        </BackgroundImage>
         
     );
 };

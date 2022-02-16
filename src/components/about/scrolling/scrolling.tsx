@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { StaticImage } from "gatsby-plugin-image"
+import { useParallax } from 'react-scroll-parallax';
+import { Parallax } from 'react-scroll-parallax';
 
 
 // styles --------------------
 const SectionWrap = styled.div`
     margin: 0 10%;
+    position: relative;
     /* height: 100vh;
     overflow-y: scroll; */
     /* overflow-x: hidden;
@@ -52,8 +55,8 @@ const PhotoPlaceholder = styled.div`
 const ImageGrid = styled.div`
     width:  100%;
     z-index: -1;
-    transform-origin: 0;
-    transform: translate3D(0px, 5px, 0px), scale(0.5);
+    /* transform-origin: 0;
+    transform: translate3D(0px, 5px, 0px), scale(0.5); */
     display: grid;
     height: 140vh;
     gap: 3em 6em;
@@ -69,7 +72,6 @@ const ImageGrid = styled.div`
         grid-column: col1-line / span 1;
         grid-row: row1-start / span 1;
         justify-self: start;
-        transform: translate3D(0px, 5px) scale(0.5);
     }
     ${PhotoPlaceholder}:nth-child(2){
         grid-column: col2-line / span 1;
@@ -102,27 +104,36 @@ const GSB = "/Users/julietnwagwuume-ezeoke/Desktop/sabf_2022/src/assets/GSB.png"
 const city ="/Users/julietnwagwuume-ezeoke/Desktop/sabf_2022/src/assets/city.jpg"
 
 const ScrollingSection: React.FC<ScrollingSectionProps> = ({ }) => {
+    // const { ref } = useParallax({ speed: 40 });
+    
     return (
 
         <SectionWrap>
-           <ParallaxContainer >
-            <H1>
+            
+            <H1 >
                 Here will be some prolific text that will explore a major theme of the conference and make people very interested.
             </H1>
+                
             <ImageGrid>
                 <PhotoPlaceholder>
-                    <StaticImage src={ship} alt="" />
+                    <Parallax speed={-5}>
+                    <StaticImage  src={ship} alt="" />
+                    </Parallax>
                 </PhotoPlaceholder>
                 <PhotoPlaceholder>
+                    <Parallax speed={-8}>
                     <StaticImage src={GSB} alt="" />
+                    </Parallax>
                 </PhotoPlaceholder>
-                <PhotoPlaceholder>
+                <PhotoPlaceholder >
+                    <Parallax speed={-3}>
                     <StaticImage src={city} alt="" />
+                    </Parallax>
                 </PhotoPlaceholder>
                 {/* <PhotoPlaceholder></PhotoPlaceholder> */}
 
             </ImageGrid>
-            </ParallaxContainer>
+
 
         </SectionWrap>
     );

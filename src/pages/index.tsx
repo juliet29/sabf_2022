@@ -9,6 +9,8 @@ import NavBar from 'components/navigation/navBar';
 import Footer from 'components/navigation/footer';
 import { graphql } from 'gatsby';
 import {IndexPageImageQueryQuery } from '../../graphql-types'
+import { ParallaxProvider } from 'react-scroll-parallax';
+
 
 // import { fluidImage } from 'hooks/fluid-image';
 
@@ -35,9 +37,11 @@ const IndexPage: React.FC<IndexPageProps> = ({data}) => {
   return (
       <ThemeProvider theme={mainTheme}>
           <GlobalStyle/>
+          <ParallaxProvider>
           <html style={{
             overflowX: "hidden"
           }}>
+            
           <NavBar></NavBar>
           <Body>
           <LandingIndex ></LandingIndex>
@@ -45,6 +49,7 @@ const IndexPage: React.FC<IndexPageProps> = ({data}) => {
           </Body>
           <Footer></Footer>
           </html>
+          </ParallaxProvider>
       </ThemeProvider>
   
      
