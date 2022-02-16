@@ -6481,6 +6481,38 @@ module.exports = Object.assign;
 
 /***/ }),
 
+/***/ "./src/styles/responsiveSizes.ts":
+/*!***************************************!*\
+  !*** ./src/styles/responsiveSizes.ts ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "devices": () => (/* binding */ devices)
+/* harmony export */ });
+const sizes = {
+  mobileS: '320px',
+  mobileM: '375px',
+  mobileL: '425px',
+  tablet: '768px',
+  laptop: '1024px',
+  laptopL: '1440px',
+  desktop: '2560px'
+};
+const devices = {
+  mobileS: `(max-width: ${sizes.mobileS})`,
+  mobileM: `(max-width: ${sizes.mobileM})`,
+  mobileL: `(max-width: ${sizes.mobileL})`,
+  tablet: `(max-width: ${sizes.tablet})`,
+  laptop: `(max-width: ${sizes.laptop})`,
+  laptopL: `(max-width: ${sizes.laptopL})`,
+  desktop: `(max-width: ${sizes.desktop})`
+};
+
+/***/ }),
+
 /***/ "./src/styles/sharedStyles.ts":
 /*!************************************!*\
   !*** ./src/styles/sharedStyles.ts ***!
@@ -6494,8 +6526,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "GridHolder": () => (/* binding */ GridHolder),
 /* harmony export */   "StyledLink": () => (/* binding */ StyledLink)
 /* harmony export */ });
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
 /* harmony import */ var gatsby__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
+/* harmony import */ var _responsiveSizes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./responsiveSizes */ "./src/styles/responsiveSizes.ts");
+
 
  // export const VerticalFlexDiv = styled.div`
 //   display: flex;
@@ -6503,15 +6537,15 @@ __webpack_require__.r(__webpack_exports__);
 //   /* text-align: right; */
 // `;
 
-const SectionSeperator = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div.withConfig({
+const SectionSeperator = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div.withConfig({
   displayName: "sharedStyles__SectionSeperator"
-})(["height:7em;"]);
-const GridHolder = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div.withConfig({
+})(["height:7em;@media ", "{height:1em;}"], _responsiveSizes__WEBPACK_IMPORTED_MODULE_1__.devices.mobileL);
+const GridHolder = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div.withConfig({
   displayName: "sharedStyles__GridHolder"
 })(["display:flex;justify-content:center;"]);
-const StyledLink = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__["default"])(gatsby__WEBPACK_IMPORTED_MODULE_0__.Link).withConfig({
+const StyledLink = (0,styled_components__WEBPACK_IMPORTED_MODULE_2__["default"])(gatsby__WEBPACK_IMPORTED_MODULE_0__.Link).withConfig({
   displayName: "sharedStyles__StyledLink"
-})(["color:lightblue;"]);
+})(["color:lightblue;padding-bottom:1em;display:block;"]);
 
 /***/ }),
 

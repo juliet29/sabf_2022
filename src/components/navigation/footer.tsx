@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import {edgeSpace, primaryAccentColor, secondaryAccentColor } from 'styles/theme';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faInstagramSquare, faTwitterSquare, faLinkedin, faYoutubeSquare} from '@fortawesome/free-brands-svg-icons'
+import { devices } from 'styles/responsiveSizes';
 
 
 const StyledFooter = styled.footer`
@@ -11,6 +12,11 @@ const StyledFooter = styled.footer`
   padding: ${edgeSpace + "em"};
   padding-top: 7em;
   padding-left: 7em;
+  @media ${devices.mobileL} {
+    padding-top: 2em;
+   padding-left: 2em;
+   padding-right: 2em;
+ }
   /* padding-top: ; */
   /* padding-right: ${edgeSpace + "em"}; */
   background-color: ${secondaryAccentColor};
@@ -34,6 +40,10 @@ const LeftColumn = styled.div`
 const RightColumn = styled.div`
     /* background-color: pink; */
     flex-grow: 1;
+    @media ${devices.mobileL} {
+    /* padding-left: 2em; */
+    font-size: 0.5em;
+    }
   
 `;
 
@@ -105,8 +115,9 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({  }) => {
+    // let width = window.innerWidth;
     return (
-
+        
        <StyledFooter>
            <LeftColumn>
             <FooterMenu>
@@ -128,7 +139,12 @@ const Footer: React.FC<FooterProps> = ({  }) => {
                    </div>
                </SocialLinksMenu>
                <TextInfo>
-                   <p>Please direct all inquiries to <br/> gsb_africabusinessforumleadership@stanford.edu.</p>
+               <p>Please direct all inquiries to <br/> gsb_africabusinessforumleadership@stanford.edu.</p> 
+                   {/* {
+                       width > 425 ? <p>Please direct all inquiries to <br/> gsb_africabusinessforumleadership@stanford.edu.</p> :
+                       <p>Please direct all inquiries to <br/> gsb_africabusinessforum <br/> -leadership@stanford.edu.</p>
+                   } */}
+                   
                    <p>Sign up to attend the event <Link to="/attend" style={{color: 'white'}}>here</Link>.</p>
                </TextInfo>
            </RightColumn>

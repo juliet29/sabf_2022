@@ -18,9 +18,10 @@ const SectionWrap = styled.div`
 
 
 const PhotoPlaceholder = styled.div`
-    /* background-color: darkblue; */
-    /* height: 40vh; */
-    /* width: 30vw; */
+    @media ${devices.mobileL} {
+        margin: 1em;
+        }
+    
 `;
 
 const TextBlock = styled.div`
@@ -53,6 +54,7 @@ const Grid = styled.div`
     @media ${devices.mobileL} {
         grid-auto-flow: column;
         gap: 0;
+        height: min-content;
     }
     grid-template-columns: [col1-line] 1fr
                                 [col2-line] 1fr
@@ -66,14 +68,19 @@ const Grid = styled.div`
                             [row5-start] 1fr
                             [row6-start] 1fr
                             [row7-start] 1fr;
+        @media ${devices.mobileL} {
+            grid-template-rows: min-content auto;
+        }
+            
     ${PhotoPlaceholder}:nth-child(1){
         grid-column: col1-line / span 2;
         grid-row: row1-start / span 4;
         @media ${devices.mobileL} {
             grid-column: col1-line / -1;
-            grid-row: row1-start / span 2;
+            grid-row: 1 / span 2;
             /* align-self: start; */
             padding-top: 2.5em;
+            align-self: end;
         }
         
     }
@@ -83,7 +90,7 @@ const Grid = styled.div`
         grid-row: row1-start / span 3;
         @media ${devices.mobileL} {
             grid-column: col1-line / -1;
-            grid-row: row4-start / span 3;
+            grid-row: 3 / span 3;
         }
     }
 

@@ -28,6 +28,12 @@ const BackgroundImage = styled.div`
     background-color: black;
     width: 100%;
     height: 100vh;
+    @media ${devices.mobileL} {
+        height: 70vh;
+        
+    }
+
+    
 `;
 
 

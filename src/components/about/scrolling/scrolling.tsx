@@ -1,33 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import { StaticImage } from "gatsby-plugin-image"
-import { useParallax } from 'react-scroll-parallax';
+// import { useParallax } from 'react-scroll-parallax';
 import { Parallax } from 'react-scroll-parallax';
+import { devices } from 'styles/responsiveSizes';
 
 
 // styles --------------------
 const SectionWrap = styled.div`
     margin: 0 10%;
     position: relative;
-    /* height: 100vh;
-    overflow-y: scroll; */
-    /* overflow-x: hidden;
-    perspective: 8px;
-    perspective-origin: 0%;
-    position: relative; */
 `;
 
-const ParallaxContainer = styled.div`
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    perspective: 10px;
-    perspective-origin: 0%;
-    /* display: flex; */
-  
-`;
+
 
 const H1 = styled.h1`
     z-index: 20;
@@ -36,6 +21,9 @@ const H1 = styled.h1`
     margin: 0 10%;
     display: flex;
     font-size: 7em;
+    @media ${devices.mobileL} {
+            font-size: 3em;
+     }
     text-align: center;
     position: absolute;
     transform: translateZ(0px);
@@ -44,7 +32,7 @@ const H1 = styled.h1`
 const PhotoPlaceholder = styled.div`
   background-color: black;
   height: 45vh;
-  width: 30vh;
+  width: 30vw;
   `
 // const parallaxPerspective = 8
 // const parallaxScaleFactor = (zDistance: number) => {
@@ -60,6 +48,9 @@ const ImageGrid = styled.div`
     display: grid;
     height: 140vh;
     gap: 3em 6em;
+    @media ${devices.mobileL} {
+            font-size: 0em;
+     }
     grid-template-columns: [col1-line] 1fr
                                 [col2-line]  1fr  
                                 [col3-line] ;

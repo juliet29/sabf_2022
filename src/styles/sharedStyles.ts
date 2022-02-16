@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "gatsby";
+import { devices } from "./responsiveSizes";
 
 // export const VerticalFlexDiv = styled.div`
 //   display: flex;
@@ -9,6 +10,10 @@ import { Link } from "gatsby";
 
 export const SectionSeperator = styled.div`
     height: 7em;
+    @media ${devices.mobileL} {
+            height: 1em;
+        }
+    
   
 `;
 
