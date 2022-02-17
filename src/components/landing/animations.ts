@@ -30,3 +30,15 @@ export const lineOut = keyframes`
             left: 0;
         }
 `
+
+export const spin = keyframes`
+    0% {
+        transform:rotate(0deg);
+        opacity: 0 ;
+        }
+    100% { 
+        transform:rotate(360deg); 
+        opacity: 1;
+    } 
+`
+

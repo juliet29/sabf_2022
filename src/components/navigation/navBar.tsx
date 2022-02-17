@@ -13,7 +13,6 @@ interface NavBarProps {
 }
 
 const NavBarNav = styled.nav`
-  /* background-color: orange; */
   z-index: 10000000000;
   padding-top: 1em;
   padding-bottom: 2em;

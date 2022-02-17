@@ -80,7 +80,7 @@ export const query = graphql`
       ...fluidImage
     }
 
-    imageFour: file(relativePath: { eq: "GSB.png" }) {
+    imageFour: file(relativePath: { eq: "spinThing.png" }) {
       ...fluidImage
     }
 

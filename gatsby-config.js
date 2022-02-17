@@ -33,6 +33,13 @@ module.exports = {
         codegen: `true`,
       }
     },
+    {
+      resolve: `gatsby-plugin-nprogress`,
+      options: {
+        color: `tomato`,
+        showSpinner: false,
+      },
+    },
     
   ],
 };

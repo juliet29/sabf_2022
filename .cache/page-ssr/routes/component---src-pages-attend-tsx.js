@@ -3654,6 +3654,103 @@ var convertCurry = convert.bind(null, (react__WEBPACK_IMPORTED_MODULE_1___defaul
 
 /***/ }),
 
+/***/ "./src/components/navigation/burgerMenu/burgerMenu.tsx":
+/*!*************************************************************!*\
+  !*** ./src/components/navigation/burgerMenu/burgerMenu.tsx ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var gatsby__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styles/responsiveSizes */ "./src/styles/responsiveSizes.ts");
+/* harmony import */ var styles_theme__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styles/theme */ "./src/styles/theme.ts");
+
+
+
+
+
+const Wrapper = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].div.withConfig({
+  displayName: "burgerMenu__Wrapper"
+})(["display:flex;flex-direction:column;justify-content:center;height:100vh;text-align:left;padding:2rem;position:absolute;top:0;left:0;transition:transform 0.3s ease-in-out;background-color:", ";padding:0;@media ", "{width:100%;}transform:", ";"], styles_theme__WEBPACK_IMPORTED_MODULE_3__.primaryAccentColor, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_2__.devices.mobileL, ({
+  open
+}) => open ? 'translateX(0)' : 'translateX(-100%)');
+const NavLink = (0,styled_components__WEBPACK_IMPORTED_MODULE_4__["default"])(gatsby__WEBPACK_IMPORTED_MODULE_0__.Link).withConfig({
+  displayName: "burgerMenu__NavLink"
+})(["font-size:1rem;text-align:center;text-transform:uppercase;padding:2rem 0;font-weight:bold;letter-spacing:0.5rem;color:black;text-decoration:none;transition:color 0.3s linear;&:hover{color:white;}"]);
+
+const BurgerMenu = ({
+  open
+}) => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(Wrapper, {
+    open: open
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavLink, {
+    to: "/press"
+  }, "Press + Videos"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavLink, {
+    to: "/pitch"
+  }, "Pitch Competition"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavLink, {
+    to: "/speakers"
+  }, "Speakers + Panels"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavLink, {
+    to: "/team"
+  }, "Team"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavLink, {
+    to: "/attend"
+  }, "Attend"));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (BurgerMenu);
+
+/***/ }),
+
+/***/ "./src/components/navigation/burgerMenu/burgerMenuIcon.tsx":
+/*!*****************************************************************!*\
+  !*** ./src/components/navigation/burgerMenu/burgerMenuIcon.tsx ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var styles_theme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styles/theme */ "./src/styles/theme.ts");
+
+
+
+const Burger = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].button.withConfig({
+  displayName: "burgerMenuIcon__Burger"
+})(["margin-right:1em;display:flex;flex-direction:column;justify-content:space-around;width:2rem;height:2rem;background:transparent;border:none;cursor:pointer;padding:0;z-index:10;&:focus{outline:none;}div{width:2rem;height:0.15rem;background:", ";border-radius:1px;transition:all 0.3s linear;position:relative;transform-origin:1px;:nth-child(1){transform:", ";}:nth-child(2){opacity:", ";transform:", ";}:nth-child(3){transform:", ";}}"], ({
+  open
+}) => open ? `${styles_theme__WEBPACK_IMPORTED_MODULE_1__.secondaryAccentColor}` : `${styles_theme__WEBPACK_IMPORTED_MODULE_1__.primaryAccentColor}`, ({
+  open
+}) => open ? 'rotate(45deg)' : 'rotate(0)', ({
+  open
+}) => open ? '0' : '1', ({
+  open
+}) => open ? 'translateX(20px)' : 'translateX(0)', ({
+  open
+}) => open ? 'rotate(-45deg)' : 'rotate(0)');
+
+const BurgerMenuIcon = ({
+  open,
+  setOpen
+}) => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Burger, {
+    open: open,
+    onClick: () => setOpen(!open)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (BurgerMenuIcon);
+
+/***/ }),
+
 /***/ "./src/components/navigation/footer.tsx":
 /*!**********************************************!*\
   !*** ./src/components/navigation/footer.tsx ***!
@@ -3814,48 +3911,119 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gatsby__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
 /* harmony import */ var styles_theme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styles/theme */ "./src/styles/theme.ts");
-/* harmony import */ var gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! gatsby-plugin-image */ "./node_modules/gatsby-plugin-image/dist/gatsby-image.module.js");
+/* harmony import */ var gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! gatsby-plugin-image */ "./node_modules/gatsby-plugin-image/dist/gatsby-image.module.js");
+/* harmony import */ var hooks_window_size__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! hooks/window-size */ "./src/hooks/window-size.ts");
+/* harmony import */ var _burgerMenu_burgerMenu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./burgerMenu/burgerMenu */ "./src/components/navigation/burgerMenu/burgerMenu.tsx");
+/* harmony import */ var _burgerMenu_burgerMenuIcon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./burgerMenu/burgerMenuIcon */ "./src/components/navigation/burgerMenu/burgerMenuIcon.tsx");
+
+
+
 
 
 
 
  // import sabfLogo from "../../assets/sabfLogo.png"
 
-const NavBarNav = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].nav.withConfig({
+const NavBarNav = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].nav.withConfig({
   displayName: "navBar__NavBarNav"
-})(["z-index:100;padding-top:1em;padding-bottom:2em;padding-left:1em;padding-right:1em;position:sticky;top:0;"]);
-const NavBarDiv = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].div.withConfig({
+})(["z-index:10000000000;padding-top:1em;padding-bottom:2em;padding-left:1em;padding-right:1em;position:sticky;top:0;"]);
+const NavBarDiv = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div.withConfig({
   displayName: "navBar__NavBarDiv"
 })(["display:flex;flex-direction:row;justify-content:space-between;align-items:center;"]);
-const NavMenuDiv = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].div.withConfig({
+const NavMenuDiv = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div.withConfig({
   displayName: "navBar__NavMenuDiv"
 })(["display:flex;flex-direction:row;justify-content:space-between;"]);
-const NavLink = (0,styled_components__WEBPACK_IMPORTED_MODULE_3__["default"])(gatsby__WEBPACK_IMPORTED_MODULE_0__.Link).withConfig({
+const NavLink = (0,styled_components__WEBPACK_IMPORTED_MODULE_6__["default"])(gatsby__WEBPACK_IMPORTED_MODULE_0__.Link).withConfig({
   displayName: "navBar__NavLink"
-})(["color:", ";margin-left:1em;margin-right:1em;text-decoration:none;text-transform:uppercase;transition:0.3s all ease-in-out;:hover{color:white;text-decoration:underline;}"], styles_theme__WEBPACK_IMPORTED_MODULE_2__.primaryAccentColor);
+})(["color:", ";margin-left:1em;margin-right:1em;text-decoration:none;text-transform:uppercase;transition:0.3s all ease-in-out;:hover{color:white;text-decoration:underline;}"], styles_theme__WEBPACK_IMPORTED_MODULE_2__.primaryAccentColor); // Check if window is defined (so if in the browser or in node.js).
 
 const NavBar = ({}) => {
+  const {
+    width
+  } = (0,hooks_window_size__WEBPACK_IMPORTED_MODULE_3__.useWindowSize)();
+  const mobileLBreakpoint = 425;
+  const {
+    0: open,
+    1: setOpen
+  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavBarNav, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavBarDiv, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavLink, {
     to: "/"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_4__.StaticImage, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_7__.StaticImage, {
     src: "../../assets/sabfLogo.png",
     alt: "SABF",
-    width: "110",
-    __imageData: __webpack_require__(/*! ./.cache/caches/gatsby-plugin-image/3024376187.json */ "./.cache/caches/gatsby-plugin-image/3024376187.json")
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavMenuDiv, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavLink, {
+    width: 110,
+    __imageData: __webpack_require__(/*! ./.cache/caches/gatsby-plugin-image/3479883416.json */ "./.cache/caches/gatsby-plugin-image/3479883416.json")
+  })), width > mobileLBreakpoint ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavMenuDiv, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavLink, {
     to: "/press"
   }, "Press + Videos"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavLink, {
     to: "/pitch"
   }, "Pitch Competition"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavLink, {
     to: "/speakers"
   }, "Speakers + Panels"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavLink, {
+    to: "/team"
+  }, "Team"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavLink, {
     to: "/attend"
-  }, "Attend"))));
+  }, "Attend")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement((react__WEBPACK_IMPORTED_MODULE_1___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_burgerMenu_burgerMenu__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    open: open,
+    setOpen: setOpen
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_burgerMenu_burgerMenuIcon__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    open: open,
+    setOpen: setOpen
+  }))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (NavBar);
+
+/***/ }),
+
+/***/ "./src/hooks/window-size.ts":
+/*!**********************************!*\
+  !*** ./src/hooks/window-size.ts ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useWindowSize": () => (/* binding */ useWindowSize)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+const isBrowser = typeof window !== "undefined";
+const useWindowSize = () => {
+  // Initialize state with undefined width/height so server and client renders match
+  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  const {
+    0: windowSize,
+    1: setWindowSize
+  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    width: 0,
+    height: 0
+  });
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width/height to state
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    }
+
+    if (isBrowser) {
+      // Add event listener
+      window.addEventListener("resize", handleResize); // Call handler right away so state gets updated with initial window size
+
+      handleResize(); // Remove event listener on cleanup
+
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, []); // Empty array ensures that effect is only run on mount
+
+  return windowSize;
+};
 
 /***/ }),
 
@@ -4787,13 +4955,13 @@ module.exports["default"] = camelCase;
 
 /***/ }),
 
-/***/ "./.cache/caches/gatsby-plugin-image/3024376187.json":
+/***/ "./.cache/caches/gatsby-plugin-image/3479883416.json":
 /*!***********************************************************!*\
-  !*** ./.cache/caches/gatsby-plugin-image/3024376187.json ***!
+  !*** ./.cache/caches/gatsby-plugin-image/3479883416.json ***!
   \***********************************************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"layout":"constrained","backgroundColor":"#080808","images":{"fallback":{"src":"/static/388d464dd89249d1a135b8e69d97a7ec/1e010/sabfLogo.png","srcSet":"/static/388d464dd89249d1a135b8e69d97a7ec/7a5b8/sabfLogo.png 28w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/4c483/sabfLogo.png 55w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/1e010/sabfLogo.png 110w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/43be6/sabfLogo.png 220w","sizes":"(min-width: 110px) 110px, 100vw"},"sources":[{"srcSet":"/static/388d464dd89249d1a135b8e69d97a7ec/629a0/sabfLogo.webp 28w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/938d3/sabfLogo.webp 55w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/8c6ff/sabfLogo.webp 110w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/4c27b/sabfLogo.webp 220w","type":"image/webp","sizes":"(min-width: 110px) 110px, 100vw"}]},"width":"110","height":110}');
+module.exports = JSON.parse('{"layout":"constrained","backgroundColor":"#080808","images":{"fallback":{"src":"/static/388d464dd89249d1a135b8e69d97a7ec/1e010/sabfLogo.png","srcSet":"/static/388d464dd89249d1a135b8e69d97a7ec/7a5b8/sabfLogo.png 28w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/4c483/sabfLogo.png 55w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/1e010/sabfLogo.png 110w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/43be6/sabfLogo.png 220w","sizes":"(min-width: 110px) 110px, 100vw"},"sources":[{"srcSet":"/static/388d464dd89249d1a135b8e69d97a7ec/629a0/sabfLogo.webp 28w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/938d3/sabfLogo.webp 55w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/8c6ff/sabfLogo.webp 110w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/4c27b/sabfLogo.webp 220w","type":"image/webp","sizes":"(min-width: 110px) 110px, 100vw"}]},"width":110,"height":110}');
 
 /***/ })
 
