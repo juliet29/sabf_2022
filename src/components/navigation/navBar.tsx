@@ -3,6 +3,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { primaryAccentColor} from 'styles/theme';
 import { StaticImage } from "gatsby-plugin-image"
+import { useWindowSize } from 'hooks/window-size';
+import BurgerMenu from './burgerMenu/burgerMenu';
+import BurgerMenuIcon from './burgerMenu/burgerMenuIcon';
 // import sabfLogo from "../../assets/sabfLogo.png"
 
 interface NavBarProps {
@@ -18,9 +21,6 @@ const NavBarNav = styled.nav`
   padding-right: 1em;
   position: sticky;
   top: 0;
-  /* position: absolute;
-  display: flex;
- flex-direction: column; */
 `;
 
 const NavBarDiv = styled.div`
@@ -51,9 +51,13 @@ export const NavLink = styled(Link)`
     }
 
 `;
+// Check if window is defined (so if in the browser or in node.js).
+
 
 
 const NavBar: React.FC<NavBarProps> = ({  }) => {
+    const {width } = useWindowSize()  
+    const mobileLBreakpoint = 425
     return (
         <NavBarNav>
             <NavBarDiv>
@@ -61,17 +65,27 @@ const NavBar: React.FC<NavBarProps> = ({  }) => {
             <NavLink to="/">
                 <StaticImage src="../../assets/sabfLogo.png" 
                             alt="SABF" 
-                            width="110"/>
+                            width={110}/>
             </NavLink>
-            {/* </div> */}
-            <NavMenuDiv>
-                <NavLink to="/press">Press + Videos</NavLink>
-                <NavLink to="/pitch">Pitch Competition</NavLink>
-                <NavLink to="/speakers">Speakers + Panels</NavLink>
-                <NavLink to="/attend">Attend</NavLink>
-            </NavMenuDiv>
+
+            {
+                width > mobileLBreakpoint ?
+                <NavMenuDiv>
+                    <NavLink to="/press">Press + Videos</NavLink>
+                    <NavLink to="/pitch">Pitch Competition</NavLink>
+                    <NavLink to="/speakers">Speakers + Panels</NavLink>
+                    <NavLink to="/team">Team</NavLink>
+                    <NavLink to="/attend">Attend</NavLink>
+                </NavMenuDiv> :
+                <>
+                    <BurgerMenu></BurgerMenu>
+                    <BurgerMenuIcon></BurgerMenuIcon>
+                </>
+            }
+       
+            
         </NavBarDiv>
-        {/* <SectionSeperator></SectionSeperator> */}
+
         </NavBarNav>
         
     );
