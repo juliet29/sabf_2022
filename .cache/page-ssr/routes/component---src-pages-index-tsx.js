@@ -4080,7 +4080,7 @@ const TextBlock = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div.
 })(["display:flex;flex-direction:row;div:nth-child(1){margin-right:3em;@media ", "{margin-right:1em;}}div:nth-child(2){h2{margin-bottom:1em;}p{margin-bottom:1em;}}"], styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__.devices.mobileL);
 const Grid = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div.withConfig({
   displayName: "genericSection__Grid"
-})(["display:grid;height:140vh;gap:3em 6em;@media ", "{grid-auto-flow:column;gap:0;height:min-content;}grid-template-columns:[col1-line] 1fr [col2-line] 1fr [col3-line] 1fr [col4-line] 1fr [col5-line];grid-template-rows:[row1-start] 1fr  [row2-start] 1fr  [row3-start] 1fr [row4-start] 1fr [row5-start] 1fr [row6-start] 1fr [row7-start] 1fr;@media ", "{grid-template-rows:min-content auto;}", ":nth-child(1){grid-column:col1-line / span 2;grid-row:row1-start / span 4;@media ", "{grid-column:col1-line / -1;grid-row:1 / span 2;padding-top:2.5em;align-self:end;}}", ":nth-child(2){grid-column:col3-line / span 2;grid-row:row1-start / span 3;@media ", "{grid-column:col1-line / -1;grid-row:3 / span 3;}}", ":nth-child(3){grid-column:col3-line / span 2;grid-row:row4-start / span 4;position:relative;top:3em;@media ", "{display:none;}}"], styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__.devices.mobileL, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__.devices.mobileL, PhotoPlaceholder, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__.devices.mobileL, TextBlock, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__.devices.mobileL, PhotoPlaceholder, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__.devices.mobileL); // ******** end styled components {number, title, body}
+})(["display:grid;height:140vh;gap:3em 6em;@media ", "{grid-auto-flow:column;gap:0;height:min-content;}grid-template-columns:[col1-line] 1fr [col2-line] 1fr [col3-line] 1fr [col4-line] 1fr [col5-line];grid-template-rows:[row1-start] 1fr  [row2-start] 1fr  [row3-start] 1fr [row4-start] 1fr [row5-start] 1fr [row6-start] 1fr [row7-start] 1fr;@media ", "{grid-template-rows:min-content auto;}", ":nth-child(1){grid-column:col1-line / span 2;grid-row:row1-start / span 4;@media ", "{grid-column:col1-line / -1;grid-row:1 / span 2;padding-top:2.5em;align-self:end;}}", ":nth-child(2){grid-column:col3-line / span 2;grid-row:row1-start / span 3;margin-bottom:0.5em;@media ", "{grid-column:col1-line / -1;grid-row:3 / span 3;}}", ":nth-child(3){grid-column:col3-line / span 2;grid-row:row4-start / span 4;position:relative;top:3em;@media ", "{display:none;}}"], styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__.devices.mobileL, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__.devices.mobileL, PhotoPlaceholder, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__.devices.mobileL, TextBlock, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__.devices.mobileL, PhotoPlaceholder, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__.devices.mobileL); // ******** end styled components {number, title, body}
 
 const GenericSection = ({
   sectionNumber
@@ -4290,7 +4290,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "slideUp": () => (/* binding */ slideUp),
 /* harmony export */   "slideDown": () => (/* binding */ slideDown),
-/* harmony export */   "lineOut": () => (/* binding */ lineOut)
+/* harmony export */   "lineOut": () => (/* binding */ lineOut),
+/* harmony export */   "spin": () => (/* binding */ spin),
+/* harmony export */   "rainbow": () => (/* binding */ rainbow)
 /* harmony export */ });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
  // animations 
@@ -4298,6 +4300,8 @@ __webpack_require__.r(__webpack_exports__);
 const slideUp = (0,styled_components__WEBPACK_IMPORTED_MODULE_0__.keyframes)(["0%{transform:translateY(100px)}100%{transform:translateY(0)}"]);
 const slideDown = (0,styled_components__WEBPACK_IMPORTED_MODULE_0__.keyframes)(["0%{transform:translateY(-1000px);opacity:0;}100%{transform:translateY(0);opacity:1;}"]);
 const lineOut = (0,styled_components__WEBPACK_IMPORTED_MODULE_0__.keyframes)(["0%{left:-100%;}100%{left:0;}"]);
+const spin = (0,styled_components__WEBPACK_IMPORTED_MODULE_0__.keyframes)(["0%{transform:rotate(0deg);opacity:0;}100%{transform:rotate(360deg);opacity:1;}"]);
+const rainbow = (0,styled_components__WEBPACK_IMPORTED_MODULE_0__.keyframes)(["0%{background-size:650%;}40%{background-size:650%;}100%{background-size:100%;}"]);
 
 /***/ }),
 
@@ -4312,17 +4316,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var gatsby__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
-/* harmony import */ var hooks_mouse_position__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! hooks/mouse-position */ "./src/hooks/mouse-position.ts");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
-/* harmony import */ var styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styles/responsiveSizes */ "./src/styles/responsiveSizes.ts");
-/* harmony import */ var styles_sharedStyles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! styles/sharedStyles */ "./src/styles/sharedStyles.ts");
-/* harmony import */ var styles_theme__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! styles/theme */ "./src/styles/theme.ts");
-/* harmony import */ var _animations__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./animations */ "./src/components/landing/animations.ts");
-/* harmony import */ var _cursor_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./cursor.css */ "./src/components/landing/cursor.css");
-/* harmony import */ var _cursor_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_cursor_css__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! gatsby-plugin-image */ "./node_modules/gatsby-plugin-image/dist/gatsby-image.module.js");
+/* harmony import */ var hooks_mouse_position__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! hooks/mouse-position */ "./src/hooks/mouse-position.ts");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var styles_sharedStyles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styles/sharedStyles */ "./src/styles/sharedStyles.ts");
+/* harmony import */ var _animations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./animations */ "./src/components/landing/animations.ts");
+/* harmony import */ var _cursor_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./cursor.css */ "./src/components/landing/cursor.css");
+/* harmony import */ var _cursor_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_cursor_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _styledGrid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./styledGrid */ "./src/components/landing/styledGrid.ts");
 
 
 
@@ -4331,48 +4334,99 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
- // interfaces 
-
+ // import {spinThing} from "./spinThing.png"
+// interfaces 
+// interface RoundMouseProps{
+//     x: number | null;
+//     y: number | null;
+// }
 // start styled components 
-const Section = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].section.withConfig({
+
+const Section = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].section.withConfig({
   displayName: "landing__Section"
-})(["margin:0 14%;position:absolute;top:0;"]);
-const StyledLink = (0,styled_components__WEBPACK_IMPORTED_MODULE_8__["default"])(gatsby__WEBPACK_IMPORTED_MODULE_0__.Link).withConfig({
-  displayName: "landing__StyledLink"
-})(["color:white;text-decoration:none;transition:all 0.5s;:hover{color:", ";}"], styles_theme__WEBPACK_IMPORTED_MODULE_5__.secondaryAccentColor);
-const BackgroundImage = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div.withConfig({
-  displayName: "landing__BackgroundImage"
-})(["background-color:black;width:100%;height:100vh;@media ", "{height:70vh;}"], styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_3__.devices.mobileL);
-const HidingLayer = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div.withConfig({
-  displayName: "landing__HidingLayer"
-})(["position:absolute;height:100vh;width:100%;top:0;left:0;clip-path:circle(100px at ", "px ", "px);background:url(\"https://www.themillsbuilding.com/userfiles/cms/building/images/1/building.jpg\");background-size:cover;height:100vh;transition:clip-path .10s;@media ", "{display:none;}"], props => props.x, props => props.y, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_3__.devices.mobileL);
-const Grid = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div.withConfig({
-  displayName: "landing__Grid"
-})(["width:100%;z-index:10;display:grid;grid-gap:0.5em 0.5em;h1{color:", ";font-size:clamp(0.5em,6.5em,7em);animation:", " 0.9s cubic-bezier(0.65,0,0.35,1) both}@media ", "{grid-auto-flow:column;h1{font-size:3em;}h2{font-size:1.25em;}}grid-template-columns:[col1-line] 1fr [col2-line] 0.5fr [col3-line] 0.5fr [col4-line] 1fr [col5-line]  1fr [col6-line];grid-template-rows:[row1-start] 14vh  [row2-start] 14vh  [row3-start] 14vh  [row4-start] 14vh  [row5-start];@media ", "{display:flex;flex-direction:column;div{width:100%;}}div:nth-child(1){color:", ";grid-column:col3-line / span 2;grid-row:row1-start / span 1;align-self:center;justify-self:center;overflow:hidden;h1{margin-top:-0.25em;animation-delay:2 * 0.025s;}@media ", "{grid-area:auto;align-self:flex-end;}}div:nth-child(2){grid-column:span 3 / col4-line;grid-row:row2-start / span 2;align-self:center;justify-self:end;overflow:hidden;@media ", "{grid-area:auto;}h1{animation-delay:calc(2 * 0.05s);font-style:italic;}}div:nth-child(3){grid-column:col3-line / span 2;grid-row:row4-start / span 1;justify-self:center;overflow:hidden;@media ", "{grid-area:auto;}h1{animation-delay:calc(3 * 0.05s);}}div:nth-child(4){padding-left:3em;grid-column:col4-line  / span 2;grid-row:row2-start / span 2;justify-self:start;align-self:center;div{overflow:hidden;div{position:relative;height:1px;width:100%;background-color:white;animation:", " 0.9s cubic-bezier(0.65,0,0.35,1) both;animation-delay:calc(4 * 0.05s);}}h2{text-transform:uppercase;margin:3px;}@media ", "{grid-area:auto;padding-left:0;}h2,p{animation:", " 0.9s cubic-bezier(0.65,0,0.35,1) both;animation-delay:calc(5 * 0.05s);}}"], styles_theme__WEBPACK_IMPORTED_MODULE_5__.secondaryAccentColor, _animations__WEBPACK_IMPORTED_MODULE_6__.slideUp, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_3__.devices.mobileL, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_3__.devices.mobileL, styles_theme__WEBPACK_IMPORTED_MODULE_5__.secondaryAccentColor, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_3__.devices.mobileL, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_3__.devices.mobileL, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_3__.devices.mobileL, _animations__WEBPACK_IMPORTED_MODULE_6__.lineOut, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_3__.devices.mobileL, _animations__WEBPACK_IMPORTED_MODULE_6__.slideDown);
-const OverFlowHiddenDiv = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].div.withConfig({
+})(["height:85vh;margin:0 14%;position:relative;margin-bottom:5em;"]);
+const SpinThing = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div.withConfig({
+  displayName: "landing__SpinThing"
+})(["width:5vw;transform-origin:center;height:min-content;bottom:0;animation:", " 4s ease 1;animation-delay:calc(2 * 0.05s);:hover{animation:", " 4s ease 1;}"], _animations__WEBPACK_IMPORTED_MODULE_3__.spin, _animations__WEBPACK_IMPORTED_MODULE_3__.spin);
+const SpinHolder = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div.withConfig({
+  displayName: "landing__SpinHolder"
+})(["margin:1em;display:flex;flex-direction:row;height:min-content;width:100%;justify-content:space-between;"]);
+const OverFlowHiddenDiv = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div.withConfig({
   displayName: "landing__OverFlowHiddenDiv"
 })(["overflow:hidden;"]); // end of styled components 
+// const SpinItem = () => {
+//     return (
+//     );
+// };
 
-const LandingIndex = ({}) => {
+const spinSrc = "/Users/julietnwagwuume-ezeoke/Desktop/sabf_2022/static/spinThing.png";
+
+const LandingIndex = ({
+  data
+}) => {
   const {
     x,
     y
-  } = (0,hooks_mouse_position__WEBPACK_IMPORTED_MODULE_1__["default"])();
+  } = (0,hooks_mouse_position__WEBPACK_IMPORTED_MODULE_0__["default"])();
   console.log(x, y); // const hasMovedCursor = typeof x === "number" && typeof y === "number";
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement((react__WEBPACK_IMPORTED_MODULE_2___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(BackgroundImage, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(HidingLayer, {
-    x: x,
-    y: y
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(Section, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(styles_sharedStyles__WEBPACK_IMPORTED_MODULE_4__.SectionSeperator, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(styles_sharedStyles__WEBPACK_IMPORTED_MODULE_4__.GridHolder, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(Grid, {
-    x: x,
-    y: y
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement("p", null, "14th Anniversary"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement("h1", null, "Stanford")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement("h1", null, "Africa ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement("br", null), "Business")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement("h1", null, " Forum")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement("div", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(OverFlowHiddenDiv, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement("h2", null, "African Innovation ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement("br", null), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement("span", null, "Shaping the Global Future")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement("p", null, "April 16, 2022"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(StyledLink, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement((react__WEBPACK_IMPORTED_MODULE_1___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(Section, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(styles_sharedStyles__WEBPACK_IMPORTED_MODULE_2__.GridHolder, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_styledGrid__WEBPACK_IMPORTED_MODULE_5__.Grid, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("p", null, "14th Anniversary"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h1", null, "Stanford")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h1", null, "Africa ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("br", null), "Business")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h1", null, " Forum")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(OverFlowHiddenDiv, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h2", null, "African Innovation ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("br", null), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("span", null, "Shaping the Global Future")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("p", null, "April 16, 2022"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(styles_sharedStyles__WEBPACK_IMPORTED_MODULE_2__.LandingStyledLink, {
     to: "/attend"
-  }, "Join Us Online + In-Person"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(styles_sharedStyles__WEBPACK_IMPORTED_MODULE_4__.SectionSeperator, null)));
+  }, "Join Us Online + In-Person"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(SpinHolder, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(SpinThing, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_7__.StaticImage, {
+    src: spinSrc,
+    alt: '',
+    aspectRatio: 1,
+    __imageData: __webpack_require__(/*! ./.cache/caches/gatsby-plugin-image/3750753382.json */ "./.cache/caches/gatsby-plugin-image/3750753382.json")
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(SpinThing, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_7__.StaticImage, {
+    src: spinSrc,
+    alt: '',
+    aspectRatio: 1,
+    __imageData: __webpack_require__(/*! ./.cache/caches/gatsby-plugin-image/3750753382.json */ "./.cache/caches/gatsby-plugin-image/3750753382.json")
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(SpinThing, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_7__.StaticImage, {
+    src: spinSrc,
+    alt: '',
+    aspectRatio: 1,
+    __imageData: __webpack_require__(/*! ./.cache/caches/gatsby-plugin-image/3750753382.json */ "./.cache/caches/gatsby-plugin-image/3750753382.json")
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(SpinThing, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_7__.StaticImage, {
+    src: spinSrc,
+    alt: '',
+    aspectRatio: 1,
+    __imageData: __webpack_require__(/*! ./.cache/caches/gatsby-plugin-image/3750753382.json */ "./.cache/caches/gatsby-plugin-image/3750753382.json")
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(styles_sharedStyles__WEBPACK_IMPORTED_MODULE_2__.SectionSeperator, null)));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LandingIndex);
+
+/***/ }),
+
+/***/ "./src/components/landing/styledGrid.ts":
+/*!**********************************************!*\
+  !*** ./src/components/landing/styledGrid.ts ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Grid": () => (/* binding */ Grid)
+/* harmony export */ });
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styles/responsiveSizes */ "./src/styles/responsiveSizes.ts");
+/* harmony import */ var styles_theme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styles/theme */ "./src/styles/theme.ts");
+/* harmony import */ var _animations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./animations */ "./src/components/landing/animations.ts");
+/* harmony import */ var _fontsource_pt_serif_400_italic_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fontsource/pt-serif/400-italic.css */ "./node_modules/@fontsource/pt-serif/400-italic.css");
+/* harmony import */ var _fontsource_pt_serif_400_italic_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_fontsource_pt_serif_400_italic_css__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _fontsource_eb_garamond_400_italic_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fontsource/eb-garamond/400-italic.css */ "./node_modules/@fontsource/eb-garamond/400-italic.css");
+/* harmony import */ var _fontsource_eb_garamond_400_italic_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_fontsource_eb_garamond_400_italic_css__WEBPACK_IMPORTED_MODULE_4__);
+
+
+
+
+
+
+const Grid = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div.withConfig({
+  displayName: "styledGrid__Grid"
+})(["width:100%;z-index:10;display:grid;grid-gap:0.5em 0.5em;h1{color:white;font-size:clamp(0.5em,6.5em,7em);animation:", " 0.9s cubic-bezier(0.65,0,0.35,1) both}@media ", "{grid-auto-flow:column;h1{font-size:3em;}h2{font-size:1.25em;}}grid-template-columns:[col1-line] 1fr [col2-line] 0.5fr [col3-line] 0.5fr [col4-line] 1fr [col5-line]  1fr [col6-line];grid-template-rows:[row1-start] 14vh  [row2-start] 14vh  [row3-start] 14vh  [row4-start] 14vh  [row5-start];@media ", "{display:flex;flex-direction:column;div{width:100%;}}div:nth-child(1){height:max-content;color:white;grid-column:col3-line / span 2;grid-row:row1-start / span 1;align-self:center;justify-self:center;overflow:hidden;h1{margin-top:-0.25em;animation-delay:2 * 0.025s;transition:0.4s all ease-in-out;background-size:100%;background-repeat:repeat;:hover{background:linear-gradient(180deg,rgba(36,71,127,1) 0%,rgba(37,88,254,1) 51%,rgba(54,101,255,1) 100%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;}}@media ", "{grid-area:auto;align-self:flex-end;}}div:nth-child(2){grid-column:span 3 / col4-line;grid-row:row2-start / span 2;align-self:center;justify-self:end;overflow-y:hidden;width:max-content;padding:10px;@media ", "{grid-area:auto;}h1{animation-delay:calc(2 * 0.05s);font-family:\"eb-garamond\";font-style:italic;}}div:nth-child(3){grid-column:col3-line / span 2;grid-row:row4-start / span 1;justify-self:center;overflow:hidden;@media ", "{grid-area:auto;}h1{animation-delay:calc(3 * 0.05s);}}div:nth-child(4){padding-left:2em;grid-column:col4-line  / span 2;grid-row:row2-start / span 2;justify-self:start;align-self:center;div{overflow:hidden;div{position:relative;height:1px;width:100%;background-color:", ";animation:", " 0.15s cubic-bezier(0.65,0,0.35,1) both;animation-delay:calc(4 * 0.05s);}}h2{text-transform:uppercase;margin:3px;color:", ";}@media ", "{grid-area:auto;padding-left:0;}h2,p{animation:", " 0.9s cubic-bezier(0.65,0,0.35,1) both;animation-delay:calc(5 * 0.05s);}}"], _animations__WEBPACK_IMPORTED_MODULE_2__.slideUp, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_0__.devices.mobileL, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_0__.devices.mobileL, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_0__.devices.mobileL, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_0__.devices.mobileL, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_0__.devices.mobileL, styles_theme__WEBPACK_IMPORTED_MODULE_1__.primaryAccentColor, _animations__WEBPACK_IMPORTED_MODULE_2__.lineOut, styles_theme__WEBPACK_IMPORTED_MODULE_1__.primaryAccentColor, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_0__.devices.mobileL, _animations__WEBPACK_IMPORTED_MODULE_2__.slideDown);
 
 /***/ }),
 
@@ -4816,13 +4870,15 @@ const IndexPage = ({
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(styles_globalStyles__WEBPACK_IMPORTED_MODULE_3__.GlobalStyle, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_scroll_parallax__WEBPACK_IMPORTED_MODULE_7__.ParallaxProvider, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("html", {
     style: {// overflowX: "hidden"
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(components_navigation_navBar__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(components_landing__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(components_about__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(components_navigation_navBar__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(components_landing__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    data: data
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(components_about__WEBPACK_IMPORTED_MODULE_4__["default"], {
     data: data
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(components_navigation_footer__WEBPACK_IMPORTED_MODULE_6__["default"], null))));
 };
 
 const fluidImage = "3273373641";
-const query = "1043000083";
+const query = "3243583545";
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (IndexPage);
 
 /***/ }),
@@ -4843,48 +4899,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const GlobalStyle = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.createGlobalStyle)(["html{background-color:", ";font-family:", ";color:white;}body{margin:0;}h1,h2,p,a{font-size:clamp(var(--min),var(--val),var(--max));margin:0;font-weight:normal;}a{}h1{--min:2em;--val:5vw;--max:3em;}h2{--min:1.5em;--val:2vw;--max:2.25em;}p,a{--min:0.8em;--val:1.2vw;--max:1.5em;}"], _theme__WEBPACK_IMPORTED_MODULE_0__.darkColor, _theme__WEBPACK_IMPORTED_MODULE_0__.fontFamily);
-
-/***/ }),
-
-/***/ "./src/styles/theme.ts":
-/*!*****************************!*\
-  !*** ./src/styles/theme.ts ***!
-  \*****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "darkColor": () => (/* binding */ darkColor),
-/* harmony export */   "lightColor": () => (/* binding */ lightColor),
-/* harmony export */   "primaryAccentColor": () => (/* binding */ primaryAccentColor),
-/* harmony export */   "secondaryAccentColor": () => (/* binding */ secondaryAccentColor),
-/* harmony export */   "fontFamily": () => (/* binding */ fontFamily),
-/* harmony export */   "edgeSpace": () => (/* binding */ edgeSpace),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-// hack untill figure out problem with global styles and typescript...
-const skyBlue = "#7DC9EC"; //primary accent color 
-
-const electricBlue = "#2558FE";
-const darkColor = "#000000"; // '#1e1e1e' //"#000000"
-
-const lightColor = '#00021f';
-const primaryAccentColor = skyBlue;
-const secondaryAccentColor = electricBlue;
-const fontFamily = 'Tahoma, sans-serif';
-const edgeSpace = 2;
-const mainTheme = {
-  palette: {
-    dark: darkColor,
-    light: lightColor,
-    white: "#fff"
-  },
-  font: {
-    sans: fontFamily
-  }
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (mainTheme);
 
 /***/ }),
 
@@ -7813,6 +7827,26 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/@fontsource/eb-garamond/400-italic.css":
+/*!*************************************************************!*\
+  !*** ./node_modules/@fontsource/eb-garamond/400-italic.css ***!
+  \*************************************************************/
+/***/ (() => {
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@fontsource/pt-serif/400-italic.css":
+/*!**********************************************************!*\
+  !*** ./node_modules/@fontsource/pt-serif/400-italic.css ***!
+  \**********************************************************/
+/***/ (() => {
+
+
+
+/***/ }),
+
 /***/ "./src/components/landing/cursor.css":
 /*!*******************************************!*\
   !*** ./src/components/landing/cursor.css ***!
@@ -10564,6 +10598,17 @@ module.exports = JSON.parse('{"layout":"constrained","backgroundColor":"#080808"
 
 /***/ }),
 
+/***/ "./.cache/caches/gatsby-plugin-image/3750753382.json":
+/*!***********************************************************!*\
+  !*** ./.cache/caches/gatsby-plugin-image/3750753382.json ***!
+  \***********************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = JSON.parse('{"layout":"constrained","backgroundColor":"#080808","images":{"fallback":{"src":"/static/09ab139feb6ad4b9061a152294e87627/417a9/spinThing.png","srcSet":"/static/09ab139feb6ad4b9061a152294e87627/9217d/spinThing.png 773w,\\n/static/09ab139feb6ad4b9061a152294e87627/58e92/spinThing.png 1546w,\\n/static/09ab139feb6ad4b9061a152294e87627/417a9/spinThing.png 3091w","sizes":"(min-width: 3091px) 3091px, 100vw"},"sources":[{"srcSet":"/static/09ab139feb6ad4b9061a152294e87627/ef7b5/spinThing.webp 773w,\\n/static/09ab139feb6ad4b9061a152294e87627/bf1d8/spinThing.webp 1546w,\\n/static/09ab139feb6ad4b9061a152294e87627/8ae01/spinThing.webp 3091w","type":"image/webp","sizes":"(min-width: 3091px) 3091px, 100vw"}]},"width":3091,"height":3091}');
+
+/***/ }),
+
 /***/ "./.cache/caches/gatsby-plugin-image/3859888894.json":
 /*!***********************************************************!*\
   !*** ./.cache/caches/gatsby-plugin-image/3859888894.json ***!
@@ -10593,7 +10638,7 @@ module.exports = JSON.parse('{"layout":"constrained","backgroundColor":"#e8d8b8"
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"data":{"allMdx":{"nodes":[{"id":"ecf4e8d0-466a-51fb-af07-d9b58c31ff46","frontmatter":{"title":"Events to Look Forward To","number":"02","image_01":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#c8c8c8","images":{"fallback":{"src":"/static/123015216586e5cf1aa1932df40ca6bb/9f2af/abuja.jpg","srcSet":"/static/123015216586e5cf1aa1932df40ca6bb/b6b83/abuja.jpg 131w,\\n/static/123015216586e5cf1aa1932df40ca6bb/ec9d4/abuja.jpg 263w,\\n/static/123015216586e5cf1aa1932df40ca6bb/9f2af/abuja.jpg 525w,\\n/static/123015216586e5cf1aa1932df40ca6bb/b4182/abuja.jpg 1050w","sizes":"(min-width: 525px) 525px, 100vw"},"sources":[{"srcSet":"/static/123015216586e5cf1aa1932df40ca6bb/8561d/abuja.webp 131w,\\n/static/123015216586e5cf1aa1932df40ca6bb/0b77e/abuja.webp 263w,\\n/static/123015216586e5cf1aa1932df40ca6bb/20238/abuja.webp 525w,\\n/static/123015216586e5cf1aa1932df40ca6bb/136ce/abuja.webp 1050w","type":"image/webp","sizes":"(min-width: 525px) 525px, 100vw"}]},"width":525,"height":700}}},"image_02":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#b8b8b8","images":{"fallback":{"src":"/static/2e53930fd573a1ae06aed94e485b64cf/cfd9e/GSB.png","srcSet":"/static/2e53930fd573a1ae06aed94e485b64cf/b7b65/GSB.png 131w,\\n/static/2e53930fd573a1ae06aed94e485b64cf/dba19/GSB.png 263w,\\n/static/2e53930fd573a1ae06aed94e485b64cf/cfd9e/GSB.png 525w","sizes":"(min-width: 525px) 525px, 100vw"},"sources":[{"srcSet":"/static/2e53930fd573a1ae06aed94e485b64cf/8561d/GSB.webp 131w,\\n/static/2e53930fd573a1ae06aed94e485b64cf/0b77e/GSB.webp 263w,\\n/static/2e53930fd573a1ae06aed94e485b64cf/20238/GSB.webp 525w","type":"image/webp","sizes":"(min-width: 525px) 525px, 100vw"}]},"width":525,"height":700}}}},"body":"var _excluded = [\\"components\\"];\\n\\nfunction _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }\\n\\nfunction _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }\\n\\nfunction _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }\\n\\n/* @jsxRuntime classic */\\n\\n/* @jsx mdx */\\nvar _frontmatter = {\\n  \\"title\\": \\"Events to Look Forward To\\",\\n  \\"number\\": \\"02\\",\\n  \\"image_01\\": \\"./abuja.jpg\\",\\n  \\"image_02\\": \\"./GSB.png\\"\\n};\\nvar layoutProps = {\\n  _frontmatter: _frontmatter\\n};\\nvar MDXLayout = \\"wrapper\\";\\nreturn function MDXContent(_ref) {\\n  var components = _ref.components,\\n      props = _objectWithoutProperties(_ref, _excluded);\\n\\n  return mdx(MDXLayout, _extends({}, layoutProps, props, {\\n    components: components,\\n    mdxType: \\"MDXLayout\\"\\n  }), mdx(\\"p\\", null, \\"Some Slightly Larger Text All About Events\\"), mdx(\\"p\\", null, \\"\\\\u201CThis year we will have speakers who are creating innovative ways of tackling challenges in\\\\nhealthcare, fintech, clean energy, cryptocurrencies, investing (private equity and venture capital),\\\\ninfrastructure & cities and entrepreneurship.\\\\u201D\\"), mdx(StyledLink, {\\n    to: \\"/attend\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Schedule\\"), mdx(StyledLink, {\\n    to: \\"/speakers\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Speakers + Panels\\"), mdx(StyledLink, {\\n    to: \\"/pitch\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Pitch Competition \\"));\\n}\\n;\\nMDXContent.isMDXComponent = true;"},{"id":"3004e745-6325-52c6-968e-02bb84cd8268","frontmatter":{"title":"A long history of cultivating forward-looking conversation","number":"03","image_01":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#080808","images":{"fallback":{"src":"/static/618837d0a9de5c889ee74222897d971e/9f2af/meeting.jpg","srcSet":"/static/618837d0a9de5c889ee74222897d971e/b6b83/meeting.jpg 131w,\\n/static/618837d0a9de5c889ee74222897d971e/ec9d4/meeting.jpg 263w,\\n/static/618837d0a9de5c889ee74222897d971e/9f2af/meeting.jpg 525w,\\n/static/618837d0a9de5c889ee74222897d971e/b4182/meeting.jpg 1050w","sizes":"(min-width: 525px) 525px, 100vw"},"sources":[{"srcSet":"/static/618837d0a9de5c889ee74222897d971e/8561d/meeting.webp 131w,\\n/static/618837d0a9de5c889ee74222897d971e/0b77e/meeting.webp 263w,\\n/static/618837d0a9de5c889ee74222897d971e/20238/meeting.webp 525w,\\n/static/618837d0a9de5c889ee74222897d971e/136ce/meeting.webp 1050w","type":"image/webp","sizes":"(min-width: 525px) 525px, 100vw"}]},"width":525,"height":700}}},"image_02":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#081838","images":{"fallback":{"src":"/static/8a42ab5eca5fbf3e0fbd21dcf9b12d66/9f2af/ship.jpg","srcSet":"/static/8a42ab5eca5fbf3e0fbd21dcf9b12d66/b6b83/ship.jpg 131w,\\n/static/8a42ab5eca5fbf3e0fbd21dcf9b12d66/ec9d4/ship.jpg 263w,\\n/static/8a42ab5eca5fbf3e0fbd21dcf9b12d66/9f2af/ship.jpg 525w,\\n/static/8a42ab5eca5fbf3e0fbd21dcf9b12d66/b4182/ship.jpg 1050w","sizes":"(min-width: 525px) 525px, 100vw"},"sources":[{"srcSet":"/static/8a42ab5eca5fbf3e0fbd21dcf9b12d66/8561d/ship.webp 131w,\\n/static/8a42ab5eca5fbf3e0fbd21dcf9b12d66/0b77e/ship.webp 263w,\\n/static/8a42ab5eca5fbf3e0fbd21dcf9b12d66/20238/ship.webp 525w,\\n/static/8a42ab5eca5fbf3e0fbd21dcf9b12d66/136ce/ship.webp 1050w","type":"image/webp","sizes":"(min-width: 525px) 525px, 100vw"}]},"width":525,"height":700}}}},"body":"var _excluded = [\\"components\\"];\\n\\nfunction _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }\\n\\nfunction _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }\\n\\nfunction _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }\\n\\n/* @jsxRuntime classic */\\n\\n/* @jsx mdx */\\nvar _frontmatter = {\\n  \\"title\\": \\"A long history of cultivating forward-looking conversation\\",\\n  \\"number\\": \\"03\\",\\n  \\"image_01\\": \\"./meeting.jpg\\",\\n  \\"image_02\\": \\"./ship.jpg\\"\\n};\\nvar layoutProps = {\\n  _frontmatter: _frontmatter\\n};\\nvar MDXLayout = \\"wrapper\\";\\nreturn function MDXContent(_ref) {\\n  var components = _ref.components,\\n      props = _objectWithoutProperties(_ref, _excluded);\\n\\n  return mdx(MDXLayout, _extends({}, layoutProps, props, {\\n    components: components,\\n    mdxType: \\"MDXLayout\\"\\n  }), mdx(\\"p\\", null, \\"This year marks the 13th anniversary of the Africa Business Forum.\\\\nIn 2007, the forum theme was \\\\u201CFostering Entrepreneurial Activities in Africa\\\\u201D.\\\\nIts objective was to portray Africa in a more positive light than that more\\\\ncommonly seen in the media and create awareness of the diverse and burgeoning opportunities.\\\\nThe first forum was organized by a group of enthusiastic students headed by\\\\nWilson Irungu Nyakera and Kwame Ansong-Dwamena.\\"), mdx(\\"p\\", null, \\"Though the theme has changed from year to year,\\\\nthe underlying motivation behind the forum hasn\\\\u2019t changed.\\\\nThe forum has always been aimed at creating awareness of the opportunities on the\\\\nAfrican continent and bring together Africans and friends of Africa from the continent\\\\nand the diaspora to engage on the most important issues affecting the continent\\\\u2019s growth.\\\\nClick to learn more about conferences in 2020, 2019, 2018, and 2017.\\"), mdx(StyledLink, {\\n    to: \\"/team\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Meet this Year\'s Team\\"));\\n}\\n;\\nMDXContent.isMDXComponent = true;"},{"id":"9d24ed2b-edcb-5d5e-a268-6adb07bda6b4","frontmatter":{"title":"Innovation in Africa is shaping the world\'s future","number":"01","image_01":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#e8d8b8","images":{"fallback":{"src":"/static/a2dfb7da2b0a32f9800f7caddee4731b/9f2af/city.jpg","srcSet":"/static/a2dfb7da2b0a32f9800f7caddee4731b/b6b83/city.jpg 131w,\\n/static/a2dfb7da2b0a32f9800f7caddee4731b/ec9d4/city.jpg 263w,\\n/static/a2dfb7da2b0a32f9800f7caddee4731b/9f2af/city.jpg 525w,\\n/static/a2dfb7da2b0a32f9800f7caddee4731b/b4182/city.jpg 1050w","sizes":"(min-width: 525px) 525px, 100vw"},"sources":[{"srcSet":"/static/a2dfb7da2b0a32f9800f7caddee4731b/8561d/city.webp 131w,\\n/static/a2dfb7da2b0a32f9800f7caddee4731b/0b77e/city.webp 263w,\\n/static/a2dfb7da2b0a32f9800f7caddee4731b/20238/city.webp 525w,\\n/static/a2dfb7da2b0a32f9800f7caddee4731b/136ce/city.webp 1050w","type":"image/webp","sizes":"(min-width: 525px) 525px, 100vw"}]},"width":525,"height":700}}},"image_02":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#080808","images":{"fallback":{"src":"/static/8f418d17201d8a2e7b0c460c315550c9/9f2af/street.jpg","srcSet":"/static/8f418d17201d8a2e7b0c460c315550c9/b6b83/street.jpg 131w,\\n/static/8f418d17201d8a2e7b0c460c315550c9/ec9d4/street.jpg 263w,\\n/static/8f418d17201d8a2e7b0c460c315550c9/9f2af/street.jpg 525w","sizes":"(min-width: 525px) 525px, 100vw"},"sources":[{"srcSet":"/static/8f418d17201d8a2e7b0c460c315550c9/8561d/street.webp 131w,\\n/static/8f418d17201d8a2e7b0c460c315550c9/0b77e/street.webp 263w,\\n/static/8f418d17201d8a2e7b0c460c315550c9/20238/street.webp 525w","type":"image/webp","sizes":"(min-width: 525px) 525px, 100vw"}]},"width":525,"height":700}}}},"body":"var _excluded = [\\"components\\"];\\n\\nfunction _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }\\n\\nfunction _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }\\n\\nfunction _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }\\n\\n/* @jsxRuntime classic */\\n\\n/* @jsx mdx */\\nvar _frontmatter = {\\n  \\"title\\": \\"Innovation in Africa is shaping the world\'s future\\",\\n  \\"number\\": \\"01\\",\\n  \\"image_01\\": \\"./city.jpg\\",\\n  \\"image_02\\": \\"./street.jpeg\\"\\n};\\nvar layoutProps = {\\n  _frontmatter: _frontmatter\\n};\\nvar MDXLayout = \\"wrapper\\";\\nreturn function MDXContent(_ref) {\\n  var components = _ref.components,\\n      props = _objectWithoutProperties(_ref, _excluded);\\n\\n  return mdx(MDXLayout, _extends({}, layoutProps, props, {\\n    components: components,\\n    mdxType: \\"MDXLayout\\"\\n  }), mdx(\\"p\\", null, \\"This year\\\\u2019s conference will explore how innovations across various sectors in Africa can influence the global economy.\\\\nWhat role does African innovation play in shaping the global future?\\\\nHow do current ventures on the continent position Africa to become a leader in the global economy?\\"), mdx(\\"p\\", null, \\"At this conference we would like to challenge the narrative that \\\\u201CAfrica is the future\\\\u201D and explore whether \\\\u201CAfrica is now\\\\u201D.\\", mdx(\\"br\\", {\\n    parentName: \\"p\\"\\n  }), \\"\\\\n\\", \\"We will welcome diverse perspectives on Africa\\\\u2019s unique opportunities\\\\nand challenges as our speakers discuss what they see as Africa\\\\u2019s role in today\\\\u2019s economy.\\"), mdx(StyledLink, {\\n    to: \\"/attend\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Join Us Online + In-Person\\"));\\n}\\n;\\nMDXContent.isMDXComponent = true;"}]}}}');
+module.exports = JSON.parse('{"data":{"allMdx":{"nodes":[{"id":"3004e745-6325-52c6-968e-02bb84cd8268","frontmatter":{"title":"A long history of cultivating forward-looking conversation","number":"03","image_01":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#f8f8f8","images":{"fallback":{"src":"/static/76ee3877c30a1605425da2d7d6130795/9f2af/talking.jpg","srcSet":"/static/76ee3877c30a1605425da2d7d6130795/b6b83/talking.jpg 131w,\\n/static/76ee3877c30a1605425da2d7d6130795/ec9d4/talking.jpg 263w,\\n/static/76ee3877c30a1605425da2d7d6130795/9f2af/talking.jpg 525w,\\n/static/76ee3877c30a1605425da2d7d6130795/b4182/talking.jpg 1050w","sizes":"(min-width: 525px) 525px, 100vw"},"sources":[{"srcSet":"/static/76ee3877c30a1605425da2d7d6130795/8561d/talking.webp 131w,\\n/static/76ee3877c30a1605425da2d7d6130795/0b77e/talking.webp 263w,\\n/static/76ee3877c30a1605425da2d7d6130795/20238/talking.webp 525w,\\n/static/76ee3877c30a1605425da2d7d6130795/136ce/talking.webp 1050w","type":"image/webp","sizes":"(min-width: 525px) 525px, 100vw"}]},"width":525,"height":700}}},"image_02":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#b8b8b8","images":{"fallback":{"src":"/static/2e53930fd573a1ae06aed94e485b64cf/cfd9e/GSB.png","srcSet":"/static/2e53930fd573a1ae06aed94e485b64cf/b7b65/GSB.png 131w,\\n/static/2e53930fd573a1ae06aed94e485b64cf/dba19/GSB.png 263w,\\n/static/2e53930fd573a1ae06aed94e485b64cf/cfd9e/GSB.png 525w","sizes":"(min-width: 525px) 525px, 100vw"},"sources":[{"srcSet":"/static/2e53930fd573a1ae06aed94e485b64cf/8561d/GSB.webp 131w,\\n/static/2e53930fd573a1ae06aed94e485b64cf/0b77e/GSB.webp 263w,\\n/static/2e53930fd573a1ae06aed94e485b64cf/20238/GSB.webp 525w","type":"image/webp","sizes":"(min-width: 525px) 525px, 100vw"}]},"width":525,"height":700}}}},"body":"var _excluded = [\\"components\\"];\\n\\nfunction _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }\\n\\nfunction _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }\\n\\nfunction _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }\\n\\n/* @jsxRuntime classic */\\n\\n/* @jsx mdx */\\nvar _frontmatter = {\\n  \\"title\\": \\"A long history of cultivating forward-looking conversation\\",\\n  \\"number\\": \\"03\\",\\n  \\"image_01\\": \\"./talking.jpg\\",\\n  \\"image_02\\": \\"./GSB.png\\"\\n};\\nvar layoutProps = {\\n  _frontmatter: _frontmatter\\n};\\nvar MDXLayout = \\"wrapper\\";\\nreturn function MDXContent(_ref) {\\n  var components = _ref.components,\\n      props = _objectWithoutProperties(_ref, _excluded);\\n\\n  return mdx(MDXLayout, _extends({}, layoutProps, props, {\\n    components: components,\\n    mdxType: \\"MDXLayout\\"\\n  }), mdx(\\"p\\", null, \\"This year marks the 13th anniversary of the Africa Business Forum.\\\\nIn 2007, the forum theme was \\\\u201CFostering Entrepreneurial Activities in Africa\\\\u201D.\\\\nIts objective was to portray Africa in a more positive light than that more\\\\ncommonly seen in the media and create awareness of the diverse and burgeoning opportunities.\\\\nThe first forum was organized by a group of enthusiastic students headed by\\\\nWilson Irungu Nyakera and Kwame Ansong-Dwamena.\\"), mdx(\\"p\\", null, \\"Though the theme has changed from year to year,\\\\nthe underlying motivation behind the forum hasn\\\\u2019t changed.\\\\nThe forum has always been aimed at creating awareness of the opportunities on the\\\\nAfrican continent and bring together Africans and friends of Africa from the continent\\\\nand the diaspora to engage on the most important issues affecting the continent\\\\u2019s growth.\\\\nClick to learn more about conferences in 2020, 2019, 2018, and 2017.\\"), mdx(StyledLink, {\\n    to: \\"/team\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Meet this Year\'s Team\\"));\\n}\\n;\\nMDXContent.isMDXComponent = true;"},{"id":"ecf4e8d0-466a-51fb-af07-d9b58c31ff46","frontmatter":{"title":"Events to Look Forward To","number":"02","image_01":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#e8e8f8","images":{"fallback":{"src":"/static/4dd6bc4701f458e025e5c91c031881c7/9f2af/hug.jpg","srcSet":"/static/4dd6bc4701f458e025e5c91c031881c7/b6b83/hug.jpg 131w,\\n/static/4dd6bc4701f458e025e5c91c031881c7/ec9d4/hug.jpg 263w,\\n/static/4dd6bc4701f458e025e5c91c031881c7/9f2af/hug.jpg 525w,\\n/static/4dd6bc4701f458e025e5c91c031881c7/b4182/hug.jpg 1050w","sizes":"(min-width: 525px) 525px, 100vw"},"sources":[{"srcSet":"/static/4dd6bc4701f458e025e5c91c031881c7/8561d/hug.webp 131w,\\n/static/4dd6bc4701f458e025e5c91c031881c7/0b77e/hug.webp 263w,\\n/static/4dd6bc4701f458e025e5c91c031881c7/20238/hug.webp 525w,\\n/static/4dd6bc4701f458e025e5c91c031881c7/136ce/hug.webp 1050w","type":"image/webp","sizes":"(min-width: 525px) 525px, 100vw"}]},"width":525,"height":700}}},"image_02":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#e8e8e8","images":{"fallback":{"src":"/static/3a355bdd14f58a23353e5b37c8c853bf/9f2af/laughing.jpg","srcSet":"/static/3a355bdd14f58a23353e5b37c8c853bf/b6b83/laughing.jpg 131w,\\n/static/3a355bdd14f58a23353e5b37c8c853bf/ec9d4/laughing.jpg 263w,\\n/static/3a355bdd14f58a23353e5b37c8c853bf/9f2af/laughing.jpg 525w,\\n/static/3a355bdd14f58a23353e5b37c8c853bf/b4182/laughing.jpg 1050w","sizes":"(min-width: 525px) 525px, 100vw"},"sources":[{"srcSet":"/static/3a355bdd14f58a23353e5b37c8c853bf/8561d/laughing.webp 131w,\\n/static/3a355bdd14f58a23353e5b37c8c853bf/0b77e/laughing.webp 263w,\\n/static/3a355bdd14f58a23353e5b37c8c853bf/20238/laughing.webp 525w,\\n/static/3a355bdd14f58a23353e5b37c8c853bf/136ce/laughing.webp 1050w","type":"image/webp","sizes":"(min-width: 525px) 525px, 100vw"}]},"width":525,"height":700}}}},"body":"var _excluded = [\\"components\\"];\\n\\nfunction _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }\\n\\nfunction _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }\\n\\nfunction _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }\\n\\n/* @jsxRuntime classic */\\n\\n/* @jsx mdx */\\nvar _frontmatter = {\\n  \\"title\\": \\"Events to Look Forward To\\",\\n  \\"number\\": \\"02\\",\\n  \\"image_01\\": \\"./hug.jpg\\",\\n  \\"image_02\\": \\"./laughing.jpg\\"\\n};\\nvar layoutProps = {\\n  _frontmatter: _frontmatter\\n};\\nvar MDXLayout = \\"wrapper\\";\\nreturn function MDXContent(_ref) {\\n  var components = _ref.components,\\n      props = _objectWithoutProperties(_ref, _excluded);\\n\\n  return mdx(MDXLayout, _extends({}, layoutProps, props, {\\n    components: components,\\n    mdxType: \\"MDXLayout\\"\\n  }), mdx(\\"p\\", null, \\"Some Slightly Larger Text All About Events\\"), mdx(\\"p\\", null, \\"\\\\u201CThis year we will have speakers who are creating innovative ways of tackling challenges in\\\\nhealthcare, fintech, clean energy, cryptocurrencies, investing (private equity and venture capital),\\\\ninfrastructure & cities and entrepreneurship.\\\\u201D\\"), mdx(StyledLink, {\\n    to: \\"/attend\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Schedule\\"), mdx(StyledLink, {\\n    to: \\"/speakers\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Speakers + Panels\\"), mdx(StyledLink, {\\n    to: \\"/pitch\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Pitch Competition \\"));\\n}\\n;\\nMDXContent.isMDXComponent = true;"},{"id":"9d24ed2b-edcb-5d5e-a268-6adb07bda6b4","frontmatter":{"title":"Innovation in Africa is shaping the world\'s future","number":"01","image_01":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#f8f8f8","images":{"fallback":{"src":"/static/cbeea8b6cbd788923d84fa769759569d/9f2af/ladies.jpg","srcSet":"/static/cbeea8b6cbd788923d84fa769759569d/b6b83/ladies.jpg 131w,\\n/static/cbeea8b6cbd788923d84fa769759569d/ec9d4/ladies.jpg 263w,\\n/static/cbeea8b6cbd788923d84fa769759569d/9f2af/ladies.jpg 525w,\\n/static/cbeea8b6cbd788923d84fa769759569d/b4182/ladies.jpg 1050w","sizes":"(min-width: 525px) 525px, 100vw"},"sources":[{"srcSet":"/static/cbeea8b6cbd788923d84fa769759569d/8561d/ladies.webp 131w,\\n/static/cbeea8b6cbd788923d84fa769759569d/0b77e/ladies.webp 263w,\\n/static/cbeea8b6cbd788923d84fa769759569d/20238/ladies.webp 525w,\\n/static/cbeea8b6cbd788923d84fa769759569d/136ce/ladies.webp 1050w","type":"image/webp","sizes":"(min-width: 525px) 525px, 100vw"}]},"width":525,"height":700}}},"image_02":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#e8d8c8","images":{"fallback":{"src":"/static/4f17fdc1ab6233054a56bd696cb74704/9f2af/partners.jpg","srcSet":"/static/4f17fdc1ab6233054a56bd696cb74704/b6b83/partners.jpg 131w,\\n/static/4f17fdc1ab6233054a56bd696cb74704/ec9d4/partners.jpg 263w,\\n/static/4f17fdc1ab6233054a56bd696cb74704/9f2af/partners.jpg 525w,\\n/static/4f17fdc1ab6233054a56bd696cb74704/b4182/partners.jpg 1050w","sizes":"(min-width: 525px) 525px, 100vw"},"sources":[{"srcSet":"/static/4f17fdc1ab6233054a56bd696cb74704/8561d/partners.webp 131w,\\n/static/4f17fdc1ab6233054a56bd696cb74704/0b77e/partners.webp 263w,\\n/static/4f17fdc1ab6233054a56bd696cb74704/20238/partners.webp 525w,\\n/static/4f17fdc1ab6233054a56bd696cb74704/136ce/partners.webp 1050w","type":"image/webp","sizes":"(min-width: 525px) 525px, 100vw"}]},"width":525,"height":700}}}},"body":"var _excluded = [\\"components\\"];\\n\\nfunction _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }\\n\\nfunction _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }\\n\\nfunction _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }\\n\\n/* @jsxRuntime classic */\\n\\n/* @jsx mdx */\\nvar _frontmatter = {\\n  \\"title\\": \\"Innovation in Africa is shaping the world\'s future\\",\\n  \\"number\\": \\"01\\",\\n  \\"image_01\\": \\"./ladies.jpg\\",\\n  \\"image_02\\": \\"./partners.jpg\\"\\n};\\nvar layoutProps = {\\n  _frontmatter: _frontmatter\\n};\\nvar MDXLayout = \\"wrapper\\";\\nreturn function MDXContent(_ref) {\\n  var components = _ref.components,\\n      props = _objectWithoutProperties(_ref, _excluded);\\n\\n  return mdx(MDXLayout, _extends({}, layoutProps, props, {\\n    components: components,\\n    mdxType: \\"MDXLayout\\"\\n  }), mdx(\\"p\\", null, \\"This year\\\\u2019s conference will explore how innovations across various sectors in Africa can influence the global economy.\\\\nWhat role does African innovation play in shaping the global future?\\\\nHow do current ventures on the continent position Africa to become a leader in the global economy?\\"), mdx(\\"p\\", null, \\"At this conference we would like to challenge the narrative that \\\\u201CAfrica is the future\\\\u201D and explore whether \\\\u201CAfrica is now\\\\u201D.\\", mdx(\\"br\\", {\\n    parentName: \\"p\\"\\n  }), \\"\\\\n\\", \\"We will welcome diverse perspectives on Africa\\\\u2019s unique opportunities\\\\nand challenges as our speakers discuss what they see as Africa\\\\u2019s role in today\\\\u2019s economy.\\"), mdx(StyledLink, {\\n    to: \\"/attend\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Join Us Online + In-Person\\"));\\n}\\n;\\nMDXContent.isMDXComponent = true;"}]}}}');
 
 /***/ })
 

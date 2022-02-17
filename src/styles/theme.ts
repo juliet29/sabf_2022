@@ -8,7 +8,7 @@ import "@fontsource/montserrat"
 // const electricBlue = "#2558FE"
 const navy = "#24477F"
 const mainBlue = "#00A0EA"
-const lightGradient: "linear-gradient(180deg, rgba(36,71,127,1) 0%, rgba(37,88,254,1) 51%, rgba(54,101,255,1) 100%)"
+// const lightGradient: "linear-gradient(180deg, rgba(36,71,127,1) 0%, rgba(37,88,254,1) 51%, rgba(54,101,255,1) 100%)"
 
 
 export const darkColor = "#000000" // '#1e1e1e' //"#000000"

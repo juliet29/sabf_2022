@@ -34,7 +34,7 @@ const AboutIndex: React.FC<AboutIndexProps> = ({data}) => {
           <SectionSeperator></SectionSeperator>
           <GenericSection sectionNumber={"03"}></GenericSection>
           <SectionSeperator></SectionSeperator>
-          <ParallaxImage imageFluid={data.imageTwo?.childImageSharp?.fluid}></ParallaxImage>
+          {/* <ParallaxImage imageFluid={data.imageTwo?.childImageSharp?.fluid}></ParallaxImage> */}
         </Section>
     );
 };

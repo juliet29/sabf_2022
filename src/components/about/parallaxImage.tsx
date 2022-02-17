@@ -29,7 +29,7 @@ const ParallaxImage: React.FC<ParallaxImageProps> = ({ imageFluid}) => {
                   fluid={imageFluid}
                   role="img"
                   style ={{
-                    height: "90vh"
+                    height: "100vh"
                   }}
               >
                   {/* bg image should be here! */}

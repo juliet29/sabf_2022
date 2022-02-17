@@ -41,3 +41,12 @@ color: ${primaryAccentColor};
 }
 
 `;
+
+export const StyledA = styled.a`
+color: ${primaryAccentColor};
+text-decoration: none;
+transition: all 0.5s;
+:hover {
+    color: white;
+}
+`;

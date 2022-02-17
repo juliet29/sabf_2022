@@ -10,6 +10,7 @@ import { IndexPageImageQueryQuery } from '../../../graphql-types';
 import { spin } from './animations';
 import './cursor.css'
 import { Grid } from './styledGrid';
+// import {spinThing} from "./spinThing.png"
 
 
 // interfaces 
@@ -70,7 +71,7 @@ const OverFlowHiddenDiv = styled.div`
 
 
 
-const spinSrc  = "/Users/julietnwagwuume-ezeoke/Desktop/sabf_2022/src/assets/spinThing.png"
+const spinSrc  = "/Users/julietnwagwuume-ezeoke/Desktop/sabf_2022/static/spinThing.png"
 interface LandingIndexProps {
     data: IndexPageImageQueryQuery;
 }

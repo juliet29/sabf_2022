@@ -4157,47 +4157,6 @@ const GlobalStyle = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.createGlob
 
 /***/ }),
 
-/***/ "./src/styles/theme.ts":
-/*!*****************************!*\
-  !*** ./src/styles/theme.ts ***!
-  \*****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "darkColor": () => (/* binding */ darkColor),
-/* harmony export */   "lightColor": () => (/* binding */ lightColor),
-/* harmony export */   "primaryAccentColor": () => (/* binding */ primaryAccentColor),
-/* harmony export */   "secondaryAccentColor": () => (/* binding */ secondaryAccentColor),
-/* harmony export */   "fontFamily": () => (/* binding */ fontFamily),
-/* harmony export */   "edgeSpace": () => (/* binding */ edgeSpace),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-// hack untill figure out problem with global styles and typescript...
-const skyBlue = "#7DC9EC"; //primary accent color 
-
-const electricBlue = "#2558FE";
-const darkColor = "#000000"; // '#1e1e1e' //"#000000"
-
-const lightColor = '#00021f';
-const primaryAccentColor = skyBlue;
-const secondaryAccentColor = electricBlue;
-const fontFamily = 'Tahoma, sans-serif';
-const edgeSpace = 2;
-const mainTheme = {
-  palette: {
-    dark: darkColor,
-    light: lightColor,
-    white: "#fff"
-  },
-  font: {
-    sans: fontFamily
-  }
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (mainTheme);
-
-/***/ }),
-
 /***/ "./node_modules/gatsby-plugin-image/dist/gatsby-image.module.js":
 /*!**********************************************************************!*\
   !*** ./node_modules/gatsby-plugin-image/dist/gatsby-image.module.js ***!

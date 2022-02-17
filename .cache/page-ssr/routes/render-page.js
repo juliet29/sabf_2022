@@ -6524,11 +6524,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "SectionSeperator": () => (/* binding */ SectionSeperator),
 /* harmony export */   "GridHolder": () => (/* binding */ GridHolder),
+/* harmony export */   "LandingStyledLink": () => (/* binding */ LandingStyledLink),
 /* harmony export */   "StyledLink": () => (/* binding */ StyledLink)
 /* harmony export */ });
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
 /* harmony import */ var gatsby__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
 /* harmony import */ var _responsiveSizes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./responsiveSizes */ "./src/styles/responsiveSizes.ts");
+/* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./theme */ "./src/styles/theme.ts");
+
 
 
  // export const VerticalFlexDiv = styled.div`
@@ -6537,15 +6540,67 @@ __webpack_require__.r(__webpack_exports__);
 //   /* text-align: right; */
 // `;
 
-const SectionSeperator = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div.withConfig({
+const SectionSeperator = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].div.withConfig({
   displayName: "sharedStyles__SectionSeperator"
 })(["height:7em;@media ", "{height:1em;}"], _responsiveSizes__WEBPACK_IMPORTED_MODULE_1__.devices.mobileL);
-const GridHolder = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div.withConfig({
+const GridHolder = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].div.withConfig({
   displayName: "sharedStyles__GridHolder"
 })(["display:flex;justify-content:center;"]);
-const StyledLink = (0,styled_components__WEBPACK_IMPORTED_MODULE_2__["default"])(gatsby__WEBPACK_IMPORTED_MODULE_0__.Link).withConfig({
+const LandingStyledLink = (0,styled_components__WEBPACK_IMPORTED_MODULE_3__["default"])(gatsby__WEBPACK_IMPORTED_MODULE_0__.Link).withConfig({
+  displayName: "sharedStyles__LandingStyledLink"
+})(["color:white;text-decoration:none;transition:all 0.5s;:hover{color:", ";}"], _theme__WEBPACK_IMPORTED_MODULE_2__.primaryAccentColor);
+const StyledLink = (0,styled_components__WEBPACK_IMPORTED_MODULE_3__["default"])(LandingStyledLink).withConfig({
   displayName: "sharedStyles__StyledLink"
-})(["color:lightblue;padding-bottom:1em;display:block;"]);
+})(["display:block;padding-bottom:10px;color:", ";:hover{color:white;}"], _theme__WEBPACK_IMPORTED_MODULE_2__.primaryAccentColor);
+
+/***/ }),
+
+/***/ "./src/styles/theme.ts":
+/*!*****************************!*\
+  !*** ./src/styles/theme.ts ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "darkColor": () => (/* binding */ darkColor),
+/* harmony export */   "lightColor": () => (/* binding */ lightColor),
+/* harmony export */   "primaryAccentColor": () => (/* binding */ primaryAccentColor),
+/* harmony export */   "secondaryAccentColor": () => (/* binding */ secondaryAccentColor),
+/* harmony export */   "fontFamily": () => (/* binding */ fontFamily),
+/* harmony export */   "edgeSpace": () => (/* binding */ edgeSpace),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _fontsource_montserrat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @fontsource/montserrat */ "./node_modules/@fontsource/montserrat/index.css");
+/* harmony import */ var _fontsource_montserrat__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_fontsource_montserrat__WEBPACK_IMPORTED_MODULE_0__);
+ // hack untill figure out problem with global styles and typescript...
+// const skyBlue = "#7DC9EC" //primary accent color 
+// const electricBlue = "#2558FE"
+
+const navy = "#24477F";
+const mainBlue = "#00A0EA"; // const lightGradient: "linear-gradient(180deg, rgba(36,71,127,1) 0%, rgba(37,88,254,1) 51%, rgba(54,101,255,1) 100%)"
+
+const darkColor = "#000000"; // '#1e1e1e' //"#000000"
+
+const lightColor = '#00021f';
+const primaryAccentColor = mainBlue;
+const secondaryAccentColor = navy;
+const fontFamily = "montserrat, sans-serif"; //'Tahoma, sans-serif'
+// font-family: "montserrat";
+
+const edgeSpace = 2;
+const mainTheme = {
+  palette: {
+    dark: darkColor,
+    light: lightColor,
+    white: "#fff"
+  },
+  font: {
+    sans: fontFamily
+  }
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (mainTheme);
 
 /***/ }),
 
@@ -12918,6 +12973,16 @@ function mitt(all                 ) {
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (mitt);
 //# sourceMappingURL=mitt.es.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/@fontsource/montserrat/index.css":
+/*!*******************************************************!*\
+  !*** ./node_modules/@fontsource/montserrat/index.css ***!
+  \*******************************************************/
+/***/ (() => {
+
 
 
 /***/ }),
