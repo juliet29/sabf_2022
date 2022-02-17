@@ -1,8 +1,7 @@
-import { faHandMiddleFinger } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'gatsby';
 import useMousePosition from 'hooks/mouse-position';
 import React from 'react';
-import styled, { keyframes, css} from 'styled-components';
+import styled from 'styled-components';
 import { devices } from 'styles/responsiveSizes';
 import { SectionSeperator } from 'styles/sharedStyles';
 import { GridHolder } from 'styles/sharedStyles';
@@ -24,6 +23,15 @@ const Section = styled.section`
   top: 0;
 `;
 
+const StyledLink = styled(Link)`
+    color: white;
+    text-decoration: none;
+    transition: all 0.5s;
+    :hover {
+            color: ${secondaryAccentColor};
+        }
+    `;
+
 const BackgroundImage = styled.div`
     background-color: black;
     width: 100%;
@@ -34,16 +42,6 @@ const BackgroundImage = styled.div`
     }
 `;
 
-const StyledLink = styled(Link)`
-    color: white;
-    text-decoration: none;
-    transition: all 0.5s;
-    :hover {
-            color: ${secondaryAccentColor};
-        }
-    `;
-
-
 const HidingLayer = styled.div<RoundMouseProps>`
     position: absolute;
     height: 100vh;
@@ -51,20 +49,16 @@ const HidingLayer = styled.div<RoundMouseProps>`
     top:0;
     left:0;
     clip-path: circle(100px at ${props => props.x}px ${props => props.y}px);
-    /* transform: translate(-50%, -50%); */
     background: url("https://www.themillsbuilding.com/userfiles/cms/building/images/1/building.jpg");
     background-size: cover;
     height: 100vh;
     transition: clip-path .10s;
-    /* transition-timing-function: ease; */
-
     @media ${devices.mobileL} {
-        display: none;
-        
+        display: none;  
     }
-    :hover{
-        clip-path:circle(50px at ${props => props.x}px ${props => props.y}px); /* not working :( */
-    }
+    /* :hover{
+        clip-path:circle(50px at ${props => props.x}px ${props => props.y}px); not working :(
+    } */
 `;
 
 

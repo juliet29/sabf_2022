@@ -21,9 +21,9 @@ const Body = styled.body`
   height: 100%;
   min-height: 100%;
   perspective: 10px;
-  transform-style: preserve-3d;
+  transform-style: preserve-3d; 
   overflow-x:hidden;
-  overflow-y:auto;
+  /* overflow-y:auto; */
 
 `;
 
@@ -39,7 +39,7 @@ const IndexPage: React.FC<IndexPageProps> = ({data}) => {
           <GlobalStyle/>
           <ParallaxProvider>
           <html style={{
-            overflowX: "hidden"
+            // overflowX: "hidden"
           }}>
             
           <NavBar></NavBar>

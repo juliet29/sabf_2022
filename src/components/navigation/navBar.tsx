@@ -14,7 +14,7 @@ interface NavBarProps {
 
 const NavBarNav = styled.nav`
   /* background-color: orange; */
-  z-index: 100;
+  z-index: 10000000000;
   padding-top: 1em;
   padding-bottom: 2em;
   padding-left: 1em;
@@ -82,8 +82,6 @@ const NavBar: React.FC<NavBarProps> = ({  }) => {
                     <BurgerMenuIcon open={open} setOpen={setOpen}></BurgerMenuIcon>
                 </>
             }
-       
-            
         </NavBarDiv>
 
         </NavBarNav>
