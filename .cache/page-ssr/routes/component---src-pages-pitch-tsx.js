@@ -3666,20 +3666,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
 /* harmony import */ var styles_theme__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styles/theme */ "./src/styles/theme.ts");
+/* harmony import */ var _fontsource_montserrat__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fontsource/montserrat */ "./node_modules/@fontsource/montserrat/index.css");
+/* harmony import */ var _fontsource_montserrat__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_fontsource_montserrat__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
-const StyledForm = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].form.withConfig({
+
+
+const StyledForm = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].form.withConfig({
   displayName: "form__StyledForm"
-})(["display:flex;flex-direction:row;"]);
-const Button = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].button.withConfig({
+})(["display:flex;flex-direction:row;font-family:", ";"], styles_theme__WEBPACK_IMPORTED_MODULE_1__.fontFamily);
+const Button = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].button.withConfig({
   displayName: "form__Button"
-})(["margin-left:2em;background-color:", ";flex-grow:1;border-radius:0.12em;border-color:white;border-width:1px;color:white;border-style:solid;transition:0.3s background-color ease-in-out;:hover{background-color:", ";}"], styles_theme__WEBPACK_IMPORTED_MODULE_1__.primaryAccentColor, styles_theme__WEBPACK_IMPORTED_MODULE_1__.secondaryAccentColor);
-const Field = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div.withConfig({
+})(["margin-left:2em;background-color:", ";flex-grow:1;border-width:1px;color:white;border-style:solid;transition:0.3s background-color ease-in-out;border-width:0;border-radius:4px;font-family:\"montserrat\";letter-spacing:1px;text-transform:uppercase;:hover{background-color:white;color:", ";}"], styles_theme__WEBPACK_IMPORTED_MODULE_1__.primaryAccentColor, styles_theme__WEBPACK_IMPORTED_MODULE_1__.secondaryAccentColor);
+const Field = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].div.withConfig({
   displayName: "form__Field"
-})(["flex-grow:2;height:56px;border-radius:4px;position:relative;background-color:rgba(255,255,255,0.3);transition:0.3s background-color ease-in-out,0.3s box-shadow ease-in-out;:hover{background-color:#ffffff;box-shadow:0px 4px 20px 0px rgba(0,0,0,0.05);}:focus{background-color:#ffffff;box-shadow:0px 4px 20px 0px rgba(0,0,0,0.2);}:active{background-color:#ffffff;box-shadow:0px 4px 20px 0px rgba(0,0,0,0.2);}input{width:100%;height:56px;position:relative;padding:0px 16px;border:none;border-radius:4px;font-size:16px;font-weight:400;line-height:normal;background-color:transparent;color:#282828;outline:none;box-shadow:0px 4px 20px 0px transparent;transition:0.3s background-color ease-in-out,0.3s box-shadow ease-in-out,0.1s padding ease-in-out;}"]); ////// end of styles
+})(["flex-grow:2;height:56px;border-radius:4px;position:relative;background-color:rgba(255,255,255,0.3);transition:0.3s background-color ease-in-out,0.3s box-shadow ease-in-out;:hover{background-color:#ffffff;box-shadow:0px 4px 20px 0px rgba(0,0,0,0.05);}:focus{background-color:#ffffff;box-shadow:0px 4px 20px 0px rgba(0,0,0,0.2);}:active{background-color:#ffffff;box-shadow:0px 4px 20px 0px rgba(0,0,0,0.2);}input{width:100%;height:56px;position:relative;padding:0px 16px;border:none;border-radius:4px;font-size:16px;font-weight:400;line-height:normal;background-color:transparent;color:#282828;outline:none;box-shadow:0px 4px 20px 0px transparent;font-family:\"montserrat\";transition:0.3s background-color ease-in-out,0.3s box-shadow ease-in-out,0.1s padding ease-in-out;}"]); ////// end of styles
 
 const sendToDatabase = email => {
   var data = JSON.stringify({
@@ -3950,7 +3954,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const Header = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].header.withConfig({
   displayName: "layout__Header"
-})(["margin-top:", ";;padding-left:", ";padding-right:", ";div{height:1px;width:50%;background-color:white;}"], styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace + "em", styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace + "em", styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace + "em");
+})(["margin-top:", ";;padding-left:", ";padding-right:", ";div{height:1px;width:50%;background-color:white;}"], styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace + "em", styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace * 2 + "em", styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace * 2 + "em");
 
 const Layout = ({
   pageTitle,
@@ -4114,25 +4118,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var components_navigation_layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! components/navigation/layout */ "./src/components/navigation/layout.tsx");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
-/* harmony import */ var styles_theme__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styles/theme */ "./src/styles/theme.ts");
+/* harmony import */ var styles_sharedStyles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styles/sharedStyles */ "./src/styles/sharedStyles.ts");
 
 
 
 
-
-const Section = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].section.withConfig({
-  displayName: "pitch__Section"
-})(["margin-top:", ";padding-left:", ";padding-right:", ";"], styles_theme__WEBPACK_IMPORTED_MODULE_3__.edgeSpace + "em", styles_theme__WEBPACK_IMPORTED_MODULE_3__.edgeSpace + "em", styles_theme__WEBPACK_IMPORTED_MODULE_3__.edgeSpace + "em");
 
 const PitchPage = () => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(components_navigation_layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
     pageTitle: "Pitch Competition"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(Section, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement("h2", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(styles_sharedStyles__WEBPACK_IMPORTED_MODULE_3__.Section, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement("h2", {
     style: {
       marginBottom: "1em"
     }
-  }, "Launching soon! Enter your email below to be notified about new updates."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(components_general_form__WEBPACK_IMPORTED_MODULE_0__["default"], null)));
+  }, "Launching soon! Enter your email below to be notified about updates."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(components_general_form__WEBPACK_IMPORTED_MODULE_0__["default"], null)));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PitchPage);

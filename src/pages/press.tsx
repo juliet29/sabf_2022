@@ -1,5 +1,6 @@
 import Layout from 'components/navigation/layout';
 import React from 'react';
+import { Section } from 'styles/sharedStyles';
 
 interface PressPageProps {
     // : string;
@@ -10,7 +11,9 @@ const PressPage: React.FC<PressPageProps> = ({  }) => {
         <Layout
         pageTitle='Press + Videos'
        >
-         <h1>Press + Videos!</h1>
+                <Section>
+               Stay tuned for more information!
+           </Section>
        </Layout>
         
     );

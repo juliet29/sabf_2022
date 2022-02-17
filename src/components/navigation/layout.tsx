@@ -14,8 +14,8 @@ import Footer from './footer';
 const Header = styled.header`
   /* background-color: rebeccapurple; */
   margin-top: ${edgeSpace + "em"};;
-  padding-left: ${edgeSpace + "em"};
-  padding-right: ${edgeSpace + "em"};
+  padding-left: ${edgeSpace*2 + "em"};
+  padding-right: ${edgeSpace*2 + "em"};
   /* border-bottom: 1px solid rgba(255,255,255,.25); */
 
   div {

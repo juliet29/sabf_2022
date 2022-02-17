@@ -12,7 +12,7 @@ module.exports = [{
       options: {"plugins":[]},
     },{
       plugin: require('../node_modules/gatsby-plugin-nprogress/gatsby-browser.js'),
-      options: {"plugins":[],"color":"tomato","showSpinner":false},
+      options: {"plugins":[],"color":"#00A0EA","showSpinner":true},
     },{
       plugin: require('../gatsby-browser.js'),
       options: {"plugins":[]},

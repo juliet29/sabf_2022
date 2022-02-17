@@ -3877,7 +3877,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const Header = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].header.withConfig({
   displayName: "layout__Header"
-})(["margin-top:", ";;padding-left:", ";padding-right:", ";div{height:1px;width:50%;background-color:white;}"], styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace + "em", styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace + "em", styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace + "em");
+})(["margin-top:", ";;padding-left:", ";padding-right:", ";div{height:1px;width:50%;background-color:white;}"], styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace + "em", styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace * 2 + "em", styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace * 2 + "em");
 
 const Layout = ({
   pageTitle,
@@ -4040,13 +4040,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var components_navigation_layout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! components/navigation/layout */ "./src/components/navigation/layout.tsx");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var styles_sharedStyles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styles/sharedStyles */ "./src/styles/sharedStyles.ts");
+
 
 
 
 const AttendPage = ({}) => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(components_navigation_layout__WEBPACK_IMPORTED_MODULE_0__["default"], {
     pageTitle: "Attend"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h1", null, "Attend!"));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(styles_sharedStyles__WEBPACK_IMPORTED_MODULE_2__.Section, null, "Stay tuned for more information!"));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AttendPage);

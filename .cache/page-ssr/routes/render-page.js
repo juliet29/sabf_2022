@@ -6523,9 +6523,11 @@ const devices = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "SectionSeperator": () => (/* binding */ SectionSeperator),
+/* harmony export */   "Section": () => (/* binding */ Section),
 /* harmony export */   "GridHolder": () => (/* binding */ GridHolder),
 /* harmony export */   "LandingStyledLink": () => (/* binding */ LandingStyledLink),
-/* harmony export */   "StyledLink": () => (/* binding */ StyledLink)
+/* harmony export */   "StyledLink": () => (/* binding */ StyledLink),
+/* harmony export */   "StyledA": () => (/* binding */ StyledA)
 /* harmony export */ });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
 /* harmony import */ var gatsby__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
@@ -6543,6 +6545,9 @@ __webpack_require__.r(__webpack_exports__);
 const SectionSeperator = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].div.withConfig({
   displayName: "sharedStyles__SectionSeperator"
 })(["height:7em;@media ", "{height:1em;}"], _responsiveSizes__WEBPACK_IMPORTED_MODULE_1__.devices.mobileL);
+const Section = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].section.withConfig({
+  displayName: "sharedStyles__Section"
+})(["margin-top:", ";padding-left:", ";padding-right:", ";"], _theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace + "em", _theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace * 2 + "em", _theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace * 2 + "em");
 const GridHolder = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].div.withConfig({
   displayName: "sharedStyles__GridHolder"
 })(["display:flex;justify-content:center;"]);
@@ -6552,6 +6557,9 @@ const LandingStyledLink = (0,styled_components__WEBPACK_IMPORTED_MODULE_3__["def
 const StyledLink = (0,styled_components__WEBPACK_IMPORTED_MODULE_3__["default"])(LandingStyledLink).withConfig({
   displayName: "sharedStyles__StyledLink"
 })(["display:block;padding-bottom:10px;color:", ";:hover{color:white;}"], _theme__WEBPACK_IMPORTED_MODULE_2__.primaryAccentColor);
+const StyledA = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].a.withConfig({
+  displayName: "sharedStyles__StyledA"
+})(["color:", ";text-decoration:none;transition:all 0.5s;:hover{color:white;}"], _theme__WEBPACK_IMPORTED_MODULE_2__.primaryAccentColor);
 
 /***/ }),
 
@@ -8353,6 +8361,31 @@ exports.onRenderBody = function (_ref2) {
 
 /***/ }),
 
+/***/ "./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/231e619ad3a7ae4b1ea1389f02522fed.js":
+/*!********************************************************************************************!*\
+  !*** ./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/231e619ad3a7ae4b1ea1389f02522fed.js ***!
+  \********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var src_styles_sharedStyles_ts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/styles/sharedStyles.ts */ "./src/styles/sharedStyles.ts");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  StyledLink: src_styles_sharedStyles_ts__WEBPACK_IMPORTED_MODULE_0__.StyledLink,
+  StyledA: src_styles_sharedStyles_ts__WEBPACK_IMPORTED_MODULE_0__.StyledA,
+  React: react__WEBPACK_IMPORTED_MODULE_1__
+});
+
+/***/ }),
+
 /***/ "./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/e8f497cbab40f20c462ec22b81f35f6d.js":
 /*!********************************************************************************************!*\
   !*** ./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/e8f497cbab40f20c462ec22b81f35f6d.js ***!
@@ -8576,9 +8609,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-var scope_0 = (__webpack_require__(/*! ./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/e8f497cbab40f20c462ec22b81f35f6d.js */ "./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/e8f497cbab40f20c462ec22b81f35f6d.js")["default"]);
+var scope_0 = (__webpack_require__(/*! ./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/231e619ad3a7ae4b1ea1389f02522fed.js */ "./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/231e619ad3a7ae4b1ea1389f02522fed.js")["default"]);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Object.assign({}, scope_0));
+var scope_1 = (__webpack_require__(/*! ./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/e8f497cbab40f20c462ec22b81f35f6d.js */ "./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/e8f497cbab40f20c462ec22b81f35f6d.js")["default"]);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Object.assign({}, scope_0, scope_1));
 
 /***/ }),
 

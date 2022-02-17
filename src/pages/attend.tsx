@@ -1,5 +1,6 @@
 import Layout from 'components/navigation/layout';
 import React from 'react';
+import { Section } from 'styles/sharedStyles';
 
 interface AttendPageProps {
     // : string;
@@ -10,7 +11,9 @@ const AttendPage: React.FC<AttendPageProps> = ({  }) => {
         <Layout
         pageTitle='Attend'
        >
-         <h1>Attend!</h1>
+           <Section>
+               Stay tuned for more information!
+           </Section>
        </Layout>
     );
 };

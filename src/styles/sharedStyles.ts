@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "gatsby";
 import { devices } from "./responsiveSizes";
-import { primaryAccentColor } from "./theme";
+import { edgeSpace, primaryAccentColor } from "./theme";
 
 // export const VerticalFlexDiv = styled.div`
 //   display: flex;
@@ -14,8 +14,12 @@ export const SectionSeperator = styled.div`
     @media ${devices.mobileL} {
             height: 1em;
         }
-    
-  
+`;
+
+export const Section = styled.section`
+  margin-top: ${edgeSpace + "em"};
+  padding-left: ${edgeSpace*2 + "em"};
+  padding-right: ${edgeSpace*2 + "em"};
 `;
 
 export const GridHolder = styled.div`

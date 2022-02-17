@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import { primaryAccentColor, secondaryAccentColor } from 'styles/theme';
+import "@fontsource/montserrat"
+import { fontFamily } from 'styles/theme';
 
 const StyledForm = styled.form`
 display: flex;
 flex-direction: row;
+font-family: ${fontFamily};
   
 `;
 
@@ -12,20 +15,27 @@ const Button = styled.button`
     margin-left: 2em;
     background-color: ${primaryAccentColor};
     flex-grow: 1;
-    border-radius: 0.12em;
-    border-color: white;
+    /* border-radius: 0.12em;
+    border-color: white; */
     border-width: 1px;
     color: white;
     border-style: solid;
     transition:  0.3s background-color ease-in-out;
+    border-width: 0;
+    border-radius: 4px;
+    font-family: "montserrat";
+    letter-spacing: 1px;
+    text-transform: uppercase;
 
     :hover {
-        background-color: ${secondaryAccentColor};
+        background-color: white;
+        color: ${secondaryAccentColor};
     }
   
 `;
 
 const Field = styled.div`
+
   flex-grow: 2;
   /* width: 100%; */
   height: 56px;
@@ -62,6 +72,7 @@ const Field = styled.div`
     color: #282828;
     outline: none;
     box-shadow: 0px 4px 20px 0px transparent;
+    font-family: "montserrat";
     transition: 0.3s background-color ease-in-out, 0.3s box-shadow ease-in-out,
       0.1s padding ease-in-out;
   }
