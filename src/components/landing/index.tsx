@@ -1,13 +1,20 @@
+import { faHandMiddleFinger } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'gatsby';
 import useMousePosition from 'hooks/mouse-position';
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes, css} from 'styled-components';
 import { devices } from 'styles/responsiveSizes';
 import { SectionSeperator } from 'styles/sharedStyles';
 import { GridHolder } from 'styles/sharedStyles';
 import {secondaryAccentColor } from 'styles/theme';
+import { slideUp, lineOut, slideDown } from './animations';
 import './cursor.css'
 
+// interfaces 
+interface RoundMouseProps{
+    x: number | null;
+    y: number | null;
+}
 
 // start styled components 
 
@@ -15,14 +22,7 @@ const Section = styled.section`
   margin: 0 14%;
   position: absolute;
   top: 0;
-
-  
 `;
-
-interface RoundMouseProps{
-    x: number | null;
-    y: number | null;
-}
 
 const BackgroundImage = styled.div`
     background-color: black;
@@ -32,9 +32,16 @@ const BackgroundImage = styled.div`
         height: 70vh;
         
     }
-
-    
 `;
+
+const StyledLink = styled(Link)`
+    color: white;
+    text-decoration: none;
+    transition: all 0.5s;
+    :hover {
+            color: ${secondaryAccentColor};
+        }
+    `;
 
 
 const HidingLayer = styled.div<RoundMouseProps>`
@@ -55,14 +62,9 @@ const HidingLayer = styled.div<RoundMouseProps>`
         display: none;
         
     }
-
-
     :hover{
-        clip-path:circle(50px at ${props => props.x}px ${props => props.y}px);
-
+        clip-path:circle(50px at ${props => props.x}px ${props => props.y}px); /* not working :( */
     }
-
-   
 `;
 
 
@@ -71,12 +73,13 @@ const Grid = styled.div<RoundMouseProps>`
     z-index: 10;
     display: grid;
     grid-gap: 0.5em 0.5em;
+
     
     h1 {
         color: ${secondaryAccentColor};
         font-size: clamp(0.5em, 6.5em, 7em);
+        animation: ${slideUp} 0.9s cubic-bezier(0.65, 0, 0.35, 1) both
     }
-
     @media ${devices.mobileL}{
         grid-auto-flow: column;
         h1 {
@@ -86,7 +89,6 @@ const Grid = styled.div<RoundMouseProps>`
             font-size: 1.25em;
         } 
     }
-    /* margin: ; */
     grid-template-columns: [col1-line] 1fr
                                 [col2-line] 0.5fr
                                 [col3-line] 0.5fr
@@ -100,11 +102,11 @@ const Grid = styled.div<RoundMouseProps>`
                             [row5-start];
 
     @media ${devices.mobileL}{
-        display: flex;
-        flex-direction: column;
-        div {
-            width: 100%;
-        }
+            display: flex;
+            flex-direction: column;
+            div {
+                width: 100%;
+            }
         }
     div:nth-child(1) {
         /* Stanford */
@@ -113,33 +115,46 @@ const Grid = styled.div<RoundMouseProps>`
         grid-row: row1-start / span 1;
         align-self: center;  /* column justification */
         justify-self: center; /* row justification */
+        overflow: hidden;
         h1 {
             margin-top: -0.25em;
+            animation-delay: 2 * 0.025s;
         }
         @media ${devices.mobileL}{
             grid-area: auto;
             align-self: flex-end;
         }
+
     }
     div:nth-child(2) {
         /*Africa Business */
         grid-column: span 3 / col4-line;
         grid-row: row2-start / span 2;
-        font-style: italic;
         align-self: center;
         justify-self: end;
-       @media ${devices.mobileL}{
+        overflow: hidden;
+        @media ${devices.mobileL}{
             grid-area: auto;
         }
+        h1 {
+            animation-delay: calc(2 * 0.05s);
+            font-style: italic;
+        }
+        
     }
     div:nth-child(3) {
         /*Forum */
         grid-column: col3-line / span 2;
         grid-row: row4-start / span 1;
         justify-self: center; 
+        overflow: hidden;
         @media ${devices.mobileL}{
             grid-area: auto;
         }
+        h1 {
+            animation-delay: calc(3 * 0.05s);
+        }
+        
     }
     div:nth-child(4) {
         /* Af Inn. Shaping Global Future */
@@ -148,35 +163,39 @@ const Grid = styled.div<RoundMouseProps>`
         grid-row: row2-start / span 2;
         justify-self: start; 
         align-self: center;
+        div {
+            overflow: hidden;
+                div {
+                /* overline */
+                position: relative;
+                height: 1px;
+                width: 100%;
+                background-color: white;
+                animation: ${lineOut} 0.9s cubic-bezier(0.65, 0, 0.35, 1) both;
+                animation-delay: calc(4 * 0.05s);
+            }
+        }
         h2 {
             text-transform: uppercase;
             margin: 3px;
         }
-        span {
+        /* span {
             font-style: italic;
-        }
+        } */
         @media ${devices.mobileL}{
             grid-area: auto;
             padding-left: 0;
         }
+        h2, p {
+            animation: ${slideDown} 0.9s cubic-bezier(0.65, 0, 0.35, 1) both;
+            animation-delay: calc(5 * 0.05s);
+        }
     }
-  
 `;
 
-const StyledLink = styled(Link)`
- color: white;
- text-decoration: none;
- transition: all 0.5s;
-  :hover {
-        color: ${secondaryAccentColor};
-    }
-
-`;
-
-
-
-
-
+const OverFlowHiddenDiv = styled.div`
+        overflow: hidden;
+    `;
 
 
 // end of styled components 
@@ -193,7 +212,6 @@ const LandingIndex:React.FC<LandingIndexProps> = ({}) => {
 
     return (
         <>
-          {/* <RoundMouse x={x} y={y}></RoundMouse> */}
         <BackgroundImage>
             <HidingLayer x={x} y={y}></HidingLayer>
         </BackgroundImage> 
@@ -217,9 +235,14 @@ const LandingIndex:React.FC<LandingIndexProps> = ({}) => {
                         </div>
                         
                         <div>
-                            <h2>African Innovation <br/> <span>Shaping the Global Future</span></h2>
-                            <p>April 16, 2022</p>
-                            <StyledLink  to="/attend">Join Us Online + In-Person</StyledLink>
+                            <div>
+                                <div></div>
+                            </div>
+                            <OverFlowHiddenDiv>
+                                <h2>African Innovation <br/> <span>Shaping the Global Future</span></h2>
+                                <p>April 16, 2022</p>
+                                <StyledLink  to="/attend">Join Us Online + In-Person</StyledLink>
+                            </OverFlowHiddenDiv>
                         </div>
                     </Grid>
                     </GridHolder>
