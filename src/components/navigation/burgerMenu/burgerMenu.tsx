@@ -21,6 +21,8 @@ const Wrapper = styled.div`
   @media ${devices.mobileL} {
     width: 100%;
   }
+  transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-100%)'};
+
 `;
 
 const NavLink = styled(Link)`
@@ -40,12 +42,12 @@ const NavLink = styled(Link)`
 `;
 
 interface BurgerMenuProps {
-    // : string;
+    open: boolean
 }
 
-const BurgerMenu: React.FC<BurgerMenuProps> = ({  }) => {
+const BurgerMenu: React.FC<BurgerMenuProps> = ({ open }) => {
     return (
-        <Wrapper>
+        <Wrapper  open={open}>
                <NavLink to="/press">Press + Videos</NavLink>
                 <NavLink to="/pitch">Pitch Competition</NavLink>
                 <NavLink to="/speakers">Speakers + Panels</NavLink>

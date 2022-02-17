@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { primaryAccentColor } from 'styles/theme';
+import { primaryAccentColor, secondaryAccentColor } from 'styles/theme';
 
 const Burger = styled.button`
-  position: absolute;
+  margin-right: 1em;
+  /* position: absolute;
   top: 5%;
-  left: 2rem;
+  left: 2rem; */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -23,23 +24,37 @@ const Burger = styled.button`
   
   div {
     width: 2rem;
-    height: 0.25rem;
-    background: ${primaryAccentColor};
-    border-radius: 10px;
+    height: 0.15rem;
+    background:   ${({ open }) => open ? `${secondaryAccentColor}` : `${primaryAccentColor}`};
+    border-radius: 1px;
     transition: all 0.3s linear;
     position: relative;
     transform-origin: 1px;
+
+    :nth-child(1) {
+      transform: ${({ open }) => open ? 'rotate(45deg)' : 'rotate(0)'};
+    }
+
+    :nth-child(2) {
+      opacity: ${({ open }) => open ? '0' : '1'};
+      transform: ${({ open }) => open ? 'translateX(20px)' : 'translateX(0)'};
+    }
+
+    :nth-child(3) {
+      transform: ${({ open }) => open ? 'rotate(-45deg)' : 'rotate(0)'};
+    }
   }
 `;
 
 
 interface BurgerMenuIconProps {
-    // : string;
+   open: boolean | undefined
+   setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const BurgerMenuIcon: React.FC<BurgerMenuIconProps> = ({  }) => {
+const BurgerMenuIcon: React.FC<BurgerMenuIconProps> = ({ open, setOpen }) => {
     return (
-        <Burger>
+        <Burger open={open} onClick={() => setOpen(!open)}>
         <div />
         <div />
         <div />

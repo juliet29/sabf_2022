@@ -1,5 +1,5 @@
 import { Link } from 'gatsby';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { primaryAccentColor} from 'styles/theme';
 import { StaticImage } from "gatsby-plugin-image"
@@ -58,10 +58,10 @@ export const NavLink = styled(Link)`
 const NavBar: React.FC<NavBarProps> = ({  }) => {
     const {width } = useWindowSize()  
     const mobileLBreakpoint = 425
+    const [open, setOpen] = useState(false);
     return (
         <NavBarNav>
             <NavBarDiv>
-            {/* <div> */}
             <NavLink to="/">
                 <StaticImage src="../../assets/sabfLogo.png" 
                             alt="SABF" 
@@ -78,8 +78,8 @@ const NavBar: React.FC<NavBarProps> = ({  }) => {
                     <NavLink to="/attend">Attend</NavLink>
                 </NavMenuDiv> :
                 <>
-                    <BurgerMenu></BurgerMenu>
-                    <BurgerMenuIcon></BurgerMenuIcon>
+                    <BurgerMenu open={open} setOpen={setOpen}></BurgerMenu>
+                    <BurgerMenuIcon open={open} setOpen={setOpen}></BurgerMenuIcon>
                 </>
             }
        
