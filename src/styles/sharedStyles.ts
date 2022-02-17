@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link } from "gatsby";
 import { devices } from "./responsiveSizes";
+import { primaryAccentColor } from "./theme";
 
 // export const VerticalFlexDiv = styled.div`
 //   display: flex;
@@ -22,9 +23,21 @@ export const GridHolder = styled.div`
     justify-content: center;
 `;
 
-export const StyledLink = styled(Link)`
-  color: lightblue;
-  padding-bottom: 1em ;
-  display: block;
+export const LandingStyledLink = styled(Link)`
+    color: white;
+    text-decoration: none;
+    transition: all 0.5s;
+    :hover {
+            color: ${primaryAccentColor};
+        }
+    `;
+
+export const StyledLink = styled(LandingStyledLink)`
+display: block;
+padding-bottom: 10px;
+color: ${primaryAccentColor};
+:hover {
+    color: white;
+}
 
 `;

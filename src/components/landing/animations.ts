@@ -42,3 +42,14 @@ export const spin = keyframes`
     } 
 `
 
+export const rainbow = keyframes`
+    0% {
+        background-size: 650%;
+    }
+    40% {
+        background-size: 650%;
+    }
+    100% {
+        background-size: 100%;
+    }`
+

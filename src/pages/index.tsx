@@ -44,7 +44,7 @@ const IndexPage: React.FC<IndexPageProps> = ({data}) => {
             
           <NavBar></NavBar>
           <Body>
-          <LandingIndex ></LandingIndex>
+          <LandingIndex  data={data}></LandingIndex>
           <AboutIndex data={data}></AboutIndex>
           </Body>
           <Footer></Footer>

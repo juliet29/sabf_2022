@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import { devices } from "styles/responsiveSizes";
 import { primaryAccentColor, secondaryAccentColor } from "styles/theme";
-import { slideUp, lineOut, slideDown } from "./animations";
+import { slideUp, lineOut, slideDown, rainbow } from "./animations";
+import "@fontsource/pt-serif/400-italic.css"
+import "@fontsource/eb-garamond/400-italic.css"
 
 export const Grid = styled.div`
+
 width: 100%;
 z-index: 10;
 display: grid;
@@ -53,6 +56,16 @@ div:nth-child(1) {
     h1 {
         margin-top: -0.25em;
         animation-delay: 2 * 0.025s;
+        transition:  0.4s all ease-in-out;
+        background-size: 100%;
+        background-repeat: repeat;
+        :hover {
+            background: linear-gradient(180deg, rgba(36,71,127,1) 0%, rgba(37,88,254,1) 51%, rgba(54,101,255,1) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; 
+            /* animation: ${rainbow} 0.5s ease-in forwards; */
+        }
     }
     @media ${devices.mobileL}{
         grid-area: auto;
@@ -74,6 +87,7 @@ div:nth-child(2) {
     }
     h1 {
         animation-delay: calc(2 * 0.05s);
+        font-family: "eb-garamond";
         font-style: italic;
     }
     
@@ -106,8 +120,8 @@ div:nth-child(4) {
             position: relative;
             height: 1px;
             width: 100%;
-            background-color: white;
-            animation: ${lineOut} 0.9s cubic-bezier(0.65, 0, 0.35, 1) both;
+            background-color: ${primaryAccentColor};
+            animation: ${lineOut} 0.15s cubic-bezier(0.65, 0, 0.35, 1) both;
             animation-delay: calc(4 * 0.05s);
         }
     }

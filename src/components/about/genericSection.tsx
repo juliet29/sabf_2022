@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {GridHolder } from 'styles/sharedStyles';
+import {GridHolder, StyledLink } from 'styles/sharedStyles';
 import {useContent} from 'hooks/use-content'
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
@@ -88,6 +88,7 @@ const Grid = styled.div`
     ${TextBlock}:nth-child(2){
         grid-column: col3-line / span 2;
         grid-row: row1-start / span 3;
+        margin-bottom: 0.5em;
         @media ${devices.mobileL} {
             grid-column: col1-line / -1;
             grid-row: 3 / span 3;

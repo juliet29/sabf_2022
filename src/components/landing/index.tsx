@@ -3,7 +3,7 @@ import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
 import useMousePosition from 'hooks/mouse-position';
 import React from 'react';
 import styled from 'styled-components';
-import { SectionSeperator } from 'styles/sharedStyles';
+import { LandingStyledLink, SectionSeperator, StyledLink } from 'styles/sharedStyles';
 import { GridHolder } from 'styles/sharedStyles';
 import {primaryAccentColor, secondaryAccentColor } from 'styles/theme';
 import { IndexPageImageQueryQuery } from '../../../graphql-types';
@@ -28,17 +28,6 @@ const Section = styled.section`
     margin-bottom: 5em;
 `;
 
-const StyledLink = styled(Link)`
-    color: white;
-    text-decoration: none;
-    transition: all 0.5s;
-    :hover {
-            color: ${primaryAccentColor};
-        }
-    `;
-const OverFlowHiddenDiv = styled.div`
-    overflow: hidden;
-`;
 
 const SpinThing = styled.div`
         /* position: absolute; */
@@ -62,7 +51,10 @@ const SpinHolder = styled.div`
     height: min-content;
     width: 100%;
     justify-content: space-between;
+`;
 
+const OverFlowHiddenDiv = styled.div`
+    overflow: hidden;
   
 `;
 
@@ -121,7 +113,7 @@ const LandingIndex:React.FC<LandingIndexProps> = ({data}) => {
                             <OverFlowHiddenDiv>
                                 <h2>African Innovation <br/> <span>Shaping the Global Future</span></h2>
                                 <p>April 16, 2022</p>
-                                <StyledLink  to="/attend">Join Us Online + In-Person</StyledLink>
+                                <LandingStyledLink  to="/attend">Join Us Online + In-Person</LandingStyledLink>
                             </OverFlowHiddenDiv>
                         </div>
                     </Grid>
