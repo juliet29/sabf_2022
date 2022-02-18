@@ -14,6 +14,9 @@ module.exports = [{
       plugin: require('../node_modules/gatsby-plugin-nprogress/gatsby-browser.js'),
       options: {"plugins":[],"color":"#00A0EA","showSpinner":true},
     },{
+      plugin: require('../node_modules/gatsby-plugin-manifest/gatsby-browser.js'),
+      options: {"plugins":[],"icon":"src/assets/sabfLogo.png","legacy":true,"theme_color_in_head":true,"cache_busting_mode":"query","crossOrigin":"anonymous","include_favicon":true,"cacheDigest":"388d464dd89249d1a135b8e69d97a7ec"},
+    },{
       plugin: require('../gatsby-browser.js'),
       options: {"plugins":[]},
     }]

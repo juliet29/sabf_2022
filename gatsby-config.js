@@ -12,7 +12,8 @@ module.exports = {
       options: {
         name: `markdown`,
         path: `${__dirname}/markdown`,
-      }
+        
+      }, 
     },
     {
       resolve: `gatsby-source-filesystem`,
@@ -38,6 +39,12 @@ module.exports = {
       options: {
         color: `#00A0EA`,
         showSpinner: true,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        icon: 'src/assets/sabfLogo.png',
       },
     },
     

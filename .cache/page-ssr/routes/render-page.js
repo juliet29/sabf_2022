@@ -6496,7 +6496,7 @@ __webpack_require__.r(__webpack_exports__);
 const sizes = {
   mobileS: '320px',
   mobileM: '375px',
-  mobileL: '425px',
+  mobileL: '768px',
   tablet: '768px',
   laptop: '1024px',
   laptopL: '1440px',
@@ -6685,6 +6685,19 @@ var plugins = [{
   plugin: __webpack_require__(/*! ./node_modules/gatsby-plugin-fontawesome-css/gatsby-ssr */ "./node_modules/gatsby-plugin-fontawesome-css/gatsby-ssr.js"),
   options: {
     "plugins": []
+  }
+}, {
+  name: 'gatsby-plugin-manifest',
+  plugin: __webpack_require__(/*! ./node_modules/gatsby-plugin-manifest/gatsby-ssr */ "./node_modules/gatsby-plugin-manifest/gatsby-ssr.js"),
+  options: {
+    "plugins": [],
+    "icon": "src/assets/sabfLogo.png",
+    "legacy": true,
+    "theme_color_in_head": true,
+    "cache_busting_mode": "query",
+    "crossOrigin": "anonymous",
+    "include_favicon": true,
+    "cacheDigest": "388d464dd89249d1a135b8e69d97a7ec"
   }
 }];
 /* global plugins */
@@ -8322,6 +8335,278 @@ exports.onRenderBody = onRenderBody;
 
 /***/ }),
 
+/***/ "./node_modules/gatsby-plugin-manifest/common.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/gatsby-plugin-manifest/common.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+var _path = _interopRequireDefault(__webpack_require__(/*! path */ "path"));
+
+exports.favicons = [{
+  src: `favicon-32x32.png`,
+  sizes: `32x32`,
+  type: `image/png`
+}]; // default icons for generating icons
+
+exports.defaultIcons = [{
+  src: `icons/icon-48x48.png`,
+  sizes: `48x48`,
+  type: `image/png`
+}, {
+  src: `icons/icon-72x72.png`,
+  sizes: `72x72`,
+  type: `image/png`
+}, {
+  src: `icons/icon-96x96.png`,
+  sizes: `96x96`,
+  type: `image/png`
+}, {
+  src: `icons/icon-144x144.png`,
+  sizes: `144x144`,
+  type: `image/png`
+}, {
+  src: `icons/icon-192x192.png`,
+  sizes: `192x192`,
+  type: `image/png`
+}, {
+  src: `icons/icon-256x256.png`,
+  sizes: `256x256`,
+  type: `image/png`
+}, {
+  src: `icons/icon-384x384.png`,
+  sizes: `384x384`,
+  type: `image/png`
+}, {
+  src: `icons/icon-512x512.png`,
+  sizes: `512x512`,
+  type: `image/png`
+}];
+/**
+ * @param {string} path The generic path to an icon
+ * @param {string} digest The digest of the icon provided in the plugin's options.
+ */
+
+exports.addDigestToPath = function (path, digest, method) {
+  if (method === `name`) {
+    const parsedPath = _path.default.parse(path);
+
+    return `${parsedPath.dir}/${parsedPath.name}-${digest}${parsedPath.ext}`;
+  }
+
+  if (method === `query`) {
+    return `${path}?v=${digest}`;
+  }
+
+  return path;
+};
+
+/***/ }),
+
+/***/ "./node_modules/gatsby-plugin-manifest/gatsby-ssr.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/gatsby-plugin-manifest/gatsby-ssr.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+var React = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
+
+var _gatsby = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
+
+var _common = __webpack_require__(/*! ./common.js */ "./node_modules/gatsby-plugin-manifest/common.js");
+
+var _getManifestPathname = _interopRequireDefault(__webpack_require__(/*! ./get-manifest-pathname */ "./node_modules/gatsby-plugin-manifest/get-manifest-pathname.js"));
+
+function _getRequireWildcardCache(nodeInterop) {
+  if (typeof WeakMap !== "function") return null;
+  var cacheBabelInterop = new WeakMap();
+  var cacheNodeInterop = new WeakMap();
+  return (_getRequireWildcardCache = function (nodeInterop) {
+    return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
+  })(nodeInterop);
+}
+
+function _interopRequireWildcard(obj, nodeInterop) {
+  if (!nodeInterop && obj && obj.__esModule) {
+    return obj;
+  }
+
+  if (obj === null || typeof obj !== "object" && typeof obj !== "function") {
+    return {
+      default: obj
+    };
+  }
+
+  var cache = _getRequireWildcardCache(nodeInterop);
+
+  if (cache && cache.has(obj)) {
+    return cache.get(obj);
+  }
+
+  var newObj = {};
+  var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
+
+  for (var key in obj) {
+    if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) {
+      var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
+
+      if (desc && (desc.get || desc.set)) {
+        Object.defineProperty(newObj, key, desc);
+      } else {
+        newObj[key] = obj[key];
+      }
+    }
+  }
+
+  newObj.default = obj;
+
+  if (cache) {
+    cache.set(obj, newObj);
+  }
+
+  return newObj;
+} // TODO: remove for v3
+
+
+const withPrefix = _gatsby.withAssetPrefix || _gatsby.withPrefix;
+
+exports.onRenderBody = ({
+  setHeadComponents,
+  pathname = `/`
+}, {
+  localize,
+  legacy,
+  cache_busting_mode: cacheBusting,
+  cacheDigest,
+  icon,
+  icons: pluginIcons,
+  include_favicon: insertFaviconLinkTag,
+  theme_color_in_head: insertMetaTag,
+  theme_color: themeColor,
+  crossOrigin = `anonymous`
+}) => {
+  // We use this to build a final array to pass as the argument to setHeadComponents at the end of onRenderBody.
+  const headComponents = [];
+  const srcIconExists = !!icon;
+  const icons = pluginIcons || _common.defaultIcons;
+  const manifestFileName = (0, _getManifestPathname.default)(pathname, localize); // If icons were generated, also add a favicon link.
+
+  if (srcIconExists) {
+    if (insertFaviconLinkTag) {
+      _common.favicons.forEach(favicon => {
+        headComponents.push( /*#__PURE__*/React.createElement("link", {
+          key: `gatsby-plugin-manifest-icon-link-png`,
+          rel: "icon",
+          href: withPrefix((0, _common.addDigestToPath)(favicon.src, cacheDigest, cacheBusting)),
+          type: "image/png"
+        }));
+      });
+
+      if (icon !== null && icon !== void 0 && icon.endsWith(`.svg`)) {
+        headComponents.push( /*#__PURE__*/React.createElement("link", {
+          key: `gatsby-plugin-manifest-icon-link-svg`,
+          rel: "icon",
+          href: withPrefix((0, _common.addDigestToPath)(`favicon.svg`, cacheDigest, cacheBusting)),
+          type: "image/svg+xml"
+        }));
+      }
+    }
+  } // Add manifest link tag.
+
+
+  headComponents.push( /*#__PURE__*/React.createElement("link", {
+    key: `gatsby-plugin-manifest-link`,
+    rel: "manifest",
+    href: (0, _gatsby.withPrefix)(`/${manifestFileName}`),
+    crossOrigin: crossOrigin
+  })); // The user has an option to opt out of the theme_color meta tag being inserted into the head.
+
+  if (themeColor && insertMetaTag) {
+    headComponents.push( /*#__PURE__*/React.createElement("meta", {
+      key: `gatsby-plugin-manifest-meta`,
+      name: "theme-color",
+      content: themeColor
+    }));
+  }
+
+  if (legacy) {
+    icons.forEach(icon => {
+      headComponents.push( /*#__PURE__*/React.createElement("link", {
+        key: `gatsby-plugin-manifest-apple-touch-icon-${icon.sizes}`,
+        rel: "apple-touch-icon",
+        sizes: icon.sizes,
+        href: withPrefix((0, _common.addDigestToPath)(icon.src, cacheDigest, srcIconExists ? cacheBusting : `none`))
+      }));
+    });
+  }
+
+  setHeadComponents(headComponents);
+  return true;
+};
+
+/***/ }),
+
+/***/ "./node_modules/gatsby-plugin-manifest/get-manifest-pathname.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/gatsby-plugin-manifest/get-manifest-pathname.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports["default"] = void 0;
+
+var _gatsby = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
+/**
+ * Get a manifest filename depending on localized pathname
+ *
+ * @param {string} pathname
+ * @param {Array<{start_url: string, lang: string}>} localizedManifests
+ * @param {boolean} shouldPrependPathPrefix
+ * @return string
+ */
+
+
+var _default = (pathname, localizedManifests, shouldPrependPathPrefix = false) => {
+  const defaultFilename = `manifest.webmanifest`;
+
+  if (!Array.isArray(localizedManifests)) {
+    return defaultFilename;
+  }
+
+  const localizedManifest = localizedManifests.find(app => {
+    let startUrl = app.start_url;
+
+    if (shouldPrependPathPrefix) {
+      startUrl = (0, _gatsby.withPrefix)(startUrl);
+    }
+
+    return pathname.startsWith(startUrl);
+  });
+
+  if (!localizedManifest) {
+    return defaultFilename;
+  }
+
+  return `manifest_${localizedManifest.lang}.webmanifest`;
+};
+
+exports["default"] = _default;
+
+/***/ }),
+
 /***/ "./node_modules/gatsby-plugin-styled-components/gatsby-ssr.js":
 /*!********************************************************************!*\
   !*** ./node_modules/gatsby-plugin-styled-components/gatsby-ssr.js ***!
@@ -8363,31 +8648,6 @@ exports.onRenderBody = function (_ref2) {
 
 /***/ }),
 
-/***/ "./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/231e619ad3a7ae4b1ea1389f02522fed 3.js":
-/*!**********************************************************************************************!*\
-  !*** ./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/231e619ad3a7ae4b1ea1389f02522fed 3.js ***!
-  \**********************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var src_styles_sharedStyles_ts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/styles/sharedStyles.ts */ "./src/styles/sharedStyles.ts");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  StyledLink: src_styles_sharedStyles_ts__WEBPACK_IMPORTED_MODULE_0__.StyledLink,
-  StyledA: src_styles_sharedStyles_ts__WEBPACK_IMPORTED_MODULE_0__.StyledA,
-  React: react__WEBPACK_IMPORTED_MODULE_1__
-});
-
-/***/ }),
-
 /***/ "./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/231e619ad3a7ae4b1ea1389f02522fed.js":
 /*!********************************************************************************************!*\
   !*** ./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/231e619ad3a7ae4b1ea1389f02522fed.js ***!
@@ -8416,52 +8676,6 @@ __webpack_require__.r(__webpack_exports__);
 /***/ "./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/be3d8519f3b6486caab27d895b5ec55e.js":
 /*!********************************************************************************************!*\
   !*** ./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/be3d8519f3b6486caab27d895b5ec55e.js ***!
-  \********************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var src_styles_sharedStyles_ts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/styles/sharedStyles.ts */ "./src/styles/sharedStyles.ts");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  StyledLink: src_styles_sharedStyles_ts__WEBPACK_IMPORTED_MODULE_0__.StyledLink,
-  React: react__WEBPACK_IMPORTED_MODULE_1__
-});
-
-/***/ }),
-
-/***/ "./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/e8f497cbab40f20c462ec22b81f35f6d 2.js":
-/*!**********************************************************************************************!*\
-  !*** ./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/e8f497cbab40f20c462ec22b81f35f6d 2.js ***!
-  \**********************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var src_styles_sharedStyles_ts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/styles/sharedStyles.ts */ "./src/styles/sharedStyles.ts");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  StyledLink: src_styles_sharedStyles_ts__WEBPACK_IMPORTED_MODULE_0__.StyledLink,
-  React: react__WEBPACK_IMPORTED_MODULE_1__
-});
-
-/***/ }),
-
-/***/ "./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/e8f497cbab40f20c462ec22b81f35f6d.js":
-/*!********************************************************************************************!*\
-  !*** ./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/e8f497cbab40f20c462ec22b81f35f6d.js ***!
   \********************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -8682,17 +8896,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-var scope_0 = (__webpack_require__(/*! ./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/231e619ad3a7ae4b1ea1389f02522fed 3.js */ "./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/231e619ad3a7ae4b1ea1389f02522fed 3.js")["default"]);
+var scope_0 = (__webpack_require__(/*! ./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/231e619ad3a7ae4b1ea1389f02522fed.js */ "./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/231e619ad3a7ae4b1ea1389f02522fed.js")["default"]);
 
-var scope_1 = (__webpack_require__(/*! ./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/231e619ad3a7ae4b1ea1389f02522fed.js */ "./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/231e619ad3a7ae4b1ea1389f02522fed.js")["default"]);
+var scope_1 = (__webpack_require__(/*! ./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/be3d8519f3b6486caab27d895b5ec55e.js */ "./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/be3d8519f3b6486caab27d895b5ec55e.js")["default"]);
 
-var scope_2 = (__webpack_require__(/*! ./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/be3d8519f3b6486caab27d895b5ec55e.js */ "./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/be3d8519f3b6486caab27d895b5ec55e.js")["default"]);
-
-var scope_3 = (__webpack_require__(/*! ./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/e8f497cbab40f20c462ec22b81f35f6d 2.js */ "./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/e8f497cbab40f20c462ec22b81f35f6d 2.js")["default"]);
-
-var scope_4 = (__webpack_require__(/*! ./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/e8f497cbab40f20c462ec22b81f35f6d.js */ "./.cache/caches/gatsby-plugin-mdx/mdx-scopes-dir/e8f497cbab40f20c462ec22b81f35f6d.js")["default"]);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Object.assign({}, scope_0, scope_1, scope_2, scope_3, scope_4));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Object.assign({}, scope_0, scope_1));
 
 /***/ }),
 
@@ -14234,6 +14442,17 @@ module.exports = require("crypto");
 
 /***/ }),
 
+/***/ "path":
+/*!***********************!*\
+  !*** external "path" ***!
+  \***********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("path");
+
+/***/ }),
+
 /***/ "stream":
 /*!*************************!*\
   !*** external "stream" ***!
@@ -14386,11 +14605,6 @@ module.exports = [];
 /******/ 			if (!module.children) module.children = [];
 /******/ 			return module;
 /******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/publicPath */
-/******/ 	(() => {
-/******/ 		__webpack_require__.p = "/";
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/require chunk loading */

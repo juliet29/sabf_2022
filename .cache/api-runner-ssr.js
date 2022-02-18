@@ -14,6 +14,10 @@ var plugins = [{
       name: 'gatsby-plugin-fontawesome-css',
       plugin: require('/Users/julietnwagwuume-ezeoke/Desktop/sabf_2022/node_modules/gatsby-plugin-fontawesome-css/gatsby-ssr'),
       options: {"plugins":[]},
+    },{
+      name: 'gatsby-plugin-manifest',
+      plugin: require('/Users/julietnwagwuume-ezeoke/Desktop/sabf_2022/node_modules/gatsby-plugin-manifest/gatsby-ssr'),
+      options: {"plugins":[],"icon":"src/assets/sabfLogo.png","legacy":true,"theme_color_in_head":true,"cache_busting_mode":"query","crossOrigin":"anonymous","include_favicon":true,"cacheDigest":"388d464dd89249d1a135b8e69d97a7ec"},
     }]
 /* global plugins */
 // During bootstrap, we write requires at top of this file which looks like:
