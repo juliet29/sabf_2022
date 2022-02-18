@@ -22,9 +22,9 @@ const NavBarNav = styled.nav`
   position: sticky;
   top: 0;
   background-color: black;
-  @media ${devices.mobileL} {
+  /* @media ${devices.mobileL} {
             background-color: transparent;
-     }
+     } */
 `;
 
 const NavBarDiv = styled.div`
