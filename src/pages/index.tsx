@@ -18,7 +18,7 @@ import { devices } from 'styles/responsiveSizes';
 const HTML = styled.html`
 @media ${devices.mobileL} {
   overflow-x: hidden;
-  height: 130vh;
+  height: 150vh;
 }
 `;
 

@@ -23,9 +23,10 @@ const H1 = styled.h1`
     margin: 0 10%;
     display: flex;
     flex-direction: column;
-    font-size: 5em;
+    font-size: 6em;
     @media ${devices.mobileL} {
             font-size: 3em;
+            margin: 0 auto;
      }
     text-align: center;
     position: absolute;
@@ -114,7 +115,8 @@ const ScrollingSection: React.FC<ScrollingSectionProps> = ({ }) => {
         <SectionWrap>
             
             <H1 >
-               Industries are <span>transforming rapidly</span> across the African continent. <span>Innovation is key</span> to unlocking their potential across the global economy.
+               Industries are <span>transforming rapidly</span> across the African continent. 
+               <span>Innovation is key</span> to unlocking their <span>potential</span>  across the global economy.
             </H1>
                 
             <ImageGrid>
