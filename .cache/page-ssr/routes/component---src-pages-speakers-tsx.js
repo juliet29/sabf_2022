@@ -3764,11 +3764,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gatsby__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
 /* harmony import */ var styles_theme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styles/theme */ "./src/styles/theme.ts");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-/* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "./node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "./node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
 /* harmony import */ var styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! styles/responsiveSizes */ "./src/styles/responsiveSizes.ts");
+/* harmony import */ var hooks_window_size__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! hooks/window-size */ "./src/hooks/window-size.ts");
 
 
 
@@ -3776,28 +3777,29 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const StyledFooter = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].footer.withConfig({
+
+const StyledFooter = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].footer.withConfig({
   displayName: "footer__StyledFooter"
 })(["margin-top:20vh;padding:", ";padding-top:7em;padding-left:7em;@media ", "{padding-top:2em;padding-left:2em;padding-right:2em;}background-color:", ";display:flex;flex-direction:row;position:relative;bottom:0;width:100%;background:rgb(36,71,127);background:linear-gradient(180deg,rgba(36,71,127,1) 0%,rgba(37,88,254,1) 51%,rgba(54,101,255,1) 100%);"], styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace + "em", styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__.devices.mobileL, styles_theme__WEBPACK_IMPORTED_MODULE_2__.secondaryAccentColor);
-const LeftColumn = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div.withConfig({
+const LeftColumn = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div.withConfig({
   displayName: "footer__LeftColumn"
 })(["flex-grow:2;"]);
-const RightColumn = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div.withConfig({
+const RightColumn = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div.withConfig({
   displayName: "footer__RightColumn"
 })(["flex-grow:1;@media ", "{font-size:0.5em;}"], styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__.devices.mobileL);
-const FooterMenu = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div.withConfig({
+const FooterMenu = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div.withConfig({
   displayName: "footer__FooterMenu"
 })(["display:flex;flex-direction:column;height:100%;"]);
-const FooterMenuItem = (0,styled_components__WEBPACK_IMPORTED_MODULE_5__["default"])(gatsby__WEBPACK_IMPORTED_MODULE_0__.Link).withConfig({
+const FooterMenuItem = (0,styled_components__WEBPACK_IMPORTED_MODULE_6__["default"])(gatsby__WEBPACK_IMPORTED_MODULE_0__.Link).withConfig({
   displayName: "footer__FooterMenuItem"
 })(["color:white;text-decoration:none;flex-grow:1;transition:0.1s all ease-in-out;display:inline-block;width:content;h2:hover{display:inline-block;text-decoration:underline;color:", ";}"], styles_theme__WEBPACK_IMPORTED_MODULE_2__.primaryAccentColor);
-const SocialLinksMenu = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div.withConfig({
+const SocialLinksMenu = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div.withConfig({
   displayName: "footer__SocialLinksMenu"
 })(["display:flex;flex-direction:column;row-gap:2em;div{display:flex;flex-direction:row;column-gap:2em;}"]);
-const SocialLinksItem = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].a.withConfig({
+const SocialLinksItem = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].a.withConfig({
   displayName: "footer__SocialLinksItem"
 })(["color:white;transition:0.3s all ease-in-out;:hover{color:", ";}"], styles_theme__WEBPACK_IMPORTED_MODULE_2__.primaryAccentColor);
-const TextInfo = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div.withConfig({
+const TextInfo = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div.withConfig({
   displayName: "footer__TextInfo"
 })(["margin-top:4em;p{margin-bottom:1em;}"]);
 const instagramLink = "https://www.instagram.com/stanford_abc/?hl=en";
@@ -3807,6 +3809,9 @@ const linkedinLink = "https://www.linkedin.com/company/stanfordabf/";
 
 const Footer = ({}) => {
   // let width = window.innerWidth;
+  const {
+    width
+  } = (0,hooks_window_size__WEBPACK_IMPORTED_MODULE_5__.useWindowSize)();
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(StyledFooter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(LeftColumn, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(FooterMenu, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(FooterMenuItem, {
     to: "/"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h2", null, "01 About")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(FooterMenuItem, {
@@ -3818,24 +3823,24 @@ const Footer = ({}) => {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h2", null, "04 Sponsors")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(RightColumn, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(SocialLinksMenu, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(SocialLinksItem, {
     href: instagramLink
   }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-    icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__.faInstagramSquare,
+    icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faInstagramSquare,
     size: "3x"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(SocialLinksItem, {
     href: youTubeLink
   }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-    icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__.faYoutubeSquare,
+    icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faYoutubeSquare,
     size: "3x"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(SocialLinksItem, {
     href: linkedinLink
   }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-    icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__.faLinkedin,
+    icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faLinkedin,
     size: "3x"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(SocialLinksItem, {
     href: twitterLink
   }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-    icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__.faTwitterSquare,
+    icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faTwitterSquare,
     size: "3x"
-  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(TextInfo, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("p", null, "Please direct all inquiries to ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("br", null), " gsb_africabusinessforumleadership@stanford.edu."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("p", null, "Sign up to attend the event ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(gatsby__WEBPACK_IMPORTED_MODULE_0__.Link, {
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(TextInfo, null, width > styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__.mobileLBreakpoint ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("p", null, "Please direct all inquiries to ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("br", null), " gsb_africabusinessforumleadership@stanford.edu.") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("p", null, "Please direct all inquiries to ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("br", null), " gsb_africabusinessforum ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("br", null), " -leadership@stanford.edu."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("p", null, "Sign up to attend the event ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(gatsby__WEBPACK_IMPORTED_MODULE_0__.Link, {
     to: "/attend",
     style: {
       color: 'white'
@@ -3911,12 +3916,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gatsby__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
 /* harmony import */ var styles_theme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styles/theme */ "./src/styles/theme.ts");
-/* harmony import */ var gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! gatsby-plugin-image */ "./node_modules/gatsby-plugin-image/dist/gatsby-image.module.js");
+/* harmony import */ var gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! gatsby-plugin-image */ "./node_modules/gatsby-plugin-image/dist/gatsby-image.module.js");
 /* harmony import */ var hooks_window_size__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! hooks/window-size */ "./src/hooks/window-size.ts");
 /* harmony import */ var _burgerMenu_burgerMenu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./burgerMenu/burgerMenu */ "./src/components/navigation/burgerMenu/burgerMenu.tsx");
 /* harmony import */ var _burgerMenu_burgerMenuIcon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./burgerMenu/burgerMenuIcon */ "./src/components/navigation/burgerMenu/burgerMenuIcon.tsx");
+/* harmony import */ var styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! styles/responsiveSizes */ "./src/styles/responsiveSizes.ts");
+
 
 
 
@@ -3926,16 +3933,16 @@ __webpack_require__.r(__webpack_exports__);
 
  // import sabfLogo from "../../assets/sabfLogo.png"
 
-const NavBarNav = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].nav.withConfig({
+const NavBarNav = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].nav.withConfig({
   displayName: "navBar__NavBarNav"
-})(["z-index:10000000000;padding-top:1em;padding-bottom:2em;padding-left:1em;padding-right:1em;position:sticky;top:0;"]);
-const NavBarDiv = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div.withConfig({
+})(["z-index:10000000000;padding-top:1em;padding-bottom:1em;padding-left:1em;padding-right:1em;position:sticky;top:0;background-color:black;"]);
+const NavBarDiv = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].div.withConfig({
   displayName: "navBar__NavBarDiv"
 })(["display:flex;flex-direction:row;justify-content:space-between;align-items:center;"]);
-const NavMenuDiv = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div.withConfig({
+const NavMenuDiv = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].div.withConfig({
   displayName: "navBar__NavMenuDiv"
 })(["display:flex;flex-direction:row;justify-content:space-between;"]);
-const NavLink = (0,styled_components__WEBPACK_IMPORTED_MODULE_6__["default"])(gatsby__WEBPACK_IMPORTED_MODULE_0__.Link).withConfig({
+const NavLink = (0,styled_components__WEBPACK_IMPORTED_MODULE_7__["default"])(gatsby__WEBPACK_IMPORTED_MODULE_0__.Link).withConfig({
   displayName: "navBar__NavLink"
 })(["color:", ";margin-left:1em;margin-right:1em;text-decoration:none;text-transform:uppercase;transition:0.3s all ease-in-out;:hover{color:white;text-decoration:underline;}"], styles_theme__WEBPACK_IMPORTED_MODULE_2__.primaryAccentColor); // Check if window is defined (so if in the browser or in node.js).
 
@@ -3943,19 +3950,19 @@ const NavBar = ({}) => {
   const {
     width
   } = (0,hooks_window_size__WEBPACK_IMPORTED_MODULE_3__.useWindowSize)();
-  const mobileLBreakpoint = 425;
+  console.log(width);
   const {
     0: open,
     1: setOpen
   } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavBarNav, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavBarDiv, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavLink, {
     to: "/"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_7__.StaticImage, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_8__.StaticImage, {
     src: "../../assets/sabfLogo.png",
     alt: "SABF",
     width: 110,
     __imageData: __webpack_require__(/*! ./.cache/caches/gatsby-plugin-image/3479883416.json */ "./.cache/caches/gatsby-plugin-image/3479883416.json")
-  })), width > mobileLBreakpoint ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavMenuDiv, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavLink, {
+  })), width > styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_6__.mobileLBreakpoint ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavMenuDiv, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavLink, {
     to: "/press"
   }, "Press + Videos"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(NavLink, {
     to: "/pitch"

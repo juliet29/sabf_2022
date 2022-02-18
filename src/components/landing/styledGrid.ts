@@ -6,6 +6,7 @@ import "@fontsource/pt-serif/400-italic.css"
 import "@fontsource/eb-garamond/400-italic.css"
 
 export const Grid = styled.div`
+margin-top: 1em;
 height: max-content;
 width: 100%;
 z-index: 10;
@@ -46,7 +47,7 @@ grid-template-rows: [row1-start] 14vh
     }
 div:nth-child(1) {
     /* Stanford */
-    height: max-content;
+    height: fit-content;
     color: white;
     grid-column: col3-line / span 2;
     grid-row: row1-start / span 1;
@@ -54,17 +55,18 @@ div:nth-child(1) {
     justify-self: center; /* row justification */
     overflow: hidden;
     h1 {
-        margin-top: -0.3em;
+        margin-top: -0.2em;
         animation-delay: 2 * 0.025s;
         transition:  0.4s all ease-in-out;
         background-size: 100%;
         background-repeat: repeat;
+        /* line-height: 8vh; */
         :hover {
-            background: linear-gradient(180deg, rgba(36,71,127,1) 0%, rgba(37,88,254,1) 51%, rgba(54,101,255,1) 100%);
+            /* background: linear-gradient(180deg, rgba(36,71,127,1) 0%, rgba(37,88,254,1) 51%, rgba(54,101,255,1) 100%);
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent; 
-            /* animation: ${rainbow} 0.5s ease-in forwards; */
+            animation: ${rainbow} 0.5s ease-in forwards; */
         }
     }
     @media ${devices.mobileL}{
@@ -84,11 +86,18 @@ div:nth-child(2) {
     padding: 10px;
     @media ${devices.mobileL}{
         grid-area: auto;
+        width: 100%;
+        padding: 0;
     }
     h1 {
         animation-delay: calc(2 * 0.05s);
         font-family: "eb-garamond";
         font-style: italic;
+
+        @media ${devices.mobileL}{
+        font-family: inherit;
+        font-style: normal;
+    }
     }
     
 }
@@ -136,6 +145,12 @@ div:nth-child(4) {
     @media ${devices.mobileL}{
         grid-area: auto;
         padding-left: 0;
+        p {
+            margin-top: 1em;
+        }
+        p, a {
+            color: ${primaryAccentColor};
+        }
     }
     h2, p {
         animation: ${slideDown} 0.9s cubic-bezier(0.65, 0, 0.35, 1) both;

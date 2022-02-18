@@ -3,6 +3,7 @@ import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
 import useMousePosition from 'hooks/mouse-position';
 import React from 'react';
 import styled from 'styled-components';
+import { devices } from 'styles/responsiveSizes';
 import { LandingStyledLink, SectionSeperator, StyledLink } from 'styles/sharedStyles';
 import { GridHolder } from 'styles/sharedStyles';
 import {primaryAccentColor, secondaryAccentColor } from 'styles/theme';
@@ -27,6 +28,10 @@ const Section = styled.section`
     position: relative;
     /* overflow: hidden; */
     margin-bottom: 5em;
+    @media ${devices.mobileL}{ 
+        height: initial;
+        margin-bottom: 0;
+    }
 `;
 
 
@@ -52,6 +57,12 @@ const SpinHolder = styled.div`
     height: min-content;
     width: 100%;
     justify-content: space-between;
+    @media ${devices.mobileL}{
+        margin: 0;
+        margin-top: 1em;
+        width: 80%;
+    }
+    
 `;
 
 const OverFlowHiddenDiv = styled.div`

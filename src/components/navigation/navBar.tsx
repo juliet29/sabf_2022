@@ -6,6 +6,7 @@ import { StaticImage } from "gatsby-plugin-image"
 import { useWindowSize } from 'hooks/window-size';
 import BurgerMenu from './burgerMenu/burgerMenu';
 import BurgerMenuIcon from './burgerMenu/burgerMenuIcon';
+import { mobileLBreakpoint } from 'styles/responsiveSizes';
 // import sabfLogo from "../../assets/sabfLogo.png"
 
 interface NavBarProps {
@@ -15,11 +16,12 @@ interface NavBarProps {
 const NavBarNav = styled.nav`
   z-index: 10000000000;
   padding-top: 1em;
-  padding-bottom: 2em;
+  padding-bottom: 1em;
   padding-left: 1em;
   padding-right: 1em;
   position: sticky;
   top: 0;
+  background-color: black;
 `;
 
 const NavBarDiv = styled.div`
@@ -55,8 +57,8 @@ export const NavLink = styled(Link)`
 
 
 const NavBar: React.FC<NavBarProps> = ({  }) => {
-    const {width } = useWindowSize()  
-    const mobileLBreakpoint = 425
+    const { width } = useWindowSize()  
+    console.log(width)
     const [open, setOpen] = useState(false);
     return (
         <NavBarNav>

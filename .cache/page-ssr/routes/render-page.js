@@ -6490,7 +6490,8 @@ module.exports = Object.assign;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "devices": () => (/* binding */ devices)
+/* harmony export */   "devices": () => (/* binding */ devices),
+/* harmony export */   "mobileLBreakpoint": () => (/* binding */ mobileLBreakpoint)
 /* harmony export */ });
 const sizes = {
   mobileS: '320px',
@@ -6510,6 +6511,7 @@ const devices = {
   laptopL: `(max-width: ${sizes.laptopL})`,
   desktop: `(max-width: ${sizes.desktop})`
 };
+const mobileLBreakpoint = 500;
 
 /***/ }),
 

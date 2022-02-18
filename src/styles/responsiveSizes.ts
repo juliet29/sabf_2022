@@ -17,3 +17,5 @@ const sizes = {
     laptopL: `(max-width: ${sizes.laptopL})`,
     desktop: `(max-width: ${sizes.desktop})`,
   };
+
+ export  const mobileLBreakpoint = 500 

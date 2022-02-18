@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import {edgeSpace, primaryAccentColor, secondaryAccentColor } from 'styles/theme';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faInstagramSquare, faTwitterSquare, faLinkedin, faYoutubeSquare} from '@fortawesome/free-brands-svg-icons'
-import { devices } from 'styles/responsiveSizes';
-
+import { devices, mobileLBreakpoint } from 'styles/responsiveSizes';
+import { useWindowSize } from 'hooks/window-size';
 
 const StyledFooter = styled.footer`
   margin-top: 20vh;
@@ -116,6 +116,8 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({  }) => {
     // let width = window.innerWidth;
+    const { width } = useWindowSize()  
+   
     return (
         
        <StyledFooter>
@@ -139,11 +141,11 @@ const Footer: React.FC<FooterProps> = ({  }) => {
                    </div>
                </SocialLinksMenu>
                <TextInfo>
-               <p>Please direct all inquiries to <br/> gsb_africabusinessforumleadership@stanford.edu.</p> 
-                   {/* {
-                       width > 425 ? <p>Please direct all inquiries to <br/> gsb_africabusinessforumleadership@stanford.edu.</p> :
+               {/* <p>Please direct all inquiries to <br/> gsb_africabusinessforumleadership@stanford.edu.</p>  */}
+                   {
+                       width > mobileLBreakpoint ?  <p>Please direct all inquiries to <br/> gsb_africabusinessforumleadership@stanford.edu.</p> :
                        <p>Please direct all inquiries to <br/> gsb_africabusinessforum <br/> -leadership@stanford.edu.</p>
-                   } */}
+                   }
                    
                    <p>Sign up to attend the event <Link to="/attend" style={{color: 'white'}}>here</Link>.</p>
                </TextInfo>

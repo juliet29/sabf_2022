@@ -34,6 +34,7 @@ const PhotoPlaceholder = styled.div`
   height: 45vh;
   width: 30vw;
   `
+
 // const parallaxPerspective = 8
 // const parallaxScaleFactor = (zDistance: number) => {
 //     let scaleFactor = (parallaxPerspective - zDistance)/parallaxPerspective
@@ -47,6 +48,9 @@ const ImageGrid = styled.div`
     transform: translate3D(0px, 5px, 0px), scale(0.5); */
     display: grid;
     height: 140vh;
+    @media ${devices.mobileL} {
+  height: initial;
+}
     gap: 3em 6em;
     @media ${devices.mobileL} {
             font-size: 0em;

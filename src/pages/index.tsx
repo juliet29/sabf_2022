@@ -10,11 +10,17 @@ import Footer from 'components/navigation/footer';
 import { graphql } from 'gatsby';
 import {IndexPageImageQueryQuery } from '../../graphql-types'
 import { ParallaxProvider } from 'react-scroll-parallax';
+import { devices } from 'styles/responsiveSizes';
 
 
 // import { fluidImage } from 'hooks/fluid-image';
 
-
+const HTML = styled.html`
+@media ${devices.mobileL} {
+  overflow-x: hidden;
+  height: 100vh;
+}
+`;
 
 // styles ------------------
 const Body = styled.body`
@@ -38,9 +44,7 @@ const IndexPage: React.FC<IndexPageProps> = ({data}) => {
       <ThemeProvider theme={mainTheme}>
           <GlobalStyle/>
           <ParallaxProvider>
-          <html style={{
-            // overflowX: "hidden"
-          }}>
+          <HTML>
             
           <NavBar></NavBar>
           <Body>
@@ -48,7 +52,7 @@ const IndexPage: React.FC<IndexPageProps> = ({data}) => {
           <AboutIndex data={data}></AboutIndex>
           </Body>
           <Footer></Footer>
-          </html>
+          </HTML>
           </ParallaxProvider>
       </ThemeProvider>
   
