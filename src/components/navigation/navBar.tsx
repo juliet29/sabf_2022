@@ -22,9 +22,14 @@ const NavBarNav = styled.nav`
   position: sticky;
   top: 0;
   background-color: black;
-  /* @media ${devices.mobileL} {
-            background-color: transparent;
-     } */
+  @media ${devices.mobileL} {
+            /* background-color: transparent; */
+            width: 90vw;
+            padding-left: 0;
+            padding-right: 0;
+            /* margin: 0 auto; */
+
+     }
 `;
 
 const NavBarDiv = styled.div`

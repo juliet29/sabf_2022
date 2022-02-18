@@ -25,7 +25,7 @@ const H1 = styled.h1`
     flex-direction: column;
     font-size: 6em;
     @media ${devices.mobileL} {
-            font-size: 3em;
+            font-size: 2.5em;
             margin: 0 auto;
      }
     text-align: center;
@@ -42,6 +42,11 @@ const PhotoPlaceholder = styled.div`
   background-color: black;
   height: 45vh;
   width: 30vw;
+
+  div {
+    filter: hue-rotate(180deg);
+    opacity: 0.8;
+  }
   `
 
 // const parallaxPerspective = 8
