@@ -4059,34 +4059,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var hooks_use_content__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! hooks/use-content */ "./src/hooks/use-content.ts");
 /* harmony import */ var gatsby_plugin_mdx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! gatsby-plugin-mdx */ "./node_modules/gatsby-plugin-mdx/index.js");
 /* harmony import */ var gatsby_plugin_mdx__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(gatsby_plugin_mdx__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! gatsby-plugin-image */ "./node_modules/gatsby-plugin-image/dist/gatsby-image.module.js");
+/* harmony import */ var gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! gatsby-plugin-image */ "./node_modules/gatsby-plugin-image/dist/gatsby-image.module.js");
 /* harmony import */ var styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! styles/responsiveSizes */ "./src/styles/responsiveSizes.ts");
+/* harmony import */ var react_intersection_observer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-intersection-observer */ "./node_modules/react-intersection-observer/react-intersection-observer.m.js");
 
 
 
 
 
 
- // ******* start styled components 
 
+ // interfaces 
+
+// ******* start styled components 
 const SectionWrap = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div.withConfig({
   displayName: "genericSection__SectionWrap"
 })(["margin:0 10%;z-index:10;margin-bottom:10%;"]);
 const PhotoPlaceholder = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div.withConfig({
   displayName: "genericSection__PhotoPlaceholder"
-})(["@media ", "{margin:1em;}"], styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__.devices.mobileL);
+})(["transform:", ";@media ", "{margin:1em;}"], prop => prop.inView ? "rotate(30deg)" : "rotate(0)", styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__.devices.mobileL);
 const TextBlock = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div.withConfig({
   displayName: "genericSection__TextBlock"
 })(["display:flex;flex-direction:row;div:nth-child(1){margin-right:3em;@media ", "{margin-right:1em;}}div:nth-child(2){h2{margin-bottom:1em;}p{margin-bottom:1em;}}"], styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__.devices.mobileL);
 const Grid = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div.withConfig({
   displayName: "genericSection__Grid"
-})(["display:grid;height:140vh;gap:3em 6em;@media ", "{grid-auto-flow:column;gap:0;height:min-content;}grid-template-columns:[col1-line] 1fr [col2-line] 1fr [col3-line] 1fr [col4-line] 1fr [col5-line];grid-template-rows:[row1-start] 1fr  [row2-start] 1fr  [row3-start] 1fr [row4-start] 1fr [row5-start] 1fr [row6-start] 1fr [row7-start] 1fr;@media ", "{grid-template-rows:min-content auto;}", ":nth-child(1){grid-column:col1-line / span 2;grid-row:row1-start / span 4;@media ", "{grid-column:col1-line / -1;grid-row:1 / span 2;padding-top:2.5em;align-self:end;}}", ":nth-child(2){grid-column:col3-line / span 2;grid-row:row1-start / span 3;margin-bottom:0.5em;@media ", "{grid-column:col1-line / -1;grid-row:3 / span 3;}}", ":nth-child(3){grid-column:col3-line / span 2;grid-row:row4-start / span 4;position:relative;top:3em;@media ", "{display:none;}}"], styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__.devices.mobileL, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__.devices.mobileL, PhotoPlaceholder, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__.devices.mobileL, TextBlock, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__.devices.mobileL, PhotoPlaceholder, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__.devices.mobileL); // ******** end styled components {number, title, body}
+})(["display:grid;height:140vh;gap:3em 6em;@media ", "{grid-auto-flow:column;gap:0;height:min-content;}grid-template-columns:[col1-line] 1fr [col2-line] 1fr [col3-line] 1fr [col4-line] 1fr [col5-line];grid-template-rows:[row1-start] 1fr  [row2-start] 1fr  [row3-start] 1fr [row4-start] 1fr [row5-start] 1fr [row6-start] 1fr [row7-start] 1fr;@media ", "{grid-template-rows:min-content auto;}", ":nth-child(1){grid-column:col1-line / span 2;grid-row:row1-start / span 4;@media ", "{grid-column:col1-line / -1;grid-row:1 / span 2;padding-top:2.5em;align-self:end;}}", ":nth-child(2){grid-column:col3-line / span 2;grid-row:row1-start / span 3;margin-bottom:0.5em;@media ", "{grid-column:col1-line / -1;grid-row:3 / span 3;}}", ":nth-child(3){grid-column:col3-line / span 2;grid-row:row4-start / span 4;position:relative;top:3em;@media ", "{display:none;}}"], styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__.devices.mobileL, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__.devices.mobileL, PhotoPlaceholder, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__.devices.mobileL, TextBlock, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__.devices.mobileL, PhotoPlaceholder, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_4__.devices.mobileL);
 
+// ******** end styled components {number, title, body}
 const GenericSection = ({
   sectionNumber
 }) => {
   var _currentNode$frontmat, _currentNode$frontmat2;
 
+  const [ref, inView] = (0,react_intersection_observer__WEBPACK_IMPORTED_MODULE_6__.useInView)({
+    threshold: 0
+  });
   const nodes = (0,hooks_use_content__WEBPACK_IMPORTED_MODULE_2__.useContent)(); // get the current node for the relevant section 
 
   const currentNode = nodes.find(node => {
@@ -4095,14 +4102,15 @@ const GenericSection = ({
     return ((_node$frontmatter = node.frontmatter) === null || _node$frontmatter === void 0 ? void 0 : _node$frontmatter.number) === sectionNumber;
   }); // get the image from that node
 
-  const image_01 = (0,gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_6__.getImage)(currentNode.frontmatter.image_01);
-  const image_02 = (0,gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_6__.getImage)(currentNode.frontmatter.image_02); // console.log(currentNode)
+  const image_01 = (0,gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_7__.getImage)(currentNode.frontmatter.image_01);
+  const image_02 = (0,gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_7__.getImage)(currentNode.frontmatter.image_02); // console.log(currentNode)
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(SectionWrap, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(styles_sharedStyles__WEBPACK_IMPORTED_MODULE_1__.GridHolder, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Grid, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(PhotoPlaceholder, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_6__.GatsbyImage, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(SectionWrap, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(styles_sharedStyles__WEBPACK_IMPORTED_MODULE_1__.GridHolder, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Grid, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(PhotoPlaceholder, {
+    ref: ref,
+    inView: inView
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_7__.GatsbyImage, {
     image: image_01
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(TextBlock, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, currentNode === null || currentNode === void 0 ? void 0 : (_currentNode$frontmat = currentNode.frontmatter) === null || _currentNode$frontmat === void 0 ? void 0 : _currentNode$frontmat.number)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, currentNode === null || currentNode === void 0 ? void 0 : (_currentNode$frontmat2 = currentNode.frontmatter) === null || _currentNode$frontmat2 === void 0 ? void 0 : _currentNode$frontmat2.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(gatsby_plugin_mdx__WEBPACK_IMPORTED_MODULE_3__.MDXRenderer, null, currentNode === null || currentNode === void 0 ? void 0 : currentNode.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(PhotoPlaceholder, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_6__.GatsbyImage, {
-    image: image_02
-  })))));
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(TextBlock, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, currentNode === null || currentNode === void 0 ? void 0 : (_currentNode$frontmat = currentNode.frontmatter) === null || _currentNode$frontmat === void 0 ? void 0 : _currentNode$frontmat.number)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, currentNode === null || currentNode === void 0 ? void 0 : (_currentNode$frontmat2 = currentNode.frontmatter) === null || _currentNode$frontmat2 === void 0 ? void 0 : _currentNode$frontmat2.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(gatsby_plugin_mdx__WEBPACK_IMPORTED_MODULE_3__.MDXRenderer, null, currentNode === null || currentNode === void 0 ? void 0 : currentNode.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null))))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (GenericSection);
@@ -4333,11 +4341,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
  // import {spinThing} from "./spinThing.png"
-// interfaces 
+// interface
 // interface RoundMouseProps{
 //     x: number | null;
 //     y: number | null;
-// }
+// 
 // start styled components 
 
 const Section = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].section.withConfig({
@@ -9168,6 +9176,520 @@ var ParallaxController = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./node_modules/react-intersection-observer/react-intersection-observer.m.js":
+/*!***********************************************************************************!*\
+  !*** ./node_modules/react-intersection-observer/react-intersection-observer.m.js ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "InView": () => (/* binding */ InView),
+/* harmony export */   "default": () => (/* binding */ InView),
+/* harmony export */   "defaultFallbackInView": () => (/* binding */ defaultFallbackInView),
+/* harmony export */   "observe": () => (/* binding */ observe),
+/* harmony export */   "useInView": () => (/* binding */ useInView)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+function _inheritsLoose(subClass, superClass) {
+  subClass.prototype = Object.create(superClass.prototype);
+  subClass.prototype.constructor = subClass;
+
+  _setPrototypeOf(subClass, superClass);
+}
+
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+var observerMap = new Map();
+var RootIds = new WeakMap();
+var rootId = 0;
+var unsupportedValue = undefined;
+/**
+ * What should be the default behavior if the IntersectionObserver is unsupported?
+ * Ideally the polyfill has been loaded, you can have the following happen:
+ * - `undefined`: Throw an error
+ * - `true` or `false`: Set the `inView` value to this regardless of intersection state
+ * **/
+
+function defaultFallbackInView(inView) {
+  unsupportedValue = inView;
+}
+/**
+ * Generate a unique ID for the root element
+ * @param root
+ */
+
+function getRootId(root) {
+  if (!root) return '0';
+  if (RootIds.has(root)) return RootIds.get(root);
+  rootId += 1;
+  RootIds.set(root, rootId.toString());
+  return RootIds.get(root);
+}
+/**
+ * Convert the options to a string Id, based on the values.
+ * Ensures we can reuse the same observer when observing elements with the same options.
+ * @param options
+ */
+
+
+function optionsToId(options) {
+  return Object.keys(options).sort().filter(function (key) {
+    return options[key] !== undefined;
+  }).map(function (key) {
+    return key + "_" + (key === 'root' ? getRootId(options.root) : options[key]);
+  }).toString();
+}
+
+function createObserver(options) {
+  // Create a unique ID for this observer instance, based on the root, root margin and threshold.
+  var id = optionsToId(options);
+  var instance = observerMap.get(id);
+
+  if (!instance) {
+    // Create a map of elements this observer is going to observe. Each element has a list of callbacks that should be triggered, once it comes into view.
+    var elements = new Map();
+    var thresholds;
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var _elements$get;
+
+        // While it would be nice if you could just look at isIntersecting to determine if the component is inside the viewport, browsers can't agree on how to use it.
+        // -Firefox ignores `threshold` when considering `isIntersecting`, so it will never be false again if `threshold` is > 0
+        var inView = entry.isIntersecting && thresholds.some(function (threshold) {
+          return entry.intersectionRatio >= threshold;
+        }); // @ts-ignore support IntersectionObserver v2
+
+        if (options.trackVisibility && typeof entry.isVisible === 'undefined') {
+          // The browser doesn't support Intersection Observer v2, falling back to v1 behavior.
+          // @ts-ignore
+          entry.isVisible = inView;
+        }
+
+        (_elements$get = elements.get(entry.target)) == null ? void 0 : _elements$get.forEach(function (callback) {
+          callback(inView, entry);
+        });
+      });
+    }, options); // Ensure we have a valid thresholds array. If not, use the threshold from the options
+
+    thresholds = observer.thresholds || (Array.isArray(options.threshold) ? options.threshold : [options.threshold || 0]);
+    instance = {
+      id: id,
+      observer: observer,
+      elements: elements
+    };
+    observerMap.set(id, instance);
+  }
+
+  return instance;
+}
+/**
+ * @param element - DOM Element to observe
+ * @param callback - Callback function to trigger when intersection status changes
+ * @param options - Intersection Observer options
+ * @param fallbackInView - Fallback inView value.
+ * @return Function - Cleanup function that should be triggered to unregister the observer
+ */
+
+
+function observe(element, callback, options, fallbackInView) {
+  if (options === void 0) {
+    options = {};
+  }
+
+  if (fallbackInView === void 0) {
+    fallbackInView = unsupportedValue;
+  }
+
+  if (typeof window.IntersectionObserver === 'undefined' && fallbackInView !== undefined) {
+    var bounds = element.getBoundingClientRect();
+    callback(fallbackInView, {
+      isIntersecting: fallbackInView,
+      target: element,
+      intersectionRatio: typeof options.threshold === 'number' ? options.threshold : 0,
+      time: 0,
+      boundingClientRect: bounds,
+      intersectionRect: bounds,
+      rootBounds: bounds
+    });
+    return function () {// Nothing to cleanup
+    };
+  } // An observer with the same options can be reused, so lets use this fact
+
+
+  var _createObserver = createObserver(options),
+      id = _createObserver.id,
+      observer = _createObserver.observer,
+      elements = _createObserver.elements; // Register the callback listener for this element
+
+
+  var callbacks = elements.get(element) || [];
+
+  if (!elements.has(element)) {
+    elements.set(element, callbacks);
+  }
+
+  callbacks.push(callback);
+  observer.observe(element);
+  return function unobserve() {
+    // Remove the callback from the callback list
+    callbacks.splice(callbacks.indexOf(callback), 1);
+
+    if (callbacks.length === 0) {
+      // No more callback exists for element, so destroy it
+      elements["delete"](element);
+      observer.unobserve(element);
+    }
+
+    if (elements.size === 0) {
+      // No more elements are being observer by this instance, so destroy it
+      observer.disconnect();
+      observerMap["delete"](id);
+    }
+  };
+}
+
+var _excluded = ["children", "as", "tag", "triggerOnce", "threshold", "root", "rootMargin", "onChange", "skip", "trackVisibility", "delay", "initialInView", "fallbackInView"];
+
+function isPlainChildren(props) {
+  return typeof props.children !== 'function';
+}
+/**
+ ## Render props
+
+ To use the `<InView>` component, you pass it a function. It will be called
+ whenever the state changes, with the new value of `inView`. In addition to the
+ `inView` prop, children also receive a `ref` that should be set on the
+ containing DOM element. This is the element that the IntersectionObserver will
+ monitor.
+
+ If you need it, you can also access the
+ [`IntersectionObserverEntry`](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry)
+ on `entry`, giving you access to all the details about the current intersection
+ state.
+
+ ```jsx
+ import { InView } from 'react-intersection-observer';
+
+ const Component = () => (
+ <InView>
+ {({ inView, ref, entry }) => (
+      <div ref={ref}>
+        <h2>{`Header inside viewport ${inView}.`}</h2>
+      </div>
+    )}
+ </InView>
+ );
+
+ export default Component;
+ ```
+
+ ## Plain children
+
+ You can pass any element to the `<InView />`, and it will handle creating the
+ wrapping DOM element. Add a handler to the `onChange` method, and control the
+ state in your own component. Any extra props you add to `<InView>` will be
+ passed to the HTML element, allowing you set the `className`, `style`, etc.
+
+ ```jsx
+ import { InView } from 'react-intersection-observer';
+
+ const Component = () => (
+ <InView as="div" onChange={(inView, entry) => console.log('Inview:', inView)}>
+ <h2>Plain children are always rendered. Use onChange to monitor state.</h2>
+ </InView>
+ );
+
+ export default Component;
+ ```
+ */
+
+
+var InView = /*#__PURE__*/function (_React$Component) {
+  _inheritsLoose(InView, _React$Component);
+
+  function InView(props) {
+    var _this;
+
+    _this = _React$Component.call(this, props) || this;
+    _this.node = null;
+    _this._unobserveCb = null;
+
+    _this.handleNode = function (node) {
+      if (_this.node) {
+        // Clear the old observer, before we start observing a new element
+        _this.unobserve();
+
+        if (!node && !_this.props.triggerOnce && !_this.props.skip) {
+          // Reset the state if we get a new node, and we aren't ignoring updates
+          _this.setState({
+            inView: !!_this.props.initialInView,
+            entry: undefined
+          });
+        }
+      }
+
+      _this.node = node ? node : null;
+
+      _this.observeNode();
+    };
+
+    _this.handleChange = function (inView, entry) {
+      if (inView && _this.props.triggerOnce) {
+        // If `triggerOnce` is true, we should stop observing the element.
+        _this.unobserve();
+      }
+
+      if (!isPlainChildren(_this.props)) {
+        // Store the current State, so we can pass it to the children in the next render update
+        // There's no reason to update the state for plain children, since it's not used in the rendering.
+        _this.setState({
+          inView: inView,
+          entry: entry
+        });
+      }
+
+      if (_this.props.onChange) {
+        // If the user is actively listening for onChange, always trigger it
+        _this.props.onChange(inView, entry);
+      }
+    };
+
+    _this.state = {
+      inView: !!props.initialInView,
+      entry: undefined
+    };
+    return _this;
+  }
+
+  var _proto = InView.prototype;
+
+  _proto.componentDidUpdate = function componentDidUpdate(prevProps) {
+    // If a IntersectionObserver option changed, reinit the observer
+    if (prevProps.rootMargin !== this.props.rootMargin || prevProps.root !== this.props.root || prevProps.threshold !== this.props.threshold || prevProps.skip !== this.props.skip || prevProps.trackVisibility !== this.props.trackVisibility || prevProps.delay !== this.props.delay) {
+      this.unobserve();
+      this.observeNode();
+    }
+  };
+
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    this.unobserve();
+    this.node = null;
+  };
+
+  _proto.observeNode = function observeNode() {
+    if (!this.node || this.props.skip) return;
+    var _this$props = this.props,
+        threshold = _this$props.threshold,
+        root = _this$props.root,
+        rootMargin = _this$props.rootMargin,
+        trackVisibility = _this$props.trackVisibility,
+        delay = _this$props.delay,
+        fallbackInView = _this$props.fallbackInView;
+    this._unobserveCb = observe(this.node, this.handleChange, {
+      threshold: threshold,
+      root: root,
+      rootMargin: rootMargin,
+      // @ts-ignore
+      trackVisibility: trackVisibility,
+      // @ts-ignore
+      delay: delay
+    }, fallbackInView);
+  };
+
+  _proto.unobserve = function unobserve() {
+    if (this._unobserveCb) {
+      this._unobserveCb();
+
+      this._unobserveCb = null;
+    }
+  };
+
+  _proto.render = function render() {
+    if (!isPlainChildren(this.props)) {
+      var _this$state = this.state,
+          inView = _this$state.inView,
+          entry = _this$state.entry;
+      return this.props.children({
+        inView: inView,
+        entry: entry,
+        ref: this.handleNode
+      });
+    }
+
+    var _this$props2 = this.props,
+        children = _this$props2.children,
+        as = _this$props2.as,
+        tag = _this$props2.tag,
+        props = _objectWithoutPropertiesLoose(_this$props2, _excluded);
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(as || tag || 'div', _extends({
+      ref: this.handleNode
+    }, props), children);
+  };
+
+  return InView;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+InView.displayName = 'InView';
+InView.defaultProps = {
+  threshold: 0,
+  triggerOnce: false,
+  initialInView: false
+};
+
+/**
+ * React Hooks make it easy to monitor the `inView` state of your components. Call
+ * the `useInView` hook with the (optional) [options](#options) you need. It will
+ * return an array containing a `ref`, the `inView` status and the current
+ * [`entry`](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry).
+ * Assign the `ref` to the DOM element you want to monitor, and the hook will
+ * report the status.
+ *
+ * @example
+ * ```jsx
+ * import React from 'react';
+ * import { useInView } from 'react-intersection-observer';
+ *
+ * const Component = () => {
+ *   const { ref, inView, entry } = useInView({
+ *       threshold: 0,
+ *   });
+ *
+ *   return (
+ *     <div ref={ref}>
+ *       <h2>{`Header inside viewport ${inView}.`}</h2>
+ *     </div>
+ *   );
+ * };
+ * ```
+ */
+
+function useInView(_temp) {
+  var _ref = _temp === void 0 ? {} : _temp,
+      threshold = _ref.threshold,
+      delay = _ref.delay,
+      trackVisibility = _ref.trackVisibility,
+      rootMargin = _ref.rootMargin,
+      root = _ref.root,
+      triggerOnce = _ref.triggerOnce,
+      skip = _ref.skip,
+      initialInView = _ref.initialInView,
+      fallbackInView = _ref.fallbackInView;
+
+  var unobserve = react__WEBPACK_IMPORTED_MODULE_0__.useRef();
+
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState({
+    inView: !!initialInView
+  }),
+      state = _React$useState[0],
+      setState = _React$useState[1];
+
+  var setRef = react__WEBPACK_IMPORTED_MODULE_0__.useCallback(function (node) {
+    if (unobserve.current !== undefined) {
+      unobserve.current();
+      unobserve.current = undefined;
+    } // Skip creating the observer
+
+
+    if (skip) return;
+
+    if (node) {
+      unobserve.current = observe(node, function (inView, entry) {
+        setState({
+          inView: inView,
+          entry: entry
+        });
+
+        if (entry.isIntersecting && triggerOnce && unobserve.current) {
+          // If it should only trigger once, unobserve the element after it's inView
+          unobserve.current();
+          unobserve.current = undefined;
+        }
+      }, {
+        root: root,
+        rootMargin: rootMargin,
+        threshold: threshold,
+        // @ts-ignore
+        trackVisibility: trackVisibility,
+        // @ts-ignore
+        delay: delay
+      }, fallbackInView);
+    }
+  }, // We break the rule here, because we aren't including the actual `threshold` variable
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  [// If the threshold is an array, convert it to a string so it won't change between renders.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  Array.isArray(threshold) ? threshold.toString() : threshold, root, rootMargin, triggerOnce, skip, trackVisibility, fallbackInView, delay]);
+  /* eslint-disable-next-line */
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (!unobserve.current && state.entry && !triggerOnce && !skip) {
+      // If we don't have a ref, then reset the state (unless the hook is set to only `triggerOnce` or `skip`)
+      // This ensures we correctly reflect the current state - If you aren't observing anything, then nothing is inView
+      setState({
+        inView: !!initialInView
+      });
+    }
+  });
+  var result = [setRef, state.inView, state.entry]; // Support object destructuring, by adding the specific values.
+
+  result.ref = result[0];
+  result.inView = result[1];
+  result.entry = result[2];
+  return result;
+}
+
+
+//# sourceMappingURL=react-intersection-observer.m.js.map
+
+
+/***/ }),
+
 /***/ "./node_modules/react-scroll-parallax/dist/react-scroll-parallax.esm.js":
 /*!******************************************************************************!*\
   !*** ./node_modules/react-scroll-parallax/dist/react-scroll-parallax.esm.js ***!
@@ -10636,7 +11158,7 @@ module.exports = JSON.parse('{"layout":"constrained","backgroundColor":"#e8d8b8"
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"data":{"allMdx":{"nodes":[{"id":"3004e745-6325-52c6-968e-02bb84cd8268","frontmatter":{"title":"A long history of cultivating forward-looking conversation","number":"03","image_01":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#f8f8f8","images":{"fallback":{"src":"/static/76ee3877c30a1605425da2d7d6130795/9f2af/talking.jpg","srcSet":"/static/76ee3877c30a1605425da2d7d6130795/b6b83/talking.jpg 131w,\\n/static/76ee3877c30a1605425da2d7d6130795/ec9d4/talking.jpg 263w,\\n/static/76ee3877c30a1605425da2d7d6130795/9f2af/talking.jpg 525w,\\n/static/76ee3877c30a1605425da2d7d6130795/b4182/talking.jpg 1050w","sizes":"(min-width: 525px) 525px, 100vw"},"sources":[{"srcSet":"/static/76ee3877c30a1605425da2d7d6130795/8561d/talking.webp 131w,\\n/static/76ee3877c30a1605425da2d7d6130795/0b77e/talking.webp 263w,\\n/static/76ee3877c30a1605425da2d7d6130795/20238/talking.webp 525w,\\n/static/76ee3877c30a1605425da2d7d6130795/136ce/talking.webp 1050w","type":"image/webp","sizes":"(min-width: 525px) 525px, 100vw"}]},"width":525,"height":700}}},"image_02":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#181818","images":{"fallback":{"src":"/static/cb09484e862d6596c61aa981e5d14404/9f2af/conference.jpg","srcSet":"/static/cb09484e862d6596c61aa981e5d14404/b6b83/conference.jpg 131w,\\n/static/cb09484e862d6596c61aa981e5d14404/ec9d4/conference.jpg 263w,\\n/static/cb09484e862d6596c61aa981e5d14404/9f2af/conference.jpg 525w,\\n/static/cb09484e862d6596c61aa981e5d14404/b4182/conference.jpg 1050w","sizes":"(min-width: 525px) 525px, 100vw"},"sources":[{"srcSet":"/static/cb09484e862d6596c61aa981e5d14404/8561d/conference.webp 131w,\\n/static/cb09484e862d6596c61aa981e5d14404/0b77e/conference.webp 263w,\\n/static/cb09484e862d6596c61aa981e5d14404/20238/conference.webp 525w,\\n/static/cb09484e862d6596c61aa981e5d14404/136ce/conference.webp 1050w","type":"image/webp","sizes":"(min-width: 525px) 525px, 100vw"}]},"width":525,"height":700}}}},"body":"var _excluded = [\\"components\\"];\\n\\nfunction _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }\\n\\nfunction _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }\\n\\nfunction _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }\\n\\n/* @jsxRuntime classic */\\n\\n/* @jsx mdx */\\nvar _frontmatter = {\\n  \\"title\\": \\"A long history of cultivating forward-looking conversation\\",\\n  \\"number\\": \\"03\\",\\n  \\"image_01\\": \\"./talking.jpg\\",\\n  \\"image_02\\": \\"./conference.jpg\\"\\n};\\nvar layoutProps = {\\n  _frontmatter: _frontmatter\\n};\\nvar MDXLayout = \\"wrapper\\";\\nreturn function MDXContent(_ref) {\\n  var components = _ref.components,\\n      props = _objectWithoutProperties(_ref, _excluded);\\n\\n  return mdx(MDXLayout, _extends({}, layoutProps, props, {\\n    components: components,\\n    mdxType: \\"MDXLayout\\"\\n  }), mdx(\\"p\\", null, \\"This year marks the 14th anniversary of the Africa Business Forum.\\\\nIn 2007, the forum theme was \\\\u201CFostering Entrepreneurial Activities in Africa\\\\u201D.\\\\nIts objective was to portray Africa in a more positive light than that more\\\\ncommonly seen in the media and create awareness of the diverse and burgeoning opportunities.\\\\nThe first forum was organized by a group of enthusiastic students headed by\\\\nWilson Irungu Nyakera and Kwame Ansong-Dwamena.\\"), mdx(\\"p\\", null, \\"Though the theme has changed from year to year,\\\\nthe motivation behind the forum hasn\\\\u2019t changed.\\\\nThe forum has always been aimed at creating awareness of the opportunities on the\\\\nAfrican continent and bring together Africans and friends of Africa from the continent\\\\nand the diaspora to engage on the most important issues affecting the continent\\\\u2019s growth.\\\\nClick to learn more about conferences in \\", mdx(StyledA, {\\n    href: \\"https://web.stanford.edu/group/sabf/2021/\\",\\n    mdxType: \\"StyledA\\"\\n  }, \\" 2021\\"), \\",\\", mdx(StyledA, {\\n    href: \\"https://web.stanford.edu/group/sabf/2020/\\",\\n    mdxType: \\"StyledA\\"\\n  }, \\" 2020\\"), \\", \\", mdx(StyledA, {\\n    href: \\"https://web.stanford.edu/group/sabf/2019/\\",\\n    mdxType: \\"StyledA\\"\\n  }, \\" 2019\\"), \\", and \\", mdx(StyledA, {\\n    href: \\"https://web.stanford.edu/group/sabf/2018/\\",\\n    mdxType: \\"StyledA\\"\\n  }, \\" 2018\\"), \\".\\"), mdx(StyledLink, {\\n    to: \\"/team\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Meet this Year\'s Team\\"));\\n}\\n;\\nMDXContent.isMDXComponent = true;"},{"id":"ecf4e8d0-466a-51fb-af07-d9b58c31ff46","frontmatter":{"title":"Events to Look Forward To","number":"02","image_01":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#e8e8f8","images":{"fallback":{"src":"/static/4dd6bc4701f458e025e5c91c031881c7/9f2af/hug.jpg","srcSet":"/static/4dd6bc4701f458e025e5c91c031881c7/b6b83/hug.jpg 131w,\\n/static/4dd6bc4701f458e025e5c91c031881c7/ec9d4/hug.jpg 263w,\\n/static/4dd6bc4701f458e025e5c91c031881c7/9f2af/hug.jpg 525w,\\n/static/4dd6bc4701f458e025e5c91c031881c7/b4182/hug.jpg 1050w","sizes":"(min-width: 525px) 525px, 100vw"},"sources":[{"srcSet":"/static/4dd6bc4701f458e025e5c91c031881c7/8561d/hug.webp 131w,\\n/static/4dd6bc4701f458e025e5c91c031881c7/0b77e/hug.webp 263w,\\n/static/4dd6bc4701f458e025e5c91c031881c7/20238/hug.webp 525w,\\n/static/4dd6bc4701f458e025e5c91c031881c7/136ce/hug.webp 1050w","type":"image/webp","sizes":"(min-width: 525px) 525px, 100vw"}]},"width":525,"height":700}}},"image_02":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#e8e8e8","images":{"fallback":{"src":"/static/0f00240f0d73eac050d0ea1436533afb/9f2af/laughing.jpg","srcSet":"/static/0f00240f0d73eac050d0ea1436533afb/b6b83/laughing.jpg 131w,\\n/static/0f00240f0d73eac050d0ea1436533afb/ec9d4/laughing.jpg 263w,\\n/static/0f00240f0d73eac050d0ea1436533afb/9f2af/laughing.jpg 525w,\\n/static/0f00240f0d73eac050d0ea1436533afb/b4182/laughing.jpg 1050w","sizes":"(min-width: 525px) 525px, 100vw"},"sources":[{"srcSet":"/static/0f00240f0d73eac050d0ea1436533afb/8561d/laughing.webp 131w,\\n/static/0f00240f0d73eac050d0ea1436533afb/0b77e/laughing.webp 263w,\\n/static/0f00240f0d73eac050d0ea1436533afb/20238/laughing.webp 525w,\\n/static/0f00240f0d73eac050d0ea1436533afb/136ce/laughing.webp 1050w","type":"image/webp","sizes":"(min-width: 525px) 525px, 100vw"}]},"width":525,"height":700}}}},"body":"var _excluded = [\\"components\\"];\\n\\nfunction _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }\\n\\nfunction _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }\\n\\nfunction _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }\\n\\n/* @jsxRuntime classic */\\n\\n/* @jsx mdx */\\nvar _frontmatter = {\\n  \\"title\\": \\"Events to Look Forward To\\",\\n  \\"number\\": \\"02\\",\\n  \\"image_01\\": \\"./hug.jpg\\",\\n  \\"image_02\\": \\"./laughing.jpg\\"\\n};\\nvar layoutProps = {\\n  _frontmatter: _frontmatter\\n};\\nvar MDXLayout = \\"wrapper\\";\\nreturn function MDXContent(_ref) {\\n  var components = _ref.components,\\n      props = _objectWithoutProperties(_ref, _excluded);\\n\\n  return mdx(MDXLayout, _extends({}, layoutProps, props, {\\n    components: components,\\n    mdxType: \\"MDXLayout\\"\\n  }), mdx(\\"p\\", null, \\"Some Slightly Larger Text All About Events\\"), mdx(\\"p\\", null, \\"\\\\u201CThis year we will have speakers who are creating innovative ways of tackling challenges in\\\\nhealthcare, fintech, clean energy, cryptocurrencies, investing (private equity and venture capital),\\\\ninfrastructure & cities and entrepreneurship.\\\\u201D\\"), mdx(StyledLink, {\\n    to: \\"/attend\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Schedule\\"), mdx(StyledLink, {\\n    to: \\"/speakers\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Speakers + Panels\\"), mdx(StyledLink, {\\n    to: \\"/pitch\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Pitch Competition \\"));\\n}\\n;\\nMDXContent.isMDXComponent = true;"},{"id":"9d24ed2b-edcb-5d5e-a268-6adb07bda6b4","frontmatter":{"title":"Innovation in Africa is shaping the world\'s future","number":"01","image_01":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#f8f8f8","images":{"fallback":{"src":"/static/cbeea8b6cbd788923d84fa769759569d/9f2af/ladies.jpg","srcSet":"/static/cbeea8b6cbd788923d84fa769759569d/b6b83/ladies.jpg 131w,\\n/static/cbeea8b6cbd788923d84fa769759569d/ec9d4/ladies.jpg 263w,\\n/static/cbeea8b6cbd788923d84fa769759569d/9f2af/ladies.jpg 525w,\\n/static/cbeea8b6cbd788923d84fa769759569d/b4182/ladies.jpg 1050w","sizes":"(min-width: 525px) 525px, 100vw"},"sources":[{"srcSet":"/static/cbeea8b6cbd788923d84fa769759569d/8561d/ladies.webp 131w,\\n/static/cbeea8b6cbd788923d84fa769759569d/0b77e/ladies.webp 263w,\\n/static/cbeea8b6cbd788923d84fa769759569d/20238/ladies.webp 525w,\\n/static/cbeea8b6cbd788923d84fa769759569d/136ce/ladies.webp 1050w","type":"image/webp","sizes":"(min-width: 525px) 525px, 100vw"}]},"width":525,"height":700}}},"image_02":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#e8d8c8","images":{"fallback":{"src":"/static/4f17fdc1ab6233054a56bd696cb74704/9f2af/partners.jpg","srcSet":"/static/4f17fdc1ab6233054a56bd696cb74704/b6b83/partners.jpg 131w,\\n/static/4f17fdc1ab6233054a56bd696cb74704/ec9d4/partners.jpg 263w,\\n/static/4f17fdc1ab6233054a56bd696cb74704/9f2af/partners.jpg 525w,\\n/static/4f17fdc1ab6233054a56bd696cb74704/b4182/partners.jpg 1050w","sizes":"(min-width: 525px) 525px, 100vw"},"sources":[{"srcSet":"/static/4f17fdc1ab6233054a56bd696cb74704/8561d/partners.webp 131w,\\n/static/4f17fdc1ab6233054a56bd696cb74704/0b77e/partners.webp 263w,\\n/static/4f17fdc1ab6233054a56bd696cb74704/20238/partners.webp 525w,\\n/static/4f17fdc1ab6233054a56bd696cb74704/136ce/partners.webp 1050w","type":"image/webp","sizes":"(min-width: 525px) 525px, 100vw"}]},"width":525,"height":700}}}},"body":"var _excluded = [\\"components\\"];\\n\\nfunction _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }\\n\\nfunction _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }\\n\\nfunction _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }\\n\\n/* @jsxRuntime classic */\\n\\n/* @jsx mdx */\\nvar _frontmatter = {\\n  \\"title\\": \\"Innovation in Africa is shaping the world\'s future\\",\\n  \\"number\\": \\"01\\",\\n  \\"image_01\\": \\"./ladies.jpg\\",\\n  \\"image_02\\": \\"./partners.jpg\\"\\n};\\nvar layoutProps = {\\n  _frontmatter: _frontmatter\\n};\\nvar MDXLayout = \\"wrapper\\";\\nreturn function MDXContent(_ref) {\\n  var components = _ref.components,\\n      props = _objectWithoutProperties(_ref, _excluded);\\n\\n  return mdx(MDXLayout, _extends({}, layoutProps, props, {\\n    components: components,\\n    mdxType: \\"MDXLayout\\"\\n  }), mdx(\\"p\\", null, \\"This year\\\\u2019s conference will explore how innovations across various sectors in Africa can influence the global economy.\\\\nWhat role does African innovation play in shaping the global future?\\\\nHow do current ventures on the continent position Africa to become a leader in the global economy?\\"), mdx(\\"p\\", null, \\"At this conference we would like to challenge the narrative that \\\\u201CAfrica is the future\\\\u201D and explore whether \\\\u201CAfrica is now\\\\u201D.\\", mdx(\\"br\\", {\\n    parentName: \\"p\\"\\n  }), \\"\\\\n\\", \\"We will welcome diverse perspectives on Africa\\\\u2019s unique opportunities\\\\nand challenges as our speakers discuss what they see as Africa\\\\u2019s role in today\\\\u2019s economy.\\"), mdx(StyledLink, {\\n    to: \\"/attend\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Join Us Online + In-Person\\"));\\n}\\n;\\nMDXContent.isMDXComponent = true;"}]}}}');
+module.exports = JSON.parse('{"data":{"allMdx":{"nodes":[{"id":"ecf4e8d0-466a-51fb-af07-d9b58c31ff46","frontmatter":{"title":"Events to Look Forward To","number":"02","image_01":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#e8e8f8","images":{"fallback":{"src":"/static/4dd6bc4701f458e025e5c91c031881c7/9f2af/hug.jpg","srcSet":"/static/4dd6bc4701f458e025e5c91c031881c7/b6b83/hug.jpg 131w,\\n/static/4dd6bc4701f458e025e5c91c031881c7/ec9d4/hug.jpg 263w,\\n/static/4dd6bc4701f458e025e5c91c031881c7/9f2af/hug.jpg 525w,\\n/static/4dd6bc4701f458e025e5c91c031881c7/b4182/hug.jpg 1050w","sizes":"(min-width: 525px) 525px, 100vw"},"sources":[{"srcSet":"/static/4dd6bc4701f458e025e5c91c031881c7/8561d/hug.webp 131w,\\n/static/4dd6bc4701f458e025e5c91c031881c7/0b77e/hug.webp 263w,\\n/static/4dd6bc4701f458e025e5c91c031881c7/20238/hug.webp 525w,\\n/static/4dd6bc4701f458e025e5c91c031881c7/136ce/hug.webp 1050w","type":"image/webp","sizes":"(min-width: 525px) 525px, 100vw"}]},"width":525,"height":700}}},"image_02":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#e8e8e8","images":{"fallback":{"src":"/static/0f00240f0d73eac050d0ea1436533afb/9f2af/laughing.jpg","srcSet":"/static/0f00240f0d73eac050d0ea1436533afb/b6b83/laughing.jpg 131w,\\n/static/0f00240f0d73eac050d0ea1436533afb/ec9d4/laughing.jpg 263w,\\n/static/0f00240f0d73eac050d0ea1436533afb/9f2af/laughing.jpg 525w,\\n/static/0f00240f0d73eac050d0ea1436533afb/b4182/laughing.jpg 1050w","sizes":"(min-width: 525px) 525px, 100vw"},"sources":[{"srcSet":"/static/0f00240f0d73eac050d0ea1436533afb/8561d/laughing.webp 131w,\\n/static/0f00240f0d73eac050d0ea1436533afb/0b77e/laughing.webp 263w,\\n/static/0f00240f0d73eac050d0ea1436533afb/20238/laughing.webp 525w,\\n/static/0f00240f0d73eac050d0ea1436533afb/136ce/laughing.webp 1050w","type":"image/webp","sizes":"(min-width: 525px) 525px, 100vw"}]},"width":525,"height":700}}}},"body":"var _excluded = [\\"components\\"];\\n\\nfunction _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }\\n\\nfunction _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }\\n\\nfunction _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }\\n\\n/* @jsxRuntime classic */\\n\\n/* @jsx mdx */\\nvar _frontmatter = {\\n  \\"title\\": \\"Events to Look Forward To\\",\\n  \\"number\\": \\"02\\",\\n  \\"image_01\\": \\"./hug.jpg\\",\\n  \\"image_02\\": \\"./laughing.jpg\\"\\n};\\nvar layoutProps = {\\n  _frontmatter: _frontmatter\\n};\\nvar MDXLayout = \\"wrapper\\";\\nreturn function MDXContent(_ref) {\\n  var components = _ref.components,\\n      props = _objectWithoutProperties(_ref, _excluded);\\n\\n  return mdx(MDXLayout, _extends({}, layoutProps, props, {\\n    components: components,\\n    mdxType: \\"MDXLayout\\"\\n  }), mdx(\\"p\\", null, \\"Some Slightly Larger Text All About Events\\"), mdx(\\"p\\", null, \\"\\\\u201CThis year we will have speakers who are creating innovative ways of tackling challenges in\\\\nhealthcare, fintech, clean energy, cryptocurrencies, investing (private equity and venture capital),\\\\ninfrastructure & cities and entrepreneurship.\\\\u201D\\"), mdx(StyledLink, {\\n    to: \\"/attend\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Schedule\\"), mdx(StyledLink, {\\n    to: \\"/speakers\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Speakers + Panels\\"), mdx(StyledLink, {\\n    to: \\"/pitch\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Pitch Competition \\"));\\n}\\n;\\nMDXContent.isMDXComponent = true;"},{"id":"3004e745-6325-52c6-968e-02bb84cd8268","frontmatter":{"title":"A long history of cultivating forward-looking conversation","number":"03","image_01":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#f8f8f8","images":{"fallback":{"src":"/static/76ee3877c30a1605425da2d7d6130795/9f2af/talking.jpg","srcSet":"/static/76ee3877c30a1605425da2d7d6130795/b6b83/talking.jpg 131w,\\n/static/76ee3877c30a1605425da2d7d6130795/ec9d4/talking.jpg 263w,\\n/static/76ee3877c30a1605425da2d7d6130795/9f2af/talking.jpg 525w,\\n/static/76ee3877c30a1605425da2d7d6130795/b4182/talking.jpg 1050w","sizes":"(min-width: 525px) 525px, 100vw"},"sources":[{"srcSet":"/static/76ee3877c30a1605425da2d7d6130795/8561d/talking.webp 131w,\\n/static/76ee3877c30a1605425da2d7d6130795/0b77e/talking.webp 263w,\\n/static/76ee3877c30a1605425da2d7d6130795/20238/talking.webp 525w,\\n/static/76ee3877c30a1605425da2d7d6130795/136ce/talking.webp 1050w","type":"image/webp","sizes":"(min-width: 525px) 525px, 100vw"}]},"width":525,"height":700}}},"image_02":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#181818","images":{"fallback":{"src":"/static/cb09484e862d6596c61aa981e5d14404/9f2af/conference.jpg","srcSet":"/static/cb09484e862d6596c61aa981e5d14404/b6b83/conference.jpg 131w,\\n/static/cb09484e862d6596c61aa981e5d14404/ec9d4/conference.jpg 263w,\\n/static/cb09484e862d6596c61aa981e5d14404/9f2af/conference.jpg 525w,\\n/static/cb09484e862d6596c61aa981e5d14404/b4182/conference.jpg 1050w","sizes":"(min-width: 525px) 525px, 100vw"},"sources":[{"srcSet":"/static/cb09484e862d6596c61aa981e5d14404/8561d/conference.webp 131w,\\n/static/cb09484e862d6596c61aa981e5d14404/0b77e/conference.webp 263w,\\n/static/cb09484e862d6596c61aa981e5d14404/20238/conference.webp 525w,\\n/static/cb09484e862d6596c61aa981e5d14404/136ce/conference.webp 1050w","type":"image/webp","sizes":"(min-width: 525px) 525px, 100vw"}]},"width":525,"height":700}}}},"body":"var _excluded = [\\"components\\"];\\n\\nfunction _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }\\n\\nfunction _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }\\n\\nfunction _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }\\n\\n/* @jsxRuntime classic */\\n\\n/* @jsx mdx */\\nvar _frontmatter = {\\n  \\"title\\": \\"A long history of cultivating forward-looking conversation\\",\\n  \\"number\\": \\"03\\",\\n  \\"image_01\\": \\"./talking.jpg\\",\\n  \\"image_02\\": \\"./conference.jpg\\"\\n};\\nvar layoutProps = {\\n  _frontmatter: _frontmatter\\n};\\nvar MDXLayout = \\"wrapper\\";\\nreturn function MDXContent(_ref) {\\n  var components = _ref.components,\\n      props = _objectWithoutProperties(_ref, _excluded);\\n\\n  return mdx(MDXLayout, _extends({}, layoutProps, props, {\\n    components: components,\\n    mdxType: \\"MDXLayout\\"\\n  }), mdx(\\"p\\", null, \\"This year marks the 14th anniversary of the Africa Business Forum.\\\\nIn 2007, the forum theme was \\\\u201CFostering Entrepreneurial Activities in Africa\\\\u201D.\\\\nIts objective was to portray Africa in a more positive light than that more\\\\ncommonly seen in the media and create awareness of the diverse and burgeoning opportunities.\\\\nThe first forum was organized by a group of enthusiastic students headed by\\\\nWilson Irungu Nyakera and Kwame Ansong-Dwamena.\\"), mdx(\\"p\\", null, \\"Though the theme has changed from year to year,\\\\nthe motivation behind the forum hasn\\\\u2019t changed.\\\\nThe forum has always been aimed at creating awareness of the opportunities on the\\\\nAfrican continent and bring together Africans and friends of Africa from the continent\\\\nand the diaspora to engage on the most important issues affecting the continent\\\\u2019s growth.\\\\nClick to learn more about conferences in \\", mdx(StyledA, {\\n    href: \\"https://web.stanford.edu/group/sabf/2021/\\",\\n    mdxType: \\"StyledA\\"\\n  }, \\" 2021\\"), \\",\\", mdx(StyledA, {\\n    href: \\"https://web.stanford.edu/group/sabf/2020/\\",\\n    mdxType: \\"StyledA\\"\\n  }, \\" 2020\\"), \\", \\", mdx(StyledA, {\\n    href: \\"https://web.stanford.edu/group/sabf/2019/\\",\\n    mdxType: \\"StyledA\\"\\n  }, \\" 2019\\"), \\", and \\", mdx(StyledA, {\\n    href: \\"https://web.stanford.edu/group/sabf/2018/\\",\\n    mdxType: \\"StyledA\\"\\n  }, \\" 2018\\"), \\".\\"), mdx(StyledLink, {\\n    to: \\"/team\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Meet this Year\'s Team\\"));\\n}\\n;\\nMDXContent.isMDXComponent = true;"},{"id":"9d24ed2b-edcb-5d5e-a268-6adb07bda6b4","frontmatter":{"title":"Innovation in Africa is shaping the world\'s future","number":"01","image_01":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#f8f8f8","images":{"fallback":{"src":"/static/cbeea8b6cbd788923d84fa769759569d/9f2af/ladies.jpg","srcSet":"/static/cbeea8b6cbd788923d84fa769759569d/b6b83/ladies.jpg 131w,\\n/static/cbeea8b6cbd788923d84fa769759569d/ec9d4/ladies.jpg 263w,\\n/static/cbeea8b6cbd788923d84fa769759569d/9f2af/ladies.jpg 525w,\\n/static/cbeea8b6cbd788923d84fa769759569d/b4182/ladies.jpg 1050w","sizes":"(min-width: 525px) 525px, 100vw"},"sources":[{"srcSet":"/static/cbeea8b6cbd788923d84fa769759569d/8561d/ladies.webp 131w,\\n/static/cbeea8b6cbd788923d84fa769759569d/0b77e/ladies.webp 263w,\\n/static/cbeea8b6cbd788923d84fa769759569d/20238/ladies.webp 525w,\\n/static/cbeea8b6cbd788923d84fa769759569d/136ce/ladies.webp 1050w","type":"image/webp","sizes":"(min-width: 525px) 525px, 100vw"}]},"width":525,"height":700}}},"image_02":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#e8d8c8","images":{"fallback":{"src":"/static/4f17fdc1ab6233054a56bd696cb74704/9f2af/partners.jpg","srcSet":"/static/4f17fdc1ab6233054a56bd696cb74704/b6b83/partners.jpg 131w,\\n/static/4f17fdc1ab6233054a56bd696cb74704/ec9d4/partners.jpg 263w,\\n/static/4f17fdc1ab6233054a56bd696cb74704/9f2af/partners.jpg 525w,\\n/static/4f17fdc1ab6233054a56bd696cb74704/b4182/partners.jpg 1050w","sizes":"(min-width: 525px) 525px, 100vw"},"sources":[{"srcSet":"/static/4f17fdc1ab6233054a56bd696cb74704/8561d/partners.webp 131w,\\n/static/4f17fdc1ab6233054a56bd696cb74704/0b77e/partners.webp 263w,\\n/static/4f17fdc1ab6233054a56bd696cb74704/20238/partners.webp 525w,\\n/static/4f17fdc1ab6233054a56bd696cb74704/136ce/partners.webp 1050w","type":"image/webp","sizes":"(min-width: 525px) 525px, 100vw"}]},"width":525,"height":700}}}},"body":"var _excluded = [\\"components\\"];\\n\\nfunction _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }\\n\\nfunction _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }\\n\\nfunction _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }\\n\\n/* @jsxRuntime classic */\\n\\n/* @jsx mdx */\\nvar _frontmatter = {\\n  \\"title\\": \\"Innovation in Africa is shaping the world\'s future\\",\\n  \\"number\\": \\"01\\",\\n  \\"image_01\\": \\"./ladies.jpg\\",\\n  \\"image_02\\": \\"./partners.jpg\\"\\n};\\nvar layoutProps = {\\n  _frontmatter: _frontmatter\\n};\\nvar MDXLayout = \\"wrapper\\";\\nreturn function MDXContent(_ref) {\\n  var components = _ref.components,\\n      props = _objectWithoutProperties(_ref, _excluded);\\n\\n  return mdx(MDXLayout, _extends({}, layoutProps, props, {\\n    components: components,\\n    mdxType: \\"MDXLayout\\"\\n  }), mdx(\\"p\\", null, \\"This year\\\\u2019s conference will explore how innovations across various sectors in Africa can influence the global economy.\\\\nWhat role does African innovation play in shaping the global future?\\\\nHow do current ventures on the continent position Africa to become a leader in the global economy?\\"), mdx(\\"p\\", null, \\"At this conference we would like to challenge the narrative that \\\\u201CAfrica is the future\\\\u201D and explore whether \\\\u201CAfrica is now\\\\u201D.\\", mdx(\\"br\\", {\\n    parentName: \\"p\\"\\n  }), \\"\\\\n\\", \\"We will welcome diverse perspectives on Africa\\\\u2019s unique opportunities\\\\nand challenges as our speakers discuss what they see as Africa\\\\u2019s role in today\\\\u2019s economy.\\"), mdx(StyledLink, {\\n    to: \\"/attend\\",\\n    mdxType: \\"StyledLink\\"\\n  }, \\"Join Us Online + In-Person\\"));\\n}\\n;\\nMDXContent.isMDXComponent = true;"}]}}}');
 
 /***/ })
 

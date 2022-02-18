@@ -5,6 +5,13 @@ import {useContent} from 'hooks/use-content'
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { devices } from 'styles/responsiveSizes';
+import { useInView } from 'react-intersection-observer';
+
+// interfaces 
+interface PhotoPlaceholderProps{
+    inView: boolean;
+   
+}
 
 
 
@@ -17,9 +24,11 @@ const SectionWrap = styled.div`
 
 
 
-const PhotoPlaceholder = styled.div`
+const PhotoPlaceholder = styled.div<PhotoPlaceholderProps>`
+  transform: ${ (prop) => prop.inView ? "rotate(2deg)" : "rotate(0)"};
+  transition: transform 2s ease 1s;
     @media ${devices.mobileL} {
-        margin: 1em;
+            margin: 1em;
         }
     
 `;
@@ -49,7 +58,7 @@ const TextBlock = styled.div`
 
 const Grid = styled.div`
     display: grid;
-    height: 140vh;
+    height: max-content;
     gap: 3em 6em;
     @media ${devices.mobileL} {
         grid-auto-flow: column;
@@ -110,12 +119,21 @@ const Grid = styled.div`
   
 `;
 
+interface GenericSectionProps{
+    sectionNumber: number;
+   
+}
+
 
 
 // ******** end styled components {number, title, body}
 
  
-const GenericSection = ({sectionNumber}) => {
+const GenericSection: React.FC<GenericSectionProps> = ({sectionNumber}) => {
+    const [ref, inView] = useInView({
+        threshold: 0.5,
+        initialInView: true
+      })
     const nodes = useContent()
     // get the current node for the relevant section 
     const currentNode = nodes.find(node => node.frontmatter?.number === sectionNumber);
@@ -129,7 +147,7 @@ const GenericSection = ({sectionNumber}) => {
         <GridHolder>
             
             <Grid>
-                <PhotoPlaceholder>
+                <PhotoPlaceholder ref={ref} inView={inView}>
                     <GatsbyImage 
                         image={image_01}
                     />
@@ -147,8 +165,8 @@ const GenericSection = ({sectionNumber}) => {
                         
                     </div>
                 </TextBlock>
-                <PhotoPlaceholder>
-                    <GatsbyImage 
+                <PhotoPlaceholder  ref={ref} inView={inView}>
+                        <   GatsbyImage 
                         image={image_02}
                     />
                 </PhotoPlaceholder>

@@ -6,7 +6,7 @@ import "@fontsource/pt-serif/400-italic.css"
 import "@fontsource/eb-garamond/400-italic.css"
 
 export const Grid = styled.div`
-
+height: max-content;
 width: 100%;
 z-index: 10;
 display: grid;
@@ -54,7 +54,7 @@ div:nth-child(1) {
     justify-self: center; /* row justification */
     overflow: hidden;
     h1 {
-        margin-top: -0.25em;
+        margin-top: -0.3em;
         animation-delay: 2 * 0.025s;
         transition:  0.4s all ease-in-out;
         background-size: 100%;

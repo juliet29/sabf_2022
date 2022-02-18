@@ -13,11 +13,11 @@ import { Grid } from './styledGrid';
 // import {spinThing} from "./spinThing.png"
 
 
-// interfaces 
+// interface
 // interface RoundMouseProps{
 //     x: number | null;
 //     y: number | null;
-// }
+// 
 
 // start styled components 
 
