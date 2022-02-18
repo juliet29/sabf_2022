@@ -49,6 +49,12 @@ const SpinThing = styled.div`
             animation: ${spin} 4s ease 1; 
             /* display: none; */
         }
+
+        @media ${devices.mobileL}{
+         animation: none;
+    }
+
+        
 `;
 
 const SpinHolder = styled.div`
@@ -61,7 +67,7 @@ const SpinHolder = styled.div`
     @media ${devices.mobileL}{
         margin: 0;
         margin-top: 1em;
-        width: 80%;
+        width: 90%;
     }
     
 `;

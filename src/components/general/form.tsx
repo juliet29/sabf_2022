@@ -3,12 +3,16 @@ import styled from 'styled-components';
 import { primaryAccentColor, secondaryAccentColor } from 'styles/theme';
 import "@fontsource/montserrat"
 import { fontFamily } from 'styles/theme';
+import { devices } from 'styles/responsiveSizes';
 
 const StyledForm = styled.form`
 display: flex;
 flex-direction: row;
 font-family: ${fontFamily};
-  
+@media ${devices.mobileL} {
+  flex-direction: column;
+
+  }
 `;
 
 const Button = styled.button`
@@ -31,7 +35,13 @@ const Button = styled.button`
         background-color: white;
         color: ${secondaryAccentColor};
     }
-  
+    @media ${devices.mobileL} {
+    justify-content: left;
+    width: 100%;
+    margin-left: 0;
+    margin-top: 20px;
+    height: 40px;
+    }
 `;
 
 const Field = styled.div`

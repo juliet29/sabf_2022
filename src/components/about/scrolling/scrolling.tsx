@@ -66,7 +66,7 @@ const ImageGrid = styled.div`
     /* transform-origin: 0;
     transform: translate3D(0px, 5px, 0px), scale(0.5); */
     display: grid;
-    height: 150vh;
+    height: 175vh;
     @media ${devices.mobileL} {
     height: initial;
 }

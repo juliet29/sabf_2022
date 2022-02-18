@@ -24,10 +24,12 @@ const NavBarNav = styled.nav`
   background-color: black;
   @media ${devices.mobileL} {
             /* background-color: transparent; */
-            width: 90vw;
-            padding-left: 0;
-            padding-right: 0;
-            overflow-x: hidden;
+            box-sizing: border-box;
+            width: 100vw;
+            /* padding-left: 0;
+            padding-right: 0; */
+            padding: 1em;
+            /* overflow-x: hidden; */
             /* margin: 0 auto; */
 
      }

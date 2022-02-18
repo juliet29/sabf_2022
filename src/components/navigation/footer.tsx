@@ -85,6 +85,10 @@ const SocialLinksMenu = styled.div`
         display: flex;
         flex-direction: row;
         column-gap: 2em;
+        @media ${devices.mobileL} {
+            column-gap: 3em;
+            row-gap: 2em;
+     }
     }
    
   

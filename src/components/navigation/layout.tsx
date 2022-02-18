@@ -5,6 +5,7 @@ import styled, { ThemeProvider} from 'styled-components'
 import { GlobalStyle } from 'styles/globalStyles'
 import {edgeSpace } from 'styles/theme';
 import Footer from './footer';
+import { devices } from 'styles/responsiveSizes';
 
 
 // const Body = styled.body`
@@ -22,8 +23,11 @@ const Header = styled.header`
     height: 1px;
     width: 50%;
     background-color: white;
+    @media ${devices.mobileL} {
+        width: 80%;
   }
-`;
+}
+`
 
 
 
@@ -41,7 +45,7 @@ const Layout: React.FC<LayoutProps> = ({ pageTitle, children }) => {
                 <title>{pageTitle}</title>
                 <body style={{
                         height: "100%",
-                        minHeight: "100%"
+                        minHeight: "90vh"
                     }}>
                     <NavBar></NavBar>
                     <Header>

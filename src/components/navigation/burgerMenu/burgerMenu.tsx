@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   justify-content: center;
   height: 100vh;
   text-align: left;
-  padding: 2rem;
+  padding: 1em;
   position: absolute;
   top: 0;
   left: 0;
@@ -29,7 +29,7 @@ const NavLink = styled(Link)`
     font-size: 1rem;
     text-align: center;
     text-transform: uppercase;
-    padding: 2rem 0;
+    padding: 2rem 1em;
     font-weight: bold;
     letter-spacing: 0.5rem;
     color: black;

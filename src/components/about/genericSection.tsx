@@ -26,9 +26,10 @@ const SectionWrap = styled.div`
 
 const PhotoPlaceholder = styled.div<PhotoPlaceholderProps>`
   transform: ${ (prop) => prop.inView ? "rotate(2deg)" : "rotate(0)"};
-  transition: transform 2s ease 1s;
+  transition: transform 2s ease;
     @media ${devices.mobileL} {
             margin: 1em;
+            transform: none;
         }
     
 `;
