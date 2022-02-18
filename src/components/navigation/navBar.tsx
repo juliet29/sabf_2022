@@ -6,7 +6,7 @@ import { StaticImage } from "gatsby-plugin-image"
 import { useWindowSize } from 'hooks/window-size';
 import BurgerMenu from './burgerMenu/burgerMenu';
 import BurgerMenuIcon from './burgerMenu/burgerMenuIcon';
-import { mobileLBreakpoint } from 'styles/responsiveSizes';
+import { devices, mobileLBreakpoint } from 'styles/responsiveSizes';
 // import sabfLogo from "../../assets/sabfLogo.png"
 
 interface NavBarProps {
@@ -22,6 +22,9 @@ const NavBarNav = styled.nav`
   position: sticky;
   top: 0;
   background-color: black;
+  @media ${devices.mobileL} {
+            background-color: transparent;
+     }
 `;
 
 const NavBarDiv = styled.div`
