@@ -111,7 +111,7 @@ const LandingIndex:React.FC<LandingIndexProps> = ({data}) => {
                     <GridHolder>
                     <Grid>
                         <div> 
-                            <p>14th Anniversary</p>
+                            <p>14th Annual</p>
                             <h1>Stanford</h1>
                         </div>
 

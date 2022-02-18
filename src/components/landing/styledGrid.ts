@@ -91,7 +91,7 @@ div:nth-child(2) {
     }
     h1 {
         animation-delay: calc(2 * 0.05s);
-        font-family: "eb-garamond";
+        /* font-family: "eb-garamond"; */
         font-style: italic;
 
         @media ${devices.mobileL}{
