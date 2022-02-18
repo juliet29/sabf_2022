@@ -14,6 +14,7 @@ import { Grid } from './styledGrid';
 // import {spinThing} from "./spinThing.png"
 
 
+
 // interface
 // interface RoundMouseProps{
 //     x: number | null;
@@ -82,14 +83,14 @@ const OverFlowHiddenDiv = styled.div`
 
 
 
-const spinSrc  = "/Users/julietnwagwuume-ezeoke/Desktop/sabf_2022/static/spinThing.png"
+const spinSrc  = "../../assets/spinThing.png"
 interface LandingIndexProps {
     data: IndexPageImageQueryQuery;
 }
 const LandingIndex:React.FC<LandingIndexProps> = ({data}) => {
-    const { x, y } = useMousePosition();
+    // const { x, y } = useMousePosition();
    
-    console.log(x,y)
+    // console.log(x,y)
     // const hasMovedCursor = typeof x === "number" && typeof y === "number";
 
     return (

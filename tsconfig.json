@@ -14,5 +14,5 @@
       "removeComments": false,
       "baseUrl": "src",
     },
-    "include": ["./src/**/*", "src"]
+    "include": ["./src/**/*", "src",  "./typings/**/*.d.ts"]
   }

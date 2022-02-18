@@ -3935,7 +3935,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const NavBarNav = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].nav.withConfig({
   displayName: "navBar__NavBarNav"
-})(["z-index:10000000000;padding-top:1em;padding-bottom:1em;padding-left:1em;padding-right:1em;position:sticky;top:0;background-color:black;"]);
+})(["z-index:10000000000;padding-top:1em;padding-bottom:1em;padding-left:1em;padding-right:1em;position:sticky;top:0;background-color:black;@media ", "{width:90vw;padding-left:0;padding-right:0;}"], styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_6__.devices.mobileL);
 const NavBarDiv = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].div.withConfig({
   displayName: "navBar__NavBarDiv"
 })(["display:flex;flex-direction:row;justify-content:space-between;align-items:center;"]);
@@ -3949,8 +3949,8 @@ const NavLink = (0,styled_components__WEBPACK_IMPORTED_MODULE_7__["default"])(ga
 const NavBar = ({}) => {
   const {
     width
-  } = (0,hooks_window_size__WEBPACK_IMPORTED_MODULE_3__.useWindowSize)();
-  console.log(width);
+  } = (0,hooks_window_size__WEBPACK_IMPORTED_MODULE_3__.useWindowSize)(); // console.log(width)
+
   const {
     0: open,
     1: setOpen

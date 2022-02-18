@@ -17,9 +17,18 @@ import { devices } from 'styles/responsiveSizes';
 
 const HTML = styled.html`
 @media ${devices.mobileL} {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none; 
+  :-webkit-scrollbar {
+  display: none;
+}
   /* overflow-x: hidden; */
   /* height: 150vh; */
 }
+`;
+
+const HideOverflow = styled.div`
+  overflow-x: hidden;
 `;
 
 // styles ------------------
@@ -47,11 +56,13 @@ const IndexPage: React.FC<IndexPageProps> = ({data}) => {
           <HTML>
             
           <NavBar></NavBar>
+          <HideOverflow>
           <Body>
           <LandingIndex  data={data}></LandingIndex>
           <AboutIndex data={data}></AboutIndex>
           </Body>
           <Footer></Footer>
+          </HideOverflow>
           </HTML>
           </ParallaxProvider>
       </ThemeProvider>

@@ -5,7 +5,9 @@ import { StaticImage } from "gatsby-plugin-image"
 import { Parallax } from 'react-scroll-parallax';
 import { devices } from 'styles/responsiveSizes';
 import { primaryAccentColor } from 'styles/theme';
-// import {GSB} from "../../../assets/GSB.png"
+// import GSB from "../../../assets/GSB.png"
+// import ship from "../../../assets/ship.jpg"
+
 
 
 // styles --------------------
@@ -47,6 +49,9 @@ const PhotoPlaceholder = styled.div`
     filter: hue-rotate(180deg);
     opacity: 0.8;
   }
+  @media ${devices.mobileL} {
+    height: 35vh;
+}
   `
 
 // const parallaxPerspective = 8
@@ -108,12 +113,13 @@ interface ScrollingSectionProps {
     // : string;
 }
 
-const ship = "/Users/julietnwagwuume-ezeoke/Desktop/sabf_2022/src/assets/ship.jpg"
-const GSB = "/Users/julietnwagwuume-ezeoke/Desktop/sabf_2022/src/assets/GSB.png"
-const city ="/Users/julietnwagwuume-ezeoke/Desktop/sabf_2022/src/assets/city.jpg"
+const ship = "../../../assets/ship.jpg"
+const GSB = "../../../assets/GSB.png"
+const city ="../../../assets/city.jpg"
 
 const ScrollingSection: React.FC<ScrollingSectionProps> = ({ }) => {
     // const { ref } = useParallax({ speed: 40 });
+    console.log("hi", GSB)
     
     return (
 
@@ -127,7 +133,7 @@ const ScrollingSection: React.FC<ScrollingSectionProps> = ({ }) => {
             <ImageGrid>
                 <PhotoPlaceholder>
                     <Parallax speed={-5}>
-                    <StaticImage  src={ship} alt="" />
+                    <StaticImage src={ship} alt="" />
                     </Parallax>
                 </PhotoPlaceholder>
                 <PhotoPlaceholder>

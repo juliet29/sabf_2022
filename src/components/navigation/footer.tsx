@@ -19,14 +19,15 @@ const StyledFooter = styled.footer`
  }
   /* padding-top: ; */
   /* padding-right: ${edgeSpace + "em"}; */
-  background-color: ${secondaryAccentColor};
+  /* background-color: ${secondaryAccentColor}; */
   display: flex;
   flex-direction: row;
   position: relative;
   bottom: 0;
   width: 100%;
-  background: rgb(36,71,127);
-  background: linear-gradient(180deg, rgba(36,71,127,1) 0%, rgba(37,88,254,1) 51%, rgba(54,101,255,1) 100%);
+  background-color: ${primaryAccentColor};
+  /* background: rgb(36,71,127);
+  background: linear-gradient(180deg, rgba(36,71,127,1) 0%, rgba(37,88,254,1) 51%, rgba(54,101,255,1) 100%); */
 
   
 `;
@@ -34,6 +35,10 @@ const StyledFooter = styled.footer`
 const LeftColumn = styled.div`
     /* background-color: orange; */
     flex-grow: 2;
+    @media ${devices.mobileL} {
+    /* padding-left: 2em; */
+    flex-grow: 1;
+    }
   
 `;
 
@@ -66,7 +71,7 @@ const FooterMenuItem = styled(Link)`
     h2:hover {
         display: inline-block;
         text-decoration: underline;
-        color: ${primaryAccentColor};
+        color: ${secondaryAccentColor};
     }
 
 
@@ -90,7 +95,7 @@ const SocialLinksItem = styled.a`
     transition:  0.3s all ease-in-out;
 
     :hover {
-        color: ${primaryAccentColor};
+        color: ${secondaryAccentColor};
     }
 
   

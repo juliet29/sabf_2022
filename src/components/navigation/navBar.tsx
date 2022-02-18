@@ -27,6 +27,7 @@ const NavBarNav = styled.nav`
             width: 90vw;
             padding-left: 0;
             padding-right: 0;
+            overflow-x: hidden;
             /* margin: 0 auto; */
 
      }
@@ -66,7 +67,7 @@ export const NavLink = styled(Link)`
 
 const NavBar: React.FC<NavBarProps> = ({  }) => {
     const { width } = useWindowSize()  
-    console.log(width)
+    // console.log(width)
     const [open, setOpen] = useState(false);
     return (
         <NavBarNav>
