@@ -4,6 +4,8 @@ import { StaticImage } from "gatsby-plugin-image"
 // import { useParallax } from 'react-scroll-parallax';
 import { Parallax } from 'react-scroll-parallax';
 import { devices } from 'styles/responsiveSizes';
+import { primaryAccentColor } from 'styles/theme';
+// import {GSB} from "../../../assets/GSB.png"
 
 
 // styles --------------------
@@ -20,13 +22,19 @@ const H1 = styled.h1`
     height: 100%;
     margin: 0 10%;
     display: flex;
-    font-size: 7em;
+    flex-direction: column;
+    font-size: 5em;
     @media ${devices.mobileL} {
             font-size: 3em;
      }
     text-align: center;
     position: absolute;
     transform: translateZ(0px);
+
+    span {
+        color: ${primaryAccentColor};
+        display: inline-block;
+    }
 `;
 
 const PhotoPlaceholder = styled.div`
@@ -47,9 +55,9 @@ const ImageGrid = styled.div`
     /* transform-origin: 0;
     transform: translate3D(0px, 5px, 0px), scale(0.5); */
     display: grid;
-    height: 140vh;
+    height: 150vh;
     @media ${devices.mobileL} {
-  height: initial;
+    height: initial;
 }
     gap: 3em 6em;
     @media ${devices.mobileL} {
@@ -106,7 +114,7 @@ const ScrollingSection: React.FC<ScrollingSectionProps> = ({ }) => {
         <SectionWrap>
             
             <H1 >
-                Here will be some prolific text that will explore a major theme of the conference and make people very interested.
+               Industries are <span>transforming rapidly</span> across the African continent. <span>Innovation is key</span> to unlocking their potential across the global economy.
             </H1>
                 
             <ImageGrid>
