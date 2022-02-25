@@ -14,6 +14,7 @@ margin: auto;
 @media ${devices.mobileLMin} {
         grid-auto-flow: row;
         grid-template-columns: repeat(2, 1fr);
+        gap:2em;
 }
 
 @media ${devices.laptopMin} {
@@ -27,8 +28,7 @@ const Card = styled.div`
 background-color: ${primaryAccentColor};
 border-radius: 10px;
 box-sizing: border-box;
-
-
+/* box-shadow: 0 0 20px #00000070; */
 
 div {
     padding: 10px;
@@ -40,10 +40,16 @@ img {
     object-fit: cover;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
+    background-color: black;
 }
 
 @media ${devices.mobileLMin} {
         width: 30vw;
+        transition: transform 0.3s;
+
+        :hover {
+            transform: translateY(-0.5rem) scale(1.03);
+        }
 }
 
 @media ${devices.laptopMin} {

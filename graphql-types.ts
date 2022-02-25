@@ -67,6 +67,10 @@ export type File = Node & {
   childrenImageSharp?: Maybe<Array<Maybe<ImageSharp>>>;
   /** Returns the first child node of type ImageSharp or null if there are no children of given type on this node */
   childImageSharp?: Maybe<ImageSharp>;
+  /** Returns all children nodes filtered by type ConfernceScheduleCsv */
+  childrenConfernceScheduleCsv?: Maybe<Array<Maybe<ConfernceScheduleCsv>>>;
+  /** Returns the first child node of type ConfernceScheduleCsv or null if there are no children of given type on this node */
+  childConfernceScheduleCsv?: Maybe<ConfernceScheduleCsv>;
   id: Scalars['ID'];
   parent?: Maybe<Node>;
   children: Array<Node>;
@@ -661,6 +665,17 @@ export type ImageSharpResize = {
   originalName?: Maybe<Scalars['String']>;
 };
 
+export type ConfernceScheduleCsv = Node & {
+  id: Scalars['ID'];
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+  Start_time?: Maybe<Scalars['String']>;
+  End_time?: Maybe<Scalars['String']>;
+  Mins?: Maybe<Scalars['String']>;
+  Schedule_name?: Maybe<Scalars['String']>;
+};
+
 export type Airtable = Node & {
   id: Scalars['ID'];
   parent?: Maybe<Node>;
@@ -734,6 +749,8 @@ export type Query = {
   allMdx: MdxConnection;
   imageSharp?: Maybe<ImageSharp>;
   allImageSharp: ImageSharpConnection;
+  confernceScheduleCsv?: Maybe<ConfernceScheduleCsv>;
+  allConfernceScheduleCsv: ConfernceScheduleCsvConnection;
   airtable?: Maybe<Airtable>;
   allAirtable: AirtableConnection;
 };
@@ -778,6 +795,8 @@ export type QueryFileArgs = {
   childMdx?: InputMaybe<MdxFilterInput>;
   childrenImageSharp?: InputMaybe<ImageSharpFilterListInput>;
   childImageSharp?: InputMaybe<ImageSharpFilterInput>;
+  childrenConfernceScheduleCsv?: InputMaybe<ConfernceScheduleCsvFilterListInput>;
+  childConfernceScheduleCsv?: InputMaybe<ConfernceScheduleCsvFilterInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
@@ -1000,6 +1019,26 @@ export type QueryAllImageSharpArgs = {
 };
 
 
+export type QueryConfernceScheduleCsvArgs = {
+  id?: InputMaybe<StringQueryOperatorInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+  Start_time?: InputMaybe<StringQueryOperatorInput>;
+  End_time?: InputMaybe<StringQueryOperatorInput>;
+  Mins?: InputMaybe<StringQueryOperatorInput>;
+  Schedule_name?: InputMaybe<StringQueryOperatorInput>;
+};
+
+
+export type QueryAllConfernceScheduleCsvArgs = {
+  filter?: InputMaybe<ConfernceScheduleCsvFilterInput>;
+  sort?: InputMaybe<ConfernceScheduleCsvSortInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+};
+
+
 export type QueryAirtableArgs = {
   id?: InputMaybe<StringQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
@@ -1130,6 +1169,8 @@ export type FileFilterInput = {
   childMdx?: InputMaybe<MdxFilterInput>;
   childrenImageSharp?: InputMaybe<ImageSharpFilterListInput>;
   childImageSharp?: InputMaybe<ImageSharpFilterInput>;
+  childrenConfernceScheduleCsv?: InputMaybe<ConfernceScheduleCsvFilterListInput>;
+  childConfernceScheduleCsv?: InputMaybe<ConfernceScheduleCsvFilterInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
@@ -1231,6 +1272,21 @@ export type BooleanQueryOperatorInput = {
   ne?: InputMaybe<Scalars['Boolean']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['Boolean']>>>;
   nin?: InputMaybe<Array<InputMaybe<Scalars['Boolean']>>>;
+};
+
+export type ConfernceScheduleCsvFilterListInput = {
+  elemMatch?: InputMaybe<ConfernceScheduleCsvFilterInput>;
+};
+
+export type ConfernceScheduleCsvFilterInput = {
+  id?: InputMaybe<StringQueryOperatorInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+  Start_time?: InputMaybe<StringQueryOperatorInput>;
+  End_time?: InputMaybe<StringQueryOperatorInput>;
+  Mins?: InputMaybe<StringQueryOperatorInput>;
+  Schedule_name?: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type MdxHeadingMdxFilterListInput = {
@@ -1379,6 +1435,7 @@ export type FileFieldsEnum =
   | 'childrenMdx___frontmatter___image_01___publicURL'
   | 'childrenMdx___frontmatter___image_01___childrenMdx'
   | 'childrenMdx___frontmatter___image_01___childrenImageSharp'
+  | 'childrenMdx___frontmatter___image_01___childrenConfernceScheduleCsv'
   | 'childrenMdx___frontmatter___image_01___id'
   | 'childrenMdx___frontmatter___image_01___children'
   | 'childrenMdx___frontmatter___image_02___sourceInstanceName'
@@ -1417,6 +1474,7 @@ export type FileFieldsEnum =
   | 'childrenMdx___frontmatter___image_02___publicURL'
   | 'childrenMdx___frontmatter___image_02___childrenMdx'
   | 'childrenMdx___frontmatter___image_02___childrenImageSharp'
+  | 'childrenMdx___frontmatter___image_02___childrenConfernceScheduleCsv'
   | 'childrenMdx___frontmatter___image_02___id'
   | 'childrenMdx___frontmatter___image_02___children'
   | 'childrenMdx___slug'
@@ -1510,6 +1568,7 @@ export type FileFieldsEnum =
   | 'childMdx___frontmatter___image_01___publicURL'
   | 'childMdx___frontmatter___image_01___childrenMdx'
   | 'childMdx___frontmatter___image_01___childrenImageSharp'
+  | 'childMdx___frontmatter___image_01___childrenConfernceScheduleCsv'
   | 'childMdx___frontmatter___image_01___id'
   | 'childMdx___frontmatter___image_01___children'
   | 'childMdx___frontmatter___image_02___sourceInstanceName'
@@ -1548,6 +1607,7 @@ export type FileFieldsEnum =
   | 'childMdx___frontmatter___image_02___publicURL'
   | 'childMdx___frontmatter___image_02___childrenMdx'
   | 'childMdx___frontmatter___image_02___childrenImageSharp'
+  | 'childMdx___frontmatter___image_02___childrenConfernceScheduleCsv'
   | 'childMdx___frontmatter___image_02___id'
   | 'childMdx___frontmatter___image_02___children'
   | 'childMdx___slug'
@@ -1742,6 +1802,91 @@ export type FileFieldsEnum =
   | 'childImageSharp___internal___mediaType'
   | 'childImageSharp___internal___owner'
   | 'childImageSharp___internal___type'
+  | 'childrenConfernceScheduleCsv'
+  | 'childrenConfernceScheduleCsv___id'
+  | 'childrenConfernceScheduleCsv___parent___id'
+  | 'childrenConfernceScheduleCsv___parent___parent___id'
+  | 'childrenConfernceScheduleCsv___parent___parent___children'
+  | 'childrenConfernceScheduleCsv___parent___children'
+  | 'childrenConfernceScheduleCsv___parent___children___id'
+  | 'childrenConfernceScheduleCsv___parent___children___children'
+  | 'childrenConfernceScheduleCsv___parent___internal___content'
+  | 'childrenConfernceScheduleCsv___parent___internal___contentDigest'
+  | 'childrenConfernceScheduleCsv___parent___internal___description'
+  | 'childrenConfernceScheduleCsv___parent___internal___fieldOwners'
+  | 'childrenConfernceScheduleCsv___parent___internal___ignoreType'
+  | 'childrenConfernceScheduleCsv___parent___internal___mediaType'
+  | 'childrenConfernceScheduleCsv___parent___internal___owner'
+  | 'childrenConfernceScheduleCsv___parent___internal___type'
+  | 'childrenConfernceScheduleCsv___children'
+  | 'childrenConfernceScheduleCsv___children___id'
+  | 'childrenConfernceScheduleCsv___children___parent___id'
+  | 'childrenConfernceScheduleCsv___children___parent___children'
+  | 'childrenConfernceScheduleCsv___children___children'
+  | 'childrenConfernceScheduleCsv___children___children___id'
+  | 'childrenConfernceScheduleCsv___children___children___children'
+  | 'childrenConfernceScheduleCsv___children___internal___content'
+  | 'childrenConfernceScheduleCsv___children___internal___contentDigest'
+  | 'childrenConfernceScheduleCsv___children___internal___description'
+  | 'childrenConfernceScheduleCsv___children___internal___fieldOwners'
+  | 'childrenConfernceScheduleCsv___children___internal___ignoreType'
+  | 'childrenConfernceScheduleCsv___children___internal___mediaType'
+  | 'childrenConfernceScheduleCsv___children___internal___owner'
+  | 'childrenConfernceScheduleCsv___children___internal___type'
+  | 'childrenConfernceScheduleCsv___internal___content'
+  | 'childrenConfernceScheduleCsv___internal___contentDigest'
+  | 'childrenConfernceScheduleCsv___internal___description'
+  | 'childrenConfernceScheduleCsv___internal___fieldOwners'
+  | 'childrenConfernceScheduleCsv___internal___ignoreType'
+  | 'childrenConfernceScheduleCsv___internal___mediaType'
+  | 'childrenConfernceScheduleCsv___internal___owner'
+  | 'childrenConfernceScheduleCsv___internal___type'
+  | 'childrenConfernceScheduleCsv___Start_time'
+  | 'childrenConfernceScheduleCsv___End_time'
+  | 'childrenConfernceScheduleCsv___Mins'
+  | 'childrenConfernceScheduleCsv___Schedule_name'
+  | 'childConfernceScheduleCsv___id'
+  | 'childConfernceScheduleCsv___parent___id'
+  | 'childConfernceScheduleCsv___parent___parent___id'
+  | 'childConfernceScheduleCsv___parent___parent___children'
+  | 'childConfernceScheduleCsv___parent___children'
+  | 'childConfernceScheduleCsv___parent___children___id'
+  | 'childConfernceScheduleCsv___parent___children___children'
+  | 'childConfernceScheduleCsv___parent___internal___content'
+  | 'childConfernceScheduleCsv___parent___internal___contentDigest'
+  | 'childConfernceScheduleCsv___parent___internal___description'
+  | 'childConfernceScheduleCsv___parent___internal___fieldOwners'
+  | 'childConfernceScheduleCsv___parent___internal___ignoreType'
+  | 'childConfernceScheduleCsv___parent___internal___mediaType'
+  | 'childConfernceScheduleCsv___parent___internal___owner'
+  | 'childConfernceScheduleCsv___parent___internal___type'
+  | 'childConfernceScheduleCsv___children'
+  | 'childConfernceScheduleCsv___children___id'
+  | 'childConfernceScheduleCsv___children___parent___id'
+  | 'childConfernceScheduleCsv___children___parent___children'
+  | 'childConfernceScheduleCsv___children___children'
+  | 'childConfernceScheduleCsv___children___children___id'
+  | 'childConfernceScheduleCsv___children___children___children'
+  | 'childConfernceScheduleCsv___children___internal___content'
+  | 'childConfernceScheduleCsv___children___internal___contentDigest'
+  | 'childConfernceScheduleCsv___children___internal___description'
+  | 'childConfernceScheduleCsv___children___internal___fieldOwners'
+  | 'childConfernceScheduleCsv___children___internal___ignoreType'
+  | 'childConfernceScheduleCsv___children___internal___mediaType'
+  | 'childConfernceScheduleCsv___children___internal___owner'
+  | 'childConfernceScheduleCsv___children___internal___type'
+  | 'childConfernceScheduleCsv___internal___content'
+  | 'childConfernceScheduleCsv___internal___contentDigest'
+  | 'childConfernceScheduleCsv___internal___description'
+  | 'childConfernceScheduleCsv___internal___fieldOwners'
+  | 'childConfernceScheduleCsv___internal___ignoreType'
+  | 'childConfernceScheduleCsv___internal___mediaType'
+  | 'childConfernceScheduleCsv___internal___owner'
+  | 'childConfernceScheduleCsv___internal___type'
+  | 'childConfernceScheduleCsv___Start_time'
+  | 'childConfernceScheduleCsv___End_time'
+  | 'childConfernceScheduleCsv___Mins'
+  | 'childConfernceScheduleCsv___Schedule_name'
   | 'id'
   | 'parent___id'
   | 'parent___parent___id'
@@ -3289,6 +3434,19 @@ export type MdxFieldsEnum =
   | 'frontmatter___image_01___childImageSharp___gatsbyImageData'
   | 'frontmatter___image_01___childImageSharp___id'
   | 'frontmatter___image_01___childImageSharp___children'
+  | 'frontmatter___image_01___childrenConfernceScheduleCsv'
+  | 'frontmatter___image_01___childrenConfernceScheduleCsv___id'
+  | 'frontmatter___image_01___childrenConfernceScheduleCsv___children'
+  | 'frontmatter___image_01___childrenConfernceScheduleCsv___Start_time'
+  | 'frontmatter___image_01___childrenConfernceScheduleCsv___End_time'
+  | 'frontmatter___image_01___childrenConfernceScheduleCsv___Mins'
+  | 'frontmatter___image_01___childrenConfernceScheduleCsv___Schedule_name'
+  | 'frontmatter___image_01___childConfernceScheduleCsv___id'
+  | 'frontmatter___image_01___childConfernceScheduleCsv___children'
+  | 'frontmatter___image_01___childConfernceScheduleCsv___Start_time'
+  | 'frontmatter___image_01___childConfernceScheduleCsv___End_time'
+  | 'frontmatter___image_01___childConfernceScheduleCsv___Mins'
+  | 'frontmatter___image_01___childConfernceScheduleCsv___Schedule_name'
   | 'frontmatter___image_01___id'
   | 'frontmatter___image_01___parent___id'
   | 'frontmatter___image_01___parent___children'
@@ -3369,6 +3527,19 @@ export type MdxFieldsEnum =
   | 'frontmatter___image_02___childImageSharp___gatsbyImageData'
   | 'frontmatter___image_02___childImageSharp___id'
   | 'frontmatter___image_02___childImageSharp___children'
+  | 'frontmatter___image_02___childrenConfernceScheduleCsv'
+  | 'frontmatter___image_02___childrenConfernceScheduleCsv___id'
+  | 'frontmatter___image_02___childrenConfernceScheduleCsv___children'
+  | 'frontmatter___image_02___childrenConfernceScheduleCsv___Start_time'
+  | 'frontmatter___image_02___childrenConfernceScheduleCsv___End_time'
+  | 'frontmatter___image_02___childrenConfernceScheduleCsv___Mins'
+  | 'frontmatter___image_02___childrenConfernceScheduleCsv___Schedule_name'
+  | 'frontmatter___image_02___childConfernceScheduleCsv___id'
+  | 'frontmatter___image_02___childConfernceScheduleCsv___children'
+  | 'frontmatter___image_02___childConfernceScheduleCsv___Start_time'
+  | 'frontmatter___image_02___childConfernceScheduleCsv___End_time'
+  | 'frontmatter___image_02___childConfernceScheduleCsv___Mins'
+  | 'frontmatter___image_02___childConfernceScheduleCsv___Schedule_name'
   | 'frontmatter___image_02___id'
   | 'frontmatter___image_02___parent___id'
   | 'frontmatter___image_02___parent___children'
@@ -3740,6 +3911,189 @@ export type ImageSharpSortInput = {
   order?: InputMaybe<Array<InputMaybe<SortOrderEnum>>>;
 };
 
+export type ConfernceScheduleCsvConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ConfernceScheduleCsvEdge>;
+  nodes: Array<ConfernceScheduleCsv>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ConfernceScheduleCsvGroupConnection>;
+};
+
+
+export type ConfernceScheduleCsvConnectionDistinctArgs = {
+  field: ConfernceScheduleCsvFieldsEnum;
+};
+
+
+export type ConfernceScheduleCsvConnectionMaxArgs = {
+  field: ConfernceScheduleCsvFieldsEnum;
+};
+
+
+export type ConfernceScheduleCsvConnectionMinArgs = {
+  field: ConfernceScheduleCsvFieldsEnum;
+};
+
+
+export type ConfernceScheduleCsvConnectionSumArgs = {
+  field: ConfernceScheduleCsvFieldsEnum;
+};
+
+
+export type ConfernceScheduleCsvConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ConfernceScheduleCsvFieldsEnum;
+};
+
+export type ConfernceScheduleCsvEdge = {
+  next?: Maybe<ConfernceScheduleCsv>;
+  node: ConfernceScheduleCsv;
+  previous?: Maybe<ConfernceScheduleCsv>;
+};
+
+export type ConfernceScheduleCsvFieldsEnum =
+  | 'id'
+  | 'parent___id'
+  | 'parent___parent___id'
+  | 'parent___parent___parent___id'
+  | 'parent___parent___parent___children'
+  | 'parent___parent___children'
+  | 'parent___parent___children___id'
+  | 'parent___parent___children___children'
+  | 'parent___parent___internal___content'
+  | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___description'
+  | 'parent___parent___internal___fieldOwners'
+  | 'parent___parent___internal___ignoreType'
+  | 'parent___parent___internal___mediaType'
+  | 'parent___parent___internal___owner'
+  | 'parent___parent___internal___type'
+  | 'parent___children'
+  | 'parent___children___id'
+  | 'parent___children___parent___id'
+  | 'parent___children___parent___children'
+  | 'parent___children___children'
+  | 'parent___children___children___id'
+  | 'parent___children___children___children'
+  | 'parent___children___internal___content'
+  | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___description'
+  | 'parent___children___internal___fieldOwners'
+  | 'parent___children___internal___ignoreType'
+  | 'parent___children___internal___mediaType'
+  | 'parent___children___internal___owner'
+  | 'parent___children___internal___type'
+  | 'parent___internal___content'
+  | 'parent___internal___contentDigest'
+  | 'parent___internal___description'
+  | 'parent___internal___fieldOwners'
+  | 'parent___internal___ignoreType'
+  | 'parent___internal___mediaType'
+  | 'parent___internal___owner'
+  | 'parent___internal___type'
+  | 'children'
+  | 'children___id'
+  | 'children___parent___id'
+  | 'children___parent___parent___id'
+  | 'children___parent___parent___children'
+  | 'children___parent___children'
+  | 'children___parent___children___id'
+  | 'children___parent___children___children'
+  | 'children___parent___internal___content'
+  | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___description'
+  | 'children___parent___internal___fieldOwners'
+  | 'children___parent___internal___ignoreType'
+  | 'children___parent___internal___mediaType'
+  | 'children___parent___internal___owner'
+  | 'children___parent___internal___type'
+  | 'children___children'
+  | 'children___children___id'
+  | 'children___children___parent___id'
+  | 'children___children___parent___children'
+  | 'children___children___children'
+  | 'children___children___children___id'
+  | 'children___children___children___children'
+  | 'children___children___internal___content'
+  | 'children___children___internal___contentDigest'
+  | 'children___children___internal___description'
+  | 'children___children___internal___fieldOwners'
+  | 'children___children___internal___ignoreType'
+  | 'children___children___internal___mediaType'
+  | 'children___children___internal___owner'
+  | 'children___children___internal___type'
+  | 'children___internal___content'
+  | 'children___internal___contentDigest'
+  | 'children___internal___description'
+  | 'children___internal___fieldOwners'
+  | 'children___internal___ignoreType'
+  | 'children___internal___mediaType'
+  | 'children___internal___owner'
+  | 'children___internal___type'
+  | 'internal___content'
+  | 'internal___contentDigest'
+  | 'internal___description'
+  | 'internal___fieldOwners'
+  | 'internal___ignoreType'
+  | 'internal___mediaType'
+  | 'internal___owner'
+  | 'internal___type'
+  | 'Start_time'
+  | 'End_time'
+  | 'Mins'
+  | 'Schedule_name';
+
+export type ConfernceScheduleCsvGroupConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ConfernceScheduleCsvEdge>;
+  nodes: Array<ConfernceScheduleCsv>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ConfernceScheduleCsvGroupConnection>;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+
+export type ConfernceScheduleCsvGroupConnectionDistinctArgs = {
+  field: ConfernceScheduleCsvFieldsEnum;
+};
+
+
+export type ConfernceScheduleCsvGroupConnectionMaxArgs = {
+  field: ConfernceScheduleCsvFieldsEnum;
+};
+
+
+export type ConfernceScheduleCsvGroupConnectionMinArgs = {
+  field: ConfernceScheduleCsvFieldsEnum;
+};
+
+
+export type ConfernceScheduleCsvGroupConnectionSumArgs = {
+  field: ConfernceScheduleCsvFieldsEnum;
+};
+
+
+export type ConfernceScheduleCsvGroupConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ConfernceScheduleCsvFieldsEnum;
+};
+
+export type ConfernceScheduleCsvSortInput = {
+  fields?: InputMaybe<Array<InputMaybe<ConfernceScheduleCsvFieldsEnum>>>;
+  order?: InputMaybe<Array<InputMaybe<SortOrderEnum>>>;
+};
+
 export type AirtableDataFilterInput = {
   Industries?: InputMaybe<StringQueryOperatorInput>;
   Attachments?: InputMaybe<AirtableDataAttachmentsFilterListInput>;
@@ -4003,6 +4357,11 @@ export type MarkdownContentQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type MarkdownContentQuery = { allMdx: { nodes: Array<{ id: string, body: string, frontmatter?: { title: string, number?: string | null, image_01?: { childImageSharp?: { gatsbyImageData: any } | null } | null, image_02?: { childImageSharp?: { gatsbyImageData: any } | null } | null } | null }> } };
+
+export type AttendPageQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AttendPageQueryQuery = { allConfernceScheduleCsv: { nodes: Array<{ End_time?: string | null, Mins?: string | null, Schedule_name?: string | null, Start_time?: string | null, id: string }> } };
 
 export type IndexPageImageQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
