@@ -47,6 +47,18 @@ module.exports = {
         icon: 'src/assets/sabfLogo.png',
       },
     },
+    {
+      resolve: "gatsby-source-airtable",
+        options: {
+          apiKey: "key7xAWAIFjRclmGx",
+          tables: [
+            {
+              baseId: "appXirPrUc45gFZHW",
+              tableName: "Artists",
+            },
+                  ]
+              }
+  }
     
   ],
 };

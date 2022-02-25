@@ -661,107 +661,58 @@ export type ImageSharpResize = {
   originalName?: Maybe<Scalars['String']>;
 };
 
-export type StaticImage = Node & {
+export type Airtable = Node & {
   id: Scalars['ID'];
   parent?: Maybe<Node>;
   children: Array<Node>;
   internal: Internal;
-  sourceInstanceName?: Maybe<Scalars['String']>;
-  relativePath?: Maybe<Scalars['String']>;
-  extension?: Maybe<Scalars['String']>;
-  prettySize?: Maybe<Scalars['String']>;
-  modifiedTime?: Maybe<Scalars['Date']>;
-  accessTime?: Maybe<Scalars['Date']>;
-  changeTime?: Maybe<Scalars['Date']>;
-  birthTime?: Maybe<Scalars['Date']>;
-  root?: Maybe<Scalars['String']>;
-  dir?: Maybe<Scalars['String']>;
-  base?: Maybe<Scalars['String']>;
-  ext?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  absolutePath?: Maybe<Scalars['String']>;
-  relativeDirectory?: Maybe<Scalars['String']>;
-  dev?: Maybe<Scalars['Int']>;
-  mode?: Maybe<Scalars['Int']>;
-  nlink?: Maybe<Scalars['Int']>;
-  uid?: Maybe<Scalars['Int']>;
-  rdev?: Maybe<Scalars['Int']>;
-  blksize?: Maybe<Scalars['Int']>;
-  ino?: Maybe<Scalars['Int']>;
+  table?: Maybe<Scalars['String']>;
+  recordId?: Maybe<Scalars['String']>;
+  rowIndex?: Maybe<Scalars['Int']>;
+  data?: Maybe<AirtableData>;
+};
+
+export type AirtableData = {
+  Industries?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Attachments?: Maybe<Array<Maybe<AirtableDataAttachments>>>;
+  Program?: Maybe<Scalars['String']>;
+  Name?: Maybe<Scalars['String']>;
+  Email?: Maybe<Scalars['String']>;
+};
+
+export type AirtableDataAttachments = {
+  id?: Maybe<Scalars['String']>;
+  width?: Maybe<Scalars['Int']>;
+  height?: Maybe<Scalars['Int']>;
+  url?: Maybe<Scalars['String']>;
+  filename?: Maybe<Scalars['String']>;
   size?: Maybe<Scalars['Int']>;
-  blocks?: Maybe<Scalars['Int']>;
-  atimeMs?: Maybe<Scalars['Float']>;
-  mtimeMs?: Maybe<Scalars['Float']>;
-  ctimeMs?: Maybe<Scalars['Float']>;
-  birthtimeMs?: Maybe<Scalars['Float']>;
-  atime?: Maybe<Scalars['Date']>;
-  mtime?: Maybe<Scalars['Date']>;
-  ctime?: Maybe<Scalars['Date']>;
-  birthtime?: Maybe<Scalars['Date']>;
+  type?: Maybe<Scalars['String']>;
+  thumbnails?: Maybe<AirtableDataAttachmentsThumbnails>;
 };
 
-
-export type StaticImageModifiedTimeArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
+export type AirtableDataAttachmentsThumbnails = {
+  small?: Maybe<AirtableDataAttachmentsThumbnailsSmall>;
+  large?: Maybe<AirtableDataAttachmentsThumbnailsLarge>;
+  full?: Maybe<AirtableDataAttachmentsThumbnailsFull>;
 };
 
-
-export type StaticImageAccessTimeArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
+export type AirtableDataAttachmentsThumbnailsSmall = {
+  url?: Maybe<Scalars['String']>;
+  width?: Maybe<Scalars['Int']>;
+  height?: Maybe<Scalars['Int']>;
 };
 
-
-export type StaticImageChangeTimeArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
+export type AirtableDataAttachmentsThumbnailsLarge = {
+  url?: Maybe<Scalars['String']>;
+  width?: Maybe<Scalars['Int']>;
+  height?: Maybe<Scalars['Int']>;
 };
 
-
-export type StaticImageBirthTimeArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type StaticImageAtimeArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type StaticImageMtimeArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type StaticImageCtimeArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type StaticImageBirthtimeArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
+export type AirtableDataAttachmentsThumbnailsFull = {
+  url?: Maybe<Scalars['String']>;
+  width?: Maybe<Scalars['Int']>;
+  height?: Maybe<Scalars['Int']>;
 };
 
 export type Query = {
@@ -783,8 +734,8 @@ export type Query = {
   allMdx: MdxConnection;
   imageSharp?: Maybe<ImageSharp>;
   allImageSharp: ImageSharpConnection;
-  staticImage?: Maybe<StaticImage>;
-  allStaticImage: StaticImageConnection;
+  airtable?: Maybe<Airtable>;
+  allAirtable: AirtableConnection;
 };
 
 
@@ -1049,49 +1000,21 @@ export type QueryAllImageSharpArgs = {
 };
 
 
-export type QueryStaticImageArgs = {
+export type QueryAirtableArgs = {
   id?: InputMaybe<StringQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
   internal?: InputMaybe<InternalFilterInput>;
-  sourceInstanceName?: InputMaybe<StringQueryOperatorInput>;
-  relativePath?: InputMaybe<StringQueryOperatorInput>;
-  extension?: InputMaybe<StringQueryOperatorInput>;
-  prettySize?: InputMaybe<StringQueryOperatorInput>;
-  modifiedTime?: InputMaybe<DateQueryOperatorInput>;
-  accessTime?: InputMaybe<DateQueryOperatorInput>;
-  changeTime?: InputMaybe<DateQueryOperatorInput>;
-  birthTime?: InputMaybe<DateQueryOperatorInput>;
-  root?: InputMaybe<StringQueryOperatorInput>;
-  dir?: InputMaybe<StringQueryOperatorInput>;
-  base?: InputMaybe<StringQueryOperatorInput>;
-  ext?: InputMaybe<StringQueryOperatorInput>;
-  name?: InputMaybe<StringQueryOperatorInput>;
-  absolutePath?: InputMaybe<StringQueryOperatorInput>;
-  relativeDirectory?: InputMaybe<StringQueryOperatorInput>;
-  dev?: InputMaybe<IntQueryOperatorInput>;
-  mode?: InputMaybe<IntQueryOperatorInput>;
-  nlink?: InputMaybe<IntQueryOperatorInput>;
-  uid?: InputMaybe<IntQueryOperatorInput>;
-  rdev?: InputMaybe<IntQueryOperatorInput>;
-  blksize?: InputMaybe<IntQueryOperatorInput>;
-  ino?: InputMaybe<IntQueryOperatorInput>;
-  size?: InputMaybe<IntQueryOperatorInput>;
-  blocks?: InputMaybe<IntQueryOperatorInput>;
-  atimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  mtimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  ctimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  birthtimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  atime?: InputMaybe<DateQueryOperatorInput>;
-  mtime?: InputMaybe<DateQueryOperatorInput>;
-  ctime?: InputMaybe<DateQueryOperatorInput>;
-  birthtime?: InputMaybe<DateQueryOperatorInput>;
+  table?: InputMaybe<StringQueryOperatorInput>;
+  recordId?: InputMaybe<StringQueryOperatorInput>;
+  rowIndex?: InputMaybe<IntQueryOperatorInput>;
+  data?: InputMaybe<AirtableDataFilterInput>;
 };
 
 
-export type QueryAllStaticImageArgs = {
-  filter?: InputMaybe<StaticImageFilterInput>;
-  sort?: InputMaybe<StaticImageSortInput>;
+export type QueryAllAirtableArgs = {
+  filter?: InputMaybe<AirtableFilterInput>;
+  sort?: InputMaybe<AirtableSortInput>;
   skip?: InputMaybe<Scalars['Int']>;
   limit?: InputMaybe<Scalars['Int']>;
 };
@@ -3817,52 +3740,99 @@ export type ImageSharpSortInput = {
   order?: InputMaybe<Array<InputMaybe<SortOrderEnum>>>;
 };
 
-export type StaticImageConnection = {
+export type AirtableDataFilterInput = {
+  Industries?: InputMaybe<StringQueryOperatorInput>;
+  Attachments?: InputMaybe<AirtableDataAttachmentsFilterListInput>;
+  Program?: InputMaybe<StringQueryOperatorInput>;
+  Name?: InputMaybe<StringQueryOperatorInput>;
+  Email?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type AirtableDataAttachmentsFilterListInput = {
+  elemMatch?: InputMaybe<AirtableDataAttachmentsFilterInput>;
+};
+
+export type AirtableDataAttachmentsFilterInput = {
+  id?: InputMaybe<StringQueryOperatorInput>;
+  width?: InputMaybe<IntQueryOperatorInput>;
+  height?: InputMaybe<IntQueryOperatorInput>;
+  url?: InputMaybe<StringQueryOperatorInput>;
+  filename?: InputMaybe<StringQueryOperatorInput>;
+  size?: InputMaybe<IntQueryOperatorInput>;
+  type?: InputMaybe<StringQueryOperatorInput>;
+  thumbnails?: InputMaybe<AirtableDataAttachmentsThumbnailsFilterInput>;
+};
+
+export type AirtableDataAttachmentsThumbnailsFilterInput = {
+  small?: InputMaybe<AirtableDataAttachmentsThumbnailsSmallFilterInput>;
+  large?: InputMaybe<AirtableDataAttachmentsThumbnailsLargeFilterInput>;
+  full?: InputMaybe<AirtableDataAttachmentsThumbnailsFullFilterInput>;
+};
+
+export type AirtableDataAttachmentsThumbnailsSmallFilterInput = {
+  url?: InputMaybe<StringQueryOperatorInput>;
+  width?: InputMaybe<IntQueryOperatorInput>;
+  height?: InputMaybe<IntQueryOperatorInput>;
+};
+
+export type AirtableDataAttachmentsThumbnailsLargeFilterInput = {
+  url?: InputMaybe<StringQueryOperatorInput>;
+  width?: InputMaybe<IntQueryOperatorInput>;
+  height?: InputMaybe<IntQueryOperatorInput>;
+};
+
+export type AirtableDataAttachmentsThumbnailsFullFilterInput = {
+  url?: InputMaybe<StringQueryOperatorInput>;
+  width?: InputMaybe<IntQueryOperatorInput>;
+  height?: InputMaybe<IntQueryOperatorInput>;
+};
+
+export type AirtableConnection = {
   totalCount: Scalars['Int'];
-  edges: Array<StaticImageEdge>;
-  nodes: Array<StaticImage>;
+  edges: Array<AirtableEdge>;
+  nodes: Array<Airtable>;
   pageInfo: PageInfo;
   distinct: Array<Scalars['String']>;
   max?: Maybe<Scalars['Float']>;
   min?: Maybe<Scalars['Float']>;
   sum?: Maybe<Scalars['Float']>;
-  group: Array<StaticImageGroupConnection>;
+  group: Array<AirtableGroupConnection>;
 };
 
 
-export type StaticImageConnectionDistinctArgs = {
-  field: StaticImageFieldsEnum;
+export type AirtableConnectionDistinctArgs = {
+  field: AirtableFieldsEnum;
 };
 
 
-export type StaticImageConnectionMaxArgs = {
-  field: StaticImageFieldsEnum;
+export type AirtableConnectionMaxArgs = {
+  field: AirtableFieldsEnum;
 };
 
 
-export type StaticImageConnectionMinArgs = {
-  field: StaticImageFieldsEnum;
+export type AirtableConnectionMinArgs = {
+  field: AirtableFieldsEnum;
 };
 
 
-export type StaticImageConnectionSumArgs = {
-  field: StaticImageFieldsEnum;
+export type AirtableConnectionSumArgs = {
+  field: AirtableFieldsEnum;
 };
 
 
-export type StaticImageConnectionGroupArgs = {
+export type AirtableConnectionGroupArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   limit?: InputMaybe<Scalars['Int']>;
-  field: StaticImageFieldsEnum;
+  field: AirtableFieldsEnum;
 };
 
-export type StaticImageEdge = {
-  next?: Maybe<StaticImage>;
-  node: StaticImage;
-  previous?: Maybe<StaticImage>;
+export type AirtableEdge = {
+  next?: Maybe<Airtable>;
+  node: Airtable;
+  previous?: Maybe<Airtable>;
 };
 
-export type StaticImageFieldsEnum =
+export type AirtableFieldsEnum =
   | 'id'
   | 'parent___id'
   | 'parent___parent___id'
@@ -3949,125 +3919,85 @@ export type StaticImageFieldsEnum =
   | 'internal___mediaType'
   | 'internal___owner'
   | 'internal___type'
-  | 'sourceInstanceName'
-  | 'relativePath'
-  | 'extension'
-  | 'prettySize'
-  | 'modifiedTime'
-  | 'accessTime'
-  | 'changeTime'
-  | 'birthTime'
-  | 'root'
-  | 'dir'
-  | 'base'
-  | 'ext'
-  | 'name'
-  | 'absolutePath'
-  | 'relativeDirectory'
-  | 'dev'
-  | 'mode'
-  | 'nlink'
-  | 'uid'
-  | 'rdev'
-  | 'blksize'
-  | 'ino'
-  | 'size'
-  | 'blocks'
-  | 'atimeMs'
-  | 'mtimeMs'
-  | 'ctimeMs'
-  | 'birthtimeMs'
-  | 'atime'
-  | 'mtime'
-  | 'ctime'
-  | 'birthtime';
+  | 'table'
+  | 'recordId'
+  | 'rowIndex'
+  | 'data___Industries'
+  | 'data___Attachments'
+  | 'data___Attachments___id'
+  | 'data___Attachments___width'
+  | 'data___Attachments___height'
+  | 'data___Attachments___url'
+  | 'data___Attachments___filename'
+  | 'data___Attachments___size'
+  | 'data___Attachments___type'
+  | 'data___Program'
+  | 'data___Name'
+  | 'data___Email';
 
-export type StaticImageGroupConnection = {
+export type AirtableGroupConnection = {
   totalCount: Scalars['Int'];
-  edges: Array<StaticImageEdge>;
-  nodes: Array<StaticImage>;
+  edges: Array<AirtableEdge>;
+  nodes: Array<Airtable>;
   pageInfo: PageInfo;
   distinct: Array<Scalars['String']>;
   max?: Maybe<Scalars['Float']>;
   min?: Maybe<Scalars['Float']>;
   sum?: Maybe<Scalars['Float']>;
-  group: Array<StaticImageGroupConnection>;
+  group: Array<AirtableGroupConnection>;
   field: Scalars['String'];
   fieldValue?: Maybe<Scalars['String']>;
 };
 
 
-export type StaticImageGroupConnectionDistinctArgs = {
-  field: StaticImageFieldsEnum;
+export type AirtableGroupConnectionDistinctArgs = {
+  field: AirtableFieldsEnum;
 };
 
 
-export type StaticImageGroupConnectionMaxArgs = {
-  field: StaticImageFieldsEnum;
+export type AirtableGroupConnectionMaxArgs = {
+  field: AirtableFieldsEnum;
 };
 
 
-export type StaticImageGroupConnectionMinArgs = {
-  field: StaticImageFieldsEnum;
+export type AirtableGroupConnectionMinArgs = {
+  field: AirtableFieldsEnum;
 };
 
 
-export type StaticImageGroupConnectionSumArgs = {
-  field: StaticImageFieldsEnum;
+export type AirtableGroupConnectionSumArgs = {
+  field: AirtableFieldsEnum;
 };
 
 
-export type StaticImageGroupConnectionGroupArgs = {
+export type AirtableGroupConnectionGroupArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   limit?: InputMaybe<Scalars['Int']>;
-  field: StaticImageFieldsEnum;
+  field: AirtableFieldsEnum;
 };
 
-export type StaticImageFilterInput = {
+export type AirtableFilterInput = {
   id?: InputMaybe<StringQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
   internal?: InputMaybe<InternalFilterInput>;
-  sourceInstanceName?: InputMaybe<StringQueryOperatorInput>;
-  relativePath?: InputMaybe<StringQueryOperatorInput>;
-  extension?: InputMaybe<StringQueryOperatorInput>;
-  prettySize?: InputMaybe<StringQueryOperatorInput>;
-  modifiedTime?: InputMaybe<DateQueryOperatorInput>;
-  accessTime?: InputMaybe<DateQueryOperatorInput>;
-  changeTime?: InputMaybe<DateQueryOperatorInput>;
-  birthTime?: InputMaybe<DateQueryOperatorInput>;
-  root?: InputMaybe<StringQueryOperatorInput>;
-  dir?: InputMaybe<StringQueryOperatorInput>;
-  base?: InputMaybe<StringQueryOperatorInput>;
-  ext?: InputMaybe<StringQueryOperatorInput>;
-  name?: InputMaybe<StringQueryOperatorInput>;
-  absolutePath?: InputMaybe<StringQueryOperatorInput>;
-  relativeDirectory?: InputMaybe<StringQueryOperatorInput>;
-  dev?: InputMaybe<IntQueryOperatorInput>;
-  mode?: InputMaybe<IntQueryOperatorInput>;
-  nlink?: InputMaybe<IntQueryOperatorInput>;
-  uid?: InputMaybe<IntQueryOperatorInput>;
-  rdev?: InputMaybe<IntQueryOperatorInput>;
-  blksize?: InputMaybe<IntQueryOperatorInput>;
-  ino?: InputMaybe<IntQueryOperatorInput>;
-  size?: InputMaybe<IntQueryOperatorInput>;
-  blocks?: InputMaybe<IntQueryOperatorInput>;
-  atimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  mtimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  ctimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  birthtimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  atime?: InputMaybe<DateQueryOperatorInput>;
-  mtime?: InputMaybe<DateQueryOperatorInput>;
-  ctime?: InputMaybe<DateQueryOperatorInput>;
-  birthtime?: InputMaybe<DateQueryOperatorInput>;
+  table?: InputMaybe<StringQueryOperatorInput>;
+  recordId?: InputMaybe<StringQueryOperatorInput>;
+  rowIndex?: InputMaybe<IntQueryOperatorInput>;
+  data?: InputMaybe<AirtableDataFilterInput>;
 };
 
-export type StaticImageSortInput = {
-  fields?: InputMaybe<Array<InputMaybe<StaticImageFieldsEnum>>>;
+export type AirtableSortInput = {
+  fields?: InputMaybe<Array<InputMaybe<AirtableFieldsEnum>>>;
   order?: InputMaybe<Array<InputMaybe<SortOrderEnum>>>;
 };
 
 export type FluidImageFragment = { childImageSharp?: { fluid?: { tracedSVG?: string | null, aspectRatio: number, src: string, srcSet: string, srcWebp?: string | null, srcSetWebp?: string | null, sizes: string } | null } | null };
+
+export type AirtableTeamContentQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AirtableTeamContentQuery = { allAirtable: { edges: Array<{ node: { id: string, data?: { Name?: string | null, Program?: string | null, Industries?: Array<string | null> | null, Attachments?: Array<{ thumbnails?: { large?: { height?: number | null, url?: string | null, width?: number | null } | null } | null } | null> | null } | null } }> } };
 
 export type MarkdownContentQueryVariables = Exact<{ [key: string]: never; }>;
 

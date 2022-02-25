@@ -3892,7 +3892,7 @@ const Layout = ({
 }) => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(styled_components__WEBPACK_IMPORTED_MODULE_6__.ThemeProvider, {
     theme: styles_theme__WEBPACK_IMPORTED_MODULE_2__["default"]
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(styles_globalStyles__WEBPACK_IMPORTED_MODULE_3__.GlobalStyle, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("html", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("title", null, pageTitle), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("body", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(styles_globalStyles__WEBPACK_IMPORTED_MODULE_3__.GlobalStyle, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("html", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("title", null, "SABF - ", pageTitle), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("body", {
     style: {
       height: "100%",
       minHeight: "90vh"
@@ -3987,6 +3987,58 @@ const NavBar = ({}) => {
 
 /***/ }),
 
+/***/ "./src/components/team/groupHolder.tsx":
+/*!*********************************************!*\
+  !*** ./src/components/team/groupHolder.tsx ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+const GroupHolder = ({
+  edges
+}) => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, edges.edges.map(i => {
+    var _i$node$data;
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, (_i$node$data = i.node.data) === null || _i$node$data === void 0 ? void 0 : _i$node$data.Name);
+  }));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (GroupHolder);
+
+/***/ }),
+
+/***/ "./src/hooks/use-airtable-team-content.ts":
+/*!************************************************!*\
+  !*** ./src/hooks/use-airtable-team-content.ts ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useAirtableTeamContent": () => (/* binding */ useAirtableTeamContent)
+/* harmony export */ });
+/* harmony import */ var _public_page_data_sq_d_1065613583_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../public/page-data/sq/d/1065613583.json */ "./public/page-data/sq/d/1065613583.json");
+
+// import { PageProps } from "gatsby";
+// import {MarkdownContentQuery} from "../../graphql-types"
+// for the about page content 
+const useAirtableTeamContent = () => {
+  const {
+    allAirtable
+  } = _public_page_data_sq_d_1065613583_json__WEBPACK_IMPORTED_MODULE_0__.data;
+  return allAirtable;
+};
+
+/***/ }),
+
 /***/ "./src/hooks/window-size.ts":
 /*!**********************************!*\
   !*** ./src/hooks/window-size.ts ***!
@@ -4047,17 +4099,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var components_navigation_layout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! components/navigation/layout */ "./src/components/navigation/layout.tsx");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var styles_sharedStyles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styles/sharedStyles */ "./src/styles/sharedStyles.ts");
+/* harmony import */ var components_team_groupHolder__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! components/team/groupHolder */ "./src/components/team/groupHolder.tsx");
+/* harmony import */ var hooks_use_airtable_team_content__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! hooks/use-airtable-team-content */ "./src/hooks/use-airtable-team-content.ts");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var styles_sharedStyles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! styles/sharedStyles */ "./src/styles/sharedStyles.ts");
 
 
 
+
+ // import { AirtableTeamContentQuery } from '../../graphql-types';
 
 const TeamPage = ({}) => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(components_navigation_layout__WEBPACK_IMPORTED_MODULE_0__["default"], {
+  const values = (0,hooks_use_airtable_team_content__WEBPACK_IMPORTED_MODULE_2__.useAirtableTeamContent)();
+  console.log("hi team", values); // console.log("hi team", values.edges.map(i => i.node.data?.Name))
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default().createElement(components_navigation_layout__WEBPACK_IMPORTED_MODULE_0__["default"], {
     pageTitle: "Team"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(styles_sharedStyles__WEBPACK_IMPORTED_MODULE_2__.Section, null, "Stay tuned for more information!"));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default().createElement(styles_sharedStyles__WEBPACK_IMPORTED_MODULE_4__.Section, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default().createElement("h1", null, "Hiii"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3___default().createElement(components_team_groupHolder__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    edges: values
+  })));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TeamPage);
@@ -4932,6 +4993,16 @@ module.exports["default"] = camelCase;
 /***/ ((module) => {
 
 module.exports = JSON.parse('{"layout":"constrained","backgroundColor":"#080808","images":{"fallback":{"src":"/static/388d464dd89249d1a135b8e69d97a7ec/1e010/sabfLogo.png","srcSet":"/static/388d464dd89249d1a135b8e69d97a7ec/7a5b8/sabfLogo.png 28w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/4c483/sabfLogo.png 55w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/1e010/sabfLogo.png 110w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/43be6/sabfLogo.png 220w","sizes":"(min-width: 110px) 110px, 100vw"},"sources":[{"srcSet":"/static/388d464dd89249d1a135b8e69d97a7ec/629a0/sabfLogo.webp 28w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/938d3/sabfLogo.webp 55w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/8c6ff/sabfLogo.webp 110w,\\n/static/388d464dd89249d1a135b8e69d97a7ec/4c27b/sabfLogo.webp 220w","type":"image/webp","sizes":"(min-width: 110px) 110px, 100vw"}]},"width":110,"height":110}');
+
+/***/ }),
+
+/***/ "./public/page-data/sq/d/1065613583.json":
+/*!***********************************************!*\
+  !*** ./public/page-data/sq/d/1065613583.json ***!
+  \***********************************************/
+/***/ ((module) => {
+
+module.exports = JSON.parse('{"data":{"allAirtable":{"edges":[{"node":{"data":{"Name":"Akosua Kissi","Program":"Political Science","Industries":["recelueT8PXFFQWwV"],"Attachments":[{"thumbnails":{"large":{"height":400,"url":"https://dl.airtable.com/.attachmentThumbnails/af6db35be4e92fb4542ef8e2234cd9b1/522a8eb6","width":400}}}]}}},{"node":{"data":{"Name":"Maisam Pyarali","Program":"MS Electrical Engineering ","Industries":["recQ3YqYRq6IIY32j","recZrck52WNzOU6lj","recC6tnMMuOHSKtQl"],"Attachments":[{"thumbnails":{"large":{"height":400,"url":"https://dl.airtable.com/.attachmentThumbnails/78b99c03fea05276e4e8892c888f2b6a/f650ee06","width":400}}}]}}},{"node":{"data":{"Name":"Ayman Babikir","Program":"Management Science & Engineering","Industries":["recRqnhiBbnXlaeKU","rece0rxpLdsf49mOm"],"Attachments":[{"thumbnails":{"large":{"height":337,"url":"https://dl.airtable.com/.attachmentThumbnails/f517d4e8e9a7707b5b915b8da8bfce98/23578403","width":337}}}]}}},{"node":{"data":{"Name":"Asukulu Songolo","Program":"STS , History , Black Studies and French ","Industries":["recGFnRG3DBZ190Nz","recZrck52WNzOU6lj","recyF1FnftKAf4FgW"],"Attachments":[{"thumbnails":{"large":{"height":400,"url":"https://dl.airtable.com/.attachmentThumbnails/97be0a424699feec19ea5ee7f171780b/7354fc92","width":400}}}]}}},{"node":{"data":{"Name":"Proud Mpala","Program":"Computer Science","Industries":["recQ3YqYRq6IIY32j"],"Attachments":[{"thumbnails":{"large":{"height":400,"url":"https://dl.airtable.com/.attachmentThumbnails/a65b5d66724adca313ac4c7a20f763f7/65f0ccb4","width":400}}}]}}},{"node":{"data":{"Name":"Samara Mokaya ","Program":"Residential Director","Industries":["recGFnRG3DBZ190Nz"],"Attachments":[{"thumbnails":{"large":{"height":597,"url":"https://dl.airtable.com/.attachmentThumbnails/31d31ca1fd343fbdd3e9a45dae0f7d20/f724b7fa","width":512}}}]}}},{"node":{"data":{"Name":"Yanick Mulumba","Program":"MD + MBA","Industries":["recyF1FnftKAf4FgW","rec55IA2FoHnTIHDk","recpJ5Ct3HNCHLTYp"],"Attachments":[{"thumbnails":{"large":{"height":512,"url":"https://dl.airtable.com/.attachmentThumbnails/4f57ad14a2dd7de3ee34f487b8de70be/79cf57ac","width":512}}}]}}},{"node":{"data":{"Name":" Mohamad El Tanahy ","Program":"MBA","Industries":["recQ3YqYRq6IIY32j","rece0rxpLdsf49mOm"],"Attachments":[{"thumbnails":{"large":{"height":400,"url":"https://dl.airtable.com/.attachmentThumbnails/eb8c69ad8fea595b2a1e105384fd2162/75d856fa","width":400}}}]}}},{"node":{"data":{"Name":"Hawetan Adugna","Program":null,"Industries":null,"Attachments":null}}},{"node":{"data":{"Name":"Jeff Pontell ","Program":"MBA","Industries":["rectbPG02B90WXH3k","recpJ5Ct3HNCHLTYp"],"Attachments":[{"thumbnails":{"large":{"height":400,"url":"https://dl.airtable.com/.attachmentThumbnails/4d6486c1507c8ad98efff6269ac3cc9b/3d21e914","width":400}}}]}}},{"node":{"data":{"Name":"Famyrah Lafortune","Program":"International Relations and Affairs ","Industries":["recyF1FnftKAf4FgW","reccI3ADu6luR0OIo"],"Attachments":[{"thumbnails":{"large":{"height":400,"url":"https://dl.airtable.com/.attachmentThumbnails/20eb86bad8d7343f1535cec2e2273ee7/14cc248c","width":400}}}]}}},{"node":{"data":{"Name":"Ovie Ojeni ","Program":"Residential Director + Fullbright Scholar","Industries":["rec7NKqlV7orIMp9I","recGFnRG3DBZ190Nz","recUHLbKTYO9Sjdbg"],"Attachments":[{"thumbnails":{"large":{"height":400,"url":"https://dl.airtable.com/.attachmentThumbnails/cac0b4f2c81c56cfdff14b4cd656efc5/6370e523","width":400}}}]}}},{"node":{"data":{"Name":"Audrey Djiya","Program":"MBA","Industries":["recQ3YqYRq6IIY32j","rece0rxpLdsf49mOm","recelueT8PXFFQWwV"],"Attachments":[{"thumbnails":{"large":{"height":400,"url":"https://dl.airtable.com/.attachmentThumbnails/ad2cf5a3d4f9909424a791c7880b5733/251fe38f","width":400}}}]}}},{"node":{"data":{"Name":"Kyo Kaku","Program":"MBA","Industries":["recxGxEX15O0STrBK","recpJ5Ct3HNCHLTYp"],"Attachments":[{"thumbnails":{"large":{"height":400,"url":"https://dl.airtable.com/.attachmentThumbnails/261d2584c1340fa2cffba8197a0a1153/cac2c9b4","width":400}}}]}}},{"node":{"data":{"Name":"Juliet Onyinyechukwu","Program":null,"Industries":["recQTriQ5eAAlKM2X","recgPmsjnzEil7NwO"],"Attachments":null}}},{"node":{"data":{"Name":"Tofunmi Omiye ","Program":"MD","Industries":["rec7NKqlV7orIMp9I"],"Attachments":[{"thumbnails":{"large":{"height":734,"url":"https://dl.airtable.com/.attachmentThumbnails/3ce98477bbd487c360a76699ddd27022/5b933dc3","width":512}}}]}}},{"node":{"data":{"Name":"Diana Orlandi","Program":"MBA","Industries":["recyF1FnftKAf4FgW","rece0rxpLdsf49mOm"],"Attachments":[{"thumbnails":{"large":{"height":400,"url":"https://dl.airtable.com/.attachmentThumbnails/b9d6be27f5d4de4ee3d2381ad85c6e90/65663b90","width":400}}}]}}},{"node":{"data":{"Name":"Daniel Izu","Program":"Energy Resources Engineering ","Industries":["recQ3YqYRq6IIY32j","recelueT8PXFFQWwV","recRqnhiBbnXlaeKU"],"Attachments":[{"thumbnails":{"large":{"height":400,"url":"https://dl.airtable.com/.attachmentThumbnails/42330976f6aa999a1450bffa0e1c9c21/3fea0502","width":400}}}]}}},{"node":{"data":{"Name":"Kola Lawal","Program":"MD + MBA","Industries":["recyF1FnftKAf4FgW","recW0NDFGFxKQEHIo"],"Attachments":[{"thumbnails":{"large":{"height":400,"url":"https://dl.airtable.com/.attachmentThumbnails/53b8c84654e30f3be4419e718884e300/8c8eef77","width":400}}}]}}},{"node":{"data":{"Name":"Karim Lalji","Program":"MSx + Sloan Fellow","Industries":["recxGxEX15O0STrBK","rectbPG02B90WXH3k","recnazPkaSTaVjo2d"],"Attachments":[{"thumbnails":{"large":{"height":512,"url":"https://dl.airtable.com/.attachmentThumbnails/2fb57706d84bb555fc1fd44a8ad11e4b/3c2ced17","width":512}}}]}}},{"node":{"data":{"Name":"Phillipe Griffiths","Program":"MBA + MPP","Industries":["recRqnhiBbnXlaeKU","recGFnRG3DBZ190Nz","rece0rxpLdsf49mOm"],"Attachments":[{"thumbnails":{"large":{"height":400,"url":"https://dl.airtable.com/.attachmentThumbnails/cc197fa95c4553920bcb4b048a3d75d7/3923931b","width":400}}}]}}},{"node":{"data":{"Name":"Justin Ziegler","Program":"MBA","Industries":["recQ3YqYRq6IIY32j","reccI3ADu6luR0OIo"],"Attachments":[{"thumbnails":{"large":{"height":400,"url":"https://dl.airtable.com/.attachmentThumbnails/bc79b48e1db97f59185b0761a04c9c1f/a5786b57","width":400}}}]}}},{"node":{"data":{"Name":"Casie Coash","Program":"MBA","Industries":["recW0NDFGFxKQEHIo","recGFnRG3DBZ190Nz","recelueT8PXFFQWwV"],"Attachments":[{"thumbnails":{"large":{"height":400,"url":"https://dl.airtable.com/.attachmentThumbnails/3c5b43d02e077f727b977ea3f76d5091/fed07f2a","width":400}}}]}}},{"node":{"data":{"Name":"Nina Chen","Program":"MBA + KNIGHT-HENNESSY SCHOLAR","Industries":["recRqnhiBbnXlaeKU","recGFnRG3DBZ190Nz","rece0rxpLdsf49mOm","recW0NDFGFxKQEHIo"],"Attachments":[{"thumbnails":{"large":{"height":400,"url":"https://dl.airtable.com/.attachmentThumbnails/1de5fa651f258fa95ab706db1b59f038/46780495","width":400}}}]}}},{"node":{"data":{"Name":"Mimi Coleman","Program":"MBA","Industries":["rece0rxpLdsf49mOm"],"Attachments":[{"thumbnails":{"large":{"height":400,"url":"https://dl.airtable.com/.attachmentThumbnails/45df99142a113856e64c6970e17eb050/d0a3646d","width":400}}}]}}},{"node":{"data":{"Name":"Takudzwa Caitano","Program":"Economics ","Industries":["rec7NKqlV7orIMp9I","rece0rxpLdsf49mOm","recelueT8PXFFQWwV"],"Attachments":[{"thumbnails":{"large":{"height":512,"url":"https://dl.airtable.com/.attachmentThumbnails/0a8830dd8c3e1ba5d87fc7b08064d5c9/6cea4544","width":683}}}]}}},{"node":{"data":{"Name":"Izunna Okonkwo","Program":"MBA","Industries":["recQ3YqYRq6IIY32j"],"Attachments":[{"thumbnails":{"large":{"height":512,"url":"https://dl.airtable.com/.attachmentThumbnails/29f8831194ed20d4a5d82381340c79b9/244e4210","width":768}}}]}}},{"node":{"data":{"Name":"Eyerusalem Alemu","Program":"Human Biology ","Industries":["recyF1FnftKAf4FgW"],"Attachments":[{"thumbnails":{"large":{"height":683,"url":"https://dl.airtable.com/.attachmentThumbnails/4e21c1005463208fdf614ef82f1371bc/8d135499","width":512}}}]}}},{"node":{"data":{"Name":"Faith Ajanaku","Program":"Computer Science ","Industries":["recQ3YqYRq6IIY32j","recyF1FnftKAf4FgW","recZrck52WNzOU6lj"],"Attachments":[{"thumbnails":{"large":{"height":400,"url":"https://dl.airtable.com/.attachmentThumbnails/cfd81df29d1cc161b87b74606de64f09/441703b2","width":400}}}]}}},{"node":{"data":{"Name":"Foola Ayoola","Program":"Ph.D. Student in Energy Resources Engineering","Industries":["rectbPG02B90WXH3k","recQ3YqYRq6IIY32j"],"Attachments":[{"thumbnails":{"large":{"height":522,"url":"https://dl.airtable.com/.attachmentThumbnails/5296afc0134bb730422a85d6c241e1b1/e9f75b78","width":350}}}]}}}]}}}');
 
 /***/ })
 

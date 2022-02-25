@@ -54,7 +54,7 @@ const IndexPage: React.FC<IndexPageProps> = ({data}) => {
           <GlobalStyle/>
           <ParallaxProvider>
           <HTML>
-          <title>Stanford Africa Business Conference</title>
+          <title>Stanford Africa Business Forum</title>
           <NavBar></NavBar>
           <HideOverflow>
           <Body>

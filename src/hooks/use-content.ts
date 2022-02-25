@@ -1,6 +1,7 @@
 import { useStaticQuery, graphql } from "gatsby"
 // import { PageProps } from "gatsby";
 // import {MarkdownContentQuery} from "../../graphql-types"
+// for the about page content 
 
 export const useContent = () => {
   const { allMdx } = useStaticQuery(

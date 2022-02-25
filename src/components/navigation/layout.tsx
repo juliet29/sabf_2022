@@ -41,9 +41,8 @@ const Layout: React.FC<LayoutProps> = ({ pageTitle, children }) => {
     return (
         <ThemeProvider theme={mainTheme}>
             <GlobalStyle/>
-            <html>
-                <title>{pageTitle}</title>
-                <body style={{
+                <title>SABF - {pageTitle}</title>
+                <div style={{
                         height: "100%",
                         minHeight: "90vh"
                     }}>
@@ -54,9 +53,9 @@ const Layout: React.FC<LayoutProps> = ({ pageTitle, children }) => {
                     </Header>
                     
                     {children}
-                </body>
+                </div>
                 <Footer></Footer>
-            </html>
+            
         </ThemeProvider>
     );
 };
