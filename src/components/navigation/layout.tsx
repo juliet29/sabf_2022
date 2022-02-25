@@ -18,6 +18,11 @@ const Header = styled.header`
   padding-left: ${edgeSpace*2 + "em"};
   padding-right: ${edgeSpace*2 + "em"};
   /* border-bottom: 1px solid rgba(255,255,255,.25); */
+  @media ${devices.mobileL} {
+    padding: 0;
+    margin: auto;
+    width: 70%;
+  }
 
   div {
     height: 1px;
@@ -28,6 +33,18 @@ const Header = styled.header`
   }
 }
 `
+
+export const Section = styled.section`
+  margin-top: ${edgeSpace + "em"};
+  padding-left: ${edgeSpace*2 + "em"};
+  padding-right: ${edgeSpace*2 + "em"};
+  @media ${devices.mobileL} {
+    padding: 0;
+    margin: auto;
+    width: 70%;
+    margin-top: 20px;
+  }
+`;
 
 
 
@@ -51,8 +68,8 @@ const Layout: React.FC<LayoutProps> = ({ pageTitle, children }) => {
                         <h1>{pageTitle}</h1>
                         <div></div>
                     </Header>
+                    <Section>{children}</Section>
                     
-                    {children}
                 </div>
                 <Footer></Footer>
             

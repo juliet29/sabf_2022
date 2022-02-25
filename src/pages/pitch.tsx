@@ -1,8 +1,6 @@
 import Form from 'components/general/form';
 import Layout from 'components/navigation/layout';
 import React from 'react';
-import { Section } from 'styles/sharedStyles';
-
 
 
 const PitchPage = () => {
@@ -11,7 +9,7 @@ const PitchPage = () => {
        <Layout
         pageTitle='Pitch Competition'
        >
-         <Section>
+
            <h2 style={{
              marginBottom: "1em"
            }}>
@@ -21,7 +19,7 @@ const PitchPage = () => {
            </h2>
            <Form></Form>
            
-         </Section>
+
     
        </Layout>
         

@@ -20,6 +20,12 @@ export const Section = styled.section`
   margin-top: ${edgeSpace + "em"};
   padding-left: ${edgeSpace*2 + "em"};
   padding-right: ${edgeSpace*2 + "em"};
+  @media ${devices.mobileL} {
+    padding: 0;
+    margin: auto;
+    width: 70%;
+    margin-top: 20px;
+  }
 `;
 
 export const GridHolder = styled.div`

@@ -2,7 +2,7 @@ import Layout from 'components/navigation/layout';
 import GroupHolder from 'components/team/groupHolder';
 import { useAirtableTeamContent } from 'hooks/use-airtable-team-content';
 import React from 'react';
-import { Section } from 'styles/sharedStyles';
+
 
 // TODO change to page query 
 
@@ -15,9 +15,9 @@ const TeamPage = ({  }) => {
     const values: AirtableTeamData = useAirtableTeamContent()
     return (
         <Layout pageTitle='Team'>
-                    <Section>
+
                        <GroupHolder edges={values}></GroupHolder>   
-           </Section>
+
        </Layout>
     );
 };

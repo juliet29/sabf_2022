@@ -2,8 +2,17 @@ import Schedule from 'components/attend/schedule';
 import Layout from 'components/navigation/layout';
 import { graphql } from 'gatsby';
 import React from 'react';
-import { Section } from 'styles/sharedStyles';
+import styled from 'styled-components';
+import { devices } from 'styles/responsiveSizes';
+
 import { AttendPageQueryQuery } from '../../graphql-types';
+
+const Blurb = styled.h3`
+@media ${devices.laptopMin} {
+    max-width: 80%;
+}
+  
+`;
 
 interface AttendPageProps {
     data: AttendPageQueryQuery
@@ -15,9 +24,12 @@ const AttendPage: React.FC<AttendPageProps> = ({ data }) => {
         <Layout
         pageTitle='Attend'
        >
-           <Section>
+ 
+               <Blurb>We look forward to bringing you an exciting host of events. 
+                   Registration links for the Forum (online), and Gala and Afterparty (in-person) will be available soon. 
+                </Blurb>
                <Schedule data={data}></Schedule>
-           </Section>
+
        </Layout>
     );
 };

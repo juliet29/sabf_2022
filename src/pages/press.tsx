@@ -11,9 +11,8 @@ const PressPage: React.FC<PressPageProps> = ({  }) => {
         <Layout
         pageTitle='Press + Videos'
        >
-                <Section>
+
                Stay tuned for more information!
-           </Section>
        </Layout>
         
     );
