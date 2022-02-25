@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { devices } from 'styles/responsiveSizes';
 import { primaryAccentColor, secondaryAccentColor } from 'styles/theme';
 import { AttendPageQueryQuery } from '../../../graphql-types';
 
 const ScheduleHolder = styled.div`
+
 ul {
     list-style: none;
     padding: 0;
@@ -14,6 +16,36 @@ a {
     text-decoration: none;
     display: block;
 }
+
+@media ${devices.laptopMin} {
+    max-width: 90%;
+    /* margin: auto; */
+    display: flex;
+    flex-direction: row;
+    ul {
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-columns: repeat(2,1fr);
+        grid-template-rows: repeat(11, 1fr);
+        column-gap:2em;
+    }
+}
+`;
+
+const ScheduleTitle = styled.div`
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 3px;
+    font-size: large;
+    @media ${devices.laptopMin} {
+        max-width: 14vw;
+        padding-top: 5px;
+        padding-right: 10px;
+        border-right: 1px solid #ccc;
+        margin-right: 1em;
+        border-bottom: 0;
+
+    }
+  
 `;
 
 const EventItem = styled.div`
@@ -35,6 +67,11 @@ const EventItem = styled.div`
             /* flex-grow: 1; */
             min-width: 42px;
             font-weight: bold;
+
+            @media ${devices.mobileLMin} {
+                min-width: 3em;
+            
+        }
             /* margin-right: 5px; */
         }
         div:nth-of-type(1) {
@@ -53,6 +90,39 @@ interface ScheduleProps {
 }
 
 const Duration = "Duration: "
+
+
+
+const Schedule: React.FC<ScheduleProps> = ({ data }) => {
+    return (
+        <ScheduleHolder>
+            <ScheduleTitle> 
+                <h2>April 16, 2022</h2>
+                <p>Schedule of Events</p> 
+            </ScheduleTitle>
+            <ul>
+            {
+                data.allConfernceScheduleCsv.nodes.map((item) => (
+                    <EventItem  key={item.id}>
+                        <a href="/">
+                            <span>{item.Start_time}</span>
+                            <div>
+                                <span>{item.Schedule_name}</span>
+                                <br/>
+                                <span>{Duration.concat(dateTrimmer(item.Mins))}</span>
+                            </div>
+                        </a>
+                    </EventItem >
+                    
+                ))
+            }
+            </ul>
+        </ScheduleHolder>
+    );
+};
+
+export default Schedule;
+
 
 const dateTrimmer = (time:string) => {
     let shortTime = ""
@@ -76,36 +146,4 @@ const dateTrimmer = (time:string) => {
     }
 
     return shortTime
-
-
 }
-
-const Schedule: React.FC<ScheduleProps> = ({ data }) => {
-    return (
-        <ScheduleHolder>
-            <div> 
-                <h2>April XX, 2022</h2>
-                <p>Schedule of Events</p> 
-            </div>
-            <ul>
-            {
-                data.allConfernceScheduleCsv.nodes.map((item) => (
-                    <EventItem  key={item.id}>
-                        <a href="/">
-                            <span>{item.Start_time}</span>
-                            <div>
-                                <span>{item.Schedule_name}</span>
-                                <br/>
-                                <span>{Duration.concat(dateTrimmer(item.Mins))}</span>
-                            </div>
-                        </a>
-                    </EventItem >
-                    
-                ))
-            }
-            </ul>
-        </ScheduleHolder>
-    );
-};
-
-export default Schedule;
