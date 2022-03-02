@@ -3860,6 +3860,7 @@ const Footer = ({}) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Section": () => (/* binding */ Section),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
@@ -3884,7 +3885,10 @@ __webpack_require__.r(__webpack_exports__);
 
 const Header = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].header.withConfig({
   displayName: "layout__Header"
-})(["margin-top:", ";;padding-left:", ";padding-right:", ";div{height:1px;width:50%;background-color:white;@media ", "{width:80%;}}"], styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace + "em", styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace * 2 + "em", styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace * 2 + "em", styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_5__.devices.mobileL);
+})(["margin-top:", ";;padding-left:", ";padding-right:", ";@media ", "{padding:0;margin:auto;width:70%;}div{height:1px;width:50%;background-color:white;@media ", "{width:80%;}}"], styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace + "em", styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace * 2 + "em", styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace * 2 + "em", styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_5__.devices.mobileL, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_5__.devices.mobileL);
+const Section = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].section.withConfig({
+  displayName: "layout__Section"
+})(["margin-top:", ";padding-left:", ";padding-right:", ";@media ", "{padding:0;margin:auto;width:70%;margin-top:20px;}"], styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace + "em", styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace * 2 + "em", styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace * 2 + "em", styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_5__.devices.mobileL);
 
 const Layout = ({
   pageTitle,
@@ -3897,7 +3901,7 @@ const Layout = ({
       height: "100%",
       minHeight: "90vh"
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_navBar__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Header, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, pageTitle), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null)), children), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_footer__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_navBar__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Header, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, pageTitle), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Section, null, children)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_footer__WEBPACK_IMPORTED_MODULE_4__["default"], null));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Layout);
@@ -4049,15 +4053,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var components_navigation_layout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! components/navigation/layout */ "./src/components/navigation/layout.tsx");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var styles_sharedStyles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styles/sharedStyles */ "./src/styles/sharedStyles.ts");
-
 
 
 
 const SpeakersPage = ({}) => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(components_navigation_layout__WEBPACK_IMPORTED_MODULE_0__["default"], {
     pageTitle: "Speakers + Panels"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(styles_sharedStyles__WEBPACK_IMPORTED_MODULE_2__.Section, null, "Stay tuned for more information!"));
+  }, "Stay tuned for more information!");
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SpeakersPage);
@@ -4078,7 +4080,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./theme */ "./src/styles/theme.ts");
 
 
-const GlobalStyle = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.createGlobalStyle)(["html{background-color:", ";font-family:", ";color:white;}body{margin:0;}h1,h2,p,a{font-size:clamp(var(--min),var(--val),var(--max));margin:0;font-weight:normal;}a{}h1{--min:2em;--val:5vw;--max:3em;}h2{--min:1.5em;--val:2vw;--max:2.25em;}p,a{--min:0.8em;--val:1.2vw;--max:1.5em;}"], _theme__WEBPACK_IMPORTED_MODULE_0__.darkColor, _theme__WEBPACK_IMPORTED_MODULE_0__.fontFamily);
+const GlobalStyle = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.createGlobalStyle)(["html{background-color:", ";font-family:", ";color:white;}body{margin:0;}h1,h2,p,a{font-size:clamp(var(--min),var(--val),var(--max));margin:0;font-weight:normal;}h1{--min:2em;--val:5vw;--max:3em;}h2{--min:1.5em;--val:2vw;--max:2.25em;}p,a{--min:0.8em;--val:1.2vw;--max:1.5em;}a{--min:1em;--val:1.2vw;--max:1.5em;}"], _theme__WEBPACK_IMPORTED_MODULE_0__.darkColor, _theme__WEBPACK_IMPORTED_MODULE_0__.fontFamily);
 
 /***/ }),
 

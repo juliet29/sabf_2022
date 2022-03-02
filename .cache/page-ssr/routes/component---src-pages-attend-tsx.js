@@ -3654,6 +3654,75 @@ var convertCurry = convert.bind(null, (react__WEBPACK_IMPORTED_MODULE_1___defaul
 
 /***/ }),
 
+/***/ "./src/components/attend/schedule.tsx":
+/*!********************************************!*\
+  !*** ./src/components/attend/schedule.tsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styles/responsiveSizes */ "./src/styles/responsiveSizes.ts");
+/* harmony import */ var styles_theme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styles/theme */ "./src/styles/theme.ts");
+
+
+
+
+const ScheduleHolder = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].div.withConfig({
+  displayName: "schedule__ScheduleHolder"
+})(["ul{list-style:none;padding:0;margin:0;}a{color:inherit;text-decoration:none;display:block;}@media ", "{max-width:90%;display:flex;flex-direction:row;ul{display:grid;grid-auto-flow:column;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(11,1fr);column-gap:2em;}}"], styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_1__.devices.laptopMin);
+const ScheduleTitle = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].div.withConfig({
+  displayName: "schedule__ScheduleTitle"
+})(["border-bottom:1px solid #ccc;margin-bottom:3px;font-size:large;@media ", "{max-width:14vw;padding-top:5px;padding-right:10px;border-right:1px solid #ccc;margin-right:1em;border-bottom:0;}"], styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_1__.devices.laptopMin);
+const EventItem = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].div.withConfig({
+  displayName: "schedule__EventItem"
+})(["padding:10px;border-bottom:1px dashed #ccc;line-height:22px;transition:ease .4s all;:hover{background:", ";}a{display:flex;flex-direction:row;justify-content:flex-start;span:nth-of-type(1){min-width:42px;font-weight:bold;@media ", "{min-width:3em;}}div:nth-of-type(1){span:nth-of-type(2){color:", ";font-size:smaller;}}}"], styles_theme__WEBPACK_IMPORTED_MODULE_2__.secondaryAccentColor, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_1__.devices.mobileLMin, styles_theme__WEBPACK_IMPORTED_MODULE_2__.primaryAccentColor);
+const Duration = "Duration: ";
+
+const Schedule = ({
+  data
+}) => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ScheduleHolder, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ScheduleTitle, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "April 16, 2022"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Schedule of Events")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, data.allConfernceScheduleCsv.nodes.map(item => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(EventItem, {
+    key: item.id
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+    href: "/"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, item.Start_time), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, item.Schedule_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, Duration.concat(dateTrimmer(item.Mins)))))))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Schedule);
+
+const dateTrimmer = time => {
+  let shortTime = "";
+
+  if (time[0] == "0") {
+    shortTime = time.slice(2, 4);
+
+    if (shortTime[0] == "0") {
+      shortTime = shortTime.slice(1);
+    }
+
+    shortTime = shortTime.concat(" mins");
+  } else {
+    let time01 = time[0].concat(" hrs");
+
+    if (time[2] != "0") {
+      let mid = ", ";
+      time01 = time01 + mid.concat(time.slice(2, 4).concat(" mins"));
+    }
+
+    shortTime = time01;
+  }
+
+  return shortTime;
+};
+
+/***/ }),
+
 /***/ "./src/components/navigation/burgerMenu/burgerMenu.tsx":
 /*!*************************************************************!*\
   !*** ./src/components/navigation/burgerMenu/burgerMenu.tsx ***!
@@ -3860,6 +3929,7 @@ const Footer = ({}) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Section": () => (/* binding */ Section),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
@@ -3884,7 +3954,10 @@ __webpack_require__.r(__webpack_exports__);
 
 const Header = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].header.withConfig({
   displayName: "layout__Header"
-})(["margin-top:", ";;padding-left:", ";padding-right:", ";div{height:1px;width:50%;background-color:white;@media ", "{width:80%;}}"], styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace + "em", styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace * 2 + "em", styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace * 2 + "em", styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_5__.devices.mobileL);
+})(["margin-top:", ";;padding-left:", ";padding-right:", ";@media ", "{padding:0;margin:auto;width:70%;}div{height:1px;width:50%;background-color:white;@media ", "{width:80%;}}"], styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace + "em", styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace * 2 + "em", styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace * 2 + "em", styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_5__.devices.mobileL, styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_5__.devices.mobileL);
+const Section = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].section.withConfig({
+  displayName: "layout__Section"
+})(["margin-top:", ";padding-left:", ";padding-right:", ";@media ", "{padding:0;margin:auto;width:70%;margin-top:20px;}"], styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace + "em", styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace * 2 + "em", styles_theme__WEBPACK_IMPORTED_MODULE_2__.edgeSpace * 2 + "em", styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_5__.devices.mobileL);
 
 const Layout = ({
   pageTitle,
@@ -3897,7 +3970,7 @@ const Layout = ({
       height: "100%",
       minHeight: "90vh"
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_navBar__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Header, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, pageTitle), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null)), children), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_footer__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_navBar__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Header, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, pageTitle), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Section, null, children)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_footer__WEBPACK_IMPORTED_MODULE_4__["default"], null));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Layout);
@@ -4046,20 +4119,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var components_navigation_layout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! components/navigation/layout */ "./src/components/navigation/layout.tsx");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var styles_sharedStyles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styles/sharedStyles */ "./src/styles/sharedStyles.ts");
+/* harmony import */ var components_attend_schedule__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! components/attend/schedule */ "./src/components/attend/schedule.tsx");
+/* harmony import */ var components_navigation_layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! components/navigation/layout */ "./src/components/navigation/layout.tsx");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styles/responsiveSizes */ "./src/styles/responsiveSizes.ts");
 
 
 
 
-const AttendPage = ({}) => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(components_navigation_layout__WEBPACK_IMPORTED_MODULE_0__["default"], {
+
+const Blurb = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].h3.withConfig({
+  displayName: "attend__Blurb"
+})(["@media ", "{max-width:80%;}"], styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_3__.devices.laptopMin);
+
+const AttendPage = ({
+  data
+}) => {
+  console.log("hi attend", data);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(components_navigation_layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
     pageTitle: "Attend"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(styles_sharedStyles__WEBPACK_IMPORTED_MODULE_2__.Section, null, "Stay tuned for more information!"));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(Blurb, null, "We look forward to bringing you an exciting host of events. Registration links for the Forum (online), and Gala and Afterparty (in-person) will be available soon."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(components_attend_schedule__WEBPACK_IMPORTED_MODULE_0__["default"], {
+    data: data
+  }));
 };
 
+const query = "4228692520";
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AttendPage);
 
 /***/ }),
@@ -4078,7 +4164,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./theme */ "./src/styles/theme.ts");
 
 
-const GlobalStyle = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.createGlobalStyle)(["html{background-color:", ";font-family:", ";color:white;}body{margin:0;}h1,h2,p,a{font-size:clamp(var(--min),var(--val),var(--max));margin:0;font-weight:normal;}a{}h1{--min:2em;--val:5vw;--max:3em;}h2{--min:1.5em;--val:2vw;--max:2.25em;}p,a{--min:0.8em;--val:1.2vw;--max:1.5em;}"], _theme__WEBPACK_IMPORTED_MODULE_0__.darkColor, _theme__WEBPACK_IMPORTED_MODULE_0__.fontFamily);
+const GlobalStyle = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.createGlobalStyle)(["html{background-color:", ";font-family:", ";color:white;}body{margin:0;}h1,h2,p,a{font-size:clamp(var(--min),var(--val),var(--max));margin:0;font-weight:normal;}h1{--min:2em;--val:5vw;--max:3em;}h2{--min:1.5em;--val:2vw;--max:2.25em;}p,a{--min:0.8em;--val:1.2vw;--max:1.5em;}a{--min:1em;--val:1.2vw;--max:1.5em;}"], _theme__WEBPACK_IMPORTED_MODULE_0__.darkColor, _theme__WEBPACK_IMPORTED_MODULE_0__.fontFamily);
 
 /***/ }),
 

@@ -24,9 +24,6 @@ h1, h2, p, a {
   font-weight: normal;
 }
 
-a {
-  /* text-decoration: underline; */
-}
 
 /* Font size variables */
 h1 {
@@ -41,6 +38,11 @@ h2 {
 }
 p, a {
   --min: 0.8em;   /* minimum value */
+  --val: 1.2vw; /* preferred value = 2.5% viewport width */
+  --max: 1.5em; /* maximum value */
+}
+a {
+  --min: 1em;   /* minimum value */
   --val: 1.2vw; /* preferred value = 2.5% viewport width */
   --max: 1.5em; /* maximum value */
 }
