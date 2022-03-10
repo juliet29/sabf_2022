@@ -105,7 +105,7 @@ const PitchPage = () => {
          <ThinP>
          The SABF Venture Competition (April 16th, 2022) is an opportunity for founders to pitch to early-stage investors from across the globe. 
          Judges and audience members include VC/angel investors from Silicon Valley and emerging markets alike. 
-         Competition winners will have the chance to enroll in a curated set of Stanford entrepreneurship courses, worth $15,000+. 
+         Competition winners will have the chance to enroll in a curated set of Stanford entrepreneurship courses, including access to the LEAD incubator and startup accelerator, well worth  over $15,000. 
          </ThinP>
          <br/>
 

@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
 import { devices } from 'styles/responsiveSizes';
+import { StyledA } from 'styles/sharedStyles';
 
 import { AttendPageQueryQuery } from '../../graphql-types';
 
@@ -26,7 +27,9 @@ const AttendPage: React.FC<AttendPageProps> = ({ data }) => {
        >
  
                <Blurb>We look forward to bringing you an exciting host of events. 
-                   Registration links for the Forum (online), and Gala and Afterparty (in-person) will be available soon. 
+                   Registration links for the Forum (online), and Gala and Afterparty (in-person) 
+                   are available 
+                   <StyledA href="https://sto.stanfordtickets.org/stanford-africa-business-forum/registration"> here</StyledA>. 
                 </Blurb>
                <Schedule data={data}></Schedule>
 

@@ -4123,14 +4123,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var components_navigation_layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! components/navigation/layout */ "./src/components/navigation/layout.tsx");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
 /* harmony import */ var styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styles/responsiveSizes */ "./src/styles/responsiveSizes.ts");
+/* harmony import */ var styles_sharedStyles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! styles/sharedStyles */ "./src/styles/sharedStyles.ts");
 
 
 
 
 
-const Blurb = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].h3.withConfig({
+
+const Blurb = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].h3.withConfig({
   displayName: "attend__Blurb"
 })(["@media ", "{max-width:80%;}"], styles_responsiveSizes__WEBPACK_IMPORTED_MODULE_3__.devices.laptopMin);
 
@@ -4140,7 +4142,9 @@ const AttendPage = ({
   console.log("hi attend", data);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(components_navigation_layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
     pageTitle: "Attend"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(Blurb, null, "We look forward to bringing you an exciting host of events. Registration links for the Forum (online), and Gala and Afterparty (in-person) will be available soon."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(components_attend_schedule__WEBPACK_IMPORTED_MODULE_0__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(Blurb, null, "We look forward to bringing you an exciting host of events. Registration links for the Forum (online), and Gala and Afterparty (in-person) are available", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(styles_sharedStyles__WEBPACK_IMPORTED_MODULE_4__.StyledA, {
+    href: "https://sto.stanfordtickets.org/stanford-africa-business-forum/registration"
+  }, "here"), "."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(components_attend_schedule__WEBPACK_IMPORTED_MODULE_0__["default"], {
     data: data
   }));
 };

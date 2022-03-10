@@ -693,6 +693,7 @@ export type AirtableData = {
   Program?: Maybe<Scalars['String']>;
   Name?: Maybe<Scalars['String']>;
   Email?: Maybe<Scalars['String']>;
+  linkedInUrl?: Maybe<Scalars['String']>;
 };
 
 export type AirtableDataAttachments = {
@@ -4100,6 +4101,7 @@ export type AirtableDataFilterInput = {
   Program?: InputMaybe<StringQueryOperatorInput>;
   Name?: InputMaybe<StringQueryOperatorInput>;
   Email?: InputMaybe<StringQueryOperatorInput>;
+  linkedInUrl?: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type AirtableDataAttachmentsFilterListInput = {
@@ -4287,7 +4289,8 @@ export type AirtableFieldsEnum =
   | 'data___Attachments___type'
   | 'data___Program'
   | 'data___Name'
-  | 'data___Email';
+  | 'data___Email'
+  | 'data___linkedInUrl';
 
 export type AirtableGroupConnection = {
   totalCount: Scalars['Int'];
