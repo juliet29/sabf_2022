@@ -100,7 +100,7 @@ const PanelHolder = styled.div`
 
 const PanelItem = styled.div`
   margin-bottom: 2em;
-  max-width: 80%;
+
   > p:first-of-type {
     margin-top: 0.2em;
     margin-bottom: 0.5em;
@@ -108,6 +108,9 @@ const PanelItem = styled.div`
     font-weight: 400;
     font-style: italic;
   }
+  @media ${devices.laptopMin} {
+    max-width: 80%;
+  } ;
 `;
 
 interface PanelsProps {
