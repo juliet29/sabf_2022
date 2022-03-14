@@ -36,7 +36,6 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-fontawesome-css`,
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-anchor-links`,
     {
       resolve: "gatsby-plugin-graphql-codegen",
       options: {
@@ -67,6 +66,12 @@ module.exports = {
             },
                   ]
               }
+  },
+  {
+    resolve: "gatsby-plugin-anchor-links",
+    options: {
+      offset: -100
+    }
   }
     
   ],

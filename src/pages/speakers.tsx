@@ -2,6 +2,7 @@ import Layout from 'components/navigation/layout';
 import Panels from 'components/speakers/panels';
 import React from 'react';
 import styled from 'styled-components';
+import { devices } from 'styles/responsiveSizes';
 
 interface SpeakersPageProps {
   // : string;
@@ -13,9 +14,9 @@ const Section = styled.section`
     display: inline;
     /* border-bottom: white 1px solid; */
   }
-  p:nth-of-type(1) {
+  /* section > p:nth-child(1) {
     margin-top: 1em;
-  }
+  } */
 `;
 
 const SpeakersPage: React.FC<SpeakersPageProps> = ({}) => {
@@ -28,13 +29,7 @@ const SpeakersPage: React.FC<SpeakersPageProps> = ({}) => {
 
       <Section>
         <h1>Panels</h1>
-        <p>
-          Our panels will feature invited guests from a diverse range of
-          industries. These thought-leaders will share their expertise about
-          everything from healthcare to cryptocurrency, and the innovations
-          taking place on the African continent. Stay tuned for profiles of our
-          amazing panelists.
-        </p>
+
         <Panels></Panels>
       </Section>
     </Layout>
