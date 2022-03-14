@@ -12,11 +12,7 @@ const Section = styled.section`
   margin-bottom: 2em;
   h1 {
     display: inline;
-    /* border-bottom: white 1px solid; */
   }
-  /* section > p:nth-child(1) {
-    margin-top: 1em;
-  } */
 `;
 
 const SpeakersPage: React.FC<SpeakersPageProps> = ({}) => {

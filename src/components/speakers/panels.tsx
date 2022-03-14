@@ -41,6 +41,9 @@ const PanelMenu = styled.div`
 `;
 
 const TopDiv = styled.div`
+  > p:first-child {
+    margin-bottom: 1em;
+  }
   @media ${devices.laptopMin} {
     display: flex;
     flex-direction: row;
@@ -49,6 +52,7 @@ const TopDiv = styled.div`
     > p:first-child {
       max-width: 60%;
       font-size: 1em;
+      margin-bottom: 0;
     }
   } ;
 `;
@@ -65,6 +69,7 @@ const BottmDiv = styled.div`
   } ;
 `;
 
+const scrollPanelOffset = 15 + 'em';
 interface ScrollPanelMenuProps {
   visibility: boolean;
 }
@@ -72,7 +77,7 @@ const ScrollPanelMenu = styled.div<ScrollPanelMenuProps>`
   display: none;
   @media ${devices.laptopMin} {
     display: block;
-    min-width: 12em;
+    min-width: ${scrollPanelOffset};
     position: fixed;
     bottom: 10em;
     p {
@@ -89,7 +94,7 @@ const PanelHolder = styled.div`
     font-weight: 600;
   }
   @media ${devices.laptopMin} {
-    margin-left: 12em;
+    margin-left: ${scrollPanelOffset};
   } ;
 `;
 
@@ -112,34 +117,41 @@ interface PanelsProps {
 const Panels: React.FC<PanelsProps> = ({}) => {
   // visibility of panel componennt
   const [isVisible, setIsVisible] = useState(true);
-  // height of bottom div that holds the panel component
-  const [height, setHeight] = useState(0);
-  const ref = useRef(null);
-  console.log('height', height);
 
   useEffect(() => {
     window.addEventListener('scroll', listenToScroll);
-    // determine top height of bottom div
-    setHeight(ref.current.scrollTop);
     return () => window.removeEventListener('scroll', listenToScroll);
   }, []);
 
   const listenToScroll = () => {
-    let heightToHideFrom = 1000;
-    let heightToHideBefore = 260;
-    const winScroll =
-      document.body.scrollTop || document.documentElement.scrollTop;
+    let check = getOffset(document.querySelector('#bottomDiv'));
+    let check2 = document.querySelector('#bottomDiv')?.clientHeight;
+    let check3 = document.querySelector('#bottomDiv')?.getBoundingClientRect();
+    console.log('check top of div', check3?.top);
+    console.log('check2 bottom', check + check2);
+    let heightToHideBefore = 200; //check;
+    let heightToHideAfter = heightToHideBefore + 1000;
+
+    const winScroll = document.documentElement.scrollTop; // ||document.body.scrollTop; //
     // console.log(winScroll);
+    console.log('win scroll', winScroll);
 
     if (winScroll < heightToHideBefore) {
-      //   console.log('hide');
+      console.log('hide, before top');
       isVisible && // to limit setting state only the first time
         setIsVisible(false);
-    } else if (winScroll > heightToHideFrom) {
+    } else if (winScroll > heightToHideAfter) {
+      console.log('hide, after bottom');
       setIsVisible(false);
     } else {
       setIsVisible(true);
     }
+  };
+
+  const getOffset = (element) => {
+    const rect = element?.getBoundingClientRect(),
+      scrollTop = document.documentElement.scrollTop; // window.pageYOffset ||
+    return rect!.top + scrollTop;
   };
 
   return (
@@ -161,7 +173,7 @@ const Panels: React.FC<PanelsProps> = ({}) => {
         </PanelMenu>
       </TopDiv>
 
-      <BottmDiv ref={ref}>
+      <BottmDiv id="bottomDiv">
         {/* {isVisible && ( */}
         <ScrollPanelMenu visibility={isVisible}>
           {panels.map((item) => (
