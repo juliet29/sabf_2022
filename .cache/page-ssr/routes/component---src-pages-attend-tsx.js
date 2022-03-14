@@ -4144,7 +4144,7 @@ const AttendPage = ({
     pageTitle: "Attend"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(Blurb, null, "We look forward to bringing you an exciting host of events. Registration links for the Forum (online), and Gala and Afterparty (in-person) are available", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(styles_sharedStyles__WEBPACK_IMPORTED_MODULE_4__.StyledA, {
     href: "https://sto.stanfordtickets.org/stanford-africa-business-forum/registration"
-  }, "here"), "."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(components_attend_schedule__WEBPACK_IMPORTED_MODULE_0__["default"], {
+  }, " here"), "."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default().createElement(components_attend_schedule__WEBPACK_IMPORTED_MODULE_0__["default"], {
     data: data
   }));
 };

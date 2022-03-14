@@ -1,4 +1,4 @@
-### Type definitions saved at 2022-03-07T06:11:33.410Z ###
+### Type definitions saved at 2022-03-10T23:26:22.690Z ###
 
 type File implements Node @dontInfer {
   sourceInstanceName: String!
@@ -507,6 +507,7 @@ type AirtableData @derivedTypes {
   Program: String
   Name: String
   Email: String
+  linkedInUrl: String
 }
 
 type AirtableDataAttachments @derivedTypes {

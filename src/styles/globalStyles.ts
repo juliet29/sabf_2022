@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components'
-import { darkColor, fontFamily } from './theme'
+import { createGlobalStyle } from 'styled-components';
+import { darkColor, fontFamily } from './theme';
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -17,7 +17,7 @@ body {
 }
 
 /* Declare text styles */
-h1, h2, p, a {
+h1, h2, h3, p, a {
   /* Font minimum, preferred and maximum value */
   font-size: clamp(var(--min), var(--val), var(--max));
   margin: 0;
@@ -49,4 +49,4 @@ a {
 
 
 
-`
+`;
