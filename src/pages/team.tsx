@@ -69,51 +69,56 @@ export const query = graphql`
 
   query TeamPageQuery {
     leadership: allAirtable(
-      filter: { data: { Role: { regex: "/(President)/g" } } }
+      filter: { data: { Role: { regex: "/(President)/" } } }
+      sort: { fields: [data___Name], order: ASC }
     ) {
       nodes {
         ...MemberData
       }
     }
-
-    pitch: allAirtable(
-      filter: { data: { Role: { regex: "/(Pitch Competition)/g" } } }
-    ) {
-      nodes {
-        ...MemberData
-      }
-    }
-
     marketing: allAirtable(
       filter: { data: { Role: { regex: "/(Marketing)/g" } } }
+      sort: { fields: [data___Name], order: ASC }
     ) {
       nodes {
         ...MemberData
       }
     }
-
     website: allAirtable(
       filter: { data: { Role: { regex: "/(Website)/g" } } }
+      sort: { fields: [data___Name], order: ASC }
     ) {
       nodes {
         ...MemberData
       }
     }
-
     finance: allAirtable(
       filter: { data: { Role: { regex: "/(Finance & Sponsorship)/g" } } }
+      sort: { fields: [data___Name], order: ASC }
     ) {
       nodes {
         ...MemberData
       }
     }
-    gala: allAirtable(filter: { data: { Role: { regex: "/Gala/g" } } }) {
+    gala: allAirtable(
+      filter: { data: { Role: { regex: "/Gala/g" } } }
+      sort: { fields: [data___Name], order: ASC }
+    ) {
       nodes {
         ...MemberData
       }
     }
     speakers: allAirtable(
       filter: { data: { Role: { regex: "/(Keynotes|Panel)/" } } }
+      sort: { fields: [data___Name], order: ASC }
+    ) {
+      nodes {
+        ...MemberData
+      }
+    }
+    pitch: allAirtable(
+      filter: { data: { Role: { regex: "/(Pitch)/" } } }
+      sort: { fields: [data___Name], order: ASC }
     ) {
       nodes {
         ...MemberData
