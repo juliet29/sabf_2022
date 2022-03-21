@@ -1,58 +1,101 @@
 import Layout from 'components/navigation/layout';
-import GroupHolder from 'components/team/groupHolder';
+
+import RoleGroup from 'components/team/roleGroup';
 import { graphql } from 'gatsby';
-// import { useAirtableTeamContent } from 'hooks/use-airtable-team-content';
 import React from 'react';
 import { TeamPageQueryQuery } from '../../graphql-types';
 
-
-// TODO change to page query 
+// TODO change to page query
 
 interface TeamPageProps {
-    data: TeamPageQueryQuery
+  data: TeamPageQueryQuery;
 }
 
-
-export  type AirtableTeamData = {
-    edges:  Array<{ node: { id: string, data?: { Name?: string | null, Program?: string | null, Industries?: Array<string | null> | null, Attachments?: Array<{ thumbnails?: { large?: { height?: number | null, url?: string | null, width?: number | null } | null } | null } | null> | null } | null } }>
-}
-
-const TeamPage:React.FC<TeamPageProps>  = ({ data }) => {
-
-    return (
-        <Layout pageTitle='Team'>
-
-            <GroupHolder data={data}></GroupHolder>   
-
-       </Layout>
-    );
+const TeamPage: React.FC<TeamPageProps> = ({ data }) => {
+  return (
+    <Layout pageTitle="Team">
+      <RoleGroup
+        groupTitle="Finance & Sponsorships"
+        nodes={data.finance.nodes}
+      ></RoleGroup>
+      {/* <GroupHolder data={data}></GroupHolder> */}
+    </Layout>
+  );
 };
 
-
 export const query = graphql`
-  query TeamPageQuery {
-  allAirtable {
-    nodes {
-      data {
-        Role
-        Name
-        Program
-        linkedInUrl
-        Attachments {
-          thumbnails {
-            large {
-              height
-              width
-              url
-            }
+  fragment MemberData on Airtable {
+    data {
+      Role
+      Name
+      Program
+      linkedInUrl
+      Attachments {
+        thumbnails {
+          large {
+            height
+            width
+            url
           }
         }
       }
-      id
+    }
+    id
+  }
+
+  query TeamPageQuery {
+    leadership: allAirtable(
+      filter: { data: { Role: { regex: "/(President)/g" } } }
+    ) {
+      nodes {
+        ...MemberData
+      }
+    }
+
+    pitch: allAirtable(
+      filter: { data: { Role: { regex: "/(Pitch Competition)/g" } } }
+    ) {
+      nodes {
+        ...MemberData
+      }
+    }
+
+    marketing: allAirtable(
+      filter: { data: { Role: { regex: "/(Marketing)/g" } } }
+    ) {
+      nodes {
+        ...MemberData
+      }
+    }
+
+    website: allAirtable(
+      filter: { data: { Role: { regex: "/(Website)/g" } } }
+    ) {
+      nodes {
+        ...MemberData
+      }
+    }
+
+    finance: allAirtable(
+      filter: { data: { Role: { regex: "/(Finance & Sponsorship)/g" } } }
+    ) {
+      nodes {
+        ...MemberData
+      }
+    }
+    gala: allAirtable(filter: { data: { Role: { regex: "/Gala/g" } } }) {
+      nodes {
+        ...MemberData
+      }
+    }
+    speakers: allAirtable(
+      filter: { data: { Role: { regex: "/(Keynotes|Panel)/" } } }
+    ) {
+      nodes {
+        ...MemberData
+      }
     }
   }
-}
-
-`
+`;
 
 export default TeamPage;

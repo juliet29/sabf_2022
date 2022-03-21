@@ -66,7 +66,7 @@ interface GroupHolderProps {
 const GroupHolder: React.FC<GroupHolderProps> = ({ data }) => {
   return (
     <CardHolder>
-      {data.allAirtable.nodes.map((i) => (
+      {data.leadership.nodes.map((i) => (
         <Card key={i.id}>
           <img
             src={

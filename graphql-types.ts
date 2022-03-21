@@ -4354,11 +4354,6 @@ export type AirtableSortInput = {
 
 export type FluidImageFragment = { childImageSharp?: { fluid?: { tracedSVG?: string | null, aspectRatio: number, src: string, srcSet: string, srcWebp?: string | null, srcSetWebp?: string | null, sizes: string } | null } | null };
 
-export type AirtableTeamContentQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type AirtableTeamContentQuery = { allAirtable: { edges: Array<{ node: { id: string, data?: { Name?: string | null, Program?: string | null, Industries?: Array<string | null> | null, Attachments?: Array<{ thumbnails?: { large?: { height?: number | null, url?: string | null, width?: number | null } | null } | null } | null> | null } | null } }> } };
-
 export type MarkdownContentQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4374,10 +4369,12 @@ export type IndexPageImageQueryQueryVariables = Exact<{ [key: string]: never; }>
 
 export type IndexPageImageQueryQuery = { imageOne?: { childImageSharp?: { fluid?: { tracedSVG?: string | null, aspectRatio: number, src: string, srcSet: string, srcWebp?: string | null, srcSetWebp?: string | null, sizes: string } | null } | null } | null, imageTwo?: { childImageSharp?: { fluid?: { tracedSVG?: string | null, aspectRatio: number, src: string, srcSet: string, srcWebp?: string | null, srcSetWebp?: string | null, sizes: string } | null } | null } | null, imageThree?: { childImageSharp?: { fluid?: { tracedSVG?: string | null, aspectRatio: number, src: string, srcSet: string, srcWebp?: string | null, srcSetWebp?: string | null, sizes: string } | null } | null } | null, imageFour?: { childImageSharp?: { fluid?: { tracedSVG?: string | null, aspectRatio: number, src: string, srcSet: string, srcWebp?: string | null, srcSetWebp?: string | null, sizes: string } | null } | null } | null, imageFive?: { childImageSharp?: { fluid?: { tracedSVG?: string | null, aspectRatio: number, src: string, srcSet: string, srcWebp?: string | null, srcSetWebp?: string | null, sizes: string } | null } | null } | null };
 
+export type MemberDataFragment = { id: string, data?: { Role?: string | null, Name?: string | null, Program?: string | null, linkedInUrl?: string | null, Attachments?: Array<{ thumbnails?: { large?: { height?: number | null, width?: number | null, url?: string | null } | null } | null } | null> | null } | null };
+
 export type TeamPageQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TeamPageQueryQuery = { allAirtable: { nodes: Array<{ id: string, data?: { Role?: string | null, Name?: string | null, Program?: string | null, linkedInUrl?: string | null, Attachments?: Array<{ thumbnails?: { large?: { height?: number | null, width?: number | null, url?: string | null } | null } | null } | null> | null } | null }> } };
+export type TeamPageQueryQuery = { leadership: { nodes: Array<{ id: string, data?: { Role?: string | null, Name?: string | null, Program?: string | null, linkedInUrl?: string | null, Attachments?: Array<{ thumbnails?: { large?: { height?: number | null, width?: number | null, url?: string | null } | null } | null } | null> | null } | null }> }, pitch: { nodes: Array<{ id: string, data?: { Role?: string | null, Name?: string | null, Program?: string | null, linkedInUrl?: string | null, Attachments?: Array<{ thumbnails?: { large?: { height?: number | null, width?: number | null, url?: string | null } | null } | null } | null> | null } | null }> }, marketing: { nodes: Array<{ id: string, data?: { Role?: string | null, Name?: string | null, Program?: string | null, linkedInUrl?: string | null, Attachments?: Array<{ thumbnails?: { large?: { height?: number | null, width?: number | null, url?: string | null } | null } | null } | null> | null } | null }> }, website: { nodes: Array<{ id: string, data?: { Role?: string | null, Name?: string | null, Program?: string | null, linkedInUrl?: string | null, Attachments?: Array<{ thumbnails?: { large?: { height?: number | null, width?: number | null, url?: string | null } | null } | null } | null> | null } | null }> }, finance: { nodes: Array<{ id: string, data?: { Role?: string | null, Name?: string | null, Program?: string | null, linkedInUrl?: string | null, Attachments?: Array<{ thumbnails?: { large?: { height?: number | null, width?: number | null, url?: string | null } | null } | null } | null> | null } | null }> }, gala: { nodes: Array<{ id: string, data?: { Role?: string | null, Name?: string | null, Program?: string | null, linkedInUrl?: string | null, Attachments?: Array<{ thumbnails?: { large?: { height?: number | null, width?: number | null, url?: string | null } | null } | null } | null> | null } | null }> }, speakers: { nodes: Array<{ id: string, data?: { Role?: string | null, Name?: string | null, Program?: string | null, linkedInUrl?: string | null, Attachments?: Array<{ thumbnails?: { large?: { height?: number | null, width?: number | null, url?: string | null } | null } | null } | null> | null } | null }> } };
 
 export type GatsbyImageSharpFixedFragment = { base64?: string | null, width: number, height: number, src: string, srcSet: string };
 
