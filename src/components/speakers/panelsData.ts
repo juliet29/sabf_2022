@@ -12,7 +12,7 @@ export const panels: Panels = [
     link: 'Infrastructure',
     name: 'Infrastructure and Cities',
     title: 'Building the African City of the Future',
-    text: '900 million people will move into cities in Africa over the next thirty years,  resulting in  the greatest period of urbanization in human history. Our  panelists will discuss the shaping the future of cities and show the world that real estate can do much more than just provide shelter.'
+    text: '900 million people will move into cities in Africa over the next thirty years,  resulting in  the greatest period of urbanization in human history. Our  panelists will discuss  shaping the future of African cities and show the world that real estate can do much more than just provide shelter.'
   },
 
   {

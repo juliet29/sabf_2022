@@ -253,6 +253,9 @@ export type Site = Node & {
   siteMetadata?: Maybe<SiteSiteMetadata>;
   port?: Maybe<Scalars['Int']>;
   host?: Maybe<Scalars['String']>;
+  polyfill?: Maybe<Scalars['Boolean']>;
+  pathPrefix?: Maybe<Scalars['String']>;
+  jsxRuntime?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   parent?: Maybe<Node>;
   children: Array<Node>;
@@ -685,12 +688,13 @@ export type Airtable = Node & {
 };
 
 export type AirtableData = {
+  Role?: Maybe<Scalars['String']>;
   Industries?: Maybe<Array<Maybe<Scalars['String']>>>;
   Attachments?: Maybe<Array<Maybe<AirtableDataAttachments>>>;
   Program?: Maybe<Scalars['String']>;
+  linkedInUrl?: Maybe<Scalars['String']>;
   Name?: Maybe<Scalars['String']>;
   Email?: Maybe<Scalars['String']>;
-  linkedInUrl?: Maybe<Scalars['String']>;
 };
 
 export type AirtableDataAttachments = {
@@ -728,109 +732,6 @@ export type AirtableDataAttachmentsThumbnailsFull = {
   height?: Maybe<Scalars['Int']>;
 };
 
-export type StaticImage = Node & {
-  id: Scalars['ID'];
-  parent?: Maybe<Node>;
-  children: Array<Node>;
-  internal: Internal;
-  sourceInstanceName?: Maybe<Scalars['String']>;
-  relativePath?: Maybe<Scalars['String']>;
-  extension?: Maybe<Scalars['String']>;
-  prettySize?: Maybe<Scalars['String']>;
-  modifiedTime?: Maybe<Scalars['Date']>;
-  accessTime?: Maybe<Scalars['Date']>;
-  changeTime?: Maybe<Scalars['Date']>;
-  birthTime?: Maybe<Scalars['Date']>;
-  root?: Maybe<Scalars['String']>;
-  dir?: Maybe<Scalars['String']>;
-  base?: Maybe<Scalars['String']>;
-  ext?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  absolutePath?: Maybe<Scalars['String']>;
-  relativeDirectory?: Maybe<Scalars['String']>;
-  dev?: Maybe<Scalars['Int']>;
-  mode?: Maybe<Scalars['Int']>;
-  nlink?: Maybe<Scalars['Int']>;
-  uid?: Maybe<Scalars['Int']>;
-  rdev?: Maybe<Scalars['Int']>;
-  blksize?: Maybe<Scalars['Int']>;
-  ino?: Maybe<Scalars['Int']>;
-  size?: Maybe<Scalars['Int']>;
-  blocks?: Maybe<Scalars['Int']>;
-  atimeMs?: Maybe<Scalars['Float']>;
-  mtimeMs?: Maybe<Scalars['Float']>;
-  ctimeMs?: Maybe<Scalars['Float']>;
-  birthtimeMs?: Maybe<Scalars['Float']>;
-  atime?: Maybe<Scalars['Date']>;
-  mtime?: Maybe<Scalars['Date']>;
-  ctime?: Maybe<Scalars['Date']>;
-  birthtime?: Maybe<Scalars['Date']>;
-};
-
-
-export type StaticImageModifiedTimeArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type StaticImageAccessTimeArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type StaticImageChangeTimeArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type StaticImageBirthTimeArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type StaticImageAtimeArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type StaticImageMtimeArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type StaticImageCtimeArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type StaticImageBirthtimeArgs = {
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  difference?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
 export type Query = {
   file?: Maybe<File>;
   allFile: FileConnection;
@@ -854,8 +755,6 @@ export type Query = {
   allConfernceScheduleCsv: ConfernceScheduleCsvConnection;
   airtable?: Maybe<Airtable>;
   allAirtable: AirtableConnection;
-  staticImage?: Maybe<StaticImage>;
-  allStaticImage: StaticImageConnection;
 };
 
 
@@ -967,6 +866,9 @@ export type QuerySiteArgs = {
   siteMetadata?: InputMaybe<SiteSiteMetadataFilterInput>;
   port?: InputMaybe<IntQueryOperatorInput>;
   host?: InputMaybe<StringQueryOperatorInput>;
+  polyfill?: InputMaybe<BooleanQueryOperatorInput>;
+  pathPrefix?: InputMaybe<StringQueryOperatorInput>;
+  jsxRuntime?: InputMaybe<StringQueryOperatorInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
@@ -1154,54 +1056,6 @@ export type QueryAirtableArgs = {
 export type QueryAllAirtableArgs = {
   filter?: InputMaybe<AirtableFilterInput>;
   sort?: InputMaybe<AirtableSortInput>;
-  skip?: InputMaybe<Scalars['Int']>;
-  limit?: InputMaybe<Scalars['Int']>;
-};
-
-
-export type QueryStaticImageArgs = {
-  id?: InputMaybe<StringQueryOperatorInput>;
-  parent?: InputMaybe<NodeFilterInput>;
-  children?: InputMaybe<NodeFilterListInput>;
-  internal?: InputMaybe<InternalFilterInput>;
-  sourceInstanceName?: InputMaybe<StringQueryOperatorInput>;
-  relativePath?: InputMaybe<StringQueryOperatorInput>;
-  extension?: InputMaybe<StringQueryOperatorInput>;
-  prettySize?: InputMaybe<StringQueryOperatorInput>;
-  modifiedTime?: InputMaybe<DateQueryOperatorInput>;
-  accessTime?: InputMaybe<DateQueryOperatorInput>;
-  changeTime?: InputMaybe<DateQueryOperatorInput>;
-  birthTime?: InputMaybe<DateQueryOperatorInput>;
-  root?: InputMaybe<StringQueryOperatorInput>;
-  dir?: InputMaybe<StringQueryOperatorInput>;
-  base?: InputMaybe<StringQueryOperatorInput>;
-  ext?: InputMaybe<StringQueryOperatorInput>;
-  name?: InputMaybe<StringQueryOperatorInput>;
-  absolutePath?: InputMaybe<StringQueryOperatorInput>;
-  relativeDirectory?: InputMaybe<StringQueryOperatorInput>;
-  dev?: InputMaybe<IntQueryOperatorInput>;
-  mode?: InputMaybe<IntQueryOperatorInput>;
-  nlink?: InputMaybe<IntQueryOperatorInput>;
-  uid?: InputMaybe<IntQueryOperatorInput>;
-  rdev?: InputMaybe<IntQueryOperatorInput>;
-  blksize?: InputMaybe<IntQueryOperatorInput>;
-  ino?: InputMaybe<IntQueryOperatorInput>;
-  size?: InputMaybe<IntQueryOperatorInput>;
-  blocks?: InputMaybe<IntQueryOperatorInput>;
-  atimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  mtimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  ctimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  birthtimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  atime?: InputMaybe<DateQueryOperatorInput>;
-  mtime?: InputMaybe<DateQueryOperatorInput>;
-  ctime?: InputMaybe<DateQueryOperatorInput>;
-  birthtime?: InputMaybe<DateQueryOperatorInput>;
-};
-
-
-export type QueryAllStaticImageArgs = {
-  filter?: InputMaybe<StaticImageFilterInput>;
-  sort?: InputMaybe<StaticImageSortInput>;
   skip?: InputMaybe<Scalars['Int']>;
   limit?: InputMaybe<Scalars['Int']>;
 };
@@ -2478,6 +2332,9 @@ export type SiteFieldsEnum =
   | 'siteMetadata___siteUrl'
   | 'port'
   | 'host'
+  | 'polyfill'
+  | 'pathPrefix'
+  | 'jsxRuntime'
   | 'id'
   | 'parent___id'
   | 'parent___parent___id'
@@ -2611,6 +2468,9 @@ export type SiteFilterInput = {
   siteMetadata?: InputMaybe<SiteSiteMetadataFilterInput>;
   port?: InputMaybe<IntQueryOperatorInput>;
   host?: InputMaybe<StringQueryOperatorInput>;
+  polyfill?: InputMaybe<BooleanQueryOperatorInput>;
+  pathPrefix?: InputMaybe<StringQueryOperatorInput>;
+  jsxRuntime?: InputMaybe<StringQueryOperatorInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
@@ -4237,12 +4097,13 @@ export type ConfernceScheduleCsvSortInput = {
 };
 
 export type AirtableDataFilterInput = {
+  Role?: InputMaybe<StringQueryOperatorInput>;
   Industries?: InputMaybe<StringQueryOperatorInput>;
   Attachments?: InputMaybe<AirtableDataAttachmentsFilterListInput>;
   Program?: InputMaybe<StringQueryOperatorInput>;
+  linkedInUrl?: InputMaybe<StringQueryOperatorInput>;
   Name?: InputMaybe<StringQueryOperatorInput>;
   Email?: InputMaybe<StringQueryOperatorInput>;
-  linkedInUrl?: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type AirtableDataAttachmentsFilterListInput = {
@@ -4419,6 +4280,7 @@ export type AirtableFieldsEnum =
   | 'table'
   | 'recordId'
   | 'rowIndex'
+  | 'data___Role'
   | 'data___Industries'
   | 'data___Attachments'
   | 'data___Attachments___id'
@@ -4429,9 +4291,9 @@ export type AirtableFieldsEnum =
   | 'data___Attachments___size'
   | 'data___Attachments___type'
   | 'data___Program'
+  | 'data___linkedInUrl'
   | 'data___Name'
-  | 'data___Email'
-  | 'data___linkedInUrl';
+  | 'data___Email';
 
 export type AirtableGroupConnection = {
   totalCount: Scalars['Int'];
@@ -4490,256 +4352,6 @@ export type AirtableSortInput = {
   order?: InputMaybe<Array<InputMaybe<SortOrderEnum>>>;
 };
 
-export type StaticImageConnection = {
-  totalCount: Scalars['Int'];
-  edges: Array<StaticImageEdge>;
-  nodes: Array<StaticImage>;
-  pageInfo: PageInfo;
-  distinct: Array<Scalars['String']>;
-  max?: Maybe<Scalars['Float']>;
-  min?: Maybe<Scalars['Float']>;
-  sum?: Maybe<Scalars['Float']>;
-  group: Array<StaticImageGroupConnection>;
-};
-
-
-export type StaticImageConnectionDistinctArgs = {
-  field: StaticImageFieldsEnum;
-};
-
-
-export type StaticImageConnectionMaxArgs = {
-  field: StaticImageFieldsEnum;
-};
-
-
-export type StaticImageConnectionMinArgs = {
-  field: StaticImageFieldsEnum;
-};
-
-
-export type StaticImageConnectionSumArgs = {
-  field: StaticImageFieldsEnum;
-};
-
-
-export type StaticImageConnectionGroupArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  limit?: InputMaybe<Scalars['Int']>;
-  field: StaticImageFieldsEnum;
-};
-
-export type StaticImageEdge = {
-  next?: Maybe<StaticImage>;
-  node: StaticImage;
-  previous?: Maybe<StaticImage>;
-};
-
-export type StaticImageFieldsEnum =
-  | 'id'
-  | 'parent___id'
-  | 'parent___parent___id'
-  | 'parent___parent___parent___id'
-  | 'parent___parent___parent___children'
-  | 'parent___parent___children'
-  | 'parent___parent___children___id'
-  | 'parent___parent___children___children'
-  | 'parent___parent___internal___content'
-  | 'parent___parent___internal___contentDigest'
-  | 'parent___parent___internal___description'
-  | 'parent___parent___internal___fieldOwners'
-  | 'parent___parent___internal___ignoreType'
-  | 'parent___parent___internal___mediaType'
-  | 'parent___parent___internal___owner'
-  | 'parent___parent___internal___type'
-  | 'parent___children'
-  | 'parent___children___id'
-  | 'parent___children___parent___id'
-  | 'parent___children___parent___children'
-  | 'parent___children___children'
-  | 'parent___children___children___id'
-  | 'parent___children___children___children'
-  | 'parent___children___internal___content'
-  | 'parent___children___internal___contentDigest'
-  | 'parent___children___internal___description'
-  | 'parent___children___internal___fieldOwners'
-  | 'parent___children___internal___ignoreType'
-  | 'parent___children___internal___mediaType'
-  | 'parent___children___internal___owner'
-  | 'parent___children___internal___type'
-  | 'parent___internal___content'
-  | 'parent___internal___contentDigest'
-  | 'parent___internal___description'
-  | 'parent___internal___fieldOwners'
-  | 'parent___internal___ignoreType'
-  | 'parent___internal___mediaType'
-  | 'parent___internal___owner'
-  | 'parent___internal___type'
-  | 'children'
-  | 'children___id'
-  | 'children___parent___id'
-  | 'children___parent___parent___id'
-  | 'children___parent___parent___children'
-  | 'children___parent___children'
-  | 'children___parent___children___id'
-  | 'children___parent___children___children'
-  | 'children___parent___internal___content'
-  | 'children___parent___internal___contentDigest'
-  | 'children___parent___internal___description'
-  | 'children___parent___internal___fieldOwners'
-  | 'children___parent___internal___ignoreType'
-  | 'children___parent___internal___mediaType'
-  | 'children___parent___internal___owner'
-  | 'children___parent___internal___type'
-  | 'children___children'
-  | 'children___children___id'
-  | 'children___children___parent___id'
-  | 'children___children___parent___children'
-  | 'children___children___children'
-  | 'children___children___children___id'
-  | 'children___children___children___children'
-  | 'children___children___internal___content'
-  | 'children___children___internal___contentDigest'
-  | 'children___children___internal___description'
-  | 'children___children___internal___fieldOwners'
-  | 'children___children___internal___ignoreType'
-  | 'children___children___internal___mediaType'
-  | 'children___children___internal___owner'
-  | 'children___children___internal___type'
-  | 'children___internal___content'
-  | 'children___internal___contentDigest'
-  | 'children___internal___description'
-  | 'children___internal___fieldOwners'
-  | 'children___internal___ignoreType'
-  | 'children___internal___mediaType'
-  | 'children___internal___owner'
-  | 'children___internal___type'
-  | 'internal___content'
-  | 'internal___contentDigest'
-  | 'internal___description'
-  | 'internal___fieldOwners'
-  | 'internal___ignoreType'
-  | 'internal___mediaType'
-  | 'internal___owner'
-  | 'internal___type'
-  | 'sourceInstanceName'
-  | 'relativePath'
-  | 'extension'
-  | 'prettySize'
-  | 'modifiedTime'
-  | 'accessTime'
-  | 'changeTime'
-  | 'birthTime'
-  | 'root'
-  | 'dir'
-  | 'base'
-  | 'ext'
-  | 'name'
-  | 'absolutePath'
-  | 'relativeDirectory'
-  | 'dev'
-  | 'mode'
-  | 'nlink'
-  | 'uid'
-  | 'rdev'
-  | 'blksize'
-  | 'ino'
-  | 'size'
-  | 'blocks'
-  | 'atimeMs'
-  | 'mtimeMs'
-  | 'ctimeMs'
-  | 'birthtimeMs'
-  | 'atime'
-  | 'mtime'
-  | 'ctime'
-  | 'birthtime';
-
-export type StaticImageGroupConnection = {
-  totalCount: Scalars['Int'];
-  edges: Array<StaticImageEdge>;
-  nodes: Array<StaticImage>;
-  pageInfo: PageInfo;
-  distinct: Array<Scalars['String']>;
-  max?: Maybe<Scalars['Float']>;
-  min?: Maybe<Scalars['Float']>;
-  sum?: Maybe<Scalars['Float']>;
-  group: Array<StaticImageGroupConnection>;
-  field: Scalars['String'];
-  fieldValue?: Maybe<Scalars['String']>;
-};
-
-
-export type StaticImageGroupConnectionDistinctArgs = {
-  field: StaticImageFieldsEnum;
-};
-
-
-export type StaticImageGroupConnectionMaxArgs = {
-  field: StaticImageFieldsEnum;
-};
-
-
-export type StaticImageGroupConnectionMinArgs = {
-  field: StaticImageFieldsEnum;
-};
-
-
-export type StaticImageGroupConnectionSumArgs = {
-  field: StaticImageFieldsEnum;
-};
-
-
-export type StaticImageGroupConnectionGroupArgs = {
-  skip?: InputMaybe<Scalars['Int']>;
-  limit?: InputMaybe<Scalars['Int']>;
-  field: StaticImageFieldsEnum;
-};
-
-export type StaticImageFilterInput = {
-  id?: InputMaybe<StringQueryOperatorInput>;
-  parent?: InputMaybe<NodeFilterInput>;
-  children?: InputMaybe<NodeFilterListInput>;
-  internal?: InputMaybe<InternalFilterInput>;
-  sourceInstanceName?: InputMaybe<StringQueryOperatorInput>;
-  relativePath?: InputMaybe<StringQueryOperatorInput>;
-  extension?: InputMaybe<StringQueryOperatorInput>;
-  prettySize?: InputMaybe<StringQueryOperatorInput>;
-  modifiedTime?: InputMaybe<DateQueryOperatorInput>;
-  accessTime?: InputMaybe<DateQueryOperatorInput>;
-  changeTime?: InputMaybe<DateQueryOperatorInput>;
-  birthTime?: InputMaybe<DateQueryOperatorInput>;
-  root?: InputMaybe<StringQueryOperatorInput>;
-  dir?: InputMaybe<StringQueryOperatorInput>;
-  base?: InputMaybe<StringQueryOperatorInput>;
-  ext?: InputMaybe<StringQueryOperatorInput>;
-  name?: InputMaybe<StringQueryOperatorInput>;
-  absolutePath?: InputMaybe<StringQueryOperatorInput>;
-  relativeDirectory?: InputMaybe<StringQueryOperatorInput>;
-  dev?: InputMaybe<IntQueryOperatorInput>;
-  mode?: InputMaybe<IntQueryOperatorInput>;
-  nlink?: InputMaybe<IntQueryOperatorInput>;
-  uid?: InputMaybe<IntQueryOperatorInput>;
-  rdev?: InputMaybe<IntQueryOperatorInput>;
-  blksize?: InputMaybe<IntQueryOperatorInput>;
-  ino?: InputMaybe<IntQueryOperatorInput>;
-  size?: InputMaybe<IntQueryOperatorInput>;
-  blocks?: InputMaybe<IntQueryOperatorInput>;
-  atimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  mtimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  ctimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  birthtimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  atime?: InputMaybe<DateQueryOperatorInput>;
-  mtime?: InputMaybe<DateQueryOperatorInput>;
-  ctime?: InputMaybe<DateQueryOperatorInput>;
-  birthtime?: InputMaybe<DateQueryOperatorInput>;
-};
-
-export type StaticImageSortInput = {
-  fields?: InputMaybe<Array<InputMaybe<StaticImageFieldsEnum>>>;
-  order?: InputMaybe<Array<InputMaybe<SortOrderEnum>>>;
-};
-
 export type FluidImageFragment = { childImageSharp?: { fluid?: { tracedSVG?: string | null, aspectRatio: number, src: string, srcSet: string, srcWebp?: string | null, srcSetWebp?: string | null, sizes: string } | null } | null };
 
 export type AirtableTeamContentQueryVariables = Exact<{ [key: string]: never; }>;
@@ -4761,6 +4373,11 @@ export type IndexPageImageQueryQueryVariables = Exact<{ [key: string]: never; }>
 
 
 export type IndexPageImageQueryQuery = { imageOne?: { childImageSharp?: { fluid?: { tracedSVG?: string | null, aspectRatio: number, src: string, srcSet: string, srcWebp?: string | null, srcSetWebp?: string | null, sizes: string } | null } | null } | null, imageTwo?: { childImageSharp?: { fluid?: { tracedSVG?: string | null, aspectRatio: number, src: string, srcSet: string, srcWebp?: string | null, srcSetWebp?: string | null, sizes: string } | null } | null } | null, imageThree?: { childImageSharp?: { fluid?: { tracedSVG?: string | null, aspectRatio: number, src: string, srcSet: string, srcWebp?: string | null, srcSetWebp?: string | null, sizes: string } | null } | null } | null, imageFour?: { childImageSharp?: { fluid?: { tracedSVG?: string | null, aspectRatio: number, src: string, srcSet: string, srcWebp?: string | null, srcSetWebp?: string | null, sizes: string } | null } | null } | null, imageFive?: { childImageSharp?: { fluid?: { tracedSVG?: string | null, aspectRatio: number, src: string, srcSet: string, srcWebp?: string | null, srcSetWebp?: string | null, sizes: string } | null } | null } | null };
+
+export type TeamPageQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type TeamPageQueryQuery = { allAirtable: { nodes: Array<{ id: string, data?: { Role?: string | null, Name?: string | null, Program?: string | null, linkedInUrl?: string | null, Attachments?: Array<{ thumbnails?: { large?: { height?: number | null, width?: number | null, url?: string | null } | null } | null } | null> | null } | null }> } };
 
 export type GatsbyImageSharpFixedFragment = { base64?: string | null, width: number, height: number, src: string, srcSet: string };
 
