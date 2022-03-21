@@ -15,8 +15,32 @@ const TeamPage: React.FC<TeamPageProps> = ({ data }) => {
   return (
     <Layout pageTitle="Team">
       <RoleGroup
-        groupTitle="Finance & Sponsorships"
+        groupTitle="Co-Presidents"
+        nodes={data.leadership.nodes}
+      ></RoleGroup>
+      <RoleGroup
+        groupTitle="Finance & Sponsorships Team"
         nodes={data.finance.nodes}
+      ></RoleGroup>
+      <RoleGroup
+        groupTitle="Pitch Competition Team"
+        nodes={data.pitch.nodes}
+      ></RoleGroup>
+      <RoleGroup
+        groupTitle="Marketing Team"
+        nodes={data.marketing.nodes}
+      ></RoleGroup>
+      <RoleGroup
+        groupTitle="Content Team"
+        nodes={data.speakers.nodes}
+      ></RoleGroup>
+      <RoleGroup
+        groupTitle="Gala and After-Party Team"
+        nodes={data.gala.nodes}
+      ></RoleGroup>
+      <RoleGroup
+        groupTitle="Website and Platform Team"
+        nodes={data.website.nodes}
       ></RoleGroup>
       {/* <GroupHolder data={data}></GroupHolder> */}
     </Layout>

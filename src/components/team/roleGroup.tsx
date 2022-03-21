@@ -30,13 +30,14 @@ const Wrapper = styled.div`
   h3 {
     padding-bottom: 0.5em;
   }
+  margin-bottom: 1em;
 `;
 
 const CardGrid = styled.div`
   display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: repeat(1, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-auto-flow: row;
+  grid-template-columns: repeat(2, 1fr);
+  /* grid-template-rows: repeat(auto-fill, 120px); */
   column-gap: 1em;
   row-gap: 0.5em;
 `;
@@ -46,6 +47,14 @@ const Card = styled.div`
   border-radius: 10px; */
 
   div {
+    a {
+      color: white;
+      transition: all 0.5s;
+      text-decoration: none;
+      :hover {
+        color: ${primaryAccentColor};
+      }
+    }
     > p:nth-child(2) {
       font-weight: 200;
       font-style: italic;
@@ -55,7 +64,7 @@ const Card = styled.div`
 
   img {
     width: 100%;
-    min-width: 30vw;
+    max-width: 30vw;
     height: 170px;
     object-fit: cover;
     /* border-top-right-radius: 10px;
@@ -97,7 +106,9 @@ const RoleGroup: React.FC<RoleGroupProps> = ({ groupTitle, nodes }) => {
             />
 
             <div>
-              <p>{i.data?.Name}</p>
+              <p>
+                <a href={i.data?.linkedInUrl}>{i.data?.Name}</a>
+              </p>
               <p>{i.data?.Program}</p>
             </div>
           </Card>
