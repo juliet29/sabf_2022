@@ -683,17 +683,22 @@ export type Airtable = Node & {
   internal: Internal;
   table?: Maybe<Scalars['String']>;
   recordId?: Maybe<Scalars['String']>;
+  queryName?: Maybe<Scalars['String']>;
   rowIndex?: Maybe<Scalars['Int']>;
   data?: Maybe<AirtableData>;
 };
 
 export type AirtableData = {
+  Name?: Maybe<Scalars['String']>;
+  Title?: Maybe<Scalars['String']>;
+  LinkedIn_Url?: Maybe<Scalars['String']>;
+  Organization?: Maybe<Scalars['String']>;
+  Panel?: Maybe<Scalars['String']>;
+  Attachments?: Maybe<Array<Maybe<AirtableDataAttachments>>>;
   Role?: Maybe<Scalars['String']>;
   Industries?: Maybe<Array<Maybe<Scalars['String']>>>;
-  Attachments?: Maybe<Array<Maybe<AirtableDataAttachments>>>;
   Program?: Maybe<Scalars['String']>;
   linkedInUrl?: Maybe<Scalars['String']>;
-  Name?: Maybe<Scalars['String']>;
   Email?: Maybe<Scalars['String']>;
 };
 
@@ -1048,6 +1053,7 @@ export type QueryAirtableArgs = {
   internal?: InputMaybe<InternalFilterInput>;
   table?: InputMaybe<StringQueryOperatorInput>;
   recordId?: InputMaybe<StringQueryOperatorInput>;
+  queryName?: InputMaybe<StringQueryOperatorInput>;
   rowIndex?: InputMaybe<IntQueryOperatorInput>;
   data?: InputMaybe<AirtableDataFilterInput>;
 };
@@ -4097,12 +4103,16 @@ export type ConfernceScheduleCsvSortInput = {
 };
 
 export type AirtableDataFilterInput = {
+  Name?: InputMaybe<StringQueryOperatorInput>;
+  Title?: InputMaybe<StringQueryOperatorInput>;
+  LinkedIn_Url?: InputMaybe<StringQueryOperatorInput>;
+  Organization?: InputMaybe<StringQueryOperatorInput>;
+  Panel?: InputMaybe<StringQueryOperatorInput>;
+  Attachments?: InputMaybe<AirtableDataAttachmentsFilterListInput>;
   Role?: InputMaybe<StringQueryOperatorInput>;
   Industries?: InputMaybe<StringQueryOperatorInput>;
-  Attachments?: InputMaybe<AirtableDataAttachmentsFilterListInput>;
   Program?: InputMaybe<StringQueryOperatorInput>;
   linkedInUrl?: InputMaybe<StringQueryOperatorInput>;
-  Name?: InputMaybe<StringQueryOperatorInput>;
   Email?: InputMaybe<StringQueryOperatorInput>;
 };
 
@@ -4279,9 +4289,13 @@ export type AirtableFieldsEnum =
   | 'internal___type'
   | 'table'
   | 'recordId'
+  | 'queryName'
   | 'rowIndex'
-  | 'data___Role'
-  | 'data___Industries'
+  | 'data___Name'
+  | 'data___Title'
+  | 'data___LinkedIn_Url'
+  | 'data___Organization'
+  | 'data___Panel'
   | 'data___Attachments'
   | 'data___Attachments___id'
   | 'data___Attachments___width'
@@ -4290,9 +4304,10 @@ export type AirtableFieldsEnum =
   | 'data___Attachments___filename'
   | 'data___Attachments___size'
   | 'data___Attachments___type'
+  | 'data___Role'
+  | 'data___Industries'
   | 'data___Program'
   | 'data___linkedInUrl'
-  | 'data___Name'
   | 'data___Email';
 
 export type AirtableGroupConnection = {
@@ -4343,6 +4358,7 @@ export type AirtableFilterInput = {
   internal?: InputMaybe<InternalFilterInput>;
   table?: InputMaybe<StringQueryOperatorInput>;
   recordId?: InputMaybe<StringQueryOperatorInput>;
+  queryName?: InputMaybe<StringQueryOperatorInput>;
   rowIndex?: InputMaybe<IntQueryOperatorInput>;
   data?: InputMaybe<AirtableDataFilterInput>;
 };
@@ -4368,6 +4384,13 @@ export type IndexPageImageQueryQueryVariables = Exact<{ [key: string]: never; }>
 
 
 export type IndexPageImageQueryQuery = { imageOne?: { childImageSharp?: { fluid?: { tracedSVG?: string | null, aspectRatio: number, src: string, srcSet: string, srcWebp?: string | null, srcSetWebp?: string | null, sizes: string } | null } | null } | null, imageTwo?: { childImageSharp?: { fluid?: { tracedSVG?: string | null, aspectRatio: number, src: string, srcSet: string, srcWebp?: string | null, srcSetWebp?: string | null, sizes: string } | null } | null } | null, imageThree?: { childImageSharp?: { fluid?: { tracedSVG?: string | null, aspectRatio: number, src: string, srcSet: string, srcWebp?: string | null, srcSetWebp?: string | null, sizes: string } | null } | null } | null, imageFour?: { childImageSharp?: { fluid?: { tracedSVG?: string | null, aspectRatio: number, src: string, srcSet: string, srcWebp?: string | null, srcSetWebp?: string | null, sizes: string } | null } | null } | null, imageFive?: { childImageSharp?: { fluid?: { tracedSVG?: string | null, aspectRatio: number, src: string, srcSet: string, srcWebp?: string | null, srcSetWebp?: string | null, sizes: string } | null } | null } | null };
+
+export type SpeakerDataFragment = { id: string, data?: { Name?: string | null, Organization?: string | null, Title?: string | null, Panel?: string | null, LinkedIn_Url?: string | null, Attachments?: Array<{ thumbnails?: { large?: { height?: number | null, width?: number | null, url?: string | null } | null } | null } | null> | null } | null };
+
+export type SpeakersPageQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SpeakersPageQueryQuery = { blockchain: { nodes: Array<{ id: string, data?: { Name?: string | null, Organization?: string | null, Title?: string | null, Panel?: string | null, LinkedIn_Url?: string | null, Attachments?: Array<{ thumbnails?: { large?: { height?: number | null, width?: number | null, url?: string | null } | null } | null } | null> | null } | null }> }, energy: { nodes: Array<{ id: string, data?: { Name?: string | null, Organization?: string | null, Title?: string | null, Panel?: string | null, LinkedIn_Url?: string | null, Attachments?: Array<{ thumbnails?: { large?: { height?: number | null, width?: number | null, url?: string | null } | null } | null } | null> | null } | null }> }, ebusiness: { nodes: Array<{ id: string, data?: { Name?: string | null, Organization?: string | null, Title?: string | null, Panel?: string | null, LinkedIn_Url?: string | null, Attachments?: Array<{ thumbnails?: { large?: { height?: number | null, width?: number | null, url?: string | null } | null } | null } | null> | null } | null }> }, fintech: { nodes: Array<{ id: string, data?: { Name?: string | null, Organization?: string | null, Title?: string | null, Panel?: string | null, LinkedIn_Url?: string | null, Attachments?: Array<{ thumbnails?: { large?: { height?: number | null, width?: number | null, url?: string | null } | null } | null } | null> | null } | null }> }, healthcare: { nodes: Array<{ id: string, data?: { Name?: string | null, Organization?: string | null, Title?: string | null, Panel?: string | null, LinkedIn_Url?: string | null, Attachments?: Array<{ thumbnails?: { large?: { height?: number | null, width?: number | null, url?: string | null } | null } | null } | null> | null } | null }> }, investing: { nodes: Array<{ id: string, data?: { Name?: string | null, Organization?: string | null, Title?: string | null, Panel?: string | null, LinkedIn_Url?: string | null, Attachments?: Array<{ thumbnails?: { large?: { height?: number | null, width?: number | null, url?: string | null } | null } | null } | null> | null } | null }> }, keynote: { nodes: Array<{ id: string, data?: { Name?: string | null, Organization?: string | null, Title?: string | null, Panel?: string | null, LinkedIn_Url?: string | null, Attachments?: Array<{ thumbnails?: { large?: { height?: number | null, width?: number | null, url?: string | null } | null } | null } | null> | null } | null }> }, pitch: { nodes: Array<{ id: string, data?: { Name?: string | null, Organization?: string | null, Title?: string | null, Panel?: string | null, LinkedIn_Url?: string | null, Attachments?: Array<{ thumbnails?: { large?: { height?: number | null, width?: number | null, url?: string | null } | null } | null } | null> | null } | null }> } };
 
 export type MemberDataFragment = { id: string, data?: { Role?: string | null, Name?: string | null, Program?: string | null, linkedInUrl?: string | null, Attachments?: Array<{ thumbnails?: { large?: { height?: number | null, width?: number | null, url?: string | null } | null } | null } | null> | null } | null };
 

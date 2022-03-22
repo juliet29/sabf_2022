@@ -7,7 +7,6 @@ import '@fontsource/montserrat/200.css';
 import '@fontsource/montserrat/400-italic.css';
 import { AnchorLink } from 'gatsby-plugin-anchor-links';
 import { devices } from 'styles/responsiveSizes';
-import { faPeriscope } from '@fortawesome/free-brands-svg-icons';
 
 const Wrapper = styled.div`
   margin-top: 0.8em;

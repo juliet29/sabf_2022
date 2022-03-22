@@ -4,6 +4,7 @@ import { devices } from 'styles/responsiveSizes';
 import { primaryAccentColor } from 'styles/theme';
 import '@fontsource/montserrat/200-italic.css';
 import '@fontsource/montserrat/600.css';
+import CardGrid from 'components/general/cardGrid';
 
 interface RoleGroupProps {
   groupTitle: string;
@@ -43,20 +44,20 @@ const Wrapper = styled.div`
   }
 `;
 
-const CardGrid = styled.div`
-  display: grid;
-  grid-auto-flow: row;
-  grid-template-columns: repeat(2, 1fr);
-  column-gap: 1em;
-  row-gap: 0.5em;
+// const CardGrid = styled.div`
+//   display: grid;
+//   grid-auto-flow: row;
+//   grid-template-columns: repeat(2, 1fr);
+//   column-gap: 1em;
+//   row-gap: 0.5em;
 
-  @media ${devices.laptopMin} {
-    max-width: 70%;
-    grid-template-columns: repeat(4, 1fr);
-    column-gap: 0;
-    row-gap: 0.9em;
-  }
-`;
+//   @media ${devices.laptopMin} {
+//     max-width: 70%;
+//     grid-template-columns: repeat(4, 1fr);
+//     column-gap: 0;
+//     row-gap: 0.9em;
+//   }
+// `;
 
 const Card = styled.div`
   /* background-color: ${primaryAccentColor};
@@ -105,8 +106,9 @@ const RoleGroup: React.FC<RoleGroupProps> = ({ groupTitle, nodes }) => {
   return (
     <Wrapper>
       <h3>{groupTitle}</h3>
+      <CardGrid nodes={nodes}></CardGrid>
 
-      <CardGrid>
+      {/* <CardGrid>
         {nodes.map((i) => (
           <Card key={i.id}>
             <a href={i.data?.linkedInUrl}>
@@ -127,7 +129,7 @@ const RoleGroup: React.FC<RoleGroupProps> = ({ groupTitle, nodes }) => {
             </div>
           </Card>
         ))}
-      </CardGrid>
+      </CardGrid> */}
     </Wrapper>
   );
 };

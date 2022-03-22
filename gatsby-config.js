@@ -64,6 +64,11 @@ module.exports = {
               baseId: "appXirPrUc45gFZHW",
               tableName: "Artists",
             },
+            {
+              baseId: "apppF6QGknZjQENY5",
+              tableName: "Artists",
+              queryName: "Speakers"
+            },
                   ]
               }
   },
