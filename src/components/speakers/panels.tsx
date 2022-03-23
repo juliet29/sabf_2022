@@ -84,6 +84,7 @@ const PanelHolder = styled.div`
 
 const PanelItem = styled.div`
   margin-bottom: 1em;
+
   > p:first-of-type {
     margin-top: 0.2em;
     margin-bottom: 0.8em;
@@ -93,11 +94,17 @@ const PanelItem = styled.div`
   }
   @media ${devices.laptopMin} {
     max-width: 80%;
+    h3 {
+      font-size: 1.5em;
+    }
   } ;
 `;
 
 const PanelGroup = styled.div`
   margin-bottom: 2em;
+  @media ${devices.laptopMin} {
+    margin-bottom: 5em;
+  }
 `;
 
 interface PanelsProps {
