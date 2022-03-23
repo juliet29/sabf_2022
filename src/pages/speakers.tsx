@@ -1,9 +1,9 @@
 import Layout from 'components/navigation/layout';
+import Keynotes from 'components/speakers/keynotes';
 import Panels from 'components/speakers/panels';
 import { graphql } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
-import { devices } from 'styles/responsiveSizes';
 import { SpeakersPageQueryQuery } from '../../graphql-types';
 
 interface SpeakersPageProps {
@@ -21,8 +21,8 @@ const SpeakersPage: React.FC<SpeakersPageProps> = ({ data }) => {
   return (
     <Layout pageTitle="Speakers + Panels">
       <Section>
-        <h1> Speakers </h1>
-        <p>Updates coming soon! </p>
+        <h1> Keynote Speakers </h1>
+        <Keynotes data={data}></Keynotes>
       </Section>
 
       <Section>
@@ -121,6 +121,7 @@ export const query = graphql`
         queryName: { eq: "Speakers" }
         data: { Panel: { regex: "/(Keynote)/g" } }
       }
+      sort: { fields: [data___Name], order: DESC }
     ) {
       nodes {
         ...SpeakerData
