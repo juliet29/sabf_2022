@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { devices } from 'styles/responsiveSizes';
 import { primaryAccentColor } from 'styles/theme';
+import { CardGridProps } from './cardGridInterface';
 
 const StyledCardGrid = styled.div`
   display: grid;
@@ -14,7 +15,7 @@ const StyledCardGrid = styled.div`
     max-width: 70%;
     grid-template-columns: repeat(4, 1fr);
     column-gap: 0;
-    row-gap: 0.9em;
+    row-gap: 1.2em;
   }
 `;
 
@@ -34,6 +35,7 @@ const Card = styled.div`
       font-weight: 200;
       font-style: italic;
       color: ${primaryAccentColor};
+      font-size: clamp(0.7em, 1vw, 1.4em);
     }
   }
 
@@ -61,58 +63,17 @@ const Card = styled.div`
   }
 `;
 
-interface CardGridProps {
-  nodes?: Array<{
-    id: string;
-    data?: {
-      Role?: string | null;
-      Name?: string | null;
-      Program?: string | null;
-      linkedInUrl?: string | null | undefined;
-      Attachments?: Array<{
-        thumbnails?: {
-          large?: {
-            height?: number | null;
-            width?: number | null;
-            url?: string | null | undefined;
-          } | null;
-        } | null;
-      } | null> | null;
-    } | null;
-  }>;
-
-  panelNodes?: Array<{
-    id: string;
-    data?: {
-      Name?: string | null;
-      Organization?: string | null;
-      Title?: string | null;
-      Panel?: string | null;
-      LinkedIn_Url?: string | null | undefined;
-      Attachments?: Array<{
-        thumbnails?: {
-          large?: {
-            height?: number | null;
-            width?: number | null;
-            url?: string | null | undefined;
-          } | null;
-        } | null;
-      } | null> | null;
-    } | null;
-  }>;
-}
-
 const CardGrid: React.FC<CardGridProps> = ({ nodes, panelNodes }) => {
   return (
     <StyledCardGrid>
       {nodes ? (
         nodes?.map((i) => (
           <Card key={i.id}>
-            <a href={i.data?.linkedInUrl}>
+            <a href={i.data?.linkedInUrl as string}>
               <img
                 src={
                   i.data?.Attachments?.map(
-                    (image) => image?.thumbnails?.large?.url
+                    (image) => image?.thumbnails?.large?.url as string
                   )[0]
                 }
               />
@@ -120,7 +81,7 @@ const CardGrid: React.FC<CardGridProps> = ({ nodes, panelNodes }) => {
 
             <div>
               <p>
-                <a href={i.data?.linkedInUrl}>{i.data?.Name}</a>
+                <a href={i.data?.linkedInUrl as string}>{i.data?.Name}</a>
               </p>
               <p>{i.data?.Program}</p>
             </div>
@@ -129,12 +90,11 @@ const CardGrid: React.FC<CardGridProps> = ({ nodes, panelNodes }) => {
       ) : panelNodes ? (
         panelNodes?.map((i) => (
           <Card key={i.id}>
-            {console.log('panelNodes', i)}
-            <a href={i.data?.LinkedIn_Url}>
+            <a href={i.data?.LinkedIn_Url as string}>
               <img
                 src={
                   i.data?.Attachments?.map(
-                    (image) => image?.thumbnails?.large?.url
+                    (image) => image?.thumbnails?.large?.url as string
                   )[0]
                 }
               />
@@ -142,7 +102,7 @@ const CardGrid: React.FC<CardGridProps> = ({ nodes, panelNodes }) => {
 
             <div>
               <p>
-                <a href={i.data?.LinkedIn_Url}>{i.data?.Name}</a>
+                <a href={i.data?.LinkedIn_Url as string}>{i.data?.Name}</a>
               </p>
               <p>
                 {i.data?.Title}, {i.data?.Organization}

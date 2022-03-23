@@ -5,6 +5,7 @@ import { panels } from './panelsData';
 import '@fontsource/montserrat/600.css';
 import '@fontsource/montserrat/200.css';
 import '@fontsource/montserrat/400-italic.css';
+import '@fontsource/montserrat/600-italic.css';
 import { AnchorLink } from 'gatsby-plugin-anchor-links';
 import { devices } from 'styles/responsiveSizes';
 import CardGrid from 'components/general/cardGrid';
@@ -63,6 +64,7 @@ const BottmDiv = styled.div`
   flex-direction: row;
   justify-content: space-between;
   margin-top: 1em;
+  /* margin-bottom: 2em; */
 
   @media ${devices.laptopMin} {
     margin-top: 4em;
@@ -81,13 +83,12 @@ const PanelHolder = styled.div`
 `;
 
 const PanelItem = styled.div`
-  margin-bottom: 2em;
-
+  margin-bottom: 1em;
   > p:first-of-type {
     margin-top: 0.2em;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.8em;
     color: ${primaryAccentColor};
-    font-weight: 400;
+    font-weight: 600;
     font-style: italic;
   }
   @media ${devices.laptopMin} {
@@ -95,16 +96,15 @@ const PanelItem = styled.div`
   } ;
 `;
 
+const PanelGroup = styled.div`
+  margin-bottom: 2em;
+`;
+
 interface PanelsProps {
   data: SpeakersPageQueryQuery;
 }
 
 const Panels: React.FC<PanelsProps> = ({ data }) => {
-  // const entries = Object.entries(data);
-  // const [key, value] = entries;
-  // console.log(data['Blockchain']);
-  console.log(data);
-
   return (
     <Wrapper>
       <TopDiv>
@@ -127,7 +127,7 @@ const Panels: React.FC<PanelsProps> = ({ data }) => {
       <BottmDiv id="bottomDiv">
         <PanelHolder>
           {panels.map((item) => (
-            <div>
+            <PanelGroup>
               <PanelItem id={item.link}>
                 <h3>{'0' + item.number + ' ' + item.title}</h3>
                 <p>{item.name + ' Panel'}</p>
@@ -141,10 +141,8 @@ const Panels: React.FC<PanelsProps> = ({ data }) => {
                     : undefined
                 }
               ></CardGrid>
-            </div>
+            </PanelGroup>
           ))}
-
-          {/* {} */}
         </PanelHolder>
       </BottmDiv>
     </Wrapper>
