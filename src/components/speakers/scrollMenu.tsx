@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { devices } from 'styles/responsiveSizes';
 import { StyledAnchorLink } from './panels';
 import { panels } from './panelsData';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const scrollPanelOffset = 15 + 'em';
 interface ScrollPanelMenuProps {
@@ -19,9 +21,9 @@ const ScrollPanelMenu = styled.div<ScrollPanelMenuProps>`
     p {
       margin-bottom: 0.5em;
     }
-    visibility: ${(props) => (props.visibility ? 'visble' : 'hidden')};
+    /* visibility: ${(props) => (props.visibility ? 'visble' : 'hidden')};
     opacity: ${(props) => (props.visibility ? 1 : 0)};
-    transition: visibility 0s, opacity 0.5s linear;
+    transition: visibility 0s, opacity 0.5s linear; */
   } ;
 `;
 
@@ -31,45 +33,52 @@ interface ScrollMenuProps {
 
 const ScrollMenu: React.FC<ScrollMenuProps> = ({}) => {
   const [isVisible, setIsVisible] = useState(true);
+  const boxRef = useRef();
+  useLayoutEffect(() => {
+    gsap.to(boxRef.current, {
+      scrollTrigger: boxRef.current, // start the animation when ".box" enters the viewport (once)
+      x: 500
+    });
+  });
 
-  useEffect(() => {
-    window.addEventListener('scroll', listenToScroll);
-    return () => window.removeEventListener('scroll', listenToScroll);
-  }, []);
+  // useEffect(() => {
+  //   window.addEventListener('scroll', listenToScroll);
+  //   return () => window.removeEventListener('scroll', listenToScroll);
+  // }, []);
 
-  const listenToScroll = () => {
-    let check = getOffset(document.querySelector('#bottomDiv'));
-    let check2 = document.querySelector('#bottomDiv')?.clientHeight;
-    let check3 = document.querySelector('#bottomDiv')?.getBoundingClientRect();
-    console.log('check top of div', check3?.top);
-    console.log('check2 bottom', check + check2);
-    let heightToHideBefore = 200; //check;
-    let heightToHideAfter = heightToHideBefore + 1000;
+  // const listenToScroll = () => {
+  //   let check = getOffset(document.querySelector('#bottomDiv'));
+  //   let check2 = document.querySelector('#bottomDiv')?.clientHeight;
+  //   let check3 = document.querySelector('#bottomDiv')?.getBoundingClientRect();
+  //   console.log('check top of div', check3?.top);
+  //   console.log('check2 bottom', check + check2);
+  //   let heightToHideBefore = 200; //check;
+  //   let heightToHideAfter = heightToHideBefore + 1000;
 
-    const winScroll = document.documentElement.scrollTop; // ||document.body.scrollTop; //
-    // console.log(winScroll);
-    console.log('win scroll', winScroll);
+  //   const winScroll = document.documentElement.scrollTop; // ||document.body.scrollTop; //
+  //   // console.log(winScroll);
+  //   console.log('win scroll', winScroll);
 
-    if (winScroll < heightToHideBefore) {
-      console.log('hide, before top');
-      isVisible && // to limit setting state only the first time
-        setIsVisible(false);
-    } else if (winScroll > heightToHideAfter) {
-      console.log('hide, after bottom');
-      setIsVisible(false);
-    } else {
-      setIsVisible(true);
-    }
-  };
+  //   if (winScroll < heightToHideBefore) {
+  //     console.log('hide, before top');
+  //     isVisible && // to limit setting state only the first time
+  //       setIsVisible(false);
+  //   } else if (winScroll > heightToHideAfter) {
+  //     console.log('hide, after bottom');
+  //     setIsVisible(false);
+  //   } else {
+  //     setIsVisible(true);
+  //   }
+  // };
 
-  const getOffset = (element: any) => {
-    const rect = element?.getBoundingClientRect(),
-      scrollTop = document.documentElement.scrollTop; // window.pageYOffset ||
-    return rect!.top + scrollTop;
-  };
+  // const getOffset = (element: any) => {
+  //   const rect = element?.getBoundingClientRect(),
+  //     scrollTop = document.documentElement.scrollTop; // window.pageYOffset ||
+  //   return rect!.top + scrollTop;
+  // };
 
   return (
-    <ScrollPanelMenu visibility={isVisible}>
+    <ScrollPanelMenu ref={boxRef}>
       {panels.map((item) => (
         <StyledAnchorLink to={'/speakers#' + item.link}>
           <p>{'0' + item.number + ' ' + item.link}</p>

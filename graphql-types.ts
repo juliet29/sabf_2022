@@ -689,17 +689,17 @@ export type Airtable = Node & {
 };
 
 export type AirtableData = {
+  Role?: Maybe<Scalars['String']>;
   Name?: Maybe<Scalars['String']>;
+  Email?: Maybe<Scalars['String']>;
   Title?: Maybe<Scalars['String']>;
   LinkedIn_Url?: Maybe<Scalars['String']>;
   Organization?: Maybe<Scalars['String']>;
   Panel?: Maybe<Scalars['String']>;
   Attachments?: Maybe<Array<Maybe<AirtableDataAttachments>>>;
-  Role?: Maybe<Scalars['String']>;
   Industries?: Maybe<Array<Maybe<Scalars['String']>>>;
   Program?: Maybe<Scalars['String']>;
   linkedInUrl?: Maybe<Scalars['String']>;
-  Email?: Maybe<Scalars['String']>;
 };
 
 export type AirtableDataAttachments = {
@@ -4103,17 +4103,17 @@ export type ConfernceScheduleCsvSortInput = {
 };
 
 export type AirtableDataFilterInput = {
+  Role?: InputMaybe<StringQueryOperatorInput>;
   Name?: InputMaybe<StringQueryOperatorInput>;
+  Email?: InputMaybe<StringQueryOperatorInput>;
   Title?: InputMaybe<StringQueryOperatorInput>;
   LinkedIn_Url?: InputMaybe<StringQueryOperatorInput>;
   Organization?: InputMaybe<StringQueryOperatorInput>;
   Panel?: InputMaybe<StringQueryOperatorInput>;
   Attachments?: InputMaybe<AirtableDataAttachmentsFilterListInput>;
-  Role?: InputMaybe<StringQueryOperatorInput>;
   Industries?: InputMaybe<StringQueryOperatorInput>;
   Program?: InputMaybe<StringQueryOperatorInput>;
   linkedInUrl?: InputMaybe<StringQueryOperatorInput>;
-  Email?: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type AirtableDataAttachmentsFilterListInput = {
@@ -4291,7 +4291,9 @@ export type AirtableFieldsEnum =
   | 'recordId'
   | 'queryName'
   | 'rowIndex'
+  | 'data___Role'
   | 'data___Name'
+  | 'data___Email'
   | 'data___Title'
   | 'data___LinkedIn_Url'
   | 'data___Organization'
@@ -4304,11 +4306,9 @@ export type AirtableFieldsEnum =
   | 'data___Attachments___filename'
   | 'data___Attachments___size'
   | 'data___Attachments___type'
-  | 'data___Role'
   | 'data___Industries'
   | 'data___Program'
-  | 'data___linkedInUrl'
-  | 'data___Email';
+  | 'data___linkedInUrl';
 
 export type AirtableGroupConnection = {
   totalCount: Scalars['Int'];

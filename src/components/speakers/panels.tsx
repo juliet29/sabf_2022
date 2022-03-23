@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import styled, { isStyledComponent } from 'styled-components';
+import React, { useEffect, useLayoutEffect, useRef } from 'react';
+import styled from 'styled-components';
 import { primaryAccentColor } from 'styles/theme';
 import { panels } from './panelsData';
 import '@fontsource/montserrat/600.css';
@@ -10,6 +10,12 @@ import { AnchorLink } from 'gatsby-plugin-anchor-links';
 import { devices } from 'styles/responsiveSizes';
 import CardGrid from 'components/general/cardGrid';
 import { SpeakersPageQueryQuery } from '../../../graphql-types';
+// import ScrollMenu from './scrollMenu';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import './styles.css';
+
+const scrollPanelOffset = 15 + 'em';
 
 const Wrapper = styled.div`
   margin-top: 0.8em;
@@ -64,6 +70,7 @@ const BottmDiv = styled.div`
   flex-direction: row;
   justify-content: space-between;
   margin-top: 1em;
+  position: relative;
   /* margin-bottom: 2em; */
 
   @media ${devices.laptopMin} {
@@ -72,7 +79,6 @@ const BottmDiv = styled.div`
   } ;
 `;
 
-const scrollPanelOffset = 15 + 'em';
 const PanelHolder = styled.div`
   h3 {
     font-weight: 600;
@@ -103,8 +109,21 @@ const PanelItem = styled.div`
 const PanelGroup = styled.div`
   margin-bottom: 2em;
   @media ${devices.laptopMin} {
-    margin-bottom: 5em;
+    margin-bottom: 7em;
   }
+`;
+
+const ScrollPanelMenu = styled.div`
+  display: none;
+  @media ${devices.laptopMin} {
+    display: block;
+    min-width: ${scrollPanelOffset};
+    position: absolute;
+    top: 1em;
+    p {
+      margin-bottom: 0.5em;
+    }
+  } ;
 `;
 
 interface PanelsProps {
@@ -112,6 +131,43 @@ interface PanelsProps {
 }
 
 const Panels: React.FC<PanelsProps> = ({ data }) => {
+  gsap.registerPlugin(ScrollTrigger);
+  const panelHolderRef = useRef();
+  const scrollMenuRef = useRef();
+  useLayoutEffect(() => {
+    // pin scroll menu
+    gsap.to(scrollMenuRef.current, {
+      scrollTrigger: {
+        trigger: panelHolderRef.current,
+        start: 'top 140',
+        endTrigger: panelHolderRef.current,
+        end: 'bottom',
+        // markers: true,
+        pin: scrollMenuRef.current,
+        scrub: true
+      }
+    });
+    // hide scroll menu after panelHolder
+    gsap.fromTo(
+      scrollMenuRef.current,
+      {
+        opacity: 1
+      },
+      {
+        opacity: 0,
+        scrollTrigger: {
+          trigger: panelHolderRef.current,
+          start: 'bottom',
+          scrub: true
+          // markers: true
+        }
+      }
+    );
+
+    // .from('.scrollMenu', { opacity: 0 })
+    // .to('.scrollMenu', { y: -100 });
+  });
+
   return (
     <Wrapper>
       <TopDiv>
@@ -132,7 +188,14 @@ const Panels: React.FC<PanelsProps> = ({ data }) => {
       </TopDiv>
 
       <BottmDiv id="bottomDiv">
-        <PanelHolder>
+        <ScrollPanelMenu ref={scrollMenuRef} className="scrollMenu">
+          {panels.map((item) => (
+            <StyledAnchorLink to={'/speakers#' + item.link}>
+              <p>{'0' + item.number + ' ' + item.link}</p>
+            </StyledAnchorLink>
+          ))}
+        </ScrollPanelMenu>
+        <PanelHolder ref={panelHolderRef}>
           {panels.map((item) => (
             <PanelGroup>
               <PanelItem id={item.link}>
@@ -157,11 +220,3 @@ const Panels: React.FC<PanelsProps> = ({ data }) => {
 };
 
 export default Panels;
-
-{
-  /* {Object.keys(data).forEach((key, index) => {
-            if (key == item.link) {
-
-            }
-          })} */
-}
