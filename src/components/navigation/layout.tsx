@@ -48,10 +48,11 @@ export const Section = styled.div`
 interface LayoutProps {
   pageTitle: string;
   children: React.ReactNode;
+  hideTitle?: boolean;
   // : string;
 }
 
-const Layout: React.FC<LayoutProps> = ({ pageTitle, children }) => {
+const Layout: React.FC<LayoutProps> = ({ pageTitle, children, hideTitle }) => {
   return (
     <ThemeProvider theme={mainTheme}>
       <GlobalStyle />
@@ -63,10 +64,14 @@ const Layout: React.FC<LayoutProps> = ({ pageTitle, children }) => {
         }}
       >
         <NavBar></NavBar>
-        <Header>
-          <h1>{pageTitle}</h1>
-          <div></div>
-        </Header>
+        {hideTitle ? (
+          <></>
+        ) : (
+          <Header>
+            <h1>{pageTitle}</h1>
+            <div></div>
+          </Header>
+        )}
         <Section>{children}</Section>
       </div>
       <Footer></Footer>

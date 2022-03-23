@@ -19,7 +19,7 @@ const Section = styled.section`
 
 const SpeakersPage: React.FC<SpeakersPageProps> = ({ data }) => {
   return (
-    <Layout pageTitle="Speakers + Panels">
+    <Layout pageTitle="Speakers + Panels" hideTitle={true}>
       <Section>
         <h1> Keynote Speakers </h1>
         <Keynotes data={data}></Keynotes>

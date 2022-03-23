@@ -1,13 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
+import { devices } from 'styles/responsiveSizes';
 import { primaryAccentColor } from 'styles/theme';
 import { SpeakersPageQueryQuery } from '../../../graphql-types';
 
 const Wrapper = styled.div`
   margin-top: 1em;
+
+  @media ${devices.mobileLMin} {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-left: 1em;
+    padding-right: 1em;
+  }
 `;
 
 const KeynoteItem = styled.div`
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -41,6 +51,19 @@ const KeynoteItem = styled.div`
       font-style: italic;
       color: ${primaryAccentColor};
       font-size: clamp(0.7em, 1vw, 1.4em);
+    }
+  }
+
+  @media ${devices.mobileLMin} {
+    padding-left: 3em;
+    padding-right: 3em;
+    img {
+      width: inherit;
+      height: 50vh;
+      margin-bottom: 1.5em;
+    }
+    div {
+      max-width: 50%;
     }
   }
 `;
