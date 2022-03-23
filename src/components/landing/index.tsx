@@ -170,7 +170,7 @@ const LandingIndex: React.FC<LandingIndexProps> = ({ data }) => {
                   <span>Shaping the Global Future</span>
                 </h2>
                 <p>April 16, 2022</p>
-                <StyledCTA to="/attend">GET TICKETS NOW</StyledCTA>
+                <StyledCTA to="/attend">BUY TICKETS NOW</StyledCTA>
                 {/* <LandingStyledLink  to="/attend">Join Us Online + In-Person</LandingStyledLink> */}
               </OverFlowHiddenDiv>
             </div>
