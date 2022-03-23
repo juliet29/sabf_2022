@@ -62,19 +62,39 @@ const Card = styled.div`
 `;
 
 interface CardGridProps {
-  nodes: Array<{
+  nodes?: Array<{
     id: string;
     data?: {
       Role?: string | null;
       Name?: string | null;
       Program?: string | null;
-      linkedInUrl?: string | null;
+      linkedInUrl?: string | null | undefined;
       Attachments?: Array<{
         thumbnails?: {
           large?: {
             height?: number | null;
             width?: number | null;
-            url?: string | null;
+            url?: string | null | undefined;
+          } | null;
+        } | null;
+      } | null> | null;
+    } | null;
+  }>;
+
+  panelNodes?: Array<{
+    id: string;
+    data?: {
+      Name?: string | null;
+      Organization?: string | null;
+      Title?: string | null;
+      Panel?: string | null;
+      LinkedIn_Url?: string | null | undefined;
+      Attachments?: Array<{
+        thumbnails?: {
+          large?: {
+            height?: number | null;
+            width?: number | null;
+            url?: string | null | undefined;
           } | null;
         } | null;
       } | null> | null;
@@ -82,29 +102,57 @@ interface CardGridProps {
   }>;
 }
 
-const CardGrid: React.FC<CardGridProps> = ({ nodes }) => {
+const CardGrid: React.FC<CardGridProps> = ({ nodes, panelNodes }) => {
   return (
     <StyledCardGrid>
-      {nodes.map((i) => (
-        <Card key={i.id}>
-          <a href={i.data?.linkedInUrl}>
-            <img
-              src={
-                i.data?.Attachments?.map(
-                  (image) => image?.thumbnails?.large?.url
-                )[0]
-              }
-            />
-          </a>
+      {nodes ? (
+        nodes?.map((i) => (
+          <Card key={i.id}>
+            <a href={i.data?.linkedInUrl}>
+              <img
+                src={
+                  i.data?.Attachments?.map(
+                    (image) => image?.thumbnails?.large?.url
+                  )[0]
+                }
+              />
+            </a>
 
-          <div>
-            <p>
-              <a href={i.data?.linkedInUrl}>{i.data?.Name}</a>
-            </p>
-            <p>{i.data?.Program}</p>
-          </div>
-        </Card>
-      ))}
+            <div>
+              <p>
+                <a href={i.data?.linkedInUrl}>{i.data?.Name}</a>
+              </p>
+              <p>{i.data?.Program}</p>
+            </div>
+          </Card>
+        ))
+      ) : panelNodes ? (
+        panelNodes?.map((i) => (
+          <Card key={i.id}>
+            {console.log('panelNodes', i)}
+            <a href={i.data?.LinkedIn_Url}>
+              <img
+                src={
+                  i.data?.Attachments?.map(
+                    (image) => image?.thumbnails?.large?.url
+                  )[0]
+                }
+              />
+            </a>
+
+            <div>
+              <p>
+                <a href={i.data?.LinkedIn_Url}>{i.data?.Name}</a>
+              </p>
+              <p>
+                {i.data?.Title}, {i.data?.Organization}
+              </p>
+            </div>
+          </Card>
+        ))
+      ) : (
+        <div></div>
+      )}
     </StyledCardGrid>
   );
 };

@@ -107,29 +107,6 @@ const RoleGroup: React.FC<RoleGroupProps> = ({ groupTitle, nodes }) => {
     <Wrapper>
       <h3>{groupTitle}</h3>
       <CardGrid nodes={nodes}></CardGrid>
-
-      {/* <CardGrid>
-        {nodes.map((i) => (
-          <Card key={i.id}>
-            <a href={i.data?.linkedInUrl}>
-              <img
-                src={
-                  i.data?.Attachments?.map(
-                    (image) => image?.thumbnails?.large?.url
-                  )[0]
-                }
-              />
-            </a>
-
-            <div>
-              <p>
-                <a href={i.data?.linkedInUrl}>{i.data?.Name}</a>
-              </p>
-              <p>{i.data?.Program}</p>
-            </div>
-          </Card>
-        ))}
-      </CardGrid> */}
     </Wrapper>
   );
 };

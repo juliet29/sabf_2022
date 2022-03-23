@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
+import styled, { isStyledComponent } from 'styled-components';
 import { primaryAccentColor } from 'styles/theme';
 import { panels } from './panelsData';
 import '@fontsource/montserrat/600.css';
@@ -7,12 +7,14 @@ import '@fontsource/montserrat/200.css';
 import '@fontsource/montserrat/400-italic.css';
 import { AnchorLink } from 'gatsby-plugin-anchor-links';
 import { devices } from 'styles/responsiveSizes';
+import CardGrid from 'components/general/cardGrid';
+import { SpeakersPageQueryQuery } from '../../../graphql-types';
 
 const Wrapper = styled.div`
   margin-top: 0.8em;
 `;
 
-const StyledAnchorLink = styled(AnchorLink)`
+export const StyledAnchorLink = styled(AnchorLink)`
   color: ${primaryAccentColor};
   text-decoration: none;
   transition: all 0.5s;
@@ -69,25 +71,6 @@ const BottmDiv = styled.div`
 `;
 
 const scrollPanelOffset = 15 + 'em';
-interface ScrollPanelMenuProps {
-  visibility: boolean;
-}
-const ScrollPanelMenu = styled.div<ScrollPanelMenuProps>`
-  display: none;
-  @media ${devices.laptopMin} {
-    display: block;
-    min-width: ${scrollPanelOffset};
-    position: fixed;
-    bottom: 10em;
-    p {
-      margin-bottom: 0.5em;
-    }
-    visibility: ${(props) => (props.visibility ? 'visble' : 'hidden')};
-    opacity: ${(props) => (props.visibility ? 1 : 0)};
-    transition: visibility 0s, opacity 0.5s linear;
-  } ;
-`;
-
 const PanelHolder = styled.div`
   h3 {
     font-weight: 600;
@@ -113,48 +96,14 @@ const PanelItem = styled.div`
 `;
 
 interface PanelsProps {
-  // : string;
+  data: SpeakersPageQueryQuery;
 }
 
-const Panels: React.FC<PanelsProps> = ({}) => {
-  // visibility of panel componennt
-  const [isVisible, setIsVisible] = useState(true);
-
-  useEffect(() => {
-    window.addEventListener('scroll', listenToScroll);
-    return () => window.removeEventListener('scroll', listenToScroll);
-  }, []);
-
-  const listenToScroll = () => {
-    let check = getOffset(document.querySelector('#bottomDiv'));
-    let check2 = document.querySelector('#bottomDiv')?.clientHeight;
-    let check3 = document.querySelector('#bottomDiv')?.getBoundingClientRect();
-    console.log('check top of div', check3?.top);
-    console.log('check2 bottom', check + check2);
-    let heightToHideBefore = 200; //check;
-    let heightToHideAfter = heightToHideBefore + 1000;
-
-    const winScroll = document.documentElement.scrollTop; // ||document.body.scrollTop; //
-    // console.log(winScroll);
-    console.log('win scroll', winScroll);
-
-    if (winScroll < heightToHideBefore) {
-      console.log('hide, before top');
-      isVisible && // to limit setting state only the first time
-        setIsVisible(false);
-    } else if (winScroll > heightToHideAfter) {
-      console.log('hide, after bottom');
-      setIsVisible(false);
-    } else {
-      setIsVisible(true);
-    }
-  };
-
-  const getOffset = (element) => {
-    const rect = element?.getBoundingClientRect(),
-      scrollTop = document.documentElement.scrollTop; // window.pageYOffset ||
-    return rect!.top + scrollTop;
-  };
+const Panels: React.FC<PanelsProps> = ({ data }) => {
+  // const entries = Object.entries(data);
+  // const [key, value] = entries;
+  // console.log(data['Blockchain']);
+  console.log(data);
 
   return (
     <Wrapper>
@@ -176,24 +125,26 @@ const Panels: React.FC<PanelsProps> = ({}) => {
       </TopDiv>
 
       <BottmDiv id="bottomDiv">
-        {/* {isVisible && ( */}
-        <ScrollPanelMenu visibility={isVisible}>
-          {panels.map((item) => (
-            <StyledAnchorLink to={'/speakers#' + item.link}>
-              <p>{'0' + item.number + ' ' + item.link}</p>
-            </StyledAnchorLink>
-          ))}
-        </ScrollPanelMenu>
-        {/* )} */}
-
         <PanelHolder>
           {panels.map((item) => (
-            <PanelItem id={item.link}>
-              <h3>{'0' + item.number + ' ' + item.title}</h3>
-              <p>{item.name + ' Panel'}</p>
-              <p>{item.text}</p>
-            </PanelItem>
+            <div>
+              <PanelItem id={item.link}>
+                <h3>{'0' + item.number + ' ' + item.title}</h3>
+                <p>{item.name + ' Panel'}</p>
+                <p>{item.text}</p>
+              </PanelItem>
+
+              <CardGrid
+                panelNodes={
+                  data[item.link as keyof typeof data]
+                    ? data[item.link as keyof typeof data].nodes
+                    : undefined
+                }
+              ></CardGrid>
+            </div>
           ))}
+
+          {/* {} */}
         </PanelHolder>
       </BottmDiv>
     </Wrapper>
@@ -201,3 +152,11 @@ const Panels: React.FC<PanelsProps> = ({}) => {
 };
 
 export default Panels;
+
+{
+  /* {Object.keys(data).forEach((key, index) => {
+            if (key == item.link) {
+
+            }
+          })} */
+}

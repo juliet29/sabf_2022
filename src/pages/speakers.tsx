@@ -28,7 +28,7 @@ const SpeakersPage: React.FC<SpeakersPageProps> = ({ data }) => {
       <Section>
         <h1>Panels</h1>
 
-        <Panels></Panels>
+        <Panels data={data}></Panels>
       </Section>
     </Layout>
   );
@@ -56,7 +56,7 @@ export const query = graphql`
   }
 
   query SpeakersPageQuery {
-    blockchain: allAirtable(
+    Blockchain: allAirtable(
       filter: {
         queryName: { eq: "Speakers" }
         data: { Panel: { regex: "/(Blockchain)/g" } }
@@ -66,7 +66,7 @@ export const query = graphql`
         ...SpeakerData
       }
     }
-    energy: allAirtable(
+    Energy: allAirtable(
       filter: {
         queryName: { eq: "Speakers" }
         data: { Panel: { regex: "/(Clean Energy)/g" } }
@@ -76,7 +76,7 @@ export const query = graphql`
         ...SpeakerData
       }
     }
-    ebusiness: allAirtable(
+    Entrepreneurship: allAirtable(
       filter: {
         queryName: { eq: "Speakers" }
         data: { Panel: { regex: "/(Entrepreneurship)/g" } }
@@ -86,7 +86,7 @@ export const query = graphql`
         ...SpeakerData
       }
     }
-    fintech: allAirtable(
+    FinTech: allAirtable(
       filter: {
         queryName: { eq: "Speakers" }
         data: { Panel: { regex: "/(Fintech)/g" } }
@@ -96,7 +96,7 @@ export const query = graphql`
         ...SpeakerData
       }
     }
-    healthcare: allAirtable(
+    Health: allAirtable(
       filter: {
         queryName: { eq: "Speakers" }
         data: { Panel: { regex: "/(Healthcare)/g" } }
@@ -106,7 +106,7 @@ export const query = graphql`
         ...SpeakerData
       }
     }
-    investing: allAirtable(
+    Investing: allAirtable(
       filter: {
         queryName: { eq: "Speakers" }
         data: { Panel: { regex: "/(Investing)/g" } }
