@@ -17,8 +17,13 @@ import { devices, mobileLBreakpoint } from 'styles/responsiveSizes';
 import { useWindowSize } from 'hooks/window-size';
 import { gsap } from 'gsap';
 
+const instagramLink = 'https://www.instagram.com/stanford_abc/?hl=en';
+const twitterLink = 'https://twitter.com/stanfordabf';
+const youTubeLink = 'https://www.youtube.com/channel/UCwJjlor3HDcRayDtd_NqiBg';
+const linkedinLink = 'https://www.linkedin.com/company/stanfordabf/';
+
 const StyledFooter = styled.footer`
-  > a {
+  a {
     text-decoration: none;
   }
 `;
@@ -113,6 +118,11 @@ const TextInfo = styled.div`
   }
 `;
 
+const ScrollingFooterWrapper = styled.div`
+  /* position: fixed; */
+  overflow: hidden;
+`;
+
 const ScrollingFooter = styled.div`
   display: none;
   @media ${devices.laptopMin} {
@@ -129,19 +139,17 @@ const ScrollingFooter = styled.div`
     border-top: solid white 3px;
     border-bottom: solid white 3px;
     color: white;
+    position: relative;
 
     p {
       margin: 0;
       height: min-content;
       align-self: center;
+      /* position: absolute; */
+      left: -250px;
     }
   } ;
 `;
-
-const instagramLink = 'https://www.instagram.com/stanford_abc/?hl=en';
-const twitterLink = 'https://twitter.com/stanfordabf';
-const youTubeLink = 'https://www.youtube.com/channel/UCwJjlor3HDcRayDtd_NqiBg';
-const linkedinLink = 'https://www.linkedin.com/company/stanfordabf/';
 
 interface FooterProps {
   // : string;
@@ -149,10 +157,22 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({}) => {
   const scrollFooterRef = useRef();
+  const scrollItemSelector = gsap.utils.selector(scrollFooterRef);
 
   useEffect(() => {
-    gsap.to(scrollFooterRef.current, {
-      rotation: '+=360'
+    const { innerWidth: width } = window;
+
+    // var boxWidth = 350,
+    var totalWidth = innerWidth * 1.3;
+    var mod = gsap.utils.wrap(0, totalWidth);
+    gsap.to(scrollItemSelector('.scrollItem'), {
+      //   color: '#7329',
+      x: totalWidth,
+      //   modifiers: {
+      //     x: (x) => mod(parseFloat(x)) + 'px'
+      //   },
+      duration: 10,
+      repeat: -1
     });
   });
   // let width = window.innerWidth;
@@ -160,12 +180,16 @@ const Footer: React.FC<FooterProps> = ({}) => {
 
   return (
     <StyledFooter>
-      <Link to="attend">
-        <ScrollingFooter useRef={scrollFooterRef}>
-          <p>Forum is April 16, 2022</p>
-          <p>Get your tickets now</p>
-        </ScrollingFooter>
-      </Link>
+      <ScrollingFooterWrapper>
+        <Link to="attend">
+          <ScrollingFooter ref={scrollFooterRef}>
+            <p className="scrollItem">Forum is April 16, 2022</p>
+            <p className="scrollItem">Get your tickets now</p>
+            <p className="scrollItem">Forum is April 16, 2022</p>
+            <p className="scrollItem">Get your tickets now</p>
+          </ScrollingFooter>
+        </Link>
+      </ScrollingFooterWrapper>
 
       <FooterContent>
         <LeftColumn>
