@@ -219,7 +219,7 @@ const Footer: React.FC<FooterProps> = ({}) => {
   return (
     <StyledFooter>
       <ScrollingFooterWrapper>
-        <Link to="attend">
+        <Link to="/attend">
           <ScrollingFooter ref={scrollFooterRef} className=".cards-container">
             <p className="scrollItem">• Forum is April 16, 2022 • </p>
             <p className="scrollItem">• Get your tickets now • </p>

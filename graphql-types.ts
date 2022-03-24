@@ -4387,6 +4387,11 @@ export type IndexPageImageQueryQuery = { imageOne?: { childImageSharp?: { fluid?
 
 export type SpeakerDataFragment = { id: string, data?: { Name?: string | null, Organization?: string | null, Title?: string | null, Panel?: string | null, LinkedIn_Url?: string | null, Attachments?: Array<{ thumbnails?: { large?: { height?: number | null, width?: number | null, url?: string | null } | null } | null } | null> | null } | null };
 
+export type PitchPageQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PitchPageQueryQuery = { pitch: { nodes: Array<{ id: string, data?: { Name?: string | null, Organization?: string | null, Title?: string | null, Panel?: string | null, LinkedIn_Url?: string | null, Attachments?: Array<{ thumbnails?: { large?: { height?: number | null, width?: number | null, url?: string | null } | null } | null } | null> | null } | null }> } };
+
 export type SpeakersPageQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
