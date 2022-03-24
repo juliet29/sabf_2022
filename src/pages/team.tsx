@@ -39,7 +39,11 @@ const TeamPage: React.FC<TeamPageProps> = ({ data }) => {
         nodes={data.gala.nodes}
       ></RoleGroup>
       <RoleGroup
-        groupTitle="Website and Platform Team"
+        groupTitle="Platform Team"
+        nodes={data.platform.nodes}
+      ></RoleGroup>
+      <RoleGroup
+        groupTitle="Website Team"
         nodes={data.website.nodes}
       ></RoleGroup>
       {/* <GroupHolder data={data}></GroupHolder> */}
@@ -78,6 +82,14 @@ export const query = graphql`
     }
     marketing: allAirtable(
       filter: { data: { Role: { regex: "/(Marketing)/g" } } }
+      sort: { fields: [data___Lead], order: ASC }
+    ) {
+      nodes {
+        ...MemberData
+      }
+    }
+    platform: allAirtable(
+      filter: { data: { Role: { regex: "/(Platform|Website)/g" } } }
       sort: { fields: [data___Lead], order: ASC }
     ) {
       nodes {
