@@ -80,7 +80,7 @@ const NavBar: React.FC<NavBarProps> = ({}) => {
             <NavLink to="/pitch">Pitch Competition</NavLink>
             <NavLink to="/speakers">Speakers + Panels</NavLink>
             <NavLink to="/team">Team</NavLink>
-            <NavLink to="/attend">Attend</NavLink>
+            <NavLink to="/attend">Buy Tickets</NavLink>
           </NavMenuDiv>
         ) : (
           <>

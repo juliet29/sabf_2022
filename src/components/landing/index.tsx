@@ -84,6 +84,7 @@ export const StyledCTA = styled(Link)`
   overflow: hidden;
   display: inline-block;
   margin-top: 0.5em;
+  font-size: clamp(1.3em, 1.9em, 2.1em);
 
   // animation
   :before {
