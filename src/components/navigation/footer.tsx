@@ -121,6 +121,8 @@ const TextInfo = styled.div`
 const ScrollingFooterWrapper = styled.div`
   /* position: fixed; */
   overflow: hidden;
+  width: 100vw;
+  position: relative;
 `;
 
 const ScrollingFooter = styled.div`
@@ -145,8 +147,10 @@ const ScrollingFooter = styled.div`
       margin: 0;
       height: min-content;
       align-self: center;
-      /* position: absolute; */
-      left: -250px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 25vw;
     }
   } ;
 `;
@@ -160,20 +164,47 @@ const Footer: React.FC<FooterProps> = ({}) => {
   const scrollItemSelector = gsap.utils.selector(scrollFooterRef);
 
   useEffect(() => {
-    const { innerWidth: width } = window;
+    const cardsContainer = scrollFooterRef.current; //.querySelector('.cards-container');
+    console.log(cardsContainer);
+    if (cardsContainer) {
+      // Duplicate the cards (for wrapping purposes)
+      cardsContainer.innerHTML += cardsContainer.innerHTML;
+      // Get the DOM references
+      const cards = gsap.utils.toArray(scrollItemSelector('.scrollItem'));
+      console.log(cards);
 
-    // var boxWidth = 350,
-    var totalWidth = innerWidth * 1.3;
-    var mod = gsap.utils.wrap(0, totalWidth);
-    gsap.to(scrollItemSelector('.scrollItem'), {
-      //   color: '#7329',
-      x: totalWidth,
-      //   modifiers: {
-      //     x: (x) => mod(parseFloat(x)) + 'px'
-      //   },
-      duration: 10,
-      repeat: -1
-    });
+      function setAnimValues() {
+        // Get the correct width
+        const cardWidth = innerWidth / (cards.length / 2);
+
+        // Set the default position
+        cards.forEach((card, i) =>
+          gsap.set(card, {
+            x: () => i * cardWidth,
+            overwrite: 'auto'
+          })
+        );
+
+        // Animate the cards
+        gsap.to(cards, {
+          duration: 5,
+          ease: 'none',
+          x: `+=${innerWidth}`,
+          repeat: -1,
+          // Wrap the cards when appropriate
+          modifiers: {
+            x: gsap.utils.unitize(
+              gsap.utils.wrap(-cardWidth, innerWidth * 2 - cardWidth),
+              'px'
+            )
+          }
+        });
+      }
+
+      // Make sure it works on resize
+      window.addEventListener('resize', setAnimValues);
+      setAnimValues();
+    }
   });
   // let width = window.innerWidth;
   const { width } = useWindowSize();
@@ -182,7 +213,7 @@ const Footer: React.FC<FooterProps> = ({}) => {
     <StyledFooter>
       <ScrollingFooterWrapper>
         <Link to="attend">
-          <ScrollingFooter ref={scrollFooterRef}>
+          <ScrollingFooter ref={scrollFooterRef} className=".cards-container">
             <p className="scrollItem">Forum is April 16, 2022</p>
             <p className="scrollItem">Get your tickets now</p>
             <p className="scrollItem">Forum is April 16, 2022</p>
