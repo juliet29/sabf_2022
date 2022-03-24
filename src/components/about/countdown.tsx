@@ -1,5 +1,5 @@
 import { Link } from 'gatsby';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { primaryAccentColor } from 'styles/theme';
 
@@ -38,31 +38,82 @@ interface CountdownProps {
   // : string;
 }
 
+// let timer = setInterval(function() {
+
+//   // get today's date
+//   const today = new Date().getTime();
+
+//   // get the difference
+//   let diff = forumDate - today
+//   return diff
+
+// }
+
+// calculate the countdown
+// const year = new Date().getFullYear();
+// const forumDate = new Date(year, 4,16).getTime();
+// const month = new Date().getMonth();
+
 const Countdown: React.FC<CountdownProps> = ({}) => {
+  const [allValues, setAllValues] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // const year = new Date().getFullYear();
+      const forumDate = new Date('4/16/2022').getTime();
+      const today = new Date().getTime();
+
+      // get the difference
+      let diff = forumDate - today;
+      // some calculations
+      let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      // console.log(days);
+      let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      setAllValues((allValues) => {
+        return {
+          ...allValues,
+          days: days,
+          hours: hours,
+          minutes: minutes,
+          seconds: seconds
+        };
+      });
+
+      // console.log(allValues);
+      return () => clearInterval(interval);
+    }, 1000);
+  });
+
   return (
     <Wrapper>
       <h1>The Stanford Africa Business Forum is quickly approaching..</h1>
       <TimerHolder>
         <TimerItem>
-          <h2>x</h2>
+          <h2>{allValues.days}</h2>
           <p>DAYS</p>
         </TimerItem>
         <TimerItem>
-          <h2>x</h2>
+          <h2>{allValues.hours}</h2>
           <p>HOURS</p>
         </TimerItem>
         <TimerItem>
-          <h2>x</h2>
+          <h2>{allValues.minutes}</h2>
           <p>MINUTES</p>
         </TimerItem>
         <TimerItem>
-          <h2>x</h2>
+          <h2>{allValues.seconds}</h2>
           <p>SECONDS</p>
         </TimerItem>
       </TimerHolder>
 
       <h1>
-        <Link to="attend">Get your tickets now! </Link>
+        <Link to="attend">Buy your tickets now! </Link>
       </h1>
     </Wrapper>
   );
