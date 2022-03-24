@@ -118,8 +118,8 @@ const ScrollPanelMenu = styled.div`
   @media ${devices.laptopMin} {
     display: block;
     min-width: ${scrollPanelOffset};
-    position: absolute;
-    top: 1em;
+    position: fixed;
+    top: 20%;
     p {
       margin-bottom: 0.5em;
     }
@@ -134,19 +134,8 @@ const Panels: React.FC<PanelsProps> = ({ data }) => {
   gsap.registerPlugin(ScrollTrigger);
   const panelHolderRef = useRef();
   const scrollMenuRef = useRef();
+  const topDivRef = useRef();
   useLayoutEffect(() => {
-    // pin scroll menu
-    gsap.to(scrollMenuRef.current, {
-      scrollTrigger: {
-        trigger: panelHolderRef.current,
-        start: 'top 140',
-        endTrigger: panelHolderRef.current,
-        end: 'bottom',
-        // markers: true,
-        pin: scrollMenuRef.current,
-        scrub: true
-      }
-    });
     // hide scroll menu after panelHolder
     gsap.fromTo(
       scrollMenuRef.current,
@@ -157,20 +146,57 @@ const Panels: React.FC<PanelsProps> = ({ data }) => {
         opacity: 0,
         scrollTrigger: {
           trigger: panelHolderRef.current,
-          start: 'bottom',
-          scrub: true
-          // markers: true
+          start: 'top',
+          scrub: true,
+          markers: true
         }
       }
     );
 
-    // .from('.scrollMenu', { opacity: 0 })
-    // .to('.scrollMenu', { y: -100 });
+    // hide scroll menu before panel holder
+    var hidePanel = gsap.set(scrollMenuRef.current, {
+      opacity: 0.4,
+      backgroundColor: '#fff'
+      // paused: true
+    });
+
+    var showPanel = gsap.set(scrollMenuRef.current, {
+      opacity: 1,
+      backgroundColor: '#2896',
+      paused: true
+    });
+
+    ScrollTrigger.create({
+      trigger: topDivRef.current,
+      start: 'bottom',
+      endTrigger: panelHolderRef.current,
+      end: 'bottom',
+      scrub: true,
+      markers: true,
+      // onLeaveBack: () => {
+      //   hidePanel.play();
+      // },
+      onEnter: () => {
+        showPanel.play();
+      }
+      // onLeave: () => {
+      //   hidePanel.play();
+      // }
+    });
+    // gsap.to(scrollMenuRef.current, {
+    //   opacity: 0,
+    //   scrollTrigger: {
+    //     trigger: topDivRef.current,
+    //     start: 'top',
+    //     scrub: true
+    //     // markers: true
+    //   }
+    // });
   });
 
   return (
     <Wrapper>
-      <TopDiv>
+      <TopDiv useRef={topDivRef}>
         <p>
           Our panels will feature invited guests from a diverse range of
           industries. These thought-leaders will share their expertise about
@@ -188,7 +214,7 @@ const Panels: React.FC<PanelsProps> = ({ data }) => {
       </TopDiv>
 
       <BottmDiv id="bottomDiv">
-        <ScrollPanelMenu ref={scrollMenuRef} className="scrollMenu">
+        {/* <ScrollPanelMenu ref={scrollMenuRef} className="scrollMenu"> */}
           {panels.map((item) => (
             <StyledAnchorLink to={'/speakers#' + item.link}>
               <p>{'0' + item.number + ' ' + item.link}</p>

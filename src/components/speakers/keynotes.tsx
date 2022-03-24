@@ -77,13 +77,15 @@ const Keynotes: React.FC<KeynotesProps> = ({ data }) => {
     <Wrapper>
       {data.keynote.nodes.map((i) => (
         <KeynoteItem>
-          <img
-            src={
-              i.data?.Attachments?.map(
-                (image) => image?.thumbnails?.large?.url as string
-              )[0]
-            }
-          />
+          <a href={i.data?.LinkedIn_Url as string}>
+            <img
+              src={
+                i.data?.Attachments?.map(
+                  (image) => image?.thumbnails?.large?.url as string
+                )[0]
+              }
+            />
+          </a>
 
           <div>
             <p>
