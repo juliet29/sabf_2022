@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { devices } from 'styles/responsiveSizes';
 import { primaryAccentColor } from 'styles/theme';
 import { SpeakersPageQueryQuery } from '../../../graphql-types';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const Wrapper = styled.div`
   margin-top: 1em;
@@ -57,6 +59,7 @@ const KeynoteItem = styled.div`
   @media ${devices.mobileLMin} {
     padding-left: 3em;
     padding-right: 3em;
+    /* visibility: hidden; */
     img {
       width: inherit;
       height: 50vh;
@@ -73,30 +76,57 @@ interface KeynotesProps {
 }
 
 const Keynotes: React.FC<KeynotesProps> = ({ data }) => {
+  const photoRef = useRef();
+  const photoSelector = gsap.utils.selector(photoRef);
+
+  // useLayoutEffect(() => {
+  //   gsap.registerPlugin(ScrollTrigger);
+  //   let revealContainers = photoSelector('.photoPlace');
+  //   // revealContainers.forEach((container) => {
+  //   //   let image = container.querySelector('.gatsbyImg');
+  //   //   console.log('hi', image);
+  //   //   let tl = gsap.timeline({
+  //   //     scrollTrigger: {
+  //   //       trigger: container,
+  //   //       toggleActions: 'restart none none reset'
+  //   //     }
+  //   //   });
+  //   //   tl.from(image, {
+  //   //     // xPercent: 100,
+  //   //     scale: 1.1,
+  //   //     // delay: -1.5,
+  //   //     duration: 1.5,
+  //   //     ease: 'power2.easeOut'
+  //   //   });
+  //   // });
+  // });
   return (
     <Wrapper>
-      {data.keynote.nodes.map((i) => (
-        <KeynoteItem>
-          <a href={i.data?.LinkedIn_Url as string}>
-            <img
-              src={
-                i.data?.Attachments?.map(
-                  (image) => image?.thumbnails?.large?.url as string
-                )[0]
-              }
-            />
-          </a>
+      <div ref={photoRef}>
+        {data.keynote.nodes.map((i) => (
+          <KeynoteItem>
+            <a href={i.data?.LinkedIn_Url as string} className="photoPlace">
+              <img
+                className="gatsbyImg"
+                src={
+                  i.data?.Attachments?.map(
+                    (image) => image?.thumbnails?.large?.url as string
+                  )[0]
+                }
+              />
+            </a>
 
-          <div>
-            <p>
-              <a href={i.data?.LinkedIn_Url as string}>{i.data?.Name}</a>
-            </p>
-            <p>
-              {i.data?.Title}, {i.data?.Organization}
-            </p>
-          </div>
-        </KeynoteItem>
-      ))}
+            <div>
+              <p>
+                <a href={i.data?.LinkedIn_Url as string}>{i.data?.Name}</a>
+              </p>
+              <p>
+                {i.data?.Title}, {i.data?.Organization}
+              </p>
+            </div>
+          </KeynoteItem>
+        ))}
+      </div>
     </Wrapper>
   );
 };

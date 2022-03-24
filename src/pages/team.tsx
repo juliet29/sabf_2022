@@ -14,7 +14,6 @@ interface TeamPageProps {
 }
 
 const TeamPage: React.FC<TeamPageProps> = ({ data }) => {
-  const indivRef = useRef();
   const groupRef = useRef();
   // const groupSelector = gsap.utils.selector(groupRef);
   // console.log(groupSelector);
