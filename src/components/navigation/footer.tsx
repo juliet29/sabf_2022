@@ -1,5 +1,5 @@
 import { Link } from 'gatsby';
-import React, { useEffect, useLayoutEffect, useRef } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import {
   edgeSpace,
@@ -133,7 +133,7 @@ const ScrollingFooter = styled.div`
     justify-content: space-around;
     /* background-color: olivedrab; */
     margin-bottom: 1em;
-    height: 10vh;
+    height: 3vh;
     font-size: 2em;
     text-transform: uppercase;
     text-decoration: none;
@@ -150,7 +150,9 @@ const ScrollingFooter = styled.div`
       position: absolute;
       top: 0;
       left: 0;
-      width: 25vw;
+      width: 30vw;
+      overflow: hidden;
+      /* padding-left: 5vw; */
     }
   } ;
 `;
@@ -162,20 +164,26 @@ interface FooterProps {
 const Footer: React.FC<FooterProps> = ({}) => {
   const scrollFooterRef = useRef();
   const scrollItemSelector = gsap.utils.selector(scrollFooterRef);
+  const { width } = useWindowSize();
 
-  useEffect(() => {
-    const cardsContainer = scrollFooterRef.current; //.querySelector('.cards-container');
-    console.log(cardsContainer);
+  // Duplicate the cards (for wrapping purposes)
+  //   cardsContainer.innerHTML += cardsContainer.innerHTML;
+
+  //   const [cards, setCards] = useState<unknown[]>();
+  useLayoutEffect(() => {
+    const cardsContainer = scrollFooterRef.current;
+    console.log(cardsContainer.children);
+
     if (cardsContainer) {
-      // Duplicate the cards (for wrapping purposes)
-      cardsContainer.innerHTML += cardsContainer.innerHTML;
       // Get the DOM references
+      console.log('in it');
       const cards = gsap.utils.toArray(scrollItemSelector('.scrollItem'));
-      console.log(cards);
+      //   setCards(cards);
 
+      // function
       function setAnimValues() {
         // Get the correct width
-        const cardWidth = innerWidth / (cards.length / 2);
+        const cardWidth = width / (cards.length / 2);
 
         // Set the default position
         cards.forEach((card, i) =>
@@ -205,19 +213,20 @@ const Footer: React.FC<FooterProps> = ({}) => {
       window.addEventListener('resize', setAnimValues);
       setAnimValues();
     }
+    // console.log('hi', cards);
   });
-  // let width = window.innerWidth;
-  const { width } = useWindowSize();
 
   return (
     <StyledFooter>
       <ScrollingFooterWrapper>
         <Link to="attend">
           <ScrollingFooter ref={scrollFooterRef} className=".cards-container">
-            <p className="scrollItem">Forum is April 16, 2022</p>
-            <p className="scrollItem">Get your tickets now</p>
-            <p className="scrollItem">Forum is April 16, 2022</p>
-            <p className="scrollItem">Get your tickets now</p>
+            <p className="scrollItem">• Forum is April 16, 2022 • </p>
+            <p className="scrollItem">• Get your tickets now • </p>
+            <p className="scrollItem">• Forum is April 16, 2022 • </p>
+            <p className="scrollItem">• Get your tickets now • </p>
+            {/* <p className="scrollItem">Forum is April 16, 2022</p>
+            <p className="scrollItem">Get your tickets now</p> */}
           </ScrollingFooter>
         </Link>
       </ScrollingFooterWrapper>
