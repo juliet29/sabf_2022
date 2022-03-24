@@ -9,14 +9,6 @@ type Panels = Array<{
 export const panels: Panels = [
   {
     number: 1,
-    link: 'Infrastructure',
-    name: 'Infrastructure and Cities',
-    title: 'Building the African City of the Future',
-    text: '900 million people will move into cities in Africa over the next thirty years,  resulting in  the greatest period of urbanization in human history. Our  panelists will discuss  shaping the future of African cities and show the world that real estate can do much more than just provide shelter.'
-  },
-
-  {
-    number: 2,
     link: 'Health',
     name: 'Healthcare',
     title: 'Leveraging Technology to Improve Health Outcomes',
@@ -24,7 +16,7 @@ export const panels: Panels = [
   },
 
   {
-    number: 3,
+    number: 2,
     link: 'Energy',
     name: 'Clean Energy',
     title:
@@ -33,7 +25,7 @@ export const panels: Panels = [
   },
 
   {
-    number: 4,
+    number: 3,
     link: 'FinTech',
     name: 'FinTech',
     title: 'FinTech Beyond Borders',
@@ -41,7 +33,7 @@ export const panels: Panels = [
   },
 
   {
-    number: 5,
+    number: 4,
     link: 'Entrepreneurship',
     name: 'Entrepreneurship',
     title:
@@ -50,7 +42,7 @@ export const panels: Panels = [
   },
 
   {
-    number: 6,
+    number: 5,
     link: 'Investing',
     name: 'Investing (PE/VC)',
     title:
@@ -59,10 +51,18 @@ export const panels: Panels = [
   },
 
   {
-    number: 7,
+    number: 6,
     link: 'Blockchain',
     name: 'Blockchain & Crypto',
     title: 'The Future of Blockchain in Africa',
     text: 'In 2021, Nigeria was bitcoin’s second-largest market by volume – despite crypto being illegal in the country. With the vast majority of the continent unbanked, and adoption of mobile payments accelerating rapidly, Africa represents one of the world’s most fertile grounds for blockchain adoption. However, regulation remains undefined, and crypto startups are rapidly growing while operating in a grey zone of legality. What unique opportunities do crypto/blockchain solutions have on the continent? What unique challenges do they face? Our panel holds the answer to these questions and more.'
+  },
+
+  {
+    number: 7,
+    link: 'Infrastructure',
+    name: 'Infrastructure and Cities',
+    title: 'Building the African City of the Future',
+    text: '900 million people will move into cities in Africa over the next thirty years,  resulting in  the greatest period of urbanization in human history. Our  panelists will discuss  shaping the future of African cities and show the world that real estate can do much more than just provide shelter.'
   }
 ];

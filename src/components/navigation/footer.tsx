@@ -177,10 +177,10 @@ const Footer: React.FC<FooterProps> = ({}) => {
               <h2>02 Events</h2>
             </FooterMenuItem>
             <FooterMenuItem to="/team">
-              <h2>03 History</h2>
+              <h2>03 Team</h2>
             </FooterMenuItem>
             <FooterMenuItem to="/press">
-              <h2>04 Sponsors</h2>
+              <h2>04 Press</h2>
             </FooterMenuItem>
           </FooterMenu>
         </LeftColumn>
