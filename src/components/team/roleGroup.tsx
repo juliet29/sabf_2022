@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import { devices } from 'styles/responsiveSizes';
 import '@fontsource/montserrat/200-italic.css';
@@ -52,5 +52,4 @@ const RoleGroup: React.FC<RoleGroupProps> = ({ groupTitle, nodes }) => {
     </Wrapper>
   );
 };
-
 export default RoleGroup;

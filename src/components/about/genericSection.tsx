@@ -123,11 +123,6 @@ interface GenericSectionProps {
 // ******** end styled components {number, title, body}
 
 const GenericSection: React.FC<GenericSectionProps> = ({ sectionNumber }) => {
-  //   const [ref, inView] = useInView({
-  //     threshold: 0.5,
-  //     initialInView: true
-  //   });
-
   const nodes = useContent();
   // get the current node for the relevant section
   const currentNode = nodes.find(
