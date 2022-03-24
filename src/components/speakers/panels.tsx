@@ -131,6 +131,28 @@ interface PanelsProps {
 }
 
 const Panels: React.FC<PanelsProps> = ({ data }) => {
+  const panelHolderRef = useRef();
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const groupSelector = gsap.utils.selector(panelHolderRef);
+    let revealContainers = groupSelector('.group');
+    console.log(revealContainers);
+    revealContainers.forEach((container) => {
+      let tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: container,
+          toggleActions: 'restart none none reset'
+        }
+      });
+      tl.from(container, {
+        opacity: 0,
+        yPercent: -10,
+        duration: 1,
+        ease: 'power2.easeOut'
+      });
+    });
+  });
   return (
     <Wrapper>
       <TopDiv>
@@ -151,25 +173,29 @@ const Panels: React.FC<PanelsProps> = ({ data }) => {
       </TopDiv>
 
       <BottmDiv id="bottomDiv">
-        <PanelHolder>
-          {panels.map((item) => (
-            <PanelGroup>
-              <PanelItem id={item.link}>
-                <h3>{'0' + item.number + ' ' + item.title}</h3>
-                <p>{item.name + ' Panel'}</p>
-                <p>{item.text}</p>
-              </PanelItem>
+        <div ref={panelHolderRef}>
+          <PanelHolder>
+            {panels.map((item) => (
+              <div className="group">
+                <PanelGroup>
+                  <PanelItem id={item.link}>
+                    <h3>{'0' + item.number + ' ' + item.title}</h3>
+                    <p>{item.name + ' Panel'}</p>
+                    <p>{item.text}</p>
+                  </PanelItem>
 
-              <CardGrid
-                panelNodes={
-                  data[item.link as keyof typeof data]
-                    ? data[item.link as keyof typeof data].nodes
-                    : undefined
-                }
-              ></CardGrid>
-            </PanelGroup>
-          ))}
-        </PanelHolder>
+                  <CardGrid
+                    panelNodes={
+                      data[item.link as keyof typeof data]
+                        ? data[item.link as keyof typeof data].nodes
+                        : undefined
+                    }
+                  ></CardGrid>
+                </PanelGroup>
+              </div>
+            ))}
+          </PanelHolder>
+        </div>
       </BottmDiv>
     </Wrapper>
   );
