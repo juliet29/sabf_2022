@@ -1,24 +1,55 @@
 import { Link } from 'gatsby';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { primaryAccentColor } from 'styles/theme';
+import { devices } from 'styles/responsiveSizes';
+import { LandingStyledLink } from 'styles/sharedStyles';
+import { primaryAccentColor, secondaryAccentColor } from 'styles/theme';
 
 const Wrapper = styled.div`
   /* box-sizing: border-box; */
   height: 100vh;
   margin: 8vh auto;
-  background-color: orange;
+  background-color: ${secondaryAccentColor};
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: space-around;
   padding: 20px;
+
+  > h1:nth-of-type(2) {
+    border: 1px white solid;
+    text-transform: uppercase;
+    transition: all 0.7s ease-in;
+
+    :hover {
+      background-color: white;
+      a {
+        color: ${primaryAccentColor};
+      }
+    }
+  }
+
+  @media ${devices.laptopMin} {
+    height: 60vh;
+    padding: 10vh 0;
+    > h1:nth-of-type(2) {
+      width: fit-content;
+      padding: 10px;
+      margin: auto;
+    }
+  } ;
 `;
 
 const TimerHolder = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+
+  @media ${devices.laptopMin} {
+    flex-direction: row;
+    max-width: 80%;
+    margin: 10vh auto;
+  } ;
 `;
 
 const TimerItem = styled.div`
@@ -30,29 +61,19 @@ const TimerItem = styled.div`
   align-content: center;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   padding: 5px 2px;
+
+  @media ${devices.laptopMin} {
+    width: 9em;
+    height: 9em;
+    margin: 0 1em;
+  } ;
 `;
 
 interface CountdownProps {
   // : string;
 }
-
-// let timer = setInterval(function() {
-
-//   // get today's date
-//   const today = new Date().getTime();
-
-//   // get the difference
-//   let diff = forumDate - today
-//   return diff
-
-// }
-
-// calculate the countdown
-// const year = new Date().getFullYear();
-// const forumDate = new Date(year, 4,16).getTime();
-// const month = new Date().getMonth();
 
 const Countdown: React.FC<CountdownProps> = ({}) => {
   const [allValues, setAllValues] = useState({
@@ -92,7 +113,7 @@ const Countdown: React.FC<CountdownProps> = ({}) => {
 
   return (
     <Wrapper>
-      <h1>The Stanford Africa Business Forum is quickly approaching..</h1>
+      <h1>The Stanford Africa Business Forum is quickly approaching...</h1>
       <TimerHolder>
         <TimerItem>
           <h2>{allValues.days}</h2>
@@ -113,7 +134,7 @@ const Countdown: React.FC<CountdownProps> = ({}) => {
       </TimerHolder>
 
       <h1>
-        <Link to="attend">Buy your tickets now! </Link>
+        <LandingStyledLink to="attend">Buy tickets now </LandingStyledLink>
       </h1>
     </Wrapper>
   );
