@@ -18,7 +18,7 @@ const H1 = styled.h1`
   z-index: 20;
   top: 0;
   height: 100%;
-  margin: 0 10%;
+  margin: 0 8%;
   display: flex;
   flex-direction: column;
   font-size: 6em;
@@ -118,9 +118,8 @@ const ScrollingSection: React.FC<ScrollingSectionProps> = ({}) => {
     <SectionWrap>
       <H1>
         Industries are <span>transforming rapidly</span> across the African
-        continent.
-        <span>Our forum</span> brings you <span>cutting-edge insights</span> you
-        won't want to miss.
+        continent. Our <span>forum</span> brings you{' '}
+        <span>cutting-edge insights</span> you won't want to miss.
       </H1>
 
       <ImageGrid>

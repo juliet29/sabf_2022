@@ -150,7 +150,7 @@ const ScrollingFooter = styled.div`
       position: absolute;
       top: 0;
       left: 0;
-      width: 30vw;
+      min-width: 30vw;
       overflow: hidden;
       /* padding-left: 5vw; */
     }
@@ -172,11 +172,11 @@ const Footer: React.FC<FooterProps> = ({}) => {
   //   const [cards, setCards] = useState<unknown[]>();
   useLayoutEffect(() => {
     const cardsContainer = scrollFooterRef.current;
-    console.log(cardsContainer.children);
+    // console.log(cardsContainer.children);
 
     if (cardsContainer) {
       // Get the DOM references
-      console.log('in it');
+      // console.log('in it');
       const cards = gsap.utils.toArray(scrollItemSelector('.scrollItem'));
       //   setCards(cards);
 
