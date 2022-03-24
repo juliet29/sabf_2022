@@ -74,7 +74,7 @@ const OverFlowHiddenDiv = styled.div`
   overflow: hidden;
 `;
 
-const StyledCTA = styled(Link)`
+export const StyledCTA = styled(Link)`
   /* background-color: ${primaryAccentColor}; */
   border: 1px solid ${primaryAccentColor};
   padding: 4px;
@@ -108,11 +108,6 @@ const StyledCTA = styled(Link)`
     left: 0;
     z-index: -1;
     background: ${primaryAccentColor};
-    /* background: linear-gradient(
-      180deg,
-      rgba(2, 135, 196, 1) 0%,
-      rgba(0, 160, 234, 1) 100%
-    ); */
     transition: all 0.3s ease;
   }
 

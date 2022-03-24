@@ -1,4 +1,3 @@
-import { Link } from 'gatsby';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { devices } from 'styles/responsiveSizes';

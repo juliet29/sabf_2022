@@ -18,13 +18,12 @@ const PressPage: React.FC<PressPageProps> = ({}) => {
     <StyledLayout pageTitle="Press + Videos">
       {/* <h2>Check out highlights from our previous conferences!</h2> */}
       <Video
-        videoSrcURL="//player.vimeo.com/video/356353115"
-        videoTitle="2019 Forum"
+        videoSrcURL="https://www.youtube.com/embed/m_meXFkroag"
+        videoTitle="2021 Forum"
       ></Video>
-
       <Video
-        videoSrcURL="//player.vimeo.com/video/289034555 "
-        videoTitle="2018 Forum"
+        videoSrcURL="https://www.youtube.com/embed/xo0UMiP9k5E"
+        videoTitle="2019 Forum"
       ></Video>
     </StyledLayout>
   );

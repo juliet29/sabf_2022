@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 
 const FrameHolder = styled.div`
   width: 80%;
-  height: 40vh;
+  height: 60vh;
   margin: auto;
   margin-bottom: 5em;
   position: relative;
