@@ -70,7 +70,7 @@ export const query = graphql`
   query TeamPageQuery {
     leadership: allAirtable(
       filter: { data: { Role: { regex: "/(President)/" } } }
-      sort: { fields: [data___Name], order: ASC }
+      sort: { fields: [data___Lead], order: ASC }
     ) {
       nodes {
         ...MemberData
@@ -78,7 +78,7 @@ export const query = graphql`
     }
     marketing: allAirtable(
       filter: { data: { Role: { regex: "/(Marketing)/g" } } }
-      sort: { fields: [data___Name], order: ASC }
+      sort: { fields: [data___Lead], order: ASC }
     ) {
       nodes {
         ...MemberData
@@ -86,23 +86,23 @@ export const query = graphql`
     }
     website: allAirtable(
       filter: { data: { Role: { regex: "/(Website)/g" } } }
-      sort: { fields: [data___Name], order: ASC }
+      sort: { fields: [data___Lead], order: ASC }
     ) {
       nodes {
         ...MemberData
       }
     }
     finance: allAirtable(
-      filter: { data: { Role: { regex: "/(Finance & Sponsorship)/g" } } }
-      sort: { fields: [data___Name], order: ASC }
+      filter: { data: { Role: { regex: "/(Finance)/g" } } }
+      sort: { fields: [data___Lead], order: ASC }
     ) {
       nodes {
         ...MemberData
       }
     }
     gala: allAirtable(
-      filter: { data: { Role: { regex: "/Gala/g" } } }
-      sort: { fields: [data___Name], order: ASC }
+      filter: { data: { Role: { regex: "/(Gala)/g" } } }
+      sort: { fields: [data___Lead], order: ASC }
     ) {
       nodes {
         ...MemberData
@@ -110,7 +110,7 @@ export const query = graphql`
     }
     speakers: allAirtable(
       filter: { data: { Role: { regex: "/(Keynotes|Panel)/" } } }
-      sort: { fields: [data___Name], order: ASC }
+      sort: { fields: [data___Lead], order: ASC }
     ) {
       nodes {
         ...MemberData
@@ -118,7 +118,7 @@ export const query = graphql`
     }
     pitch: allAirtable(
       filter: { data: { Role: { regex: "/(Pitch)/" } } }
-      sort: { fields: [data___Name], order: ASC }
+      sort: { fields: [data___Lead], order: ASC }
     ) {
       nodes {
         ...MemberData

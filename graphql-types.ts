@@ -700,6 +700,7 @@ export type AirtableData = {
   Industries?: Maybe<Array<Maybe<Scalars['String']>>>;
   Program?: Maybe<Scalars['String']>;
   linkedInUrl?: Maybe<Scalars['String']>;
+  Lead?: Maybe<Scalars['String']>;
 };
 
 export type AirtableDataAttachments = {
@@ -4114,6 +4115,7 @@ export type AirtableDataFilterInput = {
   Industries?: InputMaybe<StringQueryOperatorInput>;
   Program?: InputMaybe<StringQueryOperatorInput>;
   linkedInUrl?: InputMaybe<StringQueryOperatorInput>;
+  Lead?: InputMaybe<StringQueryOperatorInput>;
 };
 
 export type AirtableDataAttachmentsFilterListInput = {
@@ -4308,7 +4310,8 @@ export type AirtableFieldsEnum =
   | 'data___Attachments___type'
   | 'data___Industries'
   | 'data___Program'
-  | 'data___linkedInUrl';
+  | 'data___linkedInUrl'
+  | 'data___Lead';
 
 export type AirtableGroupConnection = {
   totalCount: Scalars['Int'];
