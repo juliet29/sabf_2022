@@ -79,54 +79,54 @@ const Keynotes: React.FC<KeynotesProps> = ({ data }) => {
   const photoRef = useRef();
   const photoSelector = gsap.utils.selector(photoRef);
 
-  // useLayoutEffect(() => {
-  //   gsap.registerPlugin(ScrollTrigger);
-  //   let revealContainers = photoSelector('.photoPlace');
-  //   // revealContainers.forEach((container) => {
-  //   //   let image = container.querySelector('.gatsbyImg');
-  //   //   console.log('hi', image);
-  //   //   let tl = gsap.timeline({
-  //   //     scrollTrigger: {
-  //   //       trigger: container,
-  //   //       toggleActions: 'restart none none reset'
-  //   //     }
-  //   //   });
-  //   //   tl.from(image, {
-  //   //     // xPercent: 100,
-  //   //     scale: 1.1,
-  //   //     // delay: -1.5,
-  //   //     duration: 1.5,
-  //   //     ease: 'power2.easeOut'
-  //   //   });
-  //   // });
-  // });
+  useLayoutEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    let revealContainers = photoSelector('.photoPlace');
+    revealContainers.forEach((container) => {
+      let image = container.querySelector('.gatsbyImg');
+      console.log('hi', image);
+      let tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: container,
+          toggleActions: 'restart none none reset'
+        }
+      });
+      tl.from(image, {
+        // xPercent: 100,
+        scale: 1.1,
+        // delay: -1.5,
+        duration: 1.5,
+        ease: 'power2.easeOut'
+      });
+    });
+  });
   return (
-    <Wrapper>
-      <div ref={photoRef}>
-        {data.keynote.nodes.map((i) => (
-          <KeynoteItem>
-            <a href={i.data?.LinkedIn_Url as string} className="photoPlace">
-              <img
-                className="gatsbyImg"
-                src={
-                  i.data?.Attachments?.map(
-                    (image) => image?.thumbnails?.large?.url as string
-                  )[0]
-                }
-              />
-            </a>
+    <Wrapper ref={photoRef}>
+      {/* <div > */}
+      {data.keynote.nodes.map((i) => (
+        <KeynoteItem>
+          <a href={i.data?.LinkedIn_Url as string} className="photoPlace">
+            <img
+              className="gatsbyImg"
+              src={
+                i.data?.Attachments?.map(
+                  (image) => image?.thumbnails?.large?.url as string
+                )[0]
+              }
+            />
+          </a>
 
-            <div>
-              <p>
-                <a href={i.data?.LinkedIn_Url as string}>{i.data?.Name}</a>
-              </p>
-              <p>
-                {i.data?.Title}, {i.data?.Organization}
-              </p>
-            </div>
-          </KeynoteItem>
-        ))}
-      </div>
+          <div>
+            <p>
+              <a href={i.data?.LinkedIn_Url as string}>{i.data?.Name}</a>
+            </p>
+            <p>
+              {i.data?.Title}, {i.data?.Organization}
+            </p>
+          </div>
+        </KeynoteItem>
+      ))}
+      {/* </div> */}
     </Wrapper>
   );
 };
