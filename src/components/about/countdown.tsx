@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { devices } from 'styles/responsiveSizes';
 import { LandingStyledLink } from 'styles/sharedStyles';
 import { primaryAccentColor, secondaryAccentColor } from 'styles/theme';
+
+const bgChange = keyframes`
+
+  0% {background-color: black;}
+  25%{background-color: ${secondaryAccentColor}}
+  50% {background-color: "#d1f0ff";}
+  75%{background-color: ${secondaryAccentColor}}
+  100% {background-color: black;}
+`;
 
 const Wrapper = styled.div`
   /* box-sizing: border-box; */
@@ -29,6 +38,8 @@ const Wrapper = styled.div`
   }
 
   @media ${devices.laptopMin} {
+    transition: all 3s ease-in;
+    animation: ${bgChange} 10s infinite;
     height: 60vh;
     padding: 10vh 0;
     > h1:nth-of-type(2) {

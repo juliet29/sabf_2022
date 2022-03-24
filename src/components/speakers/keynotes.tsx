@@ -92,9 +92,7 @@ const Keynotes: React.FC<KeynotesProps> = ({ data }) => {
         }
       });
       tl.from(image, {
-        // xPercent: 100,
         scale: 1.1,
-        // delay: -1.5,
         duration: 1.5,
         ease: 'power2.easeOut'
       });

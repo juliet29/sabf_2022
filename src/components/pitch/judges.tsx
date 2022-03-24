@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { devices } from 'styles/responsiveSizes';
 import { primaryAccentColor } from 'styles/theme';
 import { PitchPageQueryQuery } from '../../../graphql-types';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { StaticImage } from 'gatsby-plugin-image';
 
 const Wrapper = styled.div`
   margin-top: 1em;
@@ -75,12 +78,36 @@ interface KeynotesProps {
 }
 
 const Judges: React.FC<KeynotesProps> = ({ data }) => {
+  const photoRef = useRef();
+  const photoSelector = gsap.utils.selector(photoRef);
+
+  useLayoutEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    let revealContainers = photoSelector('.photoPlace');
+    revealContainers.forEach((container) => {
+      let image = container.querySelector('.gatsbyImg');
+      console.log('hi', image);
+      let tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: container,
+          toggleActions: 'restart none none reset'
+        }
+      });
+      tl.from(image, {
+        scale: 1.1,
+        duration: 2,
+        ease: 'power2.easeOut'
+      });
+    });
+  });
+
   return (
-    <Wrapper>
+    <Wrapper ref={photoRef}>
       {data.pitch.nodes.map((i) => (
         <KeynoteItem>
-          <a href={i.data?.LinkedIn_Url as string}>
+          <a href={i.data?.LinkedIn_Url as string} className="photoPlace">
             <img
+              className="gatsbyImg"
               src={
                 i.data?.Attachments?.map(
                   (image) => image?.thumbnails?.large?.url as string
