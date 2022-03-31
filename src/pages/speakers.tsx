@@ -76,6 +76,17 @@ export const query = graphql`
         ...SpeakerData
       }
     }
+    Infrastructure: allAirtable(
+      filter: {
+        queryName: { eq: "Speakers" }
+        data: { Panel: { regex: "/(Infrastructure)/g" } }
+      }
+    ) {
+      nodes {
+        ...SpeakerData
+      }
+    }
+
     Entrepreneurship: allAirtable(
       filter: {
         queryName: { eq: "Speakers" }

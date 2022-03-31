@@ -77,7 +77,9 @@ module.exports = {
     options: {
       offset: -170
     }
-  }
+  },
+  `gatsby-plugin-remove-trailing-slashes`,
     
   ],
+  
 };

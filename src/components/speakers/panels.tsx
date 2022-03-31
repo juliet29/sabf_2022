@@ -14,6 +14,7 @@ import { SpeakersPageQueryQuery } from '../../../graphql-types';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './styles.css';
+import { useWindowSize } from 'hooks/window-size';
 
 const scrollPanelOffset = 15 + 'em';
 
@@ -132,6 +133,7 @@ interface PanelsProps {
 
 const Panels: React.FC<PanelsProps> = ({ data }) => {
   const panelHolderRef = useRef();
+  // const width = useWindowSize()
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
