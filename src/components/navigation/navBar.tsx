@@ -76,9 +76,10 @@ const NavBar: React.FC<NavBarProps> = ({}) => {
 
         {width > mobileLBreakpoint ? (
           <NavMenuDiv>
-            <NavLink to="/press">Press + Videos</NavLink>
+            <NavLink to="/press">Press</NavLink>
+            <NavLink to="/sponsors">Sponsors</NavLink>
             <NavLink to="/pitch">Pitch Competition</NavLink>
-            <NavLink to="/speakers">Speakers + Panels</NavLink>
+            <NavLink to="/speakers">Speakers</NavLink>
             <NavLink to="/team">Team</NavLink>
             <NavLink to="/attend">Buy Tickets</NavLink>
           </NavMenuDiv>
