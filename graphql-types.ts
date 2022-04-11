@@ -692,12 +692,12 @@ export type AirtableData = {
   Role?: Maybe<Scalars['String']>;
   Name?: Maybe<Scalars['String']>;
   Email?: Maybe<Scalars['String']>;
-  Bio?: Maybe<Scalars['String']>;
   Title?: Maybe<Scalars['String']>;
   LinkedIn_Url?: Maybe<Scalars['String']>;
   Organization?: Maybe<Scalars['String']>;
   Panel?: Maybe<Scalars['String']>;
   Attachments?: Maybe<Array<Maybe<AirtableDataAttachments>>>;
+  Bio?: Maybe<Scalars['String']>;
   Industries?: Maybe<Array<Maybe<Scalars['String']>>>;
   Program?: Maybe<Scalars['String']>;
   linkedInUrl?: Maybe<Scalars['String']>;
@@ -4108,12 +4108,12 @@ export type AirtableDataFilterInput = {
   Role?: InputMaybe<StringQueryOperatorInput>;
   Name?: InputMaybe<StringQueryOperatorInput>;
   Email?: InputMaybe<StringQueryOperatorInput>;
-  Bio?: InputMaybe<StringQueryOperatorInput>;
   Title?: InputMaybe<StringQueryOperatorInput>;
   LinkedIn_Url?: InputMaybe<StringQueryOperatorInput>;
   Organization?: InputMaybe<StringQueryOperatorInput>;
   Panel?: InputMaybe<StringQueryOperatorInput>;
   Attachments?: InputMaybe<AirtableDataAttachmentsFilterListInput>;
+  Bio?: InputMaybe<StringQueryOperatorInput>;
   Industries?: InputMaybe<StringQueryOperatorInput>;
   Program?: InputMaybe<StringQueryOperatorInput>;
   linkedInUrl?: InputMaybe<StringQueryOperatorInput>;
@@ -4298,7 +4298,6 @@ export type AirtableFieldsEnum =
   | 'data___Role'
   | 'data___Name'
   | 'data___Email'
-  | 'data___Bio'
   | 'data___Title'
   | 'data___LinkedIn_Url'
   | 'data___Organization'
@@ -4311,6 +4310,7 @@ export type AirtableFieldsEnum =
   | 'data___Attachments___filename'
   | 'data___Attachments___size'
   | 'data___Attachments___type'
+  | 'data___Bio'
   | 'data___Industries'
   | 'data___Program'
   | 'data___linkedInUrl'

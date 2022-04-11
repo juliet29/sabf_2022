@@ -2,11 +2,13 @@ import Schedule from 'components/attend/schedule';
 import { StyledCTA } from 'components/landing';
 import Layout from 'components/navigation/layout';
 import { graphql } from 'gatsby';
+import { StaticImage } from 'gatsby-plugin-image';
 import React from 'react';
 import styled from 'styled-components';
 import { devices } from 'styles/responsiveSizes';
 
 import { AttendPageQueryQuery } from '../../graphql-types';
+// import * from "../assets"
 
 const TopDiv = styled.div`
   @media ${devices.laptopMin} {
@@ -46,6 +48,49 @@ const BottomDiv = styled.div`
   margin-top: 20px;
 `;
 
+const ImageHolder = styled.div`
+  width: 80%;
+  /* max-height: 50vh; */
+  margin: auto;
+  display: block;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  /* padding: 20px; */
+
+  img {
+    object-fit: contain;
+    /* height: 50vh; */
+  }
+
+  @media ${devices.laptopMin} {
+    width: 20%;
+  } ;
+`;
+
+const ImageGroup = styled.div`
+  /* margin-top: 10vh;
+  margin-bottom: 10vh; */
+  display: flex;
+  flex-direction: column;
+
+  @media ${devices.laptopMin} {
+    margin-top: 3vh;
+    margin-bottom: 10vh;
+    flex-direction: row;
+  } ;
+`;
+
+const SecondBlurb = styled.h3`
+  text-align: center;
+  margin: auto;
+  margin-top: 5vh;
+  max-width: 80%;
+`;
+
+const kem = '../assets/kem.jpeg';
+const ml = '../assets/ml.jpeg';
+
 interface AttendPageProps {
   data: AttendPageQueryQuery;
 }
@@ -69,6 +114,21 @@ const AttendPage: React.FC<AttendPageProps> = ({ data }) => {
           <AttendCTA>BUY TICKETS NOW</AttendCTA>
         </a>
       </TopDiv>
+
+      <SecondBlurb>
+        Our afterparty will feature perfomances from DJ Kem Kem and Major League
+        DJz. It will be located at Vidalakis Dining Hall, 680 Jane Stanford Way,
+        Stanford, CA 94305.
+      </SecondBlurb>
+
+      <ImageGroup>
+        <ImageHolder>
+          <StaticImage src={kem} alt="" />
+        </ImageHolder>
+        <ImageHolder>
+          <StaticImage src={ml} alt="" />
+        </ImageHolder>
+      </ImageGroup>
 
       <Schedule data={data}></Schedule>
       <BottomDiv>

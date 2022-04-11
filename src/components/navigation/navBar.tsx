@@ -49,12 +49,13 @@ const NavMenuDiv = styled.div`
 `;
 
 export const NavLink = styled(Link)`
-  color: ${primaryAccentColor};
   margin-left: 1em;
   margin-right: 1em;
   text-decoration: none;
   text-transform: uppercase;
   transition: 0.3s all ease-in-out;
+  font-size: clamp(0.7em, 0.8em, 1.1em);
+  // clamp font size
 
   :hover {
     color: white;
