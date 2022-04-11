@@ -85,6 +85,7 @@ const SecondBlurb = styled.h3`
   text-align: center;
   margin: auto;
   margin-top: 5vh;
+  margin-bottom: 5vh;
   max-width: 80%;
 `;
 
